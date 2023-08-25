@@ -3,49 +3,39 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-	private const float G = 0.01f;
-
-	[SerializeField] private Rigidbody asteroidAttractor;
-	[SerializeField] private List<GameObject> asteroidPrefabs = new();
-
-	private List<Rigidbody> spawnedAsteroids = new();
 	private const float spawnDistance = 20.0f;
+	private const float targetDistance = 10.0f;
 
-	private void SpawnAsteroid()
+	[SerializeField] private List<GameObject> asteroidPrefabs = new();
+	private List<Rigidbody> spawnedAsteroids = new();
+
+	public IReadOnlyList<Rigidbody> SpawnedAsteroids => spawnedAsteroids.AsReadOnly();
+
+	public void SpawnAsteroid()
 	{
 		Vector3 spawnPos = transform.position;
 		spawnPos += (Vector3)Random.insideUnitCircle.normalized * spawnDistance;
 
 		var randomPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Count)];
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
-		spawnedAsteroids.Add(newAsteroid.GetComponent<Rigidbody>());
+		newAsteroid.transform.localScale = Vector3.one * Random.Range(0.1f, 0.3f);
 
-		newAsteroid.transform.localScale = Vector3.one * Random.Range(0.05f, 0.25f);
-	}
+		var rb = newAsteroid.GetComponent<Rigidbody>();
+		var targetPos = Random.insideUnitSphere * targetDistance;
+		targetPos.z = rb.position.z;
 
-	private void AttractAsteroids()
-	{
-		foreach (var a in spawnedAsteroids)
-		{
-			Vector3 direction = asteroidAttractor.transform.position - a.transform.position;
-			float distance = direction.magnitude;
-			direction.Normalize();
+		var targetPosDir = targetPos - spawnPos;
+		targetPosDir.Normalize();
+		rb.velocity = targetPosDir * Random.Range(0.0f, 1.0f);
 
-			Vector3 force = direction * G * (asteroidAttractor.mass * a.mass) / (distance * distance);
-			a.AddForce(force * Time.deltaTime, ForceMode.Acceleration);
-		}
+		spawnedAsteroids.Add(rb);
 	}
 
 	private void Start()
 	{
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			SpawnAsteroid();
 		}
-	}
-
-	private void FixedUpdate()
-	{
-		AttractAsteroids();
 	}
 }
