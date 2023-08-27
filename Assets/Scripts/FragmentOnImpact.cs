@@ -21,6 +21,14 @@ public class FragmentOnImpact : MonoBehaviour
 			return;
 		}
 
+		var thisRb = GetComponent<Rigidbody>();
+		var otherRb = collision.collider.GetComponent<Rigidbody>();
+
+		if (thisRb.mass > otherRb.mass)
+		{
+			return;
+		}
+
 		Vector3 direction = (collision.transform.position - transform.position).normalized;
 		Vector3 surfaceNormal = collision.GetContact(0).normal;
 
