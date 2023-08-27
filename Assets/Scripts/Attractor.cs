@@ -4,30 +4,30 @@ public class Attractor : MonoBehaviour
 {
 	private const float G = 0.01f;
 
-	private AsteroidManager asteroidManager;
 	private Rigidbody rigidBody;
 
-	private void AttractAsteroids()
+	private void AttractAttractables()
 	{
-		foreach (var a in asteroidManager.SpawnedAsteroids)
+		foreach (var a in Attractable.SpawnedAttractables)
 		{
+			var attractableRB = a.GetComponent<Rigidbody>();
+
 			Vector3 direction = transform.position - a.transform.position;
 			float distance = direction.magnitude;
 			direction.Normalize();
 
-			Vector3 force = direction * G * (rigidBody.mass * a.mass) / (distance * distance);
-			a.AddForce(force * Time.deltaTime, ForceMode.Acceleration);
+			Vector3 force = direction * G * (rigidBody.mass * attractableRB.mass) / (distance * distance);
+			attractableRB.AddForce(force * Time.deltaTime, ForceMode.Acceleration);
 		}
 	}
 
 	private void Start()
 	{
-		asteroidManager = FindObjectOfType<AsteroidManager>();
 		rigidBody = GetComponent<Rigidbody>();
 	}
 
 	private void FixedUpdate()
 	{
-		AttractAsteroids();
+		AttractAttractables();
 	}
 }

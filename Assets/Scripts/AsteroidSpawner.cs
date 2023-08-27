@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidManager : MonoBehaviour
+public class AsteroidSpawner : MonoBehaviour
 {
 	private const float spawnDistance = 20.0f;
 	private const float targetDistance = 10.0f;
 
 	[SerializeField] private List<GameObject> asteroidPrefabs = new();
-	private List<Rigidbody> spawnedAsteroids = new();
-
-	public IReadOnlyList<Rigidbody> SpawnedAsteroids => spawnedAsteroids.AsReadOnly();
 
 	public void SpawnAsteroid()
 	{
@@ -27,8 +24,6 @@ public class AsteroidManager : MonoBehaviour
 		var targetPosDir = targetPos - spawnPos;
 		targetPosDir.Normalize();
 		rb.velocity = targetPosDir * Random.Range(0.0f, 1.0f);
-
-		spawnedAsteroids.Add(rb);
 	}
 
 	private void Start()
