@@ -4,7 +4,6 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
 	private const float spawnDistance = 20.0f;
-	private const float targetDistance = 10.0f;
 
 	[SerializeField] private List<GameObject> asteroidPrefabs = new();
 
@@ -16,14 +15,6 @@ public class AsteroidSpawner : MonoBehaviour
 		var randomPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Count)];
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
 		newAsteroid.transform.localScale = Vector3.one * Random.Range(0.1f, 0.3f);
-
-		var rb = newAsteroid.GetComponent<Rigidbody>();
-		var targetPos = Random.insideUnitSphere * targetDistance;
-		targetPos.z = rb.position.z;
-
-		var targetPosDir = targetPos - spawnPos;
-		targetPosDir.Normalize();
-		rb.velocity = targetPosDir * Random.Range(0.0f, 1.0f);
 	}
 
 	private void Start()

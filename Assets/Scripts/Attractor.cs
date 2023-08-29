@@ -2,32 +2,28 @@ using UnityEngine;
 
 public class Attractor : MonoBehaviour
 {
-	private const float G = 0.01f;
+	private const float G = 0.001f;
 
-	private Rigidbody rigidBody;
+	[SerializeField] private float mass;
 
-	private void AttractAttractables()
+	private void Attract(Attractable a)
+	{
+		Vector3 direction = transform.position - a.transform.position;
+		float distance = direction.magnitude;
+		direction.Normalize();
+
+		float force = G * (mass * a.Mass) / (distance * distance);
+		float resultingForce = force / a.Mass;
+		Vector3 forceVector = direction * resultingForce;
+
+		a.AddVelocity(forceVector * Time.deltaTime);
+	}
+
+	private void LateUpdate()
 	{
 		foreach (var a in Attractable.SpawnedAttractables)
 		{
-			var attractableRB = a.GetComponent<Rigidbody>();
-
-			Vector3 direction = transform.position - a.transform.position;
-			float distance = direction.magnitude;
-			direction.Normalize();
-
-			Vector3 force = direction * G * (rigidBody.mass * attractableRB.mass) / (distance * distance);
-			attractableRB.AddForce(force * Time.deltaTime, ForceMode.Acceleration);
+			Attract(a);
 		}
-	}
-
-	private void Start()
-	{
-		rigidBody = GetComponent<Rigidbody>();
-	}
-
-	private void FixedUpdate()
-	{
-		AttractAttractables();
 	}
 }

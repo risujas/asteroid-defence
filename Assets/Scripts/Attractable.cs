@@ -7,6 +7,16 @@ public class Attractable : MonoBehaviour
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
+	[SerializeField] private float mass;
+	[SerializeField] private Vector3 velocity;
+
+	public float Mass => mass;
+
+	public void AddVelocity(Vector3 v)
+	{
+		velocity += v;
+	}
+
 	private void OnEnable()
 	{
 		spawnedAttractables.Add(this);
@@ -15,5 +25,10 @@ public class Attractable : MonoBehaviour
 	private void OnDisable()
 	{
 		spawnedAttractables.Remove(this);
+	}
+
+	private void Update()
+	{
+		transform.position += velocity * Time.deltaTime;
 	}
 }
