@@ -18,15 +18,6 @@ public class Attractable : MonoBehaviour
 		velocity += v;
 	}
 
-	private void SpawnFragments(int numFragments, Vector3 forces)
-	{
-		for (int i = 0; i < numFragments; i++)
-		{
-			var newFragment = Instantiate(fragmentPrefab, transform.position, Quaternion.identity).GetComponent<Attractable>();
-			newFragment.AddVelocity(forces);
-		}
-	}
-
 	private void OnEnable()
 	{
 		spawnedAttractables.Add(this);
@@ -46,13 +37,18 @@ public class Attractable : MonoBehaviour
 	{
 		if (fragmentPrefab != null)
 		{
-			Vector3 direction = (collision.transform.position - transform.position).normalized;
 			Vector3 surfaceNormal = collision.GetContact(0).normal;
+			Vector3 reflectionVector = Vector3.Reflect(velocity, surfaceNormal);
 
-			Vector3 reflectionVector = Vector3.Reflect(direction, surfaceNormal);
-			reflectionVector = reflectionVector.normalized * 0.75f;
+			for (int i = 0; i < 30; i++)
+			{
+				Vector3 individualVector = reflectionVector;
+				individualVector += Random.insideUnitSphere * 0.1f;
+				individualVector.z = 0.0f;
 
-			SpawnFragments(100, reflectionVector);
+				var newFragment = Instantiate(fragmentPrefab, transform.position, Quaternion.identity).GetComponent<Attractable>();
+				newFragment.AddVelocity(individualVector);
+			}
 		}
 
 		Destroy(gameObject);
