@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Attractor : MonoBehaviour
 {
-	private const float G = 0.001f;
+	private const float G = 0.0005f;
 
 	[SerializeField] private float mass;
 
