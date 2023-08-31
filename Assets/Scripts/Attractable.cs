@@ -40,10 +40,10 @@ public class Attractable : MonoBehaviour
 			Vector3 surfaceNormal = collision.GetContact(0).normal;
 			Vector3 reflectionVector = Vector3.Reflect(velocity, surfaceNormal);
 
-			for (int i = 0; i < 30; i++)
+			for (int i = 0; i < 50; i++)
 			{
-				Vector3 individualVector = reflectionVector * Random.Range(0.5f, 0.8f);
-				individualVector = Quaternion.AngleAxis(Random.Range(-15.0f, 15.0f), Vector3.forward) * individualVector;
+				Vector3 individualVector = reflectionVector * Random.Range(0.0f, 0.8f);
+				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
 
 				var newFragment = Instantiate(fragmentPrefab, transform.position, Quaternion.identity).GetComponent<Attractable>();
 				newFragment.AddVelocity(individualVector);
