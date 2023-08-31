@@ -45,7 +45,11 @@ public class Attractable : MonoBehaviour
 				Vector3 individualVector = reflectionVector * Random.Range(0.0f, 0.8f);
 				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
 
-				var newFragment = Instantiate(fragmentPrefab, transform.position, Quaternion.identity).GetComponent<Attractable>();
+				float width = transform.localScale.x * 0.5f;
+				Vector3 spawnPosition = transform.position + Random.insideUnitSphere * Random.Range(-width, width);
+				spawnPosition.z = 0.0f;
+
+				var newFragment = Instantiate(fragmentPrefab, spawnPosition, Quaternion.identity).GetComponent<Attractable>();
 				newFragment.AddVelocity(individualVector);
 			}
 		}
