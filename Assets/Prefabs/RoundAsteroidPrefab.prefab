@@ -148,6 +148,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   fragmentPrefab: {fileID: 4727126053663585187, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
+  impactEffectPrefab: {fileID: 9130085426736868685, guid: 2723ec1a235c0d64d8e1a8bc7337527b,
+    type: 3}
 --- !u!114 &-6504530638061937661
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class Attractable : MonoBehaviour
 	[SerializeField] private float mass;
 	[SerializeField] private Vector3 velocity;
 	[SerializeField] private Attractable fragmentPrefab;
+	[SerializeField] private ImpactEffect impactEffectPrefab;
 
 	public float Mass => mass;
 
@@ -35,6 +36,11 @@ public class Attractable : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
+		if (impactEffectPrefab != null)
+		{
+			Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
+		}
+
 		if (fragmentPrefab != null)
 		{
 			Vector3 surfaceNormal = collision.GetContact(0).normal;
