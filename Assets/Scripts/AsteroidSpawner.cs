@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-	private const float spawnDistance = 10.0f;
-
+	[SerializeField] private float spawnDistance = 10.0f;
 	[SerializeField] private List<GameObject> asteroidPrefabs = new();
 
 	public void SpawnAsteroid()
