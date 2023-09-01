@@ -8,7 +8,7 @@ public class Attractable : MonoBehaviour
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
 	[SerializeField] private float mass;
-	[SerializeField] private Vector3 velocity;
+	[SerializeField, ReadOnly] private Vector3 velocity;
 	[SerializeField] private Attractable fragmentPrefab;
 	[SerializeField] private ImpactEffect impactEffectPrefab;
 
