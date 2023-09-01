@@ -103,7 +103,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 114ea8b76825f1642964b68e53a7ed2f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -6504530638061937661}
+      addedObject: {fileID: -540438760057289749}
   m_SourcePrefab: {fileID: 100100000, guid: 114ea8b76825f1642964b68e53a7ed2f, type: 3}
 --- !u!1 &2360412234698034963 stripped
 GameObject:
@@ -150,7 +150,7 @@ MonoBehaviour:
     type: 3}
   impactEffectPrefab: {fileID: 9130085426736868685, guid: 2723ec1a235c0d64d8e1a8bc7337527b,
     type: 3}
---- !u!114 &-6504530638061937661
+--- !u!114 &-540438760057289749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,10 +159,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2360412234698034963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294dac4d376ff314299b14599ca07bb0, type: 3}
+  m_Script: {fileID: 11500000, guid: d1ce7aee773125b4db45d3e8c4cc355b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 0, z: 0}
   randomizeOnStart: 1
-  randomMin: {x: 0, y: 0, z: -15}
-  randomMax: {x: 0, y: 0, z: 15}
+  randomMin: {x: 0, y: 0, z: -30}
+  randomMax: {x: 0, y: 0, z: 30}

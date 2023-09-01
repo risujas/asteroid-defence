@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class ConstantRotation : MonoBehaviour
 {
-	[SerializeField] private Vector3 rotationSpeed;
-
-	[Header("Randomization")]
-	[SerializeField] private bool randomizeOnStart;
-	[SerializeField] private Vector3 randomMin;
-	[SerializeField] private Vector3 randomMax;
+	[SerializeField] protected Vector3 rotationSpeed;
 
 	public Vector3 RotationSpeed
 	{
@@ -18,16 +13,6 @@ public class ConstantRotation : MonoBehaviour
 		get
 		{
 			return rotationSpeed;
-		}
-	}
-
-	private void Start()
-	{
-		if (randomizeOnStart)
-		{
-			rotationSpeed.x = Random.Range(randomMin.x, randomMax.x);
-			rotationSpeed.y = Random.Range(randomMin.y, randomMax.y);
-			rotationSpeed.z = Random.Range(randomMin.z, randomMax.z);
 		}
 	}
 

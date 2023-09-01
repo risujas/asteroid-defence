@@ -283,9 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 0, z: 1}
-  randomizeOnStart: 0
-  randomMin: {x: 0, y: 0, z: 0}
-  randomMax: {x: 0, y: 0, z: 0}
 --- !u!114 &93002973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,9 +456,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 0, z: -5}
-  randomizeOnStart: 0
-  randomMin: {x: 0, y: 0, z: 0}
-  randomMax: {x: 0, y: 0, z: 0}
 --- !u!4 &210935007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abe2e032b7ed960458eaea54914c42d6,
@@ -811,9 +805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0.1, y: 0, z: 0}
-  randomizeOnStart: 0
-  randomMin: {x: 0, y: 0, z: 0}
-  randomMax: {x: 0, y: 0, z: 0}
 --- !u!4 &823168647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abe2e032b7ed960458eaea54914c42d6,
@@ -1048,13 +1039,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765578825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294dac4d376ff314299b14599ca07bb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 20b0161e6f972d742bea10fc22bdc58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: {x: 0, y: -1, z: 0}
-  randomizeOnStart: 0
-  randomMin: {x: 0, y: 0, z: 0}
-  randomMax: {x: 0, y: 0, z: 0}
+  rotationSpeed: {x: 0, y: 0, z: 0}
+  parentBody: {fileID: 210935003}
+  childBody: {fileID: 93002967}
 --- !u!1 &2063208159
 GameObject:
   m_ObjectHideFlags: 0
