@@ -1028,7 +1028,7 @@ MonoBehaviour:
   rotationSpeed: {x: 0, y: 0, z: 0}
   parentBody: {fileID: 210935003}
   childBody: {fileID: 93002967}
-  clockwiseRotation: 0
+  clockwiseRotation: 1
 --- !u!1 &2063208159
 GameObject:
   m_ObjectHideFlags: 0

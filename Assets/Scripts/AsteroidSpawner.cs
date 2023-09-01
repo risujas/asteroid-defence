@@ -5,6 +5,8 @@ public class AsteroidSpawner : MonoBehaviour
 {
 	[SerializeField] private float spawnDistance = 10.0f;
 	[SerializeField] private List<GameObject> asteroidPrefabs = new();
+	[SerializeField] private float minScale = 0.1f;
+	[SerializeField] private float maxScale = 0.2f;
 
 	public void SpawnAsteroid()
 	{
@@ -13,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
 
 		var randomPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Count)];
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
-		newAsteroid.transform.localScale = Vector3.one * Random.Range(0.1f, 0.3f);
+		newAsteroid.transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
 	}
 
 	private void Start()
