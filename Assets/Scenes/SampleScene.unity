@@ -231,10 +231,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe2e032b7ed960458eaea54914c42d6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 93002970}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe2e032b7ed960458eaea54914c42d6,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 93002973}
   m_SourcePrefab: {fileID: 100100000, guid: abe2e032b7ed960458eaea54914c42d6, type: 3}
 --- !u!4 &93002966 stripped
@@ -270,19 +266,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &93002970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93002967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294dac4d376ff314299b14599ca07bb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 0, y: 0, z: 1}
 --- !u!114 &93002973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1028,7 @@ MonoBehaviour:
   rotationSpeed: {x: 0, y: 0, z: 0}
   parentBody: {fileID: 210935003}
   childBody: {fileID: 93002967}
+  clockwiseRotation: 0
 --- !u!1 &2063208159
 GameObject:
   m_ObjectHideFlags: 0
