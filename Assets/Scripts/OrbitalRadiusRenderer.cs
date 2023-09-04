@@ -11,6 +11,7 @@ public class OrbitalRadiusRenderer : MonoBehaviour
 	private void Start()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
+		lineRenderer.useWorldSpace = false;
 		lineRenderer.positionCount = numVertices + 1;
 
 		float radius = Vector3.Distance(parent.transform.position, child.transform.position);
