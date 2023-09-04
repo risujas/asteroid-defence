@@ -10,6 +10,8 @@ public class OrbitalRadiusRenderer : MonoBehaviour
 
 	private void Start()
 	{
+		transform.position = parent.transform.position;
+
 		lineRenderer = GetComponent<LineRenderer>();
 		lineRenderer.useWorldSpace = false;
 		lineRenderer.positionCount = numVertices + 1;
@@ -26,5 +28,11 @@ public class OrbitalRadiusRenderer : MonoBehaviour
 		}
 
 		lineRenderer.SetPositions(positions);
+	}
+
+	private void Update()
+	{
+		var dir = (child.transform.position - transform.position).normalized;
+		transform.right = dir;
 	}
 }
