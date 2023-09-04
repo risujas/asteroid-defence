@@ -38,7 +38,7 @@ public class Attractable : MonoBehaviour
 	{
 		if (impactEffectPrefab != null)
 		{
-			Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
+			Instantiate(impactEffectPrefab, transform.position, Quaternion.identity, collision.gameObject.transform);
 		}
 
 		if (fragmentPrefab != null)
