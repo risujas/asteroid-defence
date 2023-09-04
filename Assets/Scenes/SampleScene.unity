@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378608c3d5b7d1043a18736b7a25db41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centralBody: {fileID: 210935014}
   spawnDistance: 10
   asteroidPrefabs:
   - {fileID: 2360412234698034963, guid: 2ac8df4add2e9d0459072acc228ad089, type: 3}
