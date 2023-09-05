@@ -41,8 +41,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _TimeMultiplier: 0
-    - _TimeMultiplier1: 0.02
-    - _TimeMultiplier2: 0.01
+    - _TimeMultiplier1: 0.06
+    - _TimeMultiplier2: 0.03
     m_Colors:
     - _LandColor: {r: 0.25773346, g: 0.43396226, b: 0.21084017, a: 0}
     - _WaterColor: {r: 0.20251867, g: 0.24858707, b: 0.38679245, a: 0}
