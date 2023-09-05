@@ -6,8 +6,8 @@ public class CameraControl : MonoBehaviour
 	private const float maxTargetSize = 20.0f;
 	private float targetSize;
 
-	private float zoomSpeed = 2.0f;
-	private float lerpSpeed = 3.0f;
+	private float zoomSpeed = 3.0f;
+	private float lerpSpeed = 6.0f;
 
 	private void Start()
 	{
@@ -23,6 +23,6 @@ public class CameraControl : MonoBehaviour
 			targetSize = Mathf.Clamp(targetSize, minTargetSize, maxTargetSize);
 		}
 
-		Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetSize, lerpSpeed * Time.deltaTime);
+		Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetSize, lerpSpeed * Time.unscaledDeltaTime);
 	}
 }
