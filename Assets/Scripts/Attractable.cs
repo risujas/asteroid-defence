@@ -14,6 +14,8 @@ public class Attractable : MonoBehaviour
 
 	public float Mass => mass;
 
+	public Vector3 Velocity => velocity;
+
 	public void AddVelocity(Vector3 v)
 	{
 		velocity += v;

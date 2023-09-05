@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebf3fc922f709048b5d32077830654d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragLevel: 0
+  velocityDampenFactor: 0.5
 --- !u!1 &897189697
 GameObject:
   m_ObjectHideFlags: 0
