@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class TimescaleChanger : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI textField;
+	[SerializeField] private TextMeshProUGUI timescaleText;
+	[SerializeField] private TextMeshProUGUI pauseButtonText;
 
+	private bool paused = false;
 	private float[] levels = { 0.1f, 1.0f, 3.0f, 10.0f, 50.0f, 100.0f };
-	private int index = 0;
+	private int index = 1;
 
 	public void Increase()
 	{
@@ -15,7 +17,12 @@ public class TimescaleChanger : MonoBehaviour
 		{
 			index--;
 		}
-		SetTimescale();
+
+		if (!paused)
+		{
+			Time.timeScale = levels[index];
+		}
+		timescaleText.text = "x" + levels[index].ToString();
 	}
 
 	public void Decrease()
@@ -25,12 +32,29 @@ public class TimescaleChanger : MonoBehaviour
 		{
 			index = 0;
 		}
-		SetTimescale();
+
+		if (!paused)
+		{
+			Time.timeScale = levels[index];
+		}
+		timescaleText.text = "x" + levels[index].ToString();
 	}
 
-	private void SetTimescale()
+	public void HandlePauseButton()
 	{
-		Time.timeScale = levels[index];
-		textField.text = "x" + levels[index].ToString();
+		if (!paused)
+		{
+			Time.timeScale = 0.0f;
+			pauseButtonText.text = "Resume";
+			paused = true;
+		}
+		else
+		{
+			Time.timeScale = levels[index];
+			timescaleText.text = "x" + levels[index].ToString();
+
+			pauseButtonText.text = "Pause";
+			paused = false;
+		}
 	}
 }
