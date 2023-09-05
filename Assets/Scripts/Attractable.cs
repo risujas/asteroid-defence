@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Attractable : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class Attractable : MonoBehaviour
 
 	[SerializeField] private float mass;
 	[SerializeField, ReadOnly] private Vector3 velocity;
+
 	[SerializeField] private Attractable fragmentPrefab;
-	[SerializeField] private ImpactEffect impactEffectPrefab;
+	[SerializeField] private ImpactLight impactLightPrefab;
+	[SerializeField] private VisualEffect vfxPrefab;
 
 	public float Mass => mass;
 
@@ -38,9 +41,17 @@ public class Attractable : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (impactEffectPrefab != null)
+		if (vfxPrefab != null)
 		{
-			Instantiate(impactEffectPrefab, transform.position, Quaternion.identity, collision.gameObject.transform);
+			Vector3 impactPoint = collision.GetContact(0).point;
+			var vfx = Instantiate(vfxPrefab, impactPoint, Quaternion.identity, collision.gameObject.transform);
+			vfx.transform.up = collision.GetContact(0).normal;
+		}
+
+		if (impactLightPrefab != null)
+		{
+			Vector3 impactPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.025f;
+			Instantiate(impactLightPrefab, impactPoint, Quaternion.identity, collision.gameObject.transform);
 		}
 
 		if (fragmentPrefab != null)
@@ -55,7 +66,8 @@ public class Attractable : MonoBehaviour
 				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
 
 				float width = transform.localScale.x * 0.5f;
-				Vector3 spawnPosition = transform.position + Random.insideUnitSphere * Random.Range(-width, width);
+				Vector3 impactPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.025f;
+				Vector3 spawnPosition = impactPoint + Random.insideUnitSphere * Random.Range(-width, width);
 				spawnPosition.z = 0.0f;
 
 				var newFragment = Instantiate(fragmentPrefab, spawnPosition, Quaternion.identity).GetComponent<Attractable>();

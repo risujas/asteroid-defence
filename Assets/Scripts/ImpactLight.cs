@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ImpactEffect : MonoBehaviour
+public class ImpactLight : MonoBehaviour
 {
 	[SerializeField] private float length = 0.5f;
 
