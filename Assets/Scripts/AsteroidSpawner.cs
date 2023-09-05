@@ -4,8 +4,8 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
 	[SerializeField] private Attractor centralBody;
-	[SerializeField] private float spawnDistance = 100.0f;
-	[SerializeField] private float spawnRadius = 20.0f;
+	[SerializeField] private float swarmSpawnDistance = 100.0f;
+	[SerializeField] private float swarmSpawnRadius = 20.0f;
 	[SerializeField] private float cullDistance = 200.0f;
 
 	[SerializeField] private List<GameObject> asteroidPrefabs = new List<GameObject>();
@@ -15,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
 
 	private void SpawnSwarm(int numAsteroids, int numFragments, float velocity, float minScale, float maxScale)
 	{
-		swarmSpawnPoint = transform.position + (Vector3)Random.insideUnitCircle * spawnDistance;
+		swarmSpawnPoint = transform.position + (Vector3)Random.insideUnitCircle * swarmSpawnDistance;
 		Vector3 headingVector = GetHeadingVector(swarmSpawnPoint, centralBody.transform.position, 0.0f);
 
 		for (int i = 0; i < numAsteroids; i++)
@@ -34,7 +34,7 @@ public class AsteroidSpawner : MonoBehaviour
 	private Attractable SpawnAsteroid(float minScale, float maxScale)
 	{
 		Vector3 spawnPos = swarmSpawnPoint;
-		spawnPos += Random.insideUnitSphere * spawnRadius;
+		spawnPos += Random.insideUnitSphere * swarmSpawnRadius;
 		spawnPos.z = 0.0f;
 
 		var randomPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Count)];
@@ -47,7 +47,7 @@ public class AsteroidSpawner : MonoBehaviour
 	private Attractable SpawnFragment()
 	{
 		Vector3 spawnPos = swarmSpawnPoint;
-		spawnPos += Random.insideUnitSphere * spawnRadius;
+		spawnPos += Random.insideUnitSphere * swarmSpawnRadius;
 		spawnPos.z = 0.0f;
 
 		var newAsteroid = Instantiate(fragmentPrefab, spawnPos, Quaternion.identity, transform);
