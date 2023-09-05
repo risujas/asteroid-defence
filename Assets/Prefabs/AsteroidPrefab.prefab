@@ -83,10 +83,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4202b825ca434e34ba97efcfbdf9b38a, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 114ea8b76825f1642964b68e53a7ed2f,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8376338758123161554, guid: 79efe874399b703458d9d723c6a3bea2,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 114ea8b76825f1642964b68e53a7ed2f,
         type: 3}
       propertyPath: m_Name
-      value: RoundAsteroidPrefab
+      value: AsteroidPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
