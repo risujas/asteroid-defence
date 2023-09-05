@@ -160,7 +160,8 @@ MonoBehaviour:
   fragmentPrefab: {fileID: 0}
   impactLightPrefab: {fileID: 9130085426736868685, guid: efdd76da4e8b7274fb139395e854888b,
     type: 3}
-  vfxPrefab: {fileID: 0}
+  vfxPrefab: {fileID: 7937779715782908680, guid: cffbcda96bd9b1743a75b20a201479a0,
+    type: 3}
 --- !u!114 &8439690820423080489
 MonoBehaviour:
   m_ObjectHideFlags: 0
