@@ -13,9 +13,9 @@ public class FrameRateDisplay : MonoBehaviour
 
 	private void Update()
 	{
-		if (Time.time > lastUpdate + updateInterval)
+		if (Time.unscaledTime > lastUpdate + updateInterval)
 		{
-			float currentFps = 1.0f / Time.deltaTime;
+			float currentFps = 1.0f / Time.unscaledDeltaTime;
 			fpsCounts.Add(currentFps);
 
 			if (fpsCounts.Count > 10)
@@ -33,7 +33,7 @@ public class FrameRateDisplay : MonoBehaviour
 			string text = "FPS: " + avgFps.ToString();
 			textMesh.text = text;
 
-			lastUpdate = Time.time;
+			lastUpdate = Time.unscaledTime;
 		}
 	}
 }
