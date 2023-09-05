@@ -70,7 +70,7 @@ public class Attractable : MonoBehaviour
 				Vector3 spawnPosition = impactPoint + Random.insideUnitSphere * Random.Range(-width, width);
 				spawnPosition.z = 0.0f;
 
-				var newFragment = Instantiate(fragmentPrefab, spawnPosition, Quaternion.identity).GetComponent<Attractable>();
+				var newFragment = Instantiate(fragmentPrefab, spawnPosition, Quaternion.identity, transform.parent).GetComponent<Attractable>();
 				newFragment.AddVelocity(individualVector);
 			}
 		}
