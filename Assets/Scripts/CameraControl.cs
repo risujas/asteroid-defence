@@ -41,7 +41,7 @@ public class CameraControl : MonoBehaviour
 	private void CenterOnObject()
 	{
 		Vector3 targetPosition = focusedObject.transform.position + new Vector3(0.0f, 0.0f, -5.0f);
-		transform.position = Vector3.Lerp(transform.position, targetPosition, focusSwitchSpeed * Time.deltaTime);
+		transform.position = Vector3.Lerp(transform.position, targetPosition, focusSwitchSpeed * Time.unscaledDeltaTime);
 	}
 
 	private void Start()
