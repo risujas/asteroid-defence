@@ -29,10 +29,4 @@ public class OrbitalRadiusRenderer : MonoBehaviour
 
 		lineRenderer.SetPositions(positions);
 	}
-
-	private void Update()
-	{
-		var dir = (child.transform.position - transform.position).normalized;
-		transform.right = dir;
-	}
 }
