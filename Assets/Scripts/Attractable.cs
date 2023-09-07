@@ -11,7 +11,6 @@ public class Attractable : MonoBehaviour
 	[Header("Physical Properties")]
 	[SerializeField] private float density;
 	[SerializeField] private float mass;
-	[SerializeField] private float fragmentationTolerance;
 	[SerializeField, ReadOnly] private Vector3 velocity;
 
 	[Header("Prefabs")]
@@ -26,11 +25,6 @@ public class Attractable : MonoBehaviour
 	public void AddVelocity(Vector3 v)
 	{
 		velocity += v;
-
-		if (v.magnitude > fragmentationTolerance)
-		{
-			FakeRocheFragmentation();
-		}
 	}
 
 	public void SetMassFromDensityAndScale()
@@ -38,16 +32,6 @@ public class Attractable : MonoBehaviour
 		float r = transform.localScale.x / 2.0f;
 		float volume = (4.0f / 3.0f) * Mathf.PI * Mathf.Pow(r, 3);
 		mass = volume * density;
-	}
-
-	public void SetScaleFromMassAndDensity()
-	{
-
-	}
-
-	private void FakeRocheFragmentation()
-	{
-
 	}
 
 	private void SpawnCollisionEffects(Collision collision)
