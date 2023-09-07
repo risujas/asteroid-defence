@@ -15,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
 
 	private void SpawnSwarm(int numAsteroids, int numFragments, float velocity, float minScale, float maxScale)
 	{
-		swarmSpawnPoint = transform.position + (Vector3)Random.insideUnitCircle * swarmSpawnDistance;
+		swarmSpawnPoint = centralBody.transform.position + (Vector3)Random.insideUnitCircle * swarmSpawnDistance;
 		Vector3 headingVector = GetHeadingVector(swarmSpawnPoint, centralBody.transform.position, 0.0f);
 
 		for (int i = 0; i < numAsteroids; i++)
