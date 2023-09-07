@@ -3,6 +3,7 @@ using UnityEngine;
 public class VelocityIndicator : MonoBehaviour
 {
 	[SerializeField] private Attractable trackedAttractable;
+	[SerializeField] private float leadingTime = 20.0f;
 
 	private LineRenderer lineRenderer;
 
@@ -13,7 +14,7 @@ public class VelocityIndicator : MonoBehaviour
 
 	private void Update()
 	{
-		Vector3 velocityPoint = transform.position + trackedAttractable.Velocity * 20.0f;
+		Vector3 velocityPoint = transform.position + trackedAttractable.Velocity * leadingTime;
 
 		lineRenderer.positionCount = 2;
 		lineRenderer.SetPosition(0, transform.position);
