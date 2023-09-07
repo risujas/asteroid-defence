@@ -50,27 +50,7 @@ public class Attractable : MonoBehaviour
 
 	}
 
-	private void Start()
-	{
-		SetMassFromDensityAndScale();
-	}
-
-	private void OnEnable()
-	{
-		spawnedAttractables.Add(this);
-	}
-
-	private void OnDisable()
-	{
-		spawnedAttractables.Remove(this);
-	}
-
-	private void Update()
-	{
-		transform.position += velocity * Time.deltaTime;
-	}
-
-	void OnCollisionEnter(Collision collision)
+	private void SpawnCollisionEffects(Collision collision)
 	{
 		if (vfxPrefab != null)
 		{
@@ -84,7 +64,10 @@ public class Attractable : MonoBehaviour
 			Vector3 spawnPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.025f;
 			Instantiate(impactLightPrefab, spawnPoint, Quaternion.identity, collision.gameObject.transform);
 		}
+	}
 
+	private void SpawnCollisionFragments(Collision collision)
+	{
 		if (fragmentPrefab != null)
 		{
 			Vector3 surfaceNormal = collision.GetContact(0).normal;
@@ -110,6 +93,32 @@ public class Attractable : MonoBehaviour
 				newFragment.AddVelocity(individualVector);
 			}
 		}
+	}
+
+	private void Start()
+	{
+		SetMassFromDensityAndScale();
+	}
+
+	private void OnEnable()
+	{
+		spawnedAttractables.Add(this);
+	}
+
+	private void OnDisable()
+	{
+		spawnedAttractables.Remove(this);
+	}
+
+	private void Update()
+	{
+		transform.position += velocity * Time.deltaTime;
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		SpawnCollisionEffects(collision);
+		SpawnCollisionFragments(collision);
 
 		Destroy(gameObject);
 	}
