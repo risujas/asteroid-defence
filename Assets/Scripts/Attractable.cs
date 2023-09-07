@@ -8,9 +8,12 @@ public class Attractable : MonoBehaviour
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
+	[Header("Physical Properties")]
+	[SerializeField] private float density;
 	[SerializeField] private float mass;
 	[SerializeField, ReadOnly] private Vector3 velocity;
 
+	[Header("Prefabs")]
 	[SerializeField] private Attractable fragmentPrefab;
 	[SerializeField] private ImpactLight impactLightPrefab;
 	[SerializeField] private VisualEffect vfxPrefab;
@@ -22,6 +25,13 @@ public class Attractable : MonoBehaviour
 	public void AddVelocity(Vector3 v)
 	{
 		velocity += v;
+	}
+
+	public void SetMassFromDensityAndVolume()
+	{
+		float r = transform.localScale.x / 2.0f;
+		float volume = (4.0f / 3.0f) * Mathf.PI * Mathf.Pow(r, 3);
+		mass = volume * density;
 	}
 
 	private void OnEnable()

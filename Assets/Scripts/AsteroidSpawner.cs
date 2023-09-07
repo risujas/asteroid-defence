@@ -41,7 +41,10 @@ public class AsteroidSpawner : MonoBehaviour
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
 		newAsteroid.transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
 
-		return newAsteroid.GetComponent<Attractable>();
+		var attractable = newAsteroid.GetComponent<Attractable>();
+		attractable.SetMassFromDensityAndVolume();
+
+		return attractable;
 	}
 
 	private Attractable SpawnFragment()
@@ -75,7 +78,7 @@ public class AsteroidSpawner : MonoBehaviour
 
 	private void Start()
 	{
-		SpawnSwarm(10, 70, 4.0f, 0.1f, 0.2f);
+		SpawnSwarm(10, 70, 5.0f, 0.1f, 0.2f);
 	}
 
 	private void Update()
