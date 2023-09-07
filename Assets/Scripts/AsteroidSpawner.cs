@@ -42,7 +42,7 @@ public class AsteroidSpawner : MonoBehaviour
 		newAsteroid.transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
 
 		var attractable = newAsteroid.GetComponent<Attractable>();
-		attractable.SetMassFromDensityAndVolume();
+		attractable.SetMassFromDensityAndScale();
 
 		return attractable;
 	}

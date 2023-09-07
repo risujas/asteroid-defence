@@ -11,6 +11,7 @@ public class Attractable : MonoBehaviour
 	[Header("Physical Properties")]
 	[SerializeField] private float density;
 	[SerializeField] private float mass;
+	[SerializeField] private float fragmentationTolerance;
 	[SerializeField, ReadOnly] private Vector3 velocity;
 
 	[Header("Prefabs")]
@@ -25,13 +26,33 @@ public class Attractable : MonoBehaviour
 	public void AddVelocity(Vector3 v)
 	{
 		velocity += v;
+
+		if (v.magnitude > fragmentationTolerance)
+		{
+			FakeRocheFragmentation();
+		}
 	}
 
-	public void SetMassFromDensityAndVolume()
+	public void SetMassFromDensityAndScale()
 	{
 		float r = transform.localScale.x / 2.0f;
 		float volume = (4.0f / 3.0f) * Mathf.PI * Mathf.Pow(r, 3);
 		mass = volume * density;
+	}
+
+	public void SetScaleFromMassAndDensity()
+	{
+
+	}
+
+	private void FakeRocheFragmentation()
+	{
+
+	}
+
+	private void Start()
+	{
+		SetMassFromDensityAndScale();
 	}
 
 	private void OnEnable()
@@ -70,13 +91,18 @@ public class Attractable : MonoBehaviour
 			Vector3 reflectionVector = Vector3.Reflect(velocity, surfaceNormal);
 
 			int numFragments = Mathf.RoundToInt(mass / fragmentPrefab.Mass);
+			if (numFragments > 50)
+			{
+				numFragments = 50;
+			}
+
 			for (int i = 0; i < numFragments; i++)
 			{
-				Vector3 individualVector = reflectionVector * Random.Range(0.0f, 0.8f);
+				Vector3 individualVector = reflectionVector * Random.Range(0.25f, 0.75f);
 				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
 
 				float width = transform.localScale.x * 0.5f;
-				Vector3 spawnPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.03f;
+				Vector3 spawnPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f;
 				Vector3 spawnPosition = spawnPoint += Random.insideUnitSphere * Random.Range(-width, width);
 				spawnPosition.z = 0.0f;
 
