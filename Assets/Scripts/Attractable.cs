@@ -39,14 +39,16 @@ public class Attractable : MonoBehaviour
 		if (vfxPrefab != null)
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point;
-			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity, collision.gameObject.transform);
+			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity);
+			vfx.transform.parent = collision.gameObject.transform;
 			vfx.transform.up = collision.GetContact(0).normal;
 		}
 
 		if (impactLightPrefab != null)
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.025f;
-			Instantiate(impactLightPrefab, spawnPoint, Quaternion.identity, collision.gameObject.transform);
+			var light = Instantiate(impactLightPrefab, spawnPoint, Quaternion.identity);
+			light.transform.parent = collision.gameObject.transform;
 		}
 	}
 
