@@ -38,6 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CityLightCoverage: 100
     - _CityLights: 10
     - _CityLightsStrength: 10
     - _QueueControl: 0
@@ -46,9 +47,12 @@ Material:
     - _TimeMultiplier1: 0.06
     - _TimeMultiplier2: 0.03
     m_Colors:
+    - _CityLights: {r: 23.96863, g: 14.424662, b: 3.9570847, a: 1}
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
+    - _Emission: {r: 1, g: 1, b: 1, a: 0}
     - _LandColor: {r: 0.25773346, g: 0.43396226, b: 0.21084017, a: 0}
     - _MainTint: {r: 1, g: 1, b: 1, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
     - _WaterColor: {r: 0.20251867, g: 0.24858707, b: 0.38679245, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8994851585540623876

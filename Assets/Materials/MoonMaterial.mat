@@ -55,5 +55,7 @@ Material:
     - _QueueOffset: 0
     - _TimeMultiplier1: 0.02
     - _TimeMultiplier2: 0.01
-    m_Colors: []
+    m_Colors:
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
