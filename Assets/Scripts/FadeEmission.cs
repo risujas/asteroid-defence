@@ -4,20 +4,21 @@ using UnityEngine;
 public class FadeEmission : MonoBehaviour
 {
 	[SerializeField] private float fadeDuration = 1.0f;
-	[SerializeField] private Color targetColor;
+	[SerializeField] private float targetIntensity = 0.0f;
 
 	private Material material;
 
 	private IEnumerator Fade()
 	{
 		float elapsed = 0.0f;
-		Color startColor = material.GetColor("_Color");
+
+		float startIntensity = material.GetFloat("_EmissionIntensity");
 
 		while (elapsed <= fadeDuration)
 		{
 			elapsed += Time.deltaTime;
 			float t = elapsed / fadeDuration;
-			material.SetColor("_Color", Color.Lerp(startColor, targetColor, t));
+			material.SetFloat("_EmissionIntensity", Mathf.Lerp(startIntensity, targetIntensity, t));
 			yield return null;
 		}
 

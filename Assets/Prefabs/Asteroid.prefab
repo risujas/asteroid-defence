@@ -82,7 +82,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6f2e3f255a67a82498d03fbd11ba4c28, type: 2}
+      objectReference: {fileID: 2100000, guid: 7fb19dcab099df24dbc04e527e8db80b, type: 2}
     - target: {fileID: -5754084199372789682, guid: 114ea8b76825f1642964b68e53a7ed2f,
         type: 3}
       propertyPath: m_Mesh
@@ -92,7 +92,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 114ea8b76825f1642964b68e53a7ed2f,
         type: 3}
       propertyPath: m_Name
-      value: AsteroidPrefab
+      value: Asteroid
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -157,7 +157,7 @@ MonoBehaviour:
   density: 5000
   mass: 0
   velocity: {x: 0, y: 0, z: 0}
-  fragmentPrefab: {fileID: 4727126053663585187, guid: c4288778d0d8a3847bfe12abc4442b75,
+  fragmentPrefab: {fileID: 1328524526302864885, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
   impactLightPrefab: {fileID: 9130085426736868685, guid: 2723ec1a235c0d64d8e1a8bc7337527b,
     type: 3}
