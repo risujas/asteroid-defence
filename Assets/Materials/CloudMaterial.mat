@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CityLights: 1
-    - _DetailScale: 15
+    - _DetailScale: 10
     - _DetailSpeed: 0.04
     - _EmissionIntensity: 0
     - _Height: 0
@@ -66,6 +66,7 @@ Material:
     - _TimeMultiplier2: 0.03
     - _smoothness: 0
     m_Colors:
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

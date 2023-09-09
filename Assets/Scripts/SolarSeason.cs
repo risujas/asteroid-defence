@@ -12,6 +12,7 @@ public class SolarSeason : MonoBehaviour
 	private void Update()
 	{
 		yearElapsedSeconds += Time.deltaTime;
+		yearElapsedSeconds %= yearLengthInSeconds;
 
 		float axisValue = 90.0f - axialTilt;
 		transform.localRotation = Quaternion.Euler(360.0f * YearProgress, axisValue, 0.0f);
