@@ -42,6 +42,7 @@ Material:
     - _CityLights: 10
     - _CityLightsIntensity: 2
     - _CityLightsStrength: 10
+    - _IceCapCoverage: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _TimeMultiplier: 0
@@ -50,6 +51,7 @@ Material:
     m_Colors:
     - _CityLights: {r: 23.96863, g: 14.424662, b: 3.9570847, a: 1}
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _Emission: {r: 1, g: 1, b: 1, a: 0}
     - _LandColor: {r: 0.25773346, g: 0.43396226, b: 0.21084017, a: 0}
     - _MainTint: {r: 1, g: 1, b: 1, a: 0}
