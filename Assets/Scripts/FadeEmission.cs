@@ -5,6 +5,7 @@ public class FadeEmission : MonoBehaviour
 {
 	[SerializeField] private float fadeDuration = 1.0f;
 	[SerializeField] private float targetIntensity = 0.0f;
+	[SerializeField] private string shaderFloatParameter = "_EmissionIntensity";
 
 	private Material material;
 
@@ -12,13 +13,13 @@ public class FadeEmission : MonoBehaviour
 	{
 		float elapsed = 0.0f;
 
-		float startIntensity = material.GetFloat("_EmissionIntensity");
+		float startIntensity = material.GetFloat(shaderFloatParameter);
 
 		while (elapsed <= fadeDuration)
 		{
 			elapsed += Time.deltaTime;
 			float t = elapsed / fadeDuration;
-			material.SetFloat("_EmissionIntensity", Mathf.Lerp(startIntensity, targetIntensity, t));
+			material.SetFloat(shaderFloatParameter, Mathf.Lerp(startIntensity, targetIntensity, t));
 			yield return null;
 		}
 
