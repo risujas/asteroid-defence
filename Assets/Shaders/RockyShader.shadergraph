@@ -2004,10 +2004,10 @@
     "m_Guid": {
         "m_GuidSerialized": "ffd918c9-2573-4412-bfa1-0b85fee8035b"
     },
-    "m_Name": "Tint",
+    "m_Name": "ColorTint",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Tint",
-    "m_DefaultReferenceName": "_Tint",
+    "m_RefNameGeneratedByDisplayName": "ColorTint",
+    "m_DefaultReferenceName": "_ColorTint",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2627,7 +2627,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "dde4715993b147b69573f4dcb142a935",
     "m_Id": 0,
-    "m_DisplayName": "Tint",
+    "m_DisplayName": "ColorTint",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

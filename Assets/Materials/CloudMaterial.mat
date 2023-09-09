@@ -54,6 +54,7 @@ Material:
     - _CityLights: 1
     - _DetailScale: 15
     - _DetailSpeed: 0.04
+    - _EmissionIntensity: 0
     - _Height: 0
     - _MainScale: 20
     - _MainSpeed: 0.03

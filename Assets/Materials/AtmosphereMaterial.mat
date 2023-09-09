@@ -48,6 +48,7 @@ Material:
     - _Cull: 2
     - _DstBlend: 10
     - _EdgeStrength: 0.5
+    - _EmissionIntensity: 0
     - _QueueControl: 0
     - _QueueOffset: 2
     - _ReceiveShadows: 1
