@@ -53,11 +53,11 @@ Material:
     m_Floats:
     - _CityLights: 1
     - _DetailScale: 10
-    - _DetailSpeed: 0.04
+    - _DetailSpeed: 0.01
     - _EmissionIntensity: 0
     - _Height: 0
     - _MainScale: 20
-    - _MainSpeed: 0.03
+    - _MainSpeed: 0.012
     - _QueueControl: 0
     - _QueueOffset: 1
     - _Scale1: 25
