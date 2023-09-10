@@ -59,12 +59,14 @@ public class BuildingManager : MonoBehaviour
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
-				placementAidMarker.transform.up = -dir;
+				//placementAidMarker.transform.up = -dir;
 			}
 			else
 			{
 				placementAidMarker.transform.position = mousePos;
 			}
+
+			Utilities.DrawAxes(placementAidMarker.transform, 5.0f, Time.deltaTime);
 		}
 	}
 }
