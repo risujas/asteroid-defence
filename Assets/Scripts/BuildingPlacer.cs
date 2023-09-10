@@ -71,8 +71,6 @@ public class BuildingPlacer : MonoBehaviour
 				placementAidMarkerRenderer.material = placementAidMaterialInvalid;
 				timescaleChanger.SetTimescale(timescaleChanger.Level);
 			}
-
-			Utilities.DrawAxes(placementAidMarker.transform, 5.0f, Time.deltaTime);
 		}
 	}
 }
