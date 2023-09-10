@@ -12,6 +12,14 @@ public class TimescaleChanger : MonoBehaviour
 
 	public float Level => levels[index];
 
+	public void SetTimescale(float value)
+	{
+		if (!paused)
+		{
+			Time.timeScale = value;
+		}
+	}
+
 	public void Increase()
 	{
 		index++;
