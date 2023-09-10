@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4174426b219b7b43a4edd3016e8069a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnHeight: 0.5
   buildPoints: 100
   FactoryPrefab: {fileID: 5983186343030737693, guid: a2aa1f8621e41d540a1e0a9a29933499,
     type: 3}
@@ -3544,9 +3543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd081b7d38ed36a4c84a8d82371b5ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1
+  numVertices: 200
   parent: {fileID: 210935003}
   child: {fileID: 93002967}
-  numVertices: 200
 --- !u!1 &1765578825
 GameObject:
   m_ObjectHideFlags: 0
