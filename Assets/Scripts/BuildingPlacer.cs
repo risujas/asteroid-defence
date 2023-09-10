@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingPlacer : MonoBehaviour
 {
 	[SerializeField] private float buildPoints = 100.0f;
 
-	[SerializeField] private Building FactoryPrefab;
-	[SerializeField] private Building CommandCenterPrefab;
+	[SerializeField] private Button factoryButton;
+	[SerializeField] private Building factoryPrefab;
+
+	[SerializeField] private Button commandCenterButton;
+	[SerializeField] private Building commandCenterPrefab;
 
 	[SerializeField] private Material placementAidMaterialValid;
 	[SerializeField] private Material placementAidMaterialInvalid;
@@ -20,12 +24,12 @@ public class BuildingPlacer : MonoBehaviour
 
 	public void PlaceFactory()
 	{
-		StartBuildingPlacement(FactoryPrefab);
+		StartBuildingPlacement(factoryPrefab);
 	}
 
 	public void PlaceCommandCenter()
 	{
-		StartBuildingPlacement(CommandCenterPrefab);
+		StartBuildingPlacement(commandCenterPrefab);
 	}
 
 	private void StartBuildingPlacement(Building building)
@@ -49,6 +53,8 @@ public class BuildingPlacer : MonoBehaviour
 		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		newBuilding.transform.parent = anchor.transform;
 
+		buildPoints -= selectedBuildingPrefab.BuildCost;
+
 		CancelBuildingPlacement();
 	}
 
@@ -60,7 +66,13 @@ public class BuildingPlacer : MonoBehaviour
 		Destroy(placementAidMarker);
 	}
 
-	private void Update()
+	private void EnableButtons()
+	{
+		factoryButton.interactable = buildPoints >= factoryPrefab.BuildCost;
+		commandCenterButton.interactable = buildPoints >= commandCenterPrefab.BuildCost;
+	}
+
+	private void HandlePlacement()
 	{
 		if (isPlacingBuilding)
 		{
@@ -97,5 +109,11 @@ public class BuildingPlacer : MonoBehaviour
 				CancelBuildingPlacement();
 			}
 		}
+	}
+
+	private void Update()
+	{
+		EnableButtons();
+		HandlePlacement();
 	}
 }
