@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-	[SerializeField] private float minTargetSize = 0.5f;
+	[SerializeField] private float minTargetSize = 1.0f;
 	[SerializeField] private float maxTargetSize = 10.0f;
 	private float targetSize;
 
