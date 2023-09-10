@@ -41,7 +41,6 @@ public class BuildingManager : MonoBehaviour
 		placementAidMarker = Instantiate(selectedBuildingPrefab, Vector3.zero, selectedBuildingPrefab.transform.rotation).gameObject;
 		Destroy(placementAidMarker.GetComponent<Building>());
 		placementAidMarkerRenderer = placementAidMarker.GetComponent<Renderer>();
-		placementAidMarkerRenderer.material = placementAidMaterialInvalid;
 	}
 
 	private void Start()
@@ -62,12 +61,15 @@ public class BuildingManager : MonoBehaviour
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
 				placementAidMarker.transform.up = dir;
+				placementAidMarkerRenderer.material = placementAidMaterialValid;
 				Time.timeScale = 0.1f;
+
 			}
 			else
 			{
 				placementAidMarker.transform.position = mousePos;
 				placementAidMarker.transform.up = Vector3.up;
+				placementAidMarkerRenderer.material = placementAidMaterialInvalid;
 				Time.timeScale = timescaleChanger.Level;
 			}
 
