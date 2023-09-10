@@ -5,17 +5,19 @@ public class BuildingPlacer : MonoBehaviour
 {
 	[SerializeField] private float buildPoints = 100.0f;
 
+	[Header("Button References")]
 	[SerializeField] private Button factoryButton;
-	[SerializeField] private Building factoryPrefab;
-
 	[SerializeField] private Button commandCenterButton;
+
+	[Header("Building Prefabs")]
+	[SerializeField] private Building factoryPrefab;
 	[SerializeField] private Building commandCenterPrefab;
 
+	[Header("Placement Aid")]
 	[SerializeField] private Material placementAidMaterialValid;
 	[SerializeField] private Material placementAidMaterialInvalid;
-
 	[SerializeField] private LayerMask buildingSnappingLayerMask;
-	[SerializeField] private TimescaleChanger timescaleChanger;
+	[SerializeField] private TimescaleChanger timescaleChangerReference;
 
 	private bool isPlacingBuilding = false;
 	private Building selectedBuildingPrefab = null;
@@ -84,7 +86,7 @@ public class BuildingPlacer : MonoBehaviour
 				placementAidMarker.transform.position = mousePos;
 				placementAidMarker.transform.up = Vector3.up;
 				placementAidMarkerRenderer.material = placementAidMaterialInvalid;
-				timescaleChanger.SetTimescale(timescaleChanger.Level);
+				timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 			}
 			else
 			{
@@ -94,11 +96,11 @@ public class BuildingPlacer : MonoBehaviour
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
 				placementAidMarker.transform.up = dir;
 				placementAidMarkerRenderer.material = placementAidMaterialValid;
-				timescaleChanger.SetTimescale(0.1f);
+				timescaleChangerReference.SetTimescale(0.1f);
 
 				if (Input.GetMouseButtonUp(0))
 				{
-					timescaleChanger.SetTimescale(timescaleChanger.Level);
+					timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 					FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
 					return;
 				}

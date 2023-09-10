@@ -2750,9 +2750,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildPoints: 100
   factoryButton: {fileID: 223319510}
+  commandCenterButton: {fileID: 1389392217}
   factoryPrefab: {fileID: 3504478444858369676, guid: b2ed3008998b13b4c98234b17a02c88e,
     type: 3}
-  commandCenterButton: {fileID: 1389392217}
   commandCenterPrefab: {fileID: 7813792307975176090, guid: ddd38cf7d64940542b63e0f72459fdf1,
     type: 3}
   placementAidMaterialValid: {fileID: 2100000, guid: b3374bece88e7ec498168d14dda574de,
@@ -2762,7 +2762,7 @@ MonoBehaviour:
   buildingSnappingLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  timescaleChanger: {fileID: 2015402656}
+  timescaleChangerReference: {fileID: 2015402656}
 --- !u!1 &1371863522
 GameObject:
   m_ObjectHideFlags: 0
