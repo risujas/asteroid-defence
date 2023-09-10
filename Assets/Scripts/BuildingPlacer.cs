@@ -39,8 +39,20 @@ public class BuildingPlacer : MonoBehaviour
 		}
 
 		placementAidMarker = Instantiate(selectedBuildingPrefab, Vector3.zero, selectedBuildingPrefab.transform.rotation).gameObject;
+		placementAidMarker.transform.parent = transform;
 		Destroy(placementAidMarker.GetComponent<Building>());
 		placementAidMarkerRenderer = placementAidMarker.GetComponent<Renderer>();
+	}
+
+	private void FinalizeBuildingPlacement(BuildingAnchor anchor)
+	{
+		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
+		newBuilding.transform.parent = anchor.transform;
+
+		isPlacingBuilding = false;
+		selectedBuildingPrefab = null;
+
+		Destroy(placementAidMarker);
 	}
 
 	private void Start()
@@ -54,7 +66,14 @@ public class BuildingPlacer : MonoBehaviour
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			var colliders = Physics.OverlapSphere(mousePos, 0.1f, buildingSnappingLayerMask);
-			if (colliders.Length > 0)
+			if (colliders == null || colliders.Length == 0)
+			{
+				placementAidMarker.transform.position = mousePos;
+				placementAidMarker.transform.up = Vector3.up;
+				placementAidMarkerRenderer.material = placementAidMaterialInvalid;
+				timescaleChanger.SetTimescale(timescaleChanger.Level);
+			}
+			else
 			{
 				var anchor = colliders[0].GetComponent<BuildingAnchor>();
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
@@ -63,13 +82,12 @@ public class BuildingPlacer : MonoBehaviour
 				placementAidMarker.transform.up = dir;
 				placementAidMarkerRenderer.material = placementAidMaterialValid;
 				timescaleChanger.SetTimescale(0.1f);
-			}
-			else
-			{
-				placementAidMarker.transform.position = mousePos;
-				placementAidMarker.transform.up = Vector3.up;
-				placementAidMarkerRenderer.material = placementAidMaterialInvalid;
-				timescaleChanger.SetTimescale(timescaleChanger.Level);
+
+				if (Input.GetMouseButtonUp(0))
+				{
+					timescaleChanger.SetTimescale(timescaleChanger.Level);
+					FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
+				}
 			}
 		}
 	}
