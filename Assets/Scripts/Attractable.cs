@@ -34,14 +34,14 @@ public class Attractable : MonoBehaviour
 		mass = volume * density;
 	}
 
-	private void SpawnCollisionEffects(Collision collision)
+	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
 	{
 		if (vfxPrefab != null)
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point;
 			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity);
 			vfx.transform.parent = collision.gameObject.transform;
-			vfx.transform.up = collision.GetContact(0).normal;
+			vfx.transform.up = reflectionVector;
 		}
 
 		if (impactLightPrefab != null)
@@ -52,12 +52,11 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	private void SpawnCollisionFragments(Collision collision)
+	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector)
 	{
 		if (fragmentPrefab != null)
 		{
-			Vector3 surfaceNormal = collision.GetContact(0).normal;
-			Vector3 reflectionVector = Vector3.Reflect(velocity, surfaceNormal);
+
 
 			int numFragments = Mathf.RoundToInt(mass / fragmentPrefab.Mass);
 			if (numFragments > 50)
@@ -102,8 +101,10 @@ public class Attractable : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-		SpawnCollisionEffects(collision);
-		SpawnCollisionFragments(collision);
+		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
+
+		SpawnCollisionEffects(collision, reflectionVector);
+		SpawnCollisionFragments(collision, reflectionVector);
 
 		Destroy(gameObject);
 	}
