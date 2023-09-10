@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour
+public class BuildingPlacer : MonoBehaviour
 {
 	[SerializeField] private float buildPoints = 100.0f;
 
