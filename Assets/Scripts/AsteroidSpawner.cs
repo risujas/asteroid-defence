@@ -78,7 +78,7 @@ public class AsteroidSpawner : MonoBehaviour
 
 	private void Start()
 	{
-		SpawnSwarm(30, 70, 5.0f, 0.1f, 0.2f);
+		SpawnSwarm(30, 70, 5.0f, 0.05f, 0.1f);
 	}
 
 	private void Update()
