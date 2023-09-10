@@ -57,18 +57,14 @@ public class BuildingManager : MonoBehaviour
 			{
 				var anchor = colliders[0].GetComponent<BuildingAnchor>();
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
+
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
+				placementAidMarker.transform.up = -dir;
 			}
 			else
 			{
 				placementAidMarker.transform.position = mousePos;
 			}
-
-
-			//Vector3 spawnDir = (mouseWorldPos - transform.position).normalized;
-			//Vector3 spawnPos = transform.position + (spawnDir * spawnHeight);
-
-			//var newBuilding = Instantiate(selectedBuildingPrefab, spawnPos, Quaternion.identity, transform);
 		}
 	}
 }
