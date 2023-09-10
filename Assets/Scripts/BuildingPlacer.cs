@@ -60,10 +60,6 @@ public class BuildingPlacer : MonoBehaviour
 		Destroy(placementAidMarker);
 	}
 
-	private void Start()
-	{
-	}
-
 	private void Update()
 	{
 		if (isPlacingBuilding)
