@@ -49,6 +49,11 @@ public class BuildingPlacer : MonoBehaviour
 		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		newBuilding.transform.parent = anchor.transform;
 
+		CancelBuildingPlacement();
+	}
+
+	private void CancelBuildingPlacement()
+	{
 		isPlacingBuilding = false;
 		selectedBuildingPrefab = null;
 
@@ -87,7 +92,13 @@ public class BuildingPlacer : MonoBehaviour
 				{
 					timescaleChanger.SetTimescale(timescaleChanger.Level);
 					FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
+					return;
 				}
+			}
+
+			if (Input.GetMouseButtonUp(1))
+			{
+				CancelBuildingPlacement();
 			}
 		}
 	}
