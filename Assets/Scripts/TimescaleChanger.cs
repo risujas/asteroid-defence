@@ -10,6 +10,8 @@ public class TimescaleChanger : MonoBehaviour
 	private float[] levels = { 0.1f, 1.0f, 3.0f, 10.0f, 50.0f, 100.0f };
 	private int index = 1;
 
+	public float Level => levels[index];
+
 	public void Increase()
 	{
 		index++;

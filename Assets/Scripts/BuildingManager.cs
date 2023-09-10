@@ -11,6 +11,8 @@ public class BuildingManager : MonoBehaviour
 	[SerializeField] private Material placementAidMaterialInvalid;
 
 	[SerializeField] private LayerMask buildingSnappingLayerMask;
+	[SerializeField] private TimescaleChanger timescaleChanger;
+
 	private bool isPlacingBuilding = false;
 	private Building selectedBuildingPrefab = null;
 	private GameObject placementAidMarker = null;
@@ -59,11 +61,14 @@ public class BuildingManager : MonoBehaviour
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
-				//placementAidMarker.transform.up = -dir;
+				placementAidMarker.transform.up = dir;
+				Time.timeScale = 0.1f;
 			}
 			else
 			{
 				placementAidMarker.transform.position = mousePos;
+				placementAidMarker.transform.up = Vector3.up;
+				Time.timeScale = timescaleChanger.Level;
 			}
 
 			Utilities.DrawAxes(placementAidMarker.transform, 5.0f, Time.deltaTime);
