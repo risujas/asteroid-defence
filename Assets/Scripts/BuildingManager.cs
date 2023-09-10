@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-	[SerializeField] private float spawnHeight = 0.5f;
 	[SerializeField] private float buildPoints = 100.0f;
 
 	[SerializeField] private Building FactoryPrefab;
@@ -11,12 +10,11 @@ public class BuildingManager : MonoBehaviour
 	[SerializeField] private Material placementAidMaterialValid;
 	[SerializeField] private Material placementAidMaterialInvalid;
 
+	[SerializeField] private LayerMask buildingSnappingLayerMask;
 	private bool isPlacingBuilding = false;
 	private Building selectedBuildingPrefab = null;
 	private GameObject placementAidMarker = null;
 	private Renderer placementAidMarkerRenderer = null;
-
-	public float SpawnHeight => spawnHeight;
 
 	public void PlaceFactory()
 	{
@@ -52,10 +50,20 @@ public class BuildingManager : MonoBehaviour
 	{
 		if (isPlacingBuilding)
 		{
-			var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mouseWorldPos.z = 0.0f;
+			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			placementAidMarker.transform.position = mouseWorldPos;
+			var colliders = Physics.OverlapSphere(mousePos, 0.1f, buildingSnappingLayerMask);
+			if (colliders.Length > 0)
+			{
+				var anchor = colliders[0].GetComponent<BuildingAnchor>();
+				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
+				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
+			}
+			else
+			{
+				placementAidMarker.transform.position = mousePos;
+			}
+
 
 			//Vector3 spawnDir = (mouseWorldPos - transform.position).normalized;
 			//Vector3 spawnPos = transform.position + (spawnDir * spawnHeight);
