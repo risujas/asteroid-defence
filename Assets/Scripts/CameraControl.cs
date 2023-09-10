@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-	private const float minTargetSize = 1.0f;
-	private const float maxTargetSize = 10.0f;
+	[SerializeField] private float minTargetSize = 0.5f;
+	[SerializeField] private float maxTargetSize = 10.0f;
 	private float targetSize;
 
 	private float zoomSpeed = 3.0f;
