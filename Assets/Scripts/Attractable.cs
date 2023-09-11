@@ -93,6 +93,11 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
+	private void DamageNearbyHealthObjects()
+	{
+		// TODO
+	}
+
 	private void Start()
 	{
 		SetMassFromDensityAndScale();
@@ -134,5 +139,7 @@ public class Attractable : MonoBehaviour
 		impactPosition = transform.position;
 
 		GetComponent<SphereCollider>().enabled = false;
+
+		DamageNearbyHealthObjects();
 	}
 }
