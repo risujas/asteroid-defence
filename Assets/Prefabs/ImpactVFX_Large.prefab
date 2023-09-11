@@ -52,7 +52,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1.0157564
+      - m_Value: 0.8483605
         m_Name: ejectionSpeed
         m_Overridden: 1
     m_Vector2f:

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedAttractable: {fileID: 0}
-  leadingTime: 30
+  leadingTime: 20
 --- !u!120 &1736282796405228768
 LineRenderer:
   serializedVersion: 2
