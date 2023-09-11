@@ -96,6 +96,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7813792307975176090}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3fa7a4ef13436f41ab98048969d260d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6951855794589486341}
   m_SourcePrefab: {fileID: 100100000, guid: f3fa7a4ef13436f41ab98048969d260d, type: 3}
 --- !u!1 &6110292570431603637 stripped
 GameObject:
@@ -116,3 +120,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildCost: 20
+--- !u!114 &6951855794589486341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110292570431603637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735437a42f28aeb43b0072c482c2560e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 100
+  damageVfx: {fileID: 0}
+  deathVfx: {fileID: 0}
