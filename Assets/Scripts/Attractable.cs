@@ -20,7 +20,7 @@ public class Attractable : MonoBehaviour
 
 	private const float minFragmentSpeedMultiplier = 0.25f;
 	private const float maxFragmentSpeedMultiplier = 0.75f;
-	private const float ejectionVfxSpeedMultiplier = 0.5f;
+	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
 	private bool allowVelocityChange = true;
 	private bool hasImpacted = false;
