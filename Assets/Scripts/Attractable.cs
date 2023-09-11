@@ -18,6 +18,10 @@ public class Attractable : MonoBehaviour
 	[SerializeField] private ImpactLight impactLightPrefab;
 	[SerializeField] private VisualEffect vfxPrefab;
 
+	private const float minFragmentSpeedMultiplier = 0.25f;
+	private const float maxFragmentSpeedMultiplier = 0.75f;
+	private const float ejectionVfxSpeedMultiplier = 0.5f;
+
 	public float Mass => mass;
 
 	public Vector3 Velocity => velocity;
@@ -39,6 +43,12 @@ public class Attractable : MonoBehaviour
 		if (vfxPrefab != null)
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point;
+
+			if (vfxPrefab.HasFloat("ejectionSpeed"))
+			{
+				vfxPrefab.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
+			}
+
 			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity);
 			vfx.transform.parent = collision.gameObject.transform;
 			vfx.transform.up = reflectionVector;
@@ -56,8 +66,6 @@ public class Attractable : MonoBehaviour
 	{
 		if (fragmentPrefab != null)
 		{
-
-
 			int numFragments = Mathf.RoundToInt(mass / fragmentPrefab.Mass);
 			if (numFragments > 50)
 			{
@@ -66,7 +74,7 @@ public class Attractable : MonoBehaviour
 
 			for (int i = 0; i < numFragments; i++)
 			{
-				Vector3 individualVector = reflectionVector * Random.Range(0.25f, 0.75f);
+				Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
 				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
 
 				float width = transform.localScale.x * 0.5f;
