@@ -25,7 +25,6 @@ public class Attractable : MonoBehaviour
 	private bool allowVelocityChange = true;
 	private bool hasImpacted = false;
 	private Vector3 impactPosition;
-	private float destructionDistanceAfterImpact;
 
 	public float Mass => mass;
 
@@ -117,7 +116,7 @@ public class Attractable : MonoBehaviour
 		if (hasImpacted)
 		{
 			float distance = Vector3.Distance(transform.position, impactPosition);
-			if (distance >= destructionDistanceAfterImpact)
+			if (distance >= transform.lossyScale.x)
 			{
 				Destroy(gameObject);
 			}
@@ -134,7 +133,6 @@ public class Attractable : MonoBehaviour
 		allowVelocityChange = false;
 		hasImpacted = true;
 		impactPosition = transform.position;
-		destructionDistanceAfterImpact = transform.lossyScale.x;
 
 		GetComponent<SphereCollider>().enabled = false;
 	}
