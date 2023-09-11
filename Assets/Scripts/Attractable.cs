@@ -57,7 +57,6 @@ public class Attractable : MonoBehaviour
 			}
 
 			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity);
-			// vfx.transform.parent = collision.gameObject.transform;
 			vfx.transform.up = reflectionVector;
 		}
 
