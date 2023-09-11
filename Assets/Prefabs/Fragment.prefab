@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2963582567028189423}
   - component: {fileID: 1328524526302864885}
   - component: {fileID: 4519327618010505647}
+  - component: {fileID: -5870092260012150649}
   m_Layer: 0
   m_Name: Fragment
   m_TagString: Untagged
@@ -143,3 +144,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeDuration: 5
   targetIntensity: 0
+  shaderFloatParameter: _EmissionIntensity
+--- !u!114 &-5870092260012150649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7352768449657130183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69669554b77e80d468f88eec39a4085e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

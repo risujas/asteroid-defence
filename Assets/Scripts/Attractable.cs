@@ -22,13 +22,21 @@ public class Attractable : MonoBehaviour
 	private const float maxFragmentSpeedMultiplier = 0.75f;
 	private const float ejectionVfxSpeedMultiplier = 0.5f;
 
+	private bool allowVelocityChange = true;
+	private bool hasImpacted = false;
+	private Vector3 impactPosition;
+	private float destructionDistanceAfterImpact;
+
 	public float Mass => mass;
 
 	public Vector3 Velocity => velocity;
 
 	public void AddVelocity(Vector3 v)
 	{
-		velocity += v;
+		if (allowVelocityChange)
+		{
+			velocity += v;
+		}
 	}
 
 	public void SetMassFromDensityAndScale()
@@ -105,6 +113,15 @@ public class Attractable : MonoBehaviour
 	private void Update()
 	{
 		transform.position += velocity * Time.deltaTime;
+
+		if (hasImpacted)
+		{
+			float distance = Vector3.Distance(transform.position, impactPosition);
+			if (distance >= destructionDistanceAfterImpact)
+			{
+				Destroy(gameObject);
+			}
+		}
 	}
 
 	void OnCollisionEnter(Collision collision)
@@ -114,6 +131,11 @@ public class Attractable : MonoBehaviour
 		SpawnCollisionEffects(collision, reflectionVector);
 		SpawnCollisionFragments(collision, reflectionVector);
 
-		Destroy(gameObject);
+		allowVelocityChange = false;
+		hasImpacted = true;
+		impactPosition = transform.position;
+		destructionDistanceAfterImpact = transform.lossyScale.x;
+
+		GetComponent<SphereCollider>().enabled = false;
 	}
 }
