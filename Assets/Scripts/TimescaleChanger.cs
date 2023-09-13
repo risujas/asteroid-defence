@@ -1,20 +1,19 @@
-using TMPro;
+using System;
 using UnityEngine;
 
 public class TimescaleChanger : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI timescaleText;
-	[SerializeField] private TextMeshProUGUI pauseButtonText;
-
-	private bool paused = false;
-	private float[] levels = { 0.1f, 1.0f, 3.0f, 10.0f, 50.0f, 100.0f };
+	private bool isPaused = false;
+	private float[] levels = { 0.1f, 1.0f, 2.0f, 3.0f, 10.0f, 25.0f, 50.0f };
 	private int index = 1;
 
 	public float Level => levels[index];
 
+	public bool IsPaused => isPaused;
+
 	public void SetTimescale(float value)
 	{
-		if (!paused)
+		if (!isPaused)
 		{
 			Time.timeScale = value;
 		}
@@ -22,49 +21,36 @@ public class TimescaleChanger : MonoBehaviour
 
 	public void Increase()
 	{
-		index++;
-		if (index >= levels.Length)
-		{
-			index--;
-		}
-
-		if (!paused)
-		{
-			Time.timeScale = levels[index];
-		}
-		timescaleText.text = "x" + levels[index].ToString();
+		ChangeLevel(1);
 	}
 
 	public void Decrease()
 	{
-		index--;
-		if (index < 0)
-		{
-			index = 0;
-		}
+		ChangeLevel(-1);
+	}
 
-		if (!paused)
+	public void ChangeLevel(int i)
+	{
+		index += i;
+		index = Math.Clamp(index, 0, levels.Length - 1);
+
+		if (!isPaused)
 		{
 			Time.timeScale = levels[index];
 		}
-		timescaleText.text = "x" + levels[index].ToString();
 	}
 
-	public void HandlePauseButton()
+	public void TogglePause()
 	{
-		if (!paused)
+		if (!isPaused)
 		{
 			Time.timeScale = 0.0f;
-			pauseButtonText.text = "Resume";
-			paused = true;
+			isPaused = true;
 		}
 		else
 		{
 			Time.timeScale = levels[index];
-			timescaleText.text = "x" + levels[index].ToString();
-
-			pauseButtonText.text = "Pause";
-			paused = false;
+			isPaused = false;
 		}
 	}
 }
