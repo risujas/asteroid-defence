@@ -51,13 +51,13 @@ public class Attractable : MonoBehaviour
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point;
 
-			if (vfxPrefab.HasFloat("ejectionSpeed"))
-			{
-				vfxPrefab.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
-			}
-
 			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity);
 			vfx.transform.up = reflectionVector;
+
+			if (vfx.HasFloat("ejectionSpeed"))
+			{
+				vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
+			}
 		}
 
 		if (impactLightPrefab != null)
