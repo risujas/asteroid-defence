@@ -621,11 +621,11 @@ RectTransform:
   - {fileID: 487167466}
   m_Father: {fileID: 1352711159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &223319510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,8 +670,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1352711162}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 517776894}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
         m_MethodName: PlaceFactory
         m_Mode: 1
         m_Arguments:
@@ -1886,6 +1886,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487167465}
   m_CullTransparentMesh: 1
+--- !u!1 &517776893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517776895}
+  - component: {fileID: 517776894}
+  m_Layer: 0
+  m_Name: BuildingPlacer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &517776894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517776893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4174426b219b7b43a4edd3016e8069a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildPoints: 100
+  factoryButton: {fileID: 223319510}
+  commandCenterButton: {fileID: 1389392217}
+  factoryPrefab: {fileID: 3504478444858369676, guid: b2ed3008998b13b4c98234b17a02c88e,
+    type: 3}
+  commandCenterPrefab: {fileID: 7813792307975176090, guid: ddd38cf7d64940542b63e0f72459fdf1,
+    type: 3}
+  placementAidMaterialValid: {fileID: 2100000, guid: b3374bece88e7ec498168d14dda574de,
+    type: 2}
+  placementAidMaterialInvalid: {fileID: 2100000, guid: 82d52f7d578b4944294de76914eb7fe6,
+    type: 2}
+  buildingSnappingLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  timescaleChangerReference: {fileID: 2015402656}
+--- !u!4 &517776895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517776893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.04062612, y: -0.58753425, z: 0.2621492}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &559992602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,7 +2834,6 @@ GameObject:
   - component: {fileID: 1352711159}
   - component: {fileID: 1352711161}
   - component: {fileID: 1352711160}
-  - component: {fileID: 1352711162}
   m_Layer: 5
   m_Name: BuildingsPanel
   m_TagString: Untagged
@@ -2799,11 +2857,11 @@ RectTransform:
   - {fileID: 1389392216}
   m_Father: {fileID: 559992603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 200}
-  m_Pivot: {x: 0, y: 0.5}
+  m_SizeDelta: {x: 200, y: 100}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1352711160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,33 +2900,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352711158}
   m_CullTransparentMesh: 1
---- !u!114 &1352711162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352711158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4174426b219b7b43a4edd3016e8069a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildPoints: 100
-  factoryButton: {fileID: 223319510}
-  commandCenterButton: {fileID: 1389392217}
-  factoryPrefab: {fileID: 3504478444858369676, guid: b2ed3008998b13b4c98234b17a02c88e,
-    type: 3}
-  commandCenterPrefab: {fileID: 7813792307975176090, guid: ddd38cf7d64940542b63e0f72459fdf1,
-    type: 3}
-  placementAidMaterialValid: {fileID: 2100000, guid: b3374bece88e7ec498168d14dda574de,
-    type: 2}
-  placementAidMaterialInvalid: {fileID: 2100000, guid: 82d52f7d578b4944294de76914eb7fe6,
-    type: 2}
-  buildingSnappingLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  timescaleChangerReference: {fileID: 2015402656}
 --- !u!1 &1371863522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3021,11 +3052,11 @@ RectTransform:
   - {fileID: 140164359}
   m_Father: {fileID: 1352711159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1389392217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3070,8 +3101,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1352711162}
-        m_TargetAssemblyTypeName: BuildingManager, Assembly-CSharp
+      - m_Target: {fileID: 517776894}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
         m_MethodName: PlaceCommandCenter
         m_Mode: 1
         m_Arguments:
@@ -3888,3 +3919,4 @@ SceneRoots:
   - {fileID: 1765578826}
   - {fileID: 1746954508}
   - {fileID: 2063208161}
+  - {fileID: 517776895}
