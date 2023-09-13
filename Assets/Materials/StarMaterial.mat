@@ -40,10 +40,17 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _Density: 0
+    - _NebulaCoverage: 0.8
+    - _NebulaScale: 30
+    - _NebulaStrength: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 400
-    m_Colors: []
+    - _StarDensity: 0
+    - _StarScale: 300
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _NebulaColor: {r: 0, g: 0.86088705, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4524514343029684189
 MonoBehaviour:
