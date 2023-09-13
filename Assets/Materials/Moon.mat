@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FragmentMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 70fbf5f481625c949a5c9ec8909e8c7b,
+  m_Name: Moon
+  m_Shader: {fileID: -6465566751694194690, guid: 1449ad2b3ef20b344b085e11d9b26869,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -51,14 +51,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EmissionIntensity: 10
+    - _EmissionIntensity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _TimeMultiplier1: 0.02
     - _TimeMultiplier2: 0.01
     m_Colors:
-    - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
-    - _Emission: {r: 1, g: 0.34031415, b: 0, a: 0}
-    - _MainColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 0}
-    - _Tint: {r: 0.8207547, g: 0.70073867, b: 0.70073867, a: 0}
+    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
