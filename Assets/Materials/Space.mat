@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _Density: 0
-    - _NebulaBrightness: 0.025
+    - _NebulaBrightness: 0.02
     - _NebulaCoverage: 0.8
     - _NebulaScale: 40
     - _NebulaStrength: 0.03
