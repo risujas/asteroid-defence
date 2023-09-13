@@ -58,6 +58,13 @@ public class Attractable : MonoBehaviour
 			{
 				vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
 			}
+
+			var follower = vfx.GetComponent<FollowObject>();
+			if (follower != null)
+			{
+				follower.objectToFollow = collision.gameObject;
+				follower.offset = transform.position - collision.gameObject.transform.position;
+			}
 		}
 
 		if (impactLightPrefab != null)
