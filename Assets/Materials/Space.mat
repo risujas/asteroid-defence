@@ -42,12 +42,12 @@ Material:
     - _Density: 0
     - _NebulaBrightness: 0.03
     - _NebulaCoverage: 0.8
-    - _NebulaScale: 30
+    - _NebulaScale: 15
     - _NebulaStrength: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 400
-    - _StarBrightness: 0.5
+    - _StarBrightness: 0.6
     - _StarDensity: 0
     - _StarScale: 300
     m_Colors:
