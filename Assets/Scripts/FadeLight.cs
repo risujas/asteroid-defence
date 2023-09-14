@@ -4,6 +4,7 @@ using UnityEngine;
 public class FadeLight : MonoBehaviour
 {
 	[SerializeField] private float fadeDuration = 0.5f;
+	[SerializeField] private float targetIntensity = 0.0f;
 
 	private Light fadeLight;
 	private float startIntensity;
@@ -24,7 +25,7 @@ public class FadeLight : MonoBehaviour
 			remaining -= timeStep;
 
 			float t = (fadeDuration - remaining) / fadeDuration;
-			fadeLight.intensity = Mathf.Lerp(startIntensity, 0.0f, t);
+			fadeLight.intensity = Mathf.Lerp(startIntensity, targetIntensity, t);
 
 			yield return null;
 		}

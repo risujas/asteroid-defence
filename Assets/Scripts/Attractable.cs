@@ -15,8 +15,7 @@ public class Attractable : MonoBehaviour
 
 	[Header("Prefabs")]
 	[SerializeField] private Attractable fragmentPrefab;
-	[SerializeField] private FadeLight impactLightPrefab;
-	[SerializeField] private VisualEffect vfxPrefab;
+	[SerializeField] private GameObject impactEffectPrefab;
 
 	private const float minFragmentSpeedMultiplier = 0.25f;
 	private const float maxFragmentSpeedMultiplier = 0.75f;
@@ -47,31 +46,28 @@ public class Attractable : MonoBehaviour
 
 	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
 	{
-		if (vfxPrefab != null)
+		if (impactEffectPrefab != null)
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point;
 
-			var vfx = Instantiate(vfxPrefab, spawnPoint, Quaternion.identity);
-			vfx.transform.up = reflectionVector;
+			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
+			effect.transform.up = reflectionVector;
 
-			if (vfx.HasFloat("ejectionSpeed"))
+			var vfx = effect.GetComponent<VisualEffect>();
+			if (vfx != null)
 			{
-				vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
+				if (vfx.HasFloat("ejectionSpeed"))
+				{
+					vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
+				}
 			}
 
-			var follower = vfx.GetComponent<FollowObject>();
+			var follower = effect.GetComponent<FollowObject>();
 			if (follower != null)
 			{
 				follower.objectToFollow = collision.gameObject;
 				follower.offset = transform.position - collision.gameObject.transform.position;
 			}
-		}
-
-		if (impactLightPrefab != null)
-		{
-			Vector3 spawnPoint = collision.GetContact(0).point + collision.GetContact(0).normal * 0.025f;
-			var light = Instantiate(impactLightPrefab, spawnPoint, Quaternion.identity);
-			light.transform.parent = collision.gameObject.transform;
 		}
 	}
 

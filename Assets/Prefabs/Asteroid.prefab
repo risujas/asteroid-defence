@@ -125,9 +125,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   fragmentPrefab: {fileID: 1328524526302864885, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
-  impactLightPrefab: {fileID: 9130085426736868685, guid: 2723ec1a235c0d64d8e1a8bc7337527b,
-    type: 3}
-  vfxPrefab: {fileID: 3071855395127260160, guid: cffbcda96bd9b1743a75b20a201479a0,
+  impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
     type: 3}
 --- !u!114 &4115998115669813881
 MonoBehaviour:
