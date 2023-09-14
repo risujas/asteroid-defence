@@ -9,6 +9,7 @@ public class Attractable : MonoBehaviour
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
 	[Header("Physical Properties")]
+	[SerializeField] private bool calculateMassOnStart = false;
 	[SerializeField] private float density;
 	[SerializeField] private float mass;
 	[SerializeField, ReadOnly] private Vector3 velocity;
@@ -103,7 +104,10 @@ public class Attractable : MonoBehaviour
 
 	private void Start()
 	{
-		SetMassFromDensityAndScale();
+		if (calculateMassOnStart)
+		{
+			SetMassFromDensityAndScale();
+		}
 	}
 
 	private void OnEnable()
