@@ -15,7 +15,7 @@ public class Attractable : MonoBehaviour
 
 	[Header("Prefabs")]
 	[SerializeField] private Attractable fragmentPrefab;
-	[SerializeField] private ImpactLight impactLightPrefab;
+	[SerializeField] private FadeLight impactLightPrefab;
 	[SerializeField] private VisualEffect vfxPrefab;
 
 	private const float minFragmentSpeedMultiplier = 0.25f;
