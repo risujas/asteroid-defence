@@ -99,7 +99,18 @@ public class Attractable : MonoBehaviour
 
 	private void DamageNearbyHealthObjects()
 	{
-		// TODO
+		float radius = transform.lossyScale.x * 4.0f;
+		float damage = mass * velocity.magnitude;
+
+		foreach (var h in Health.HealthObjects)
+		{
+			float distance = Vector3.Distance(transform.position, h.transform.position);
+			if (distance <= radius)
+			{
+				float effectiveDamage = damage / (distance * distance);
+				h.ChangeHealth(-effectiveDamage);
+			}
+		}
 	}
 
 	private void Start()

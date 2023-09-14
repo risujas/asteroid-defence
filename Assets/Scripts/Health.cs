@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class Health : MonoBehaviour
 {
+	private static List<Health> healthObjects = new();
+
+	public static IReadOnlyList<Health> HealthObjects => healthObjects.AsReadOnly();
+
 	[SerializeField] private float hitpoints = 100.0f;
 
 	[SerializeField] private VisualEffect damageVfx = null;
@@ -22,6 +27,17 @@ public class Health : MonoBehaviour
 		}
 
 		hitpoints += value;
+		Debug.Log(name + " health changed by " + value);
+	}
+
+	private void OnEnable()
+	{
+		healthObjects.Add(this);
+	}
+
+	private void OnDisable()
+	{
+		healthObjects.Remove(this);
 	}
 
 	private void Update()
