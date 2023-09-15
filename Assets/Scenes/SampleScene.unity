@@ -352,8 +352,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Missile Launch Site
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -819,7 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7783019, b: 0.7783019, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -921,8 +922,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1068,8 +1070,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Observatory
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1520,8 +1523,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: <
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2102,8 +2106,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Factory
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2207,15 +2212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildPoints: 100
-  factoryButton: {fileID: 223319510}
-  launchPadButton: {fileID: 1389392217}
-  observatoryButton: {fileID: 782313234}
-  factoryPrefab: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
-    type: 3}
-  launchPadPrefab: {fileID: 2422142236043477858, guid: 62f9a90d627c5b1469556c0baeb9a7db,
-    type: 3}
-  observatoryPrefab: {fileID: 9061967897515361650, guid: 67d083460a0dccf4cbe5f8f82098d0f0,
-    type: 3}
   placementAidMaterialValid: {fileID: 2100000, guid: b3374bece88e7ec498168d14dda574de,
     type: 2}
   placementAidMaterialInvalid: {fileID: 2100000, guid: 82d52f7d578b4944294de76914eb7fe6,
@@ -2403,8 +2399,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2601,7 +2598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.740566, g: 0.8586926, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3248,8 +3245,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: '>'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3717,7 +3715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9111052, b: 0.7411765, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4003,8 +4001,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
+  m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
