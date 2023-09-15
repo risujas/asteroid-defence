@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FragmentTrail : MonoBehaviour
@@ -8,13 +9,8 @@ public class FragmentTrail : MonoBehaviour
 	private Material fragmentMaterial;
 	private Material trailMaterial;
 
-	private float startEmissionIntensity;
-	private float currentEmissionIntensity;
-
-	private Color fragmentMainColor;
-	private Color fragmentEmissionColor;
-
-	private bool lerpFinished = false;
+	private bool doingEmissionLerp = false;
+	private Coroutine emissionLerp = null;
 
 	public void DetachTrailFromParent()
 	{
@@ -22,27 +18,29 @@ public class FragmentTrail : MonoBehaviour
 
 		var autoDestroy = gameObject.AddComponent<AutoDestroyAfterTime>();
 		autoDestroy.Duration = trailRenderer.time;
-	}
 
-	private void Start()
-	{
-		fragmentMaterial = fragmentRenderer.material;
-		trailRenderer = GetComponent<TrailRenderer>();
-		trailMaterial = trailRenderer.material;
-
-		startEmissionIntensity = fragmentMaterial.GetFloat("_EmissionIntensity");
-
-		fragmentMainColor = fragmentMaterial.GetColor("_MainColor");
-		fragmentEmissionColor = fragmentMaterial.GetColor("_Emission");
-	}
-
-	private void Update()
-	{
-		if (!lerpFinished)
+		if (doingEmissionLerp)
 		{
-			currentEmissionIntensity = fragmentMaterial.GetFloat("_EmissionIntensity");
+			StopCoroutine(emissionLerp);
+		}
 
-			float emissionRatio = (startEmissionIntensity - currentEmissionIntensity) / startEmissionIntensity;
+		StartCoroutine(AlphaLerp(trailRenderer.time));
+	}
+
+	private IEnumerator EmissionLerp()
+	{
+		doingEmissionLerp = true;
+
+		float startEmissionIntensity = fragmentMaterial.GetFloat("_EmissionIntensity");
+		float emissionRatio = 0.0f;
+
+		Color fragmentMainColor = fragmentMaterial.GetColor("_MainColor");
+		Color fragmentEmissionColor = fragmentMaterial.GetColor("_Emission");
+
+		while (emissionRatio < 0.99f)
+		{
+			float currentEmissionIntensity = fragmentMaterial.GetFloat("_EmissionIntensity");
+			emissionRatio = (startEmissionIntensity - currentEmissionIntensity) / startEmissionIntensity;
 
 			Color trailStartColor = Color.Lerp(fragmentEmissionColor, fragmentMainColor, emissionRatio);
 			trailStartColor.a = 0.2f;
@@ -53,10 +51,40 @@ public class FragmentTrail : MonoBehaviour
 			trailMaterial.SetColor("_StartColor", trailStartColor);
 			trailMaterial.SetColor("_EndColor", trailEndColor);
 
-			if (emissionRatio > 0.99f)
-			{
-				lerpFinished = true;
-			}
+			yield return null;
 		}
+
+		doingEmissionLerp = false;
+		yield return null;
+	}
+
+	private IEnumerator AlphaLerp(float duration)
+	{
+		Color initialColor = trailMaterial.GetColor("_StartColor");
+		Color finalColor = initialColor;
+		finalColor.a = 0.0f;
+
+		float elapsed = 0.0f;
+		while (elapsed < duration)
+		{
+			elapsed += Time.deltaTime;
+			float ratio = Mathf.Clamp01(elapsed / duration);
+
+			Color currentColor = Color.Lerp(initialColor, finalColor, ratio);
+			trailMaterial.SetColor("_StartColor", currentColor);
+
+			yield return null;
+		}
+
+		yield return null;
+	}
+
+	private void Start()
+	{
+		fragmentMaterial = fragmentRenderer.material;
+		trailRenderer = GetComponent<TrailRenderer>();
+		trailMaterial = trailRenderer.material;
+
+		emissionLerp = StartCoroutine(EmissionLerp());
 	}
 }
