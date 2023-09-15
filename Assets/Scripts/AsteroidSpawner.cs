@@ -31,7 +31,7 @@ public class AsteroidSpawner : MonoBehaviour
 		}
 	}
 
-	private Attractable SpawnAsteroid(float minScale, float maxScale)
+	private DynamicMassAttractable SpawnAsteroid(float minScale, float maxScale)
 	{
 		Vector3 spawnPos = swarmSpawnPoint;
 		spawnPos += Random.insideUnitSphere * swarmSpawnRadius;
@@ -41,7 +41,7 @@ public class AsteroidSpawner : MonoBehaviour
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
 		newAsteroid.transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
 
-		var attractable = newAsteroid.GetComponent<Attractable>();
+		var attractable = newAsteroid.GetComponent<DynamicMassAttractable>();
 		attractable.SetMassFromDensityAndScale();
 
 		return attractable;

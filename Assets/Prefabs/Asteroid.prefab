@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7519984567608261686}
   - component: {fileID: 1904057561077924394}
   - component: {fileID: 8463498906597668349}
-  - component: {fileID: 191788508743446476}
+  - component: {fileID: 5797022501947735555}
   - component: {fileID: 4115998115669813881}
   m_Layer: 0
   m_Name: Asteroid
@@ -108,7 +108,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &191788508743446476
+--- !u!114 &5797022501947735555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,17 +117,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1152672333653229308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
+  m_Script: {fileID: 11500000, guid: 351eba7982b323a4aa68d741631996fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calculateMassOnStart: 1
-  density: 5000
   mass: 0
   velocity: {x: 0, y: 0, z: 0}
   fragmentPrefab: {fileID: 1328524526302864885, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
   impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
     type: 3}
+  calculateMassOnStart: 1
+  density: 5000
 --- !u!114 &4115998115669813881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ PrefabInstance:
         type: 3}
       propertyPath: trackedAttractable
       value: 
-      objectReference: {fileID: 191788508743446476}
+      objectReference: {fileID: 5797022501947735555}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -4,27 +4,25 @@ using UnityEngine.VFX;
 
 public class Attractable : MonoBehaviour
 {
-	private static List<Attractable> spawnedAttractables = new();
+	protected static List<Attractable> spawnedAttractables = new();
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
 	[Header("Physical Properties")]
-	[SerializeField] private bool calculateMassOnStart = false;
-	[SerializeField] private float density;
-	[SerializeField] private float mass;
-	[SerializeField, ReadOnly] private Vector3 velocity;
+	[SerializeField] protected float mass;
+	[SerializeField, ReadOnly] protected Vector3 velocity;
 
 	[Header("Prefabs")]
-	[SerializeField] private Attractable fragmentPrefab;
-	[SerializeField] private GameObject impactEffectPrefab;
+	[SerializeField] protected Attractable fragmentPrefab;
+	[SerializeField] protected GameObject impactEffectPrefab;
 
-	private const float minFragmentSpeedMultiplier = 0.25f;
-	private const float maxFragmentSpeedMultiplier = 0.75f;
-	private const float ejectionVfxSpeedMultiplier = 0.35f;
+	protected const float minFragmentSpeedMultiplier = 0.25f;
+	protected const float maxFragmentSpeedMultiplier = 0.75f;
+	protected const float ejectionVfxSpeedMultiplier = 0.35f;
 
-	private bool allowVelocityChange = true;
-	private bool hasImpacted = false;
-	private Vector3 impactPosition;
+	protected bool allowVelocityChange = true;
+	protected bool hasImpacted = false;
+	protected Vector3 impactPosition;
 
 	public float Mass => mass;
 
@@ -36,13 +34,6 @@ public class Attractable : MonoBehaviour
 		{
 			velocity += v;
 		}
-	}
-
-	public void SetMassFromDensityAndScale()
-	{
-		float r = transform.localScale.x / 2.0f;
-		float volume = (4.0f / 3.0f) * Mathf.PI * Mathf.Pow(r, 3);
-		mass = volume * density;
 	}
 
 	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
@@ -113,12 +104,8 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	protected virtual void Start()
 	{
-		if (calculateMassOnStart)
-		{
-			SetMassFromDensityAndScale();
-		}
 	}
 
 	private void OnEnable()
