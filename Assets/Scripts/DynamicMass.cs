@@ -1,22 +1,26 @@
 using UnityEngine;
 
-public class DynamicMassAttractable : Attractable
+public class DynamicMass : MonoBehaviour
 {
-	[Header("Dynamic Mass")]
 	[SerializeField] private bool calculateMassOnStart = false;
 	[SerializeField] private float density;
 
+	private Attractable attractable = null;
+
 	public void SetMassFromDensityAndScale()
 	{
+		if (attractable == null)
+		{
+			attractable = GetComponent<Attractable>();
+		}
+
 		float r = transform.localScale.x / 2.0f;
 		float volume = (4.0f / 3.0f) * Mathf.PI * Mathf.Pow(r, 3);
-		mass = volume * density;
+		attractable.Mass = volume * density;
 	}
 
-	protected override void Start()
+	private void Start()
 	{
-		base.Start();
-
 		if (calculateMassOnStart)
 		{
 			SetMassFromDensityAndScale();

@@ -4,27 +4,30 @@ using UnityEngine.VFX;
 
 public class Attractable : MonoBehaviour
 {
-	protected static List<Attractable> spawnedAttractables = new();
+	private static List<Attractable> spawnedAttractables = new();
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
 	[Header("Physical Properties")]
-	[SerializeField] protected float mass;
-	[SerializeField, ReadOnly] protected Vector3 velocity;
+	[SerializeField] private float mass;
+	[SerializeField, ReadOnly] private Vector3 velocity;
 
 	[Header("Prefabs")]
-	[SerializeField] protected Attractable fragmentPrefab;
-	[SerializeField] protected GameObject impactEffectPrefab;
+	[SerializeField] private GameObject impactEffectPrefab;
 
-	protected const float minFragmentSpeedMultiplier = 0.25f;
-	protected const float maxFragmentSpeedMultiplier = 0.75f;
-	protected const float ejectionVfxSpeedMultiplier = 0.35f;
+	private Fragmentable fragmentable;
 
-	protected bool allowVelocityChange = true;
-	protected bool hasImpacted = false;
-	protected Vector3 impactPosition;
+	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
-	public float Mass => mass;
+	private bool allowVelocityChange = true;
+	private bool hasImpacted = false;
+	private Vector3 impactPosition;
+
+	public float Mass
+	{
+		get { return mass; }
+		set { mass = value; }
+	}
 
 	public Vector3 Velocity => velocity;
 
@@ -63,31 +66,6 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector)
-	{
-		if (fragmentPrefab != null)
-		{
-			int numFragments = Mathf.RoundToInt(mass / fragmentPrefab.Mass);
-			if (numFragments > 50)
-			{
-				numFragments = 50;
-			}
-
-			for (int i = 0; i < numFragments; i++)
-			{
-				Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
-				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
-
-				float width = transform.localScale.x * 0.5f;
-				Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
-				spawnPoint.z = 0.0f;
-
-				var newFragment = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, transform.parent).GetComponent<Attractable>();
-				newFragment.AddVelocity(individualVector);
-			}
-		}
-	}
-
 	private void DamageNearbyHealthObjects()
 	{
 		float radius = transform.lossyScale.x * 4.0f;
@@ -104,8 +82,9 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	protected virtual void Start()
+	private void Start()
 	{
+		fragmentable = GetComponent<Fragmentable>();
 	}
 
 	private void OnEnable()
@@ -132,12 +111,15 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter(Collision collision)
+	private void OnCollisionEnter(Collision collision)
 	{
 		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
 
 		SpawnCollisionEffects(collision, reflectionVector);
-		SpawnCollisionFragments(collision, reflectionVector);
+		if (fragmentable != null)
+		{
+			fragmentable.SpawnCollisionFragments(collision, reflectionVector, mass);
+		}
 
 		allowVelocityChange = false;
 		hasImpacted = true;
