@@ -88,6 +88,7 @@ public class BuildingPlacer : MonoBehaviour
 
 			if (Input.GetMouseButtonUp(1))
 			{
+				timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 				CancelBuildingPlacement();
 			}
 		}
