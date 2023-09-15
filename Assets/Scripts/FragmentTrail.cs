@@ -4,6 +4,7 @@ public class FragmentTrail : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer fragmentRenderer;
 
+	private TrailRenderer trailRenderer;
 	private Material fragmentMaterial;
 	private Material trailMaterial;
 
@@ -15,10 +16,19 @@ public class FragmentTrail : MonoBehaviour
 
 	private bool lerpFinished = false;
 
+	public void DetachTrailFromParent()
+	{
+		transform.parent = null;
+
+		var autoDestroy = gameObject.AddComponent<AutoDestroyAfterTime>();
+		autoDestroy.Duration = trailRenderer.time;
+	}
+
 	private void Start()
 	{
 		fragmentMaterial = fragmentRenderer.material;
-		trailMaterial = GetComponent<TrailRenderer>().material;
+		trailRenderer = GetComponent<TrailRenderer>();
+		trailMaterial = trailRenderer.material;
 
 		startEmissionIntensity = fragmentMaterial.GetFloat("_EmissionIntensity");
 

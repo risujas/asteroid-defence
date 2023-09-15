@@ -15,7 +15,9 @@ public class Attractable : MonoBehaviour
 	[Header("Prefabs")]
 	[SerializeField] private GameObject impactEffectPrefab;
 
+	// Optional components
 	private Fragmentable fragmentable;
+	private FragmentTrail fragmentTrail;
 
 	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
@@ -85,6 +87,7 @@ public class Attractable : MonoBehaviour
 	private void Start()
 	{
 		fragmentable = GetComponent<Fragmentable>();
+		fragmentTrail = GetComponentInChildren<FragmentTrail>();
 	}
 
 	private void OnEnable()
@@ -119,6 +122,11 @@ public class Attractable : MonoBehaviour
 		if (fragmentable != null)
 		{
 			fragmentable.SpawnCollisionFragments(collision, reflectionVector, mass);
+		}
+
+		if (fragmentTrail != null)
+		{
+			fragmentTrail.DetachTrailFromParent();
 		}
 
 		allowVelocityChange = false;
