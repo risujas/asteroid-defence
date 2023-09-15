@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpaceStars_500
+  m_Name: StarsLarge
   m_Shader: {fileID: -6465566751694194690, guid: 9f880fb855006334d80f24f489135303,
     type: 3}
   m_Parent: {fileID: 0}
@@ -49,7 +49,7 @@ Material:
     - _Scale: 400
     - _StarBrightness: 50
     - _StarDensity: 0
-    - _StarScale: 500
+    - _StarScale: 300
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _NebulaColor: {r: 0, g: 0.86088705, b: 1, a: 0}
