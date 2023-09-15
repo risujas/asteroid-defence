@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ad58de0681a065e4ca4dd02bdb9be4a8,
         type: 3}
       propertyPath: m_Name
-      value: FactoryPrefab
+      value: Factory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -132,6 +132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735437a42f28aeb43b0072c482c2560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 100
-  damageVfx: {fileID: 0}
-  deathVfx: {fileID: 0}
+  hitpoints: 0
+  isDead: 0
+  damageVfx: {fileID: 3399575213149211781, guid: 7c9643bcab9233744a66d8d59b69c8b2,
+    type: 3}
+  deathVfx: {fileID: 3399575213149211781, guid: 7c9643bcab9233744a66d8d59b69c8b2,
+    type: 3}
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3504478444858369676}
+        m_TargetAssemblyTypeName: Building, Assembly-CSharp
+        m_MethodName: StartSinking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
