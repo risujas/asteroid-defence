@@ -4,9 +4,8 @@ public class OrbitalRotation : MonoBehaviour
 {
 	[SerializeField] private Attractor parentBody;
 	[SerializeField] private bool clockwiseRotation;
-
-	private Vector3 rotation = Vector3.zero;
-	private float degreesPerSecond;
+	[SerializeField] private Vector3 rotation = Vector3.zero;
+	[SerializeField, ReadOnly] private float degreesPerSecond;
 
 	public static float GetOrbitalPeriod(float orbitalRadius, float G, float parentMass)
 	{
