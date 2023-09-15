@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DashedLine
+  m_Name: FragmentTrail
   m_Shader: {fileID: -6465566751694194690, guid: 9256e262969b3e14f96bc3c03f98c60e,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,17 +38,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Height: 1
+    - _Height: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Tiling: 200
     - _TimeMultiplier: 0
-    - _Width: 0.5
+    - _Width: 1
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0.47636437, a: 1}
-    - _EndColor: {r: 0, g: 1, b: 0.4745098, a: 0}
+    - _EndColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _LineColor: {r: 0, g: 0, b: 0, a: 0}
-    - _StartColor: {r: 0, g: 1, b: 0.47450978, a: 0.2}
+    - _StartColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.2}
   m_BuildTextureStacks: []
 --- !u!114 &5940066668162554948
 MonoBehaviour:

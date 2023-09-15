@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735437a42f28aeb43b0072c482c2560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 0
+  hitpoints: 100
   isDead: 0
   damageVfx: {fileID: 3399575213149211781, guid: 7c9643bcab9233744a66d8d59b69c8b2,
     type: 3}
