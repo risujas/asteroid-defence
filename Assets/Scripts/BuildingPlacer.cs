@@ -7,11 +7,13 @@ public class BuildingPlacer : MonoBehaviour
 
 	[Header("Button References")]
 	[SerializeField] private Button factoryButton;
-	[SerializeField] private Button commandCenterButton;
+	[SerializeField] private Button launchPadButton;
+	[SerializeField] private Button observatoryButton;
 
 	[Header("Building Prefabs")]
 	[SerializeField] private Building factoryPrefab;
-	[SerializeField] private Building commandCenterPrefab;
+	[SerializeField] private Building launchPadPrefab;
+	[SerializeField] private Building observatoryPrefab;
 
 	[Header("Placement Aid")]
 	[SerializeField] private Material placementAidMaterialValid;
@@ -29,9 +31,14 @@ public class BuildingPlacer : MonoBehaviour
 		StartBuildingPlacement(factoryPrefab);
 	}
 
-	public void PlaceCommandCenter()
+	public void PlaceLaunchPad()
 	{
-		StartBuildingPlacement(commandCenterPrefab);
+		StartBuildingPlacement(launchPadPrefab);
+	}
+
+	public void PlaceObservatory()
+	{
+		StartBuildingPlacement(observatoryPrefab);
 	}
 
 	private void StartBuildingPlacement(Building building)
@@ -68,7 +75,8 @@ public class BuildingPlacer : MonoBehaviour
 	private void EnableButtons()
 	{
 		factoryButton.interactable = buildPoints >= factoryPrefab.BuildCost;
-		commandCenterButton.interactable = buildPoints >= commandCenterPrefab.BuildCost;
+		launchPadButton.interactable = buildPoints >= launchPadPrefab.BuildCost;
+		observatoryButton.interactable = buildPoints >= observatoryPrefab.BuildCost;
 	}
 
 	private void HandlePlacement()
