@@ -52,10 +52,9 @@ public class BuildingPlacer : MonoBehaviour
 
 	private void FinalizeBuildingPlacement(BuildingAnchor anchor)
 	{
+		buildPoints -= selectedBuildingPrefab.BuildCost;
 		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		newBuilding.transform.parent = anchor.transform;
-
-		buildPoints -= selectedBuildingPrefab.BuildCost;
 	}
 
 	private void CancelBuildingPlacement()
@@ -93,14 +92,22 @@ public class BuildingPlacer : MonoBehaviour
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
 				placementAidMarker.transform.up = dir;
-				placementAidMarkerRenderer.material = placementAidMaterialValid;
 				timescaleChangerReference.SetTimescale(0.1f);
 
-				if (Input.GetMouseButtonUp(0))
+				if (buildPoints < selectedBuildingPrefab.BuildCost)
 				{
-					timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
-					FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
-					return;
+					placementAidMarkerRenderer.material = placementAidMaterialInvalid;
+				}
+				else
+				{
+					placementAidMarkerRenderer.material = placementAidMaterialValid;
+
+					if (Input.GetMouseButtonUp(0))
+					{
+						timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
+						FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
+						return;
+					}
 				}
 			}
 
