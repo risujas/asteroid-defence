@@ -56,8 +56,6 @@ public class BuildingPlacer : MonoBehaviour
 		newBuilding.transform.parent = anchor.transform;
 
 		buildPoints -= selectedBuildingPrefab.BuildCost;
-
-		CancelBuildingPlacement();
 	}
 
 	private void CancelBuildingPlacement()
