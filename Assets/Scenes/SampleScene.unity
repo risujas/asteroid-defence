@@ -137,12 +137,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93002967}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.00000008940697}
+  m_LocalPosition: {x: 0, y: -6, z: -0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1765578826}
+  m_Father: {fileID: 322477026}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &93002967
 GameObject:
@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 93002969}
   - component: {fileID: 93002976}
   - component: {fileID: 93002973}
+  - component: {fileID: 93002979}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -276,6 +277,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93002967}
   m_Mesh: {fileID: 8996112186996524538, guid: f9d57164be5c94e42b865e154b218221, type: 3}
+--- !u!114 &93002979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93002967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b0161e6f972d742bea10fc22bdc58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBody: {fileID: 210935014}
+  clockwiseRotation: 1
 --- !u!1 &140164358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1765578826}
+  - {fileID: 93002966}
   - {fileID: 1746954508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4166,55 +4181,6 @@ MonoBehaviour:
   numVertices: 200
   parent: {fileID: 210935003}
   child: {fileID: 93002967}
---- !u!1 &1765578825
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1765578826}
-  - component: {fileID: 1765578827}
-  m_Layer: 0
-  m_Name: MoonOrigin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1765578826
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765578825}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 93002966}
-  m_Father: {fileID: 322477026}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1765578827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765578825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b0161e6f972d742bea10fc22bdc58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 0, y: 0, z: 0}
-  parentBody: {fileID: 210935003}
-  childBody: {fileID: 93002967}
-  clockwiseRotation: 1
 --- !u!1 &2015402652
 GameObject:
   m_ObjectHideFlags: 0
