@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class FrameRateDisplay : MonoBehaviour
 			}
 			avgFps /= fpsCounts.Count;
 
-			string text = "FPS: " + avgFps.ToString();
+			string text = Math.Round(avgFps, 1).ToString();
 			textMesh.text = text;
 
 			lastUpdate = Time.unscaledTime;
