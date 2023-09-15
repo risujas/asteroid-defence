@@ -11,7 +11,7 @@ public class SolarSeason : MonoBehaviour
 
 	private void Update()
 	{
-		yearElapsedSeconds += Time.deltaTime;
+		yearElapsedSeconds += Time.smoothDeltaTime;
 		yearElapsedSeconds %= yearLengthInSeconds;
 
 		float axisValue = 90.0f - axialTilt;

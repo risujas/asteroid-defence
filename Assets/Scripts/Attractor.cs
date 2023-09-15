@@ -33,7 +33,7 @@ public class Attractor : MonoBehaviour
 		float resultingForce = force / a.Mass;
 		Vector3 forceVector = direction * resultingForce;
 
-		a.AddVelocity(forceVector * Time.deltaTime);
+		a.AddVelocity(forceVector * Time.smoothDeltaTime);
 	}
 
 	private void LateUpdate()

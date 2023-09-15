@@ -36,7 +36,7 @@ public class OrbitalRotation : MonoBehaviour
 			deg *= -1;
 		}
 
-		rotation += new Vector3(0.0f, 0.0f, deg) * Time.deltaTime;
+		rotation += new Vector3(0.0f, 0.0f, deg) * Time.smoothDeltaTime;
 		rotation.x %= 360.0f;
 		rotation.y %= 360.0f;
 		rotation.z %= 360.0f;

@@ -102,7 +102,7 @@ public class Attractable : MonoBehaviour
 
 	private void Update()
 	{
-		transform.position += velocity * Time.deltaTime;
+		transform.position += velocity * Time.smoothDeltaTime;
 
 		if (hasImpacted)
 		{

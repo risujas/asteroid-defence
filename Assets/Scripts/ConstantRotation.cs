@@ -18,6 +18,6 @@ public class ConstantRotation : MonoBehaviour
 
 	private void Update()
 	{
-		transform.Rotate(rotationSpeed * Time.deltaTime);
+		transform.Rotate(rotationSpeed * Time.smoothDeltaTime);
 	}
 }
