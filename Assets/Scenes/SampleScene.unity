@@ -795,11 +795,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 517776894}
         m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
-        m_MethodName: PlaceFactory
-        m_Mode: 1
+        m_MethodName: StartBuildingPlacement
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2576,11 +2577,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 517776894}
         m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
-        m_MethodName: PlaceObservatory
-        m_Mode: 1
+        m_MethodName: StartBuildingPlacement
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 9061967897515361650, guid: 67d083460a0dccf4cbe5f8f82098d0f0,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3691,11 +3693,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 517776894}
         m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
-        m_MethodName: PlaceLaunchPad
-        m_Mode: 1
+        m_MethodName: StartBuildingPlacement
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2422142236043477858, guid: 62f9a90d627c5b1469556c0baeb9a7db,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

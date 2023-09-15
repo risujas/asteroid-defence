@@ -1,19 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BuildingPlacer : MonoBehaviour
 {
 	[SerializeField] private float buildPoints = 100.0f;
-
-	[Header("Button References")]
-	[SerializeField] private Button factoryButton;
-	[SerializeField] private Button launchPadButton;
-	[SerializeField] private Button observatoryButton;
-
-	[Header("Building Prefabs")]
-	[SerializeField] private Building factoryPrefab;
-	[SerializeField] private Building launchPadPrefab;
-	[SerializeField] private Building observatoryPrefab;
 
 	[Header("Placement Aid")]
 	[SerializeField] private Material placementAidMaterialValid;
@@ -26,22 +15,7 @@ public class BuildingPlacer : MonoBehaviour
 	private GameObject placementAidMarker = null;
 	private Renderer placementAidMarkerRenderer = null;
 
-	public void PlaceFactory()
-	{
-		StartBuildingPlacement(factoryPrefab);
-	}
-
-	public void PlaceLaunchPad()
-	{
-		StartBuildingPlacement(launchPadPrefab);
-	}
-
-	public void PlaceObservatory()
-	{
-		StartBuildingPlacement(observatoryPrefab);
-	}
-
-	private void StartBuildingPlacement(Building building)
+	public void StartBuildingPlacement(Building building)
 	{
 		selectedBuildingPrefab = building;
 		isPlacingBuilding = true;
@@ -70,13 +44,6 @@ public class BuildingPlacer : MonoBehaviour
 		selectedBuildingPrefab = null;
 
 		Destroy(placementAidMarker);
-	}
-
-	private void EnableButtons()
-	{
-		factoryButton.interactable = buildPoints >= factoryPrefab.BuildCost;
-		launchPadButton.interactable = buildPoints >= launchPadPrefab.BuildCost;
-		observatoryButton.interactable = buildPoints >= observatoryPrefab.BuildCost;
 	}
 
 	private void HandlePlacement()
@@ -128,7 +95,6 @@ public class BuildingPlacer : MonoBehaviour
 
 	private void Update()
 	{
-		EnableButtons();
 		HandlePlacement();
 	}
 }
