@@ -1,0 +1,2 @@
+swarms spawning too close
+buildings not sinking
