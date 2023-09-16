@@ -89,8 +89,6 @@ public class Attractable : MonoBehaviour
 		hasImpacted = true;
 		impactPosition = transform.position;
 
-		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
-
 		if (fragmentTrail != null)
 		{
 			fragmentTrail.DetachTrailFromParent();
