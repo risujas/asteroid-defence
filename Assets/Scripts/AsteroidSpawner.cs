@@ -10,8 +10,8 @@ public class AsteroidSpawner : MonoBehaviour
 		public int numAsteroids;
 		public int numFragments;
 		public float velocity;
-		public float minAsteroidScale;
-		public float maxAsteroidScale;
+		public float minAsteroidScaleMultiplier;
+		public float maxAsteroidScaleMultiplier;
 	}
 
 	[SerializeField] private Attractor centralBody;
@@ -41,7 +41,7 @@ public class AsteroidSpawner : MonoBehaviour
 
 		for (int i = 0; i < swarm.numAsteroids; i++)
 		{
-			var asteroid = SpawnAsteroid(swarm.minAsteroidScale, swarm.maxAsteroidScale);
+			var asteroid = SpawnAsteroid(swarm.minAsteroidScaleMultiplier, swarm.maxAsteroidScaleMultiplier);
 			DefineTrajectory(asteroid, swarm.velocity, headingVector);
 		}
 
@@ -52,7 +52,7 @@ public class AsteroidSpawner : MonoBehaviour
 		}
 	}
 
-	private Attractable SpawnAsteroid(float minScale, float maxScale)
+	private Attractable SpawnAsteroid(float minScaleMultiplier, float maxScaleMultiplier)
 	{
 		Vector3 spawnPos = swarmSpawnPoint;
 		spawnPos += UnityEngine.Random.insideUnitSphere * swarmSpawnRadius;
@@ -60,9 +60,14 @@ public class AsteroidSpawner : MonoBehaviour
 
 		var randomPrefab = asteroidPrefabs[UnityEngine.Random.Range(0, asteroidPrefabs.Count)];
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
-		newAsteroid.transform.localScale = Vector3.one * UnityEngine.Random.Range(minScale, maxScale);
 
-		return newAsteroid.GetComponent<Attractable>();
+		float scaleMultiplier = UnityEngine.Random.Range(minScaleMultiplier, maxScaleMultiplier);
+		newAsteroid.transform.localScale *= scaleMultiplier;
+
+		var attractable = newAsteroid.GetComponent<Attractable>();
+		attractable.Mass *= Mathf.Pow(scaleMultiplier, 3);
+
+		return attractable;
 	}
 
 	private Attractable SpawnFragment()
