@@ -14,11 +14,9 @@ public class Attractable : MonoBehaviour
 
 	public static bool IsAboveRecommendedAttractablesLimit => NumAttractables >= RecommendedAttractablesLimit;
 
-	[Header("Physical Properties")]
 	[SerializeField] private float mass;
 	[SerializeField, ReadOnly] private Vector3 velocity;
 
-	[Header("Prefabs")]
 	[SerializeField] private GameObject impactEffectPrefab;
 
 	// Optional components
