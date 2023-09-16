@@ -4360,6 +4360,12 @@ MonoBehaviour:
   - {fileID: 1152672333653229308, guid: c67e856b27c972045b1ec5e24c20ce6e, type: 3}
   fragmentPrefab: {fileID: 7352768449657130183, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
+  asteroidSwarms:
+  - numAsteroids: 200
+    numFragments: 0
+    velocity: 5
+    minAsteroidScale: 0
+    maxAsteroidScale: 0
 --- !u!4 &2063208161
 Transform:
   m_ObjectHideFlags: 0
