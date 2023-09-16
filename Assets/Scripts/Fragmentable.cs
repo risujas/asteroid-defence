@@ -9,29 +9,31 @@ public class Fragmentable : MonoBehaviour
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector, Attractable attractable)
 	{
-		if (fragmentPrefab != null)
+		if (fragmentPrefab == null)
 		{
-			int numFragments = Mathf.RoundToInt(attractable.Mass / fragmentPrefab.Mass);
+			return;
+		}
 
-			for (int i = 0; i < numFragments; i++)
+		int numFragments = Mathf.RoundToInt(attractable.Mass / fragmentPrefab.Mass);
+
+		for (int i = 0; i < numFragments; i++)
+		{
+			if (Attractable.IsAboveRecommendedAttractablesLimit)
 			{
-				if (Attractable.IsAboveRecommendedAttractablesLimit)
-				{
-					break;
-				}
-
-				attractable.Mass -= fragmentPrefab.Mass;
-
-				Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
-				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
-
-				float width = transform.localScale.x * 0.5f;
-				Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
-				spawnPoint.z = 0.0f;
-
-				var newFragment = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, transform.parent).GetComponent<Attractable>();
-				newFragment.AddVelocity(individualVector);
+				break;
 			}
+
+			attractable.Mass -= fragmentPrefab.Mass;
+
+			Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
+			individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
+
+			float width = transform.localScale.x * 0.5f;
+			Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
+			spawnPoint.z = 0.0f;
+
+			var newFragment = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, transform.parent).GetComponent<Attractable>();
+			newFragment.AddVelocity(individualVector);
 		}
 	}
 
