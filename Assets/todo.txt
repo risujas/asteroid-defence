@@ -1,2 +1,27 @@
 swarms spawning too close
 buildings not sinking
+
+tooltips for planets, asteroids, objects (static on the screen, with a line pointing towards the object)
+
+		   BERTHA
+		   A habitable planet home to a thriving, space exploring civilization.
+		   Average temperature: 17 C
+		   Infrastructure level: 89%
+		  /
+	     /
+	    /
+O _____/
+
+missile launching
+orbital laser cannon; push asteroids or vaporize fragments
+orbital space telescope
+
+require funding to build stuff?
+receive funding from spotting things in the sky with telescopes
+telescopes search for objects in a specific sector of the sky: more telescopes give better coverage and increase the chance of spotting objects in a given sector
+finding objects early gives you more time to prepare
+
+destroying objects also grants you funding
+
+asteroid impacts damage planetary infrastructure and destroy buildings
+major asteroid impacts can cause a nuclear winter, resulting in a game-over
