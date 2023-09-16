@@ -62,9 +62,6 @@ public class AsteroidSpawner : MonoBehaviour
 		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
 		newAsteroid.transform.localScale = Vector3.one * UnityEngine.Random.Range(minScale, maxScale);
 
-		var dynamicMass = newAsteroid.GetComponent<DynamicMass>();
-		dynamicMass.SetMassFromDensityAndScale();
-
 		return newAsteroid.GetComponent<Attractable>();
 	}
 
