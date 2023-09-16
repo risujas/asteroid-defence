@@ -43,7 +43,7 @@ public class FragmentTrail : MonoBehaviour
 			emissionRatio = (startEmissionIntensity - currentEmissionIntensity) / startEmissionIntensity;
 
 			Color trailStartColor = Color.Lerp(fragmentEmissionColor, fragmentMainColor, emissionRatio);
-			trailStartColor.a = 0.2f;
+			trailStartColor.a = 0.05f;
 
 			Color trailEndColor = trailStartColor;
 			trailEndColor.a = 0.0f;
