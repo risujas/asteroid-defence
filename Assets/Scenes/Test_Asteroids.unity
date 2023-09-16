@@ -4709,8 +4709,8 @@ MonoBehaviour:
   - numAsteroids: 50
     numFragments: 0
     velocity: 4
-    minAsteroidScale: 0.05
-    maxAsteroidScale: 0.1
+    minAsteroidScaleMultiplier: 0
+    maxAsteroidScaleMultiplier: 0
 --- !u!4 &2063208161
 Transform:
   m_ObjectHideFlags: 0
