@@ -7,14 +7,21 @@ public class Fragmentable : MonoBehaviour
 
 	[SerializeField] private Attractable fragmentPrefab;
 
-	public void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector, float mass)
+	public void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector, Attractable attractable)
 	{
 		if (fragmentPrefab != null)
 		{
-			int numFragments = Mathf.RoundToInt(mass / fragmentPrefab.Mass);
+			int numFragments = Mathf.RoundToInt(attractable.Mass / fragmentPrefab.Mass);
 
 			for (int i = 0; i < numFragments; i++)
 			{
+				if (Attractable.IsAboveRecommendedAttractablesLimit)
+				{
+					break;
+				}
+
+				attractable.Mass -= fragmentPrefab.Mass;
+
 				Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
 				individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
 

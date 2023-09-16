@@ -6,7 +6,13 @@ public class Attractable : MonoBehaviour
 {
 	private static List<Attractable> spawnedAttractables = new();
 
+	public static int RecommendedAttractablesLimit = 300;
+
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
+
+	public static int NumAttractables => SpawnedAttractables.Count;
+
+	public static bool IsAboveRecommendedAttractablesLimit => NumAttractables >= RecommendedAttractablesLimit;
 
 	[Header("Physical Properties")]
 	[SerializeField] private float mass;
@@ -119,9 +125,10 @@ public class Attractable : MonoBehaviour
 		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
 
 		SpawnCollisionEffects(collision, reflectionVector);
+
 		if (fragmentable != null)
 		{
-			fragmentable.SpawnCollisionFragments(collision, reflectionVector, mass);
+			fragmentable.SpawnCollisionFragments(collision, reflectionVector, this);
 		}
 
 		if (fragmentTrail != null)
