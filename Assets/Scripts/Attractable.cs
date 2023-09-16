@@ -14,13 +14,13 @@ public class Attractable : MonoBehaviour
 	public static bool IsAboveRecommendedAttractablesLimit => NumAttractables >= RecommendedAttractablesLimit;
 
 	[SerializeField] private float mass;
-	[SerializeField, ReadOnly] private Vector3 velocity;
-
-	private FragmentTrail fragmentTrail;
+	[SerializeField] private Vector3 velocity;
 
 	private bool allowVelocityChange = true;
 	private bool hasImpacted = false;
 	private Vector3 impactPosition;
+
+	private FragmentTrail fragmentTrail;
 
 	public float Mass
 	{
@@ -32,26 +32,12 @@ public class Attractable : MonoBehaviour
 
 	public void AddVelocity(Vector3 v)
 	{
-		if (allowVelocityChange)
+		if (!allowVelocityChange)
 		{
-			velocity += v;
+			return;
 		}
-	}
 
-	private void DamageNearbyHealthObjects()
-	{
-		float radius = transform.lossyScale.x * 4.0f;
-		float damage = mass * velocity.magnitude;
-
-		foreach (var h in Health.HealthObjects)
-		{
-			float distance = Vector3.Distance(transform.position, h.transform.position);
-			if (distance <= radius)
-			{
-				float effectiveDamage = damage / (distance * distance);
-				h.ChangeHealth(-effectiveDamage);
-			}
-		}
+		velocity += v;
 	}
 
 	private void Start()
@@ -85,17 +71,15 @@ public class Attractable : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		allowVelocityChange = false;
 		hasImpacted = true;
 		impactPosition = transform.position;
+		allowVelocityChange = false;
 
 		if (fragmentTrail != null)
 		{
 			fragmentTrail.DetachTrailFromParent();
 		}
 
-		GetComponent<SphereCollider>().enabled = false;
-
-		DamageNearbyHealthObjects();
+		GetComponent<Collider>().enabled = false;
 	}
 }
