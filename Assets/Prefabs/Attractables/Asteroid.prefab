@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8764900263379808826}
   - component: {fileID: 5797022501947735555}
   - component: {fileID: 2659159563813226665}
+  - component: {fileID: -2784596044350761562}
   - component: {fileID: 4115998115669813881}
   m_Layer: 0
   m_Name: Asteroid
@@ -124,8 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 0
   velocity: {x: 0, y: 0, z: 0}
-  impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
-    type: 3}
 --- !u!114 &5797022501947735555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +152,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fragmentPrefab: {fileID: 1328524526302864885, guid: c4288778d0d8a3847bfe12abc4442b75,
+    type: 3}
+--- !u!114 &-2784596044350761562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152672333653229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b7b789d4187b945a306f73cb3902fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
     type: 3}
 --- !u!114 &4115998115669813881
 MonoBehaviour:

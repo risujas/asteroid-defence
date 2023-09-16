@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class Attractable : MonoBehaviour
 {
@@ -17,13 +16,10 @@ public class Attractable : MonoBehaviour
 	[SerializeField] private float mass;
 	[SerializeField, ReadOnly] private Vector3 velocity;
 
-	[SerializeField] private GameObject impactEffectPrefab;
-
 	// Optional components
 	private Fragmentable fragmentable;
 	private FragmentTrail fragmentTrail;
-
-	private const float ejectionVfxSpeedMultiplier = 0.35f;
+	private ImpactEffect impactEffect;
 
 	private bool allowVelocityChange = true;
 	private bool hasImpacted = false;
@@ -42,33 +38,6 @@ public class Attractable : MonoBehaviour
 		if (allowVelocityChange)
 		{
 			velocity += v;
-		}
-	}
-
-	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
-	{
-		if (impactEffectPrefab != null)
-		{
-			Vector3 spawnPoint = collision.GetContact(0).point;
-
-			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
-			effect.transform.up = reflectionVector;
-
-			var vfx = effect.GetComponent<VisualEffect>();
-			if (vfx != null)
-			{
-				if (vfx.HasFloat("ejectionSpeed"))
-				{
-					vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
-				}
-			}
-
-			var follower = effect.GetComponent<FollowObject>();
-			if (follower != null)
-			{
-				follower.objectToFollow = collision.gameObject;
-				follower.offset = transform.position - collision.gameObject.transform.position;
-			}
 		}
 	}
 
@@ -92,6 +61,7 @@ public class Attractable : MonoBehaviour
 	{
 		fragmentable = GetComponent<Fragmentable>();
 		fragmentTrail = GetComponentInChildren<FragmentTrail>();
+		impactEffect = GetComponent<ImpactEffect>();
 	}
 
 	private void OnEnable()
@@ -120,9 +90,16 @@ public class Attractable : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
+		allowVelocityChange = false;
+		hasImpacted = true;
+		impactPosition = transform.position;
+
 		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
 
-		SpawnCollisionEffects(collision, reflectionVector);
+		if (impactEffect != null)
+		{
+			impactEffect.SpawnCollisionEffects(collision, reflectionVector);
+		}
 
 		if (fragmentable != null)
 		{
@@ -133,10 +110,6 @@ public class Attractable : MonoBehaviour
 		{
 			fragmentTrail.DetachTrailFromParent();
 		}
-
-		allowVelocityChange = false;
-		hasImpacted = true;
-		impactPosition = transform.position;
 
 		GetComponent<SphereCollider>().enabled = false;
 
