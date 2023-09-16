@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 5
+  mass: 1
   velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2002769461489184992
 MonoBehaviour:
