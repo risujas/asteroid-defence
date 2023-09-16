@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ImpactDamage : MonoBehaviour
 {
-	private float radius = 0.3f;
+	private float radius = 0.2f;
 	private float damageMultiplier = 2.0f;
 	private Attractable attractable;
 
