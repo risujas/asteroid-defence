@@ -19,7 +19,6 @@ public class Attractable : MonoBehaviour
 	// Optional components
 	private Fragmentable fragmentable;
 	private FragmentTrail fragmentTrail;
-	private ImpactEffect impactEffect;
 
 	private bool allowVelocityChange = true;
 	private bool hasImpacted = false;
@@ -61,7 +60,6 @@ public class Attractable : MonoBehaviour
 	{
 		fragmentable = GetComponent<Fragmentable>();
 		fragmentTrail = GetComponentInChildren<FragmentTrail>();
-		impactEffect = GetComponent<ImpactEffect>();
 	}
 
 	private void OnEnable()
@@ -95,11 +93,6 @@ public class Attractable : MonoBehaviour
 		impactPosition = transform.position;
 
 		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
-
-		if (impactEffect != null)
-		{
-			impactEffect.SpawnCollisionEffects(collision, reflectionVector);
-		}
 
 		if (fragmentable != null)
 		{
