@@ -14,7 +14,7 @@ public class Fragmentable : MonoBehaviour
 			return;
 		}
 
-		int numFragments = Mathf.RoundToInt(attractable.Mass / fragmentPrefab.Mass);
+		int numFragments = Mathf.RoundToInt(attractable.Mass / fragmentPrefab.Mass) / 2;
 
 		for (int i = 0; i < numFragments; i++)
 		{
@@ -23,7 +23,10 @@ public class Fragmentable : MonoBehaviour
 				break;
 			}
 
-			attractable.Mass -= fragmentPrefab.Mass;
+			if (attractable.Mass <= fragmentPrefab.Mass)
+			{
+				break;
+			}
 
 			Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
 			individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
