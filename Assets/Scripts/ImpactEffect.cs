@@ -7,7 +7,7 @@ public class ImpactEffect : MonoBehaviour
 
 	[SerializeField] private GameObject impactEffectPrefab;
 
-	public void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
+	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
 	{
 		if (impactEffectPrefab != null)
 		{

@@ -16,8 +16,6 @@ public class Attractable : MonoBehaviour
 	[SerializeField] private float mass;
 	[SerializeField, ReadOnly] private Vector3 velocity;
 
-	// Optional components
-	private Fragmentable fragmentable;
 	private FragmentTrail fragmentTrail;
 
 	private bool allowVelocityChange = true;
@@ -58,7 +56,6 @@ public class Attractable : MonoBehaviour
 
 	private void Start()
 	{
-		fragmentable = GetComponent<Fragmentable>();
 		fragmentTrail = GetComponentInChildren<FragmentTrail>();
 	}
 
@@ -93,11 +90,6 @@ public class Attractable : MonoBehaviour
 		impactPosition = transform.position;
 
 		Vector3 reflectionVector = Vector3.Reflect(velocity, collision.GetContact(0).normal);
-
-		if (fragmentable != null)
-		{
-			fragmentable.SpawnCollisionFragments(collision, reflectionVector, this);
-		}
 
 		if (fragmentTrail != null)
 		{
