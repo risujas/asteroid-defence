@@ -36,7 +36,7 @@ public class Attractor : MonoBehaviour
 		a.AddVelocity(forceVector * Time.smoothDeltaTime);
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
 		foreach (var a in Attractable.SpawnedAttractables)
 		{
