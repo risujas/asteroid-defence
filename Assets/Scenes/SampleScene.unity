@@ -799,7 +799,7 @@ MonoBehaviour:
         m_MethodName: StartBuildingPlacement
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
+          m_ObjectArgument: {fileID: 6320667285818310347, guid: e7aeadfa438639f45b511b486c7bbe1d,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
@@ -2577,7 +2577,7 @@ MonoBehaviour:
         m_MethodName: StartBuildingPlacement
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 9061967897515361650, guid: 67d083460a0dccf4cbe5f8f82098d0f0,
+          m_ObjectArgument: {fileID: 6320667285818310347, guid: 125207892f4953341955ed504b217d81,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
@@ -3694,7 +3694,7 @@ MonoBehaviour:
         m_MethodName: StartBuildingPlacement
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2422142236043477858, guid: 62f9a90d627c5b1469556c0baeb9a7db,
+          m_ObjectArgument: {fileID: 6320667285818310347, guid: d71cf9be481a5eb498fec1d209846956,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Building, Assembly-CSharp
           m_IntArgument: 0
@@ -4357,7 +4357,7 @@ MonoBehaviour:
   swarmSpawnRadius: 20
   cullDistance: 200
   asteroidPrefabs:
-  - {fileID: 1152672333653229308, guid: c67e856b27c972045b1ec5e24c20ce6e, type: 3}
+  - {fileID: 1795095338240562865, guid: 608322f29233a7b439e64a8ecd87bb65, type: 3}
   fragmentPrefab: {fileID: 7352768449657130183, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
   asteroidSwarms:

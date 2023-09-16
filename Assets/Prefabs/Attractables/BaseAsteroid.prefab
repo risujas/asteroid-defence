@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2355745668863740726}
   - component: {fileID: 4115998115669813881}
   m_Layer: 0
-  m_Name: Asteroid
+  m_Name: BaseAsteroid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152672333653229308}
-  m_Mesh: {fileID: 7803778804846005805, guid: 4a5fca558f86175488a9df8fda7002a1, type: 3}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1904057561077924394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d32c48270575b546b80a97c24346e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.25
 --- !u!114 &4115998115669813881
 MonoBehaviour:
   m_ObjectHideFlags: 0

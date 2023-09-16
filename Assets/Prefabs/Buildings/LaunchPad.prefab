@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: m_Name
-      value: Observatory
+      value: Factory 1
       objectReference: {fileID: 0}
     - target: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -67,7 +67,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -3784285157303236476, guid: 52a74d9d09570e84eb58afdf270a68f2,
+      objectReference: {fileID: -3035470814744860724, guid: 52a74d9d09570e84eb58afdf270a68f2,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
