@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.5
+  targetIntensity: 0
 --- !u!73398921 &9148272894699871624
 VFXRenderer:
   serializedVersion: 1
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b89d6a7f793d0547ae59fa721e9ce61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 5
+  duration: 5
 --- !u!114 &560504573891767064
 MonoBehaviour:
   m_ObjectHideFlags: 0
