@@ -50,6 +50,11 @@ public class TooltipAnchor : MonoBehaviour
 		tooltipScreenPos.y += anchorRatio.y <= 0.5f ? tooltipObjectRectTransform.sizeDelta.y : -tooltipObjectRectTransform.sizeDelta.y;
 
 		tooltipObjectRectTransform.position = tooltipScreenPos;
+	}
+
+	private void SetLinesEnabled()
+	{
+		var anchorRatio = GetAnchorScreenRatio();
 
 		tooltipTopLine.gameObject.SetActive(false);
 		tooltipBottomLine.gameObject.SetActive(false);
@@ -102,6 +107,7 @@ public class TooltipAnchor : MonoBehaviour
 			if (!wasActive && drawTooltip)
 			{
 				SetTooltipPosition();
+				SetLinesEnabled();
 			}
 		}
 
