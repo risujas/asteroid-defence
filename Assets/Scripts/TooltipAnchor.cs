@@ -104,11 +104,19 @@ public class TooltipAnchor : MonoBehaviour
 		if (Time.time > lastCheck + checkFrequency)
 		{
 			bool wasActive = tooltipObject.activeSelf;
-			bool drawTooltip = CheckForMouseHover();
-			tooltipObject.SetActive(drawTooltip);
+			bool isHovering = CheckForMouseHover();
 
-			if (!wasActive && drawTooltip)
+			if (wasActive)
 			{
+				if (isHovering && Input.GetMouseButtonDown(0))
+				{
+					tooltipObject.SetActive(false);
+				}
+			}
+			else if (isHovering && Input.GetMouseButtonDown(0))
+			{
+				tooltipObject.SetActive(true);
+
 				SetTooltipPosition();
 				SetLinesEnabled();
 			}
