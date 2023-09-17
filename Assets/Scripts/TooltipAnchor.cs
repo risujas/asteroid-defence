@@ -14,6 +14,8 @@ public class TooltipAnchor : MonoBehaviour
 	private LineRenderer tooltipBottomLine;
 	private LineRenderer activeLine;
 
+	private Vector3 screenSpaceOffset = Vector3.zero;
+
 	private SphereCollider sphereCollider;
 	private float sphereSize;
 
@@ -32,6 +34,25 @@ public class TooltipAnchor : MonoBehaviour
 		return false;
 	}
 
+	private void CalculateOffset()
+	{
+		var anchorRatio = GetAnchorScreenRatio();
+
+		Vector3 tooltipScreenPos = Vector3.zero;
+		tooltipScreenPos.x = Screen.width * anchorRatio.x;
+		tooltipScreenPos.y = Screen.height * anchorRatio.y;
+
+		Vector3 adjustedScreenPos = tooltipScreenPos;
+
+		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(adjustedScreenPos);
+		tooltipWorldPos.y += anchorRatio.y <= 0.5f ? sphereSize / 2.0f : -sphereSize / 2.0f;
+
+		adjustedScreenPos = Camera.main.WorldToScreenPoint(tooltipWorldPos);
+		adjustedScreenPos.y += anchorRatio.y <= 0.5f ? tooltipObjectRectTransform.sizeDelta.y : -tooltipObjectRectTransform.sizeDelta.y;
+
+		screenSpaceOffset = adjustedScreenPos - tooltipScreenPos;
+	}
+
 	private void SetTooltipPosition()
 	{
 		var anchorRatio = GetAnchorScreenRatio();
@@ -40,16 +61,7 @@ public class TooltipAnchor : MonoBehaviour
 		tooltipScreenPos.x = Screen.width * anchorRatio.x;
 		tooltipScreenPos.y = Screen.height * anchorRatio.y;
 
-		// Temporarily convert tooltip from screenspace to worldspace so that we may add an offset determined by the collider's size
-		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(tooltipScreenPos);
-		tooltipWorldPos.y += anchorRatio.y <= 0.5f ? sphereSize / 2.0f : -sphereSize / 2.0f;
-
-		// Convert back from worldspace to screenspace + add another offset determined by the tooltip panel's size
-		tooltipScreenPos = Camera.main.WorldToScreenPoint(tooltipWorldPos);
-		tooltipScreenPos.y += anchorRatio.y <= 0.5f ? tooltipObjectRectTransform.sizeDelta.y : -tooltipObjectRectTransform.sizeDelta.y;
-
-		// Actually set the position of the tooltip panel
-		tooltipObjectRectTransform.position = tooltipScreenPos;
+		tooltipObjectRectTransform.position = tooltipScreenPos + screenSpaceOffset;
 	}
 
 	private void SetLinesEnabled()
@@ -105,7 +117,9 @@ public class TooltipAnchor : MonoBehaviour
 
 		if (tooltipObject.activeSelf)
 		{
+			CalculateOffset();
 			SetTooltipPosition();
+
 			SetLinesEnabled();
 			ChooseLine();
 		}
