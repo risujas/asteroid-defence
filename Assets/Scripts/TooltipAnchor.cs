@@ -44,33 +44,23 @@ public class TooltipAnchor : MonoBehaviour
 		tooltipScreenPos.y = Screen.height * anchorRatio.y;
 
 		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(tooltipScreenPos);
-		tooltipWorldPos.y += sphereSize / 2.0f;
+		tooltipWorldPos.y += anchorRatio.y <= 0.5f ? sphereSize / 2.0f : -sphereSize / 2.0f;
 
 		tooltipScreenPos = Camera.main.WorldToScreenPoint(tooltipWorldPos);
-		tooltipScreenPos.y += tooltipObjectRectTransform.sizeDelta.y;
+		tooltipScreenPos.y += anchorRatio.y <= 0.5f ? tooltipObjectRectTransform.sizeDelta.y : -tooltipObjectRectTransform.sizeDelta.y;
 
 		tooltipObjectRectTransform.position = tooltipScreenPos;
+
+		tooltipTopLine.gameObject.SetActive(false);
+		tooltipBottomLine.gameObject.SetActive(false);
+
+		activeLine = anchorRatio.y <= 0.5f ? tooltipBottomLine : tooltipTopLine;
+		activeLine.gameObject.SetActive(true);
 	}
 
 	private void SetLinePosition()
 	{
-		tooltipTopLine.gameObject.SetActive(false);
-		tooltipBottomLine.gameObject.SetActive(false);
-
-		var anchorRatio = GetAnchorScreenRatio();
-		if (anchorRatio.y < 0.5f)
-		{
-			activeLine = tooltipBottomLine;
-		}
-		else
-		{
-			activeLine = tooltipTopLine;
-		}
-
-		activeLine.gameObject.SetActive(true);
-
 		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(activeLine.transform.position);
-
 		activeLine.SetPosition(0, new Vector3(tooltipWorldPos.x, tooltipWorldPos.y, 1.0f));
 		activeLine.SetPosition(1, new Vector3(transform.position.x, transform.position.y, 1.0f));
 	}
