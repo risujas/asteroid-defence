@@ -14,9 +14,6 @@ public class TooltipAnchor : MonoBehaviour
 	private LineRenderer tooltipBottomLine;
 	private LineRenderer activeLine;
 
-	private float checkFrequency = 1.0f;
-	private float lastCheck = 0.0f;
-
 	private SphereCollider sphereCollider;
 	private float sphereSize;
 
@@ -101,12 +98,9 @@ public class TooltipAnchor : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (Time.time > lastCheck + checkFrequency)
+		if (CheckForMouseHover() && Input.GetMouseButtonDown(0))
 		{
-			if (CheckForMouseHover() && Input.GetMouseButtonDown(0))
-			{
-				tooltipObject.SetActive(!tooltipObject.activeSelf);
-			}
+			tooltipObject.SetActive(!tooltipObject.activeSelf);
 		}
 
 		if (tooltipObject.activeSelf)
