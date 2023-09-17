@@ -66,7 +66,7 @@ public class TooltipAnchor : MonoBehaviour
 		activeLine.gameObject.SetActive(true);
 	}
 
-	private void SetLinePosition()
+	private void ChooseLine()
 	{
 		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(activeLine.transform.position);
 		activeLine.SetPosition(0, new Vector3(tooltipWorldPos.x, tooltipWorldPos.y, 1.0f));
@@ -116,7 +116,7 @@ public class TooltipAnchor : MonoBehaviour
 
 		if (tooltipObject.activeSelf)
 		{
-			SetLinePosition();
+			ChooseLine();
 		}
 	}
 }
