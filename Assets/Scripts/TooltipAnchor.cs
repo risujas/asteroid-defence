@@ -14,6 +14,7 @@ public class TooltipAnchor : MonoBehaviour
 	private LineRenderer tooltipBottomLine;
 	private LineRenderer activeLine;
 
+	private Vector2Int offsetAxes = new Vector2Int();
 	private Vector3 screenSpaceOffset = Vector3.zero;
 
 	private SphereCollider sphereCollider;
@@ -34,6 +35,14 @@ public class TooltipAnchor : MonoBehaviour
 		return false;
 	}
 
+	private void ChooseOffsetAxes()
+	{
+		var anchorRatio = GetAnchorScreenRatio();
+
+		offsetAxes.x = anchorRatio.x <= 0.5f ? 1 : -1;
+		offsetAxes.y = anchorRatio.y <= 0.5f ? 1 : -1;
+	}
+
 	private void CalculateOffset()
 	{
 		var anchorRatio = GetAnchorScreenRatio();
@@ -45,10 +54,10 @@ public class TooltipAnchor : MonoBehaviour
 		Vector3 adjustedScreenPos = tooltipScreenPos;
 
 		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(adjustedScreenPos);
-		tooltipWorldPos.y += anchorRatio.y <= 0.5f ? sphereSize / 2.0f : -sphereSize / 2.0f;
+		tooltipWorldPos.y += sphereSize / 2.0f * offsetAxes.y;
 
 		adjustedScreenPos = Camera.main.WorldToScreenPoint(tooltipWorldPos);
-		adjustedScreenPos.y += anchorRatio.y <= 0.5f ? tooltipObjectRectTransform.sizeDelta.y : -tooltipObjectRectTransform.sizeDelta.y;
+		adjustedScreenPos.y += tooltipObjectRectTransform.sizeDelta.y * offsetAxes.y;
 
 		screenSpaceOffset = adjustedScreenPos - tooltipScreenPos;
 	}
@@ -71,7 +80,7 @@ public class TooltipAnchor : MonoBehaviour
 		tooltipTopLine.gameObject.SetActive(false);
 		tooltipBottomLine.gameObject.SetActive(false);
 
-		activeLine = anchorRatio.y <= 0.5f ? tooltipBottomLine : tooltipTopLine;
+		activeLine = offsetAxes.y > 0 ? tooltipBottomLine : tooltipTopLine;
 		activeLine.gameObject.SetActive(true);
 	}
 
@@ -108,11 +117,13 @@ public class TooltipAnchor : MonoBehaviour
 		sphereSize = (sphereCollider.transform.lossyScale * sphereCollider.radius * 2).x;
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
 		if (CheckForMouseHover() && Input.GetMouseButtonDown(0))
 		{
 			tooltipObject.SetActive(!tooltipObject.activeSelf);
+
+			ChooseOffsetAxes();
 		}
 
 		if (tooltipObject.activeSelf)
