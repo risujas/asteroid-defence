@@ -6,8 +6,13 @@ public class TooltipAnchor : MonoBehaviour
 	[SerializeField] private GameObject tooltipPrefab;
 
 	private GameObject tooltipCanvas;
+
 	private GameObject tooltipObject;
-	private Vector2 tooltipSize;
+	private RectTransform tooltipObjectRectTransform;
+
+	private LineRenderer tooltipTopLine;
+	private LineRenderer tooltipBottomLine;
+	private LineRenderer activeLine;
 
 	private float checkFrequency = 1.0f;
 	private float lastCheck = 0.0f;
@@ -30,7 +35,7 @@ public class TooltipAnchor : MonoBehaviour
 		return false;
 	}
 
-	private void PositionTooltip()
+	private void SetTooltipPosition()
 	{
 		var anchorRatio = GetAnchorScreenRatio();
 
@@ -42,9 +47,32 @@ public class TooltipAnchor : MonoBehaviour
 		tooltipWorldPos.y += sphereSize / 2.0f;
 
 		tooltipScreenPos = Camera.main.WorldToScreenPoint(tooltipWorldPos);
-		tooltipScreenPos.y += tooltipSize.y;
+		tooltipScreenPos.y += tooltipObjectRectTransform.sizeDelta.y;
 
-		tooltipObject.GetComponent<RectTransform>().position = tooltipScreenPos;
+		tooltipObjectRectTransform.position = tooltipScreenPos;
+	}
+
+	private void SetLinePosition()
+	{
+		tooltipTopLine.gameObject.SetActive(false);
+		tooltipBottomLine.gameObject.SetActive(false);
+
+		var anchorRatio = GetAnchorScreenRatio();
+		if (anchorRatio.y < 0.5f)
+		{
+			activeLine = tooltipBottomLine;
+		}
+		else
+		{
+			activeLine = tooltipTopLine;
+		}
+
+		activeLine.gameObject.SetActive(true);
+
+		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(activeLine.transform.position);
+
+		activeLine.SetPosition(0, new Vector3(tooltipWorldPos.x, tooltipWorldPos.y, 1.0f));
+		activeLine.SetPosition(1, new Vector3(transform.position.x, transform.position.y, 1.0f));
 	}
 
 	private Vector2 GetAnchorScreenRatio()
@@ -64,13 +92,16 @@ public class TooltipAnchor : MonoBehaviour
 
 		tooltipObject = Instantiate(tooltipPrefab, Vector3.zero, Quaternion.identity, tooltipCanvas.transform);
 		tooltipObject.SetActive(false);
-		tooltipSize = tooltipObject.GetComponentInChildren<RectTransform>().sizeDelta;
+		tooltipObjectRectTransform = tooltipObject.GetComponentInChildren<RectTransform>();
+
+		tooltipTopLine = tooltipObject.transform.Find("TopLine").GetComponent<LineRenderer>();
+		tooltipBottomLine = tooltipObject.transform.Find("BottomLine").GetComponent<LineRenderer>();
 
 		sphereCollider = GetComponent<SphereCollider>();
 		sphereSize = (sphereCollider.transform.lossyScale * sphereCollider.radius * 2).x;
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if (Time.time > lastCheck + checkFrequency)
 		{
@@ -80,8 +111,13 @@ public class TooltipAnchor : MonoBehaviour
 
 			if (!wasActive && drawTooltip)
 			{
-				PositionTooltip();
+				SetTooltipPosition();
 			}
+		}
+
+		if (tooltipObject.activeSelf)
+		{
+			SetLinePosition();
 		}
 	}
 }
