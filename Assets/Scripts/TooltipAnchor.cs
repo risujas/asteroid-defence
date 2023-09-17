@@ -103,27 +103,16 @@ public class TooltipAnchor : MonoBehaviour
 	{
 		if (Time.time > lastCheck + checkFrequency)
 		{
-			bool wasActive = tooltipObject.activeSelf;
-			bool isHovering = CheckForMouseHover();
-
-			if (wasActive)
+			if (CheckForMouseHover() && Input.GetMouseButtonDown(0))
 			{
-				if (isHovering && Input.GetMouseButtonDown(0))
-				{
-					tooltipObject.SetActive(false);
-				}
-			}
-			else if (isHovering && Input.GetMouseButtonDown(0))
-			{
-				tooltipObject.SetActive(true);
-
-				SetTooltipPosition();
-				SetLinesEnabled();
+				tooltipObject.SetActive(!tooltipObject.activeSelf);
 			}
 		}
 
 		if (tooltipObject.activeSelf)
 		{
+			SetTooltipPosition();
+			SetLinesEnabled();
 			ChooseLine();
 		}
 	}
