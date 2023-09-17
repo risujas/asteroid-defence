@@ -7,6 +7,7 @@ public class TooltipAnchor : MonoBehaviour
 
 	private GameObject tooltipCanvas;
 	private GameObject tooltipObject;
+	private Vector2 tooltipSize;
 
 	private float checkFrequency = 1.0f;
 	private float lastCheck = 0.0f;
@@ -33,11 +34,15 @@ public class TooltipAnchor : MonoBehaviour
 	{
 		var anchorRatio = GetAnchorScreenRatio();
 
-		Vector2 tooltipRatio = Vector2.zero;
-
 		Vector3 tooltipScreenPos = Vector3.zero;
-		tooltipScreenPos.x = Screen.width * tooltipRatio.x;
-		tooltipScreenPos.y = Screen.height * tooltipRatio.y;
+		tooltipScreenPos.x = Screen.width * anchorRatio.x;
+		tooltipScreenPos.y = Screen.height * anchorRatio.y;
+
+		Vector3 tooltipWorldPos = Camera.main.ScreenToWorldPoint(tooltipScreenPos);
+		tooltipWorldPos.y += sphereSize / 2.0f;
+
+		tooltipScreenPos = Camera.main.WorldToScreenPoint(tooltipWorldPos);
+		tooltipScreenPos.y += tooltipSize.y;
 
 		tooltipObject.GetComponent<RectTransform>().position = tooltipScreenPos;
 	}
@@ -59,6 +64,7 @@ public class TooltipAnchor : MonoBehaviour
 
 		tooltipObject = Instantiate(tooltipPrefab, Vector3.zero, Quaternion.identity, tooltipCanvas.transform);
 		tooltipObject.SetActive(false);
+		tooltipSize = tooltipObject.GetComponentInChildren<RectTransform>().sizeDelta;
 
 		sphereCollider = GetComponent<SphereCollider>();
 		sphereSize = (sphereCollider.transform.lossyScale * sphereCollider.radius * 2).x;
