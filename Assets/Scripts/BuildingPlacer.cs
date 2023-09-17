@@ -15,6 +15,8 @@ public class BuildingPlacer : MonoBehaviour
 	private GameObject placementAidMarker = null;
 	private Renderer placementAidMarkerRenderer = null;
 
+	public bool IsPlacingBuilding => isPlacingBuilding;
+
 	public void StartBuildingPlacement(Building building)
 	{
 		selectedBuildingPrefab = building;

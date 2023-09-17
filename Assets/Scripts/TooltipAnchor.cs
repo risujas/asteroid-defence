@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TooltipAnchor : MonoBehaviour
 {
-	[SerializeField] private LayerMask tooltipLayerMask;
 	[SerializeField] private GameObject tooltipPrefab;
 
 	private GameObject tooltipCanvas;
@@ -20,19 +19,11 @@ public class TooltipAnchor : MonoBehaviour
 	private SphereCollider sphereCollider;
 	private float sphereSize;
 
-	private bool CheckForMouseHover()
+	public void Toggle()
 	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		tooltipObject.SetActive(!tooltipObject.activeSelf);
 
-		if (Physics.Raycast(ray, out RaycastHit hit, 100.0f, tooltipLayerMask))
-		{
-			if (hit.transform.gameObject == gameObject)
-			{
-				return true;
-			}
-		}
-
-		return false;
+		ChooseOffsetAxes();
 	}
 
 	private void ChooseOffsetAxes()
@@ -119,13 +110,6 @@ public class TooltipAnchor : MonoBehaviour
 
 	private void Update()
 	{
-		if (CheckForMouseHover() && Input.GetMouseButtonDown(0))
-		{
-			tooltipObject.SetActive(!tooltipObject.activeSelf);
-
-			ChooseOffsetAxes();
-		}
-
 		if (tooltipObject.activeSelf)
 		{
 			CalculateOffset();
