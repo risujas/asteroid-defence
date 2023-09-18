@@ -10,19 +10,26 @@ public class Building : MonoBehaviour
 
 	public void StartSinking()
 	{
-		StartCoroutine(SinkBuildingIntoGround());
+		var parentAnchor = GetComponentInParent<BuildingAnchor>();
+
+		StartCoroutine(SinkBuildingIntoGround(parentAnchor.SpawnHeight));
 	}
 
-	private IEnumerator SinkBuildingIntoGround()
+	private IEnumerator SinkBuildingIntoGround(float requiredDistance)
 	{
-		float duration = 3.0f;
+		Vector3 initialPosition = transform.position;
+		float sinkingSpeed = 0.03f;
+		bool finished = false;
 
-		float elapsed = 0.0f;
-		while (elapsed < duration)
+		while (!finished)
 		{
-			elapsed += Time.deltaTime;
+			transform.position += -transform.up * sinkingSpeed * Time.deltaTime;
 
-			// TODO
+			float distance = Vector3.Distance(initialPosition, transform.position);
+			if (distance >= requiredDistance)
+			{
+				finished = true;
+			}
 
 			yield return null;
 		}
