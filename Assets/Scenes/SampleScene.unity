@@ -2142,6 +2142,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20dc737c9dd5d49a52ad6345317e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
+  levels:
+  - 0.1
+  - 0.25
+  - 0.5
+  - 1
+  - 2.5
+  - 5
+  - 10
+  - 25
+  levelIndex: 1
 --- !u!4 &948708501
 Transform:
   m_ObjectHideFlags: 0
@@ -2556,6 +2567,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20dc737c9dd5d49a52ad6345317e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 1
+  levels:
+  - 0.1
+  - 0.25
+  - 0.5
+  - 1
+  - 2.5
+  - 5
+  - 10
+  - 25
+  levelIndex: 1
 --- !u!114 &1336369672
 MonoBehaviour:
   m_ObjectHideFlags: 0
