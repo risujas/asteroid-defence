@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Building : MonoBehaviour
 {
 	[SerializeField] private float buildCost = 20.0f;
 	[SerializeField] private bool allowMultiPlacement = true;
 	[SerializeField] private GameObject placementEffect = null;
+	[SerializeField] private bool addToParentHierarchy = true;
 
 	private bool finishedSinking = false;
 
@@ -14,6 +17,12 @@ public class Building : MonoBehaviour
 	public bool AllowMultiPlacement => allowMultiPlacement;
 
 	public GameObject PlacementEffect => placementEffect;
+
+	public bool AddToParentHierarchy => addToParentHierarchy;
+
+	[Serializable] public class PlacementEvent : UnityEvent { }
+
+	public PlacementEvent placementEvent;
 
 	public void StartSinking()
 	{

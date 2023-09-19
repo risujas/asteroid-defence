@@ -40,16 +40,22 @@ public class BuildingPlacer : MonoBehaviour
 	private void FinalizeBuildingPlacement(BuildingAnchor anchor)
 	{
 		buildPoints -= selectedBuildingPrefab.BuildCost;
-		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
-		newBuilding.transform.parent = anchor.transform;
 
-		if (selectedBuildingPrefab.PlacementEffect != null)
+		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
+		if (newBuilding.AddToParentHierarchy)
 		{
-			var placementEffect = Instantiate(selectedBuildingPrefab.PlacementEffect, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
+			newBuilding.transform.parent = anchor.transform;
+		}
+
+		newBuilding.placementEvent.Invoke();
+
+		if (newBuilding.PlacementEffect != null)
+		{
+			var placementEffect = Instantiate(newBuilding.PlacementEffect, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 			placementEffect.transform.parent = anchor.transform;
 		}
 
-		if (!selectedBuildingPrefab.AllowMultiPlacement)
+		if (!newBuilding.AllowMultiPlacement)
 		{
 			CancelBuildingPlacement();
 		}
