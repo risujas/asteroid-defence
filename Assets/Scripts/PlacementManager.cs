@@ -18,11 +18,13 @@ public class PlacementManager : MonoBehaviour
 	private Placeable selectedPlaceablePrefab = null;
 	private GameObject placementAidMarker = null;
 	private Renderer placementAidMarkerRenderer = null;
+	private bool placementEnablementDelay = false;
 
 	public bool IsPlacing => isPlacing;
 
 	public void StartPlacement(Placeable placeable)
 	{
+		placementEnablementDelay = true;
 		selectedPlaceablePrefab = placeable;
 		isPlacing = true;
 
@@ -71,8 +73,10 @@ public class PlacementManager : MonoBehaviour
 
 	private void HandlePlacement()
 	{
-		if (isPlacing)
+		if (isPlacing && !placementEnablementDelay)
 		{
+			Debug.Log("a");
+
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			var colliders = Physics.OverlapSphere(mousePos, 0.1f, snapLayerMask);
@@ -124,5 +128,10 @@ public class PlacementManager : MonoBehaviour
 	private void Update()
 	{
 		HandlePlacement();
+	}
+
+	private void LateUpdate()
+	{
+		placementEnablementDelay = false;
 	}
 }

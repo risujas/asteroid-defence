@@ -1735,7 +1735,7 @@ MonoBehaviour:
     m_Bits: 1024
   timescaleChangerReference: {fileID: 948708500}
   slowDownWhilePlacing: 0
-  placeOnMouseDown: 1
+  placeOnMouseDown: 0
 --- !u!4 &517776895
 Transform:
   m_ObjectHideFlags: 0
