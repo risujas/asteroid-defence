@@ -5,12 +5,15 @@ public class Building : MonoBehaviour
 {
 	[SerializeField] private float buildCost = 20.0f;
 	[SerializeField] private bool allowMultiPlacement = true;
+	[SerializeField] private GameObject placementEffect = null;
 
 	private bool finishedSinking = false;
 
 	public float BuildCost => buildCost;
 
 	public bool AllowMultiPlacement => allowMultiPlacement;
+
+	public GameObject PlacementEffect => placementEffect;
 
 	public void StartSinking()
 	{

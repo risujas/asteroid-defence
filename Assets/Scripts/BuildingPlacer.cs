@@ -43,6 +43,12 @@ public class BuildingPlacer : MonoBehaviour
 		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		newBuilding.transform.parent = anchor.transform;
 
+		if (selectedBuildingPrefab.PlacementEffect != null)
+		{
+			var placementEffect = Instantiate(selectedBuildingPrefab.PlacementEffect, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
+			placementEffect.transform.parent = anchor.transform;
+		}
+
 		if (!selectedBuildingPrefab.AllowMultiPlacement)
 		{
 			CancelBuildingPlacement();
