@@ -3430,6 +3430,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 517776894}
+    - target: {fileID: 7651112740501394198, guid: cdeba96b8a55b6249bbb9f4a342d5601,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Placeable, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8102505112897315644, guid: cdeba96b8a55b6249bbb9f4a342d5601,
         type: 3}
       propertyPath: m_Pivot.x

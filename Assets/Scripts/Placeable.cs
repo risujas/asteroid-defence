@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Building : MonoBehaviour
+public class Placeable : MonoBehaviour
 {
 	[SerializeField] private float buildCost = 20.0f;
 	[SerializeField] private bool allowMultiPlacement = true;
@@ -26,7 +26,7 @@ public class Building : MonoBehaviour
 
 	public void StartSinking()
 	{
-		var parentAnchor = GetComponentInParent<BuildingAnchor>();
+		var parentAnchor = GetComponentInParent<PlaceableAnchor>();
 
 		StartCoroutine(SinkBuildingIntoGround(parentAnchor.SpawnHeight));
 	}

@@ -1,47 +1,47 @@
 using UnityEngine;
 
-public class BuildingPlacer : MonoBehaviour
+public class PlacementManager : MonoBehaviour
 {
-	[SerializeField] private float buildPoints = 100.0f;
+	[SerializeField] private float placementPoints = 100.0f;
 
 	[Header("Placement Aid")]
 	[SerializeField] private Material placementAidMaterialValid;
 	[SerializeField] private Material placementAidMaterialInvalid;
-	[SerializeField] private LayerMask buildingSnappingLayerMask;
+	[SerializeField] private LayerMask snapLayerMask;
 	[SerializeField] private TimescaleChanger timescaleChangerReference;
 
 	[Header("Placement Inputs")]
 	[SerializeField] private bool slowDownWhilePlacing = false;
 	[SerializeField] private bool placeOnMouseDown = false;
 
-	private bool isPlacingBuilding = false;
-	private Building selectedBuildingPrefab = null;
+	private bool isPlacing = false;
+	private Placeable selectedPlaceablePrefab = null;
 	private GameObject placementAidMarker = null;
 	private Renderer placementAidMarkerRenderer = null;
 
-	public bool IsPlacingBuilding => isPlacingBuilding;
+	public bool IsPlacing => isPlacing;
 
-	public void StartBuildingPlacement(Building building)
+	public void StartPlacement(Placeable building)
 	{
-		selectedBuildingPrefab = building;
-		isPlacingBuilding = true;
+		selectedPlaceablePrefab = building;
+		isPlacing = true;
 
 		if (placementAidMarker != null)
 		{
 			Destroy(placementAidMarker);
 		}
 
-		placementAidMarker = Instantiate(selectedBuildingPrefab, Vector3.zero, selectedBuildingPrefab.transform.rotation).gameObject;
+		placementAidMarker = Instantiate(selectedPlaceablePrefab, Vector3.zero, selectedPlaceablePrefab.transform.rotation).gameObject;
 		placementAidMarker.transform.parent = transform;
-		Destroy(placementAidMarker.GetComponent<Building>());
+		Destroy(placementAidMarker.GetComponent<Placeable>());
 		placementAidMarkerRenderer = placementAidMarker.GetComponent<Renderer>();
 	}
 
-	private void FinalizeBuildingPlacement(BuildingAnchor anchor)
+	private void FinalizePlacement(PlaceableAnchor anchor)
 	{
-		buildPoints -= selectedBuildingPrefab.BuildCost;
+		placementPoints -= selectedPlaceablePrefab.BuildCost;
 
-		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
+		var newBuilding = Instantiate(selectedPlaceablePrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		if (newBuilding.AddToParentHierarchy)
 		{
 			newBuilding.transform.parent = anchor.transform;
@@ -57,25 +57,25 @@ public class BuildingPlacer : MonoBehaviour
 
 		if (!newBuilding.AllowMultiPlacement)
 		{
-			CancelBuildingPlacement();
+			CancelPlacement();
 		}
 	}
 
-	private void CancelBuildingPlacement()
+	private void CancelPlacement()
 	{
-		isPlacingBuilding = false;
-		selectedBuildingPrefab = null;
+		isPlacing = false;
+		selectedPlaceablePrefab = null;
 
 		Destroy(placementAidMarker);
 	}
 
 	private void HandlePlacement()
 	{
-		if (isPlacingBuilding)
+		if (isPlacing)
 		{
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			var colliders = Physics.OverlapSphere(mousePos, 0.1f, buildingSnappingLayerMask);
+			var colliders = Physics.OverlapSphere(mousePos, 0.1f, snapLayerMask);
 			if (colliders == null || colliders.Length == 0)
 			{
 				placementAidMarker.transform.position = mousePos;
@@ -85,7 +85,7 @@ public class BuildingPlacer : MonoBehaviour
 			}
 			else
 			{
-				var anchor = colliders[0].GetComponent<BuildingAnchor>();
+				var anchor = colliders[0].GetComponent<PlaceableAnchor>();
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
@@ -96,7 +96,7 @@ public class BuildingPlacer : MonoBehaviour
 					timescaleChangerReference.SetTimescale(0.1f);
 				}
 
-				if (buildPoints < selectedBuildingPrefab.BuildCost)
+				if (placementPoints < selectedPlaceablePrefab.BuildCost)
 				{
 					placementAidMarkerRenderer.material = placementAidMaterialInvalid;
 				}
@@ -107,7 +107,7 @@ public class BuildingPlacer : MonoBehaviour
 					if (Input.GetMouseButtonUp(0) || (placeOnMouseDown && Input.GetMouseButtonDown(0)))
 					{
 						timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
-						FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
+						FinalizePlacement(colliders[0].GetComponent<PlaceableAnchor>());
 						return;
 					}
 				}
@@ -116,7 +116,7 @@ public class BuildingPlacer : MonoBehaviour
 			if (Input.GetMouseButtonUp(1))
 			{
 				timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
-				CancelBuildingPlacement();
+				CancelPlacement();
 			}
 		}
 	}
