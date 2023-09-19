@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 93002976}
   - component: {fileID: 93002973}
   - component: {fileID: 93002979}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 210935004}
   - component: {fileID: 210935014}
   - component: {fileID: 210935020}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

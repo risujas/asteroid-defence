@@ -287,7 +287,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   raycastCollisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1
   useRaycastCollision: 1
   fragmentTrail: {fileID: 7508151485858876671}
 --- !u!114 &2002769461489184992
