@@ -200,9 +200,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
         type: 3}
+      propertyPath: velocityWidth
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
       propertyPath: trackedAttractable
       value: 
       objectReference: {fileID: -8764900263379808826}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityEndColor.b
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityEndColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityEndColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityStartColor.a
+      value: 0.101960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityStartColor.b
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityStartColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619211644731388199, guid: f148b93e99d657e4da098e7fbf566cee,
+        type: 3}
+      propertyPath: velocityStartColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7679382356476228594, guid: f148b93e99d657e4da098e7fbf566cee,
         type: 3}
       propertyPath: m_LocalPosition.x
