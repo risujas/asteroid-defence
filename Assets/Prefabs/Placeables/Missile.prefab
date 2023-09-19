@@ -26,6 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
+      propertyPath: addToAnchorHierarchy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
       propertyPath: addToParentHierarchy
       value: 0
       objectReference: {fileID: 0}
