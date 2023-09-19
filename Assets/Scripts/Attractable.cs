@@ -3,22 +3,21 @@ using UnityEngine;
 
 public class Attractable : MonoBehaviour
 {
-	private static List<Attractable> spawnedAttractables = new();
+	protected static List<Attractable> spawnedAttractables = new();
 
 	public static int RecommendedAttractablesLimit = 300;
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 	public static int NumAttractables => SpawnedAttractables.Count;
 	public static bool IsAboveRecommendedAttractablesLimit => NumAttractables >= RecommendedAttractablesLimit;
 
-	[SerializeField] private float mass;
-	[SerializeField] private Vector3 velocity;
-	[SerializeField] private LayerMask collisionLayerMask;
-	[SerializeField] private bool useRaycastCollision = false;
+	[SerializeField] protected float mass;
+	[SerializeField] protected Vector3 velocity;
+	[SerializeField] protected LayerMask collisionLayerMask;
+	[SerializeField] protected bool useRaycastCollision = false;
 
-	private bool allowVelocityChange = true;
-	private bool hasImpacted = false;
-	private Vector3 impactPosition;
-	private FragmentTrail fragmentTrail;
+	protected bool allowVelocityChange = true;
+	protected bool hasImpacted = false;
+	protected Vector3 impactPosition;
 
 	public float Mass
 	{
@@ -38,36 +37,30 @@ public class Attractable : MonoBehaviour
 		velocity += v;
 	}
 
-	private void HandleCollision()
+	protected virtual void HandleCollision()
 	{
 		hasImpacted = true;
 		impactPosition = transform.position;
 		allowVelocityChange = false;
 
-		if (fragmentTrail != null)
-		{
-			fragmentTrail.DetachTrailFromParent();
-		}
-
 		GetComponent<Collider>().enabled = false;
 	}
 
-	private void Start()
+	protected virtual void Start()
 	{
-		fragmentTrail = GetComponentInChildren<FragmentTrail>();
 	}
 
-	private void OnEnable()
+	protected void OnEnable()
 	{
 		spawnedAttractables.Add(this);
 	}
 
-	private void OnDisable()
+	protected void OnDisable()
 	{
 		spawnedAttractables.Remove(this);
 	}
 
-	private void Update()
+	protected void Update()
 	{
 		Vector3 deltaPosition = velocity * Time.deltaTime;
 		Vector3 nextPosition = transform.position + deltaPosition;
@@ -93,7 +86,7 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	protected void OnCollisionEnter(Collision collision)
 	{
 		HandleCollision();
 	}

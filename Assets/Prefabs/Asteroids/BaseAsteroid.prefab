@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11cd5e561f863d4981379247c262192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fragmentPrefab: {fileID: 1328524526302864885, guid: c4288778d0d8a3847bfe12abc4442b75,
+  fragmentPrefab: {fileID: -723504738139671521, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
 --- !u!114 &-2784596044350761562
 MonoBehaviour:

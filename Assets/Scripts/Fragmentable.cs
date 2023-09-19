@@ -5,7 +5,7 @@ public class Fragmentable : MonoBehaviour
 	protected const float minFragmentSpeedMultiplier = 0.25f;
 	protected const float maxFragmentSpeedMultiplier = 0.75f;
 
-	[SerializeField] private Attractable fragmentPrefab;
+	[SerializeField] private Fragment fragmentPrefab;
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector, Attractable attractable)
 	{
