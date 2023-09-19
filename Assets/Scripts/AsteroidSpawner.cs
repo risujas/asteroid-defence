@@ -18,13 +18,12 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float swarmSpawnDistance = 100.0f;
 	[SerializeField] private float swarmSpawnRadius = 20.0f;
 	[SerializeField] private float cullDistance = 200.0f;
-
 	[SerializeField] private List<GameObject> asteroidPrefabs = new List<GameObject>();
 	[SerializeField] private GameObject fragmentPrefab;
-
 	[SerializeField] private List<AsteroidSwarm> asteroidSwarms = new();
 
 	private Vector3 swarmSpawnPoint;
+	private GameObject spawnedObjectsContainer;
 
 	private void SpawnNextSwarm()
 	{
@@ -59,7 +58,7 @@ public class AsteroidSpawner : MonoBehaviour
 		spawnPos.z = 0.0f;
 
 		var randomPrefab = asteroidPrefabs[UnityEngine.Random.Range(0, asteroidPrefabs.Count)];
-		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, transform);
+		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, spawnedObjectsContainer.transform);
 
 		float scaleMultiplier = UnityEngine.Random.Range(minScaleMultiplier, maxScaleMultiplier);
 		newAsteroid.transform.localScale *= scaleMultiplier;
@@ -76,7 +75,7 @@ public class AsteroidSpawner : MonoBehaviour
 		spawnPos += UnityEngine.Random.insideUnitSphere * swarmSpawnRadius;
 		spawnPos.z = 0.0f;
 
-		var newAsteroid = Instantiate(fragmentPrefab, spawnPos, Quaternion.identity, transform);
+		var newAsteroid = Instantiate(fragmentPrefab, spawnPos, Quaternion.identity, spawnedObjectsContainer.transform);
 
 		return newAsteroid.GetComponent<Attractable>();
 	}
@@ -101,6 +100,8 @@ public class AsteroidSpawner : MonoBehaviour
 
 	private void Start()
 	{
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+
 		SpawnNextSwarm();
 	}
 

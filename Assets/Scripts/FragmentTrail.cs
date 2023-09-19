@@ -12,9 +12,11 @@ public class FragmentTrail : MonoBehaviour
 	private bool doingEmissionLerp = false;
 	private Coroutine emissionLerp = null;
 
+	private GameObject spawnedObjectsContainer;
+
 	public void DetachTrailFromParent()
 	{
-		transform.parent = null;
+		transform.parent = spawnedObjectsContainer.transform;
 
 		var autoDestroy = gameObject.AddComponent<AutoDestroyAfterTime>();
 		autoDestroy.Duration = trailRenderer.time;
@@ -81,6 +83,8 @@ public class FragmentTrail : MonoBehaviour
 
 	private void Start()
 	{
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+
 		fragmentMaterial = fragmentRenderer.material;
 		trailRenderer = GetComponent<TrailRenderer>();
 		trailMaterial = trailRenderer.material;

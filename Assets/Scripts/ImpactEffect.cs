@@ -7,6 +7,8 @@ public class ImpactEffect : MonoBehaviour
 
 	[SerializeField] private GameObject impactEffectPrefab;
 
+	private GameObject spawnedObjectsContainer;
+
 	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
 	{
 		if (impactEffectPrefab != null)
@@ -15,6 +17,7 @@ public class ImpactEffect : MonoBehaviour
 
 			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
 			effect.transform.up = reflectionVector;
+			effect.transform.parent = spawnedObjectsContainer.transform;
 
 			var vfx = effect.GetComponent<VisualEffect>();
 			if (vfx != null)
@@ -32,6 +35,11 @@ public class ImpactEffect : MonoBehaviour
 				follower.offset = transform.position - collision.gameObject.transform.position;
 			}
 		}
+	}
+
+	private void Start()
+	{
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
 	}
 
 	private void OnCollisionEnter(Collision collision)
