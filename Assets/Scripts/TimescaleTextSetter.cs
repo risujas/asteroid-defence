@@ -3,11 +3,21 @@ using UnityEngine;
 
 public class TimescaleTextSetter : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI text;
+	[SerializeField] private TextMeshProUGUI timescaleLevelText;
+	[SerializeField] private TextMeshProUGUI actualTimescaleText;
 	[SerializeField] private TimescaleChanger timescaleChanger;
 
 	private void Update()
 	{
-		text.text = timescaleChanger.Level.ToString();
+		timescaleLevelText.text = timescaleChanger.Level.ToString();
+
+		if (timescaleChanger.Level != Time.timeScale)
+		{
+			actualTimescaleText.text = "(" + Time.timeScale.ToString() + ")";
+		}
+		else
+		{
+			actualTimescaleText.text = "";
+		}
 	}
 }
