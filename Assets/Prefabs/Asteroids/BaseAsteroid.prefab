@@ -125,6 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 0
   velocity: {x: 0, y: 0, z: 0}
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  useRaycastCollision: 1
 --- !u!114 &2659159563813226665
 MonoBehaviour:
   m_ObjectHideFlags: 0

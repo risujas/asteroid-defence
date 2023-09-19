@@ -6,20 +6,18 @@ public class Attractable : MonoBehaviour
 	private static List<Attractable> spawnedAttractables = new();
 
 	public static int RecommendedAttractablesLimit = 300;
-
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
-
 	public static int NumAttractables => SpawnedAttractables.Count;
-
 	public static bool IsAboveRecommendedAttractablesLimit => NumAttractables >= RecommendedAttractablesLimit;
 
 	[SerializeField] private float mass;
 	[SerializeField] private Vector3 velocity;
+	[SerializeField] private LayerMask collisionLayerMask;
+	[SerializeField] private bool useRaycastCollision = false;
 
 	private bool allowVelocityChange = true;
 	private bool hasImpacted = false;
 	private Vector3 impactPosition;
-
 	private FragmentTrail fragmentTrail;
 
 	public float Mass
@@ -40,6 +38,20 @@ public class Attractable : MonoBehaviour
 		velocity += v;
 	}
 
+	private void HandleCollision()
+	{
+		hasImpacted = true;
+		impactPosition = transform.position;
+		allowVelocityChange = false;
+
+		if (fragmentTrail != null)
+		{
+			fragmentTrail.DetachTrailFromParent();
+		}
+
+		GetComponent<Collider>().enabled = false;
+	}
+
 	private void Start()
 	{
 		fragmentTrail = GetComponentInChildren<FragmentTrail>();
@@ -57,7 +69,19 @@ public class Attractable : MonoBehaviour
 
 	private void Update()
 	{
-		transform.position += velocity * Time.smoothDeltaTime;
+		Vector3 deltaPosition = velocity * Time.deltaTime;
+		Vector3 nextPosition = transform.position + deltaPosition;
+
+		if (useRaycastCollision)
+		{
+			Ray ray = new Ray(transform.position, deltaPosition.normalized);
+			if (Physics.Raycast(ray, out RaycastHit hit, deltaPosition.magnitude, collisionLayerMask))
+			{
+				nextPosition = hit.point;
+			}
+		}
+
+		transform.position = nextPosition;
 
 		if (hasImpacted)
 		{
@@ -71,15 +95,6 @@ public class Attractable : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		hasImpacted = true;
-		impactPosition = transform.position;
-		allowVelocityChange = false;
-
-		if (fragmentTrail != null)
-		{
-			fragmentTrail.DetachTrailFromParent();
-		}
-
-		GetComponent<Collider>().enabled = false;
+		HandleCollision();
 	}
 }
