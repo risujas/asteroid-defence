@@ -70,8 +70,11 @@ public class Attractable : MonoBehaviour
 			Ray ray = new Ray(transform.position, deltaPosition.normalized);
 			if (Physics.Raycast(ray, out RaycastHit hit, deltaPosition.magnitude, raycastCollisionMask))
 			{
-				// Debug.Log(name + ": raycast collision with " + hit.transform.name);
-				nextPosition = hit.point;
+				if (hit.transform.gameObject != gameObject)
+				{
+					// Debug.Log(name + ": raycast collision with " + hit.transform.name);
+					nextPosition = hit.point;
+				}
 			}
 		}
 
