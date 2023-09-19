@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1bd8288134b0c4a9dd2d2de4604b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 3
+  delayTime: 1
   colliderToEnable: {fileID: 2094809949447546213}
 --- !u!114 &5610374520682192935
 MonoBehaviour:
