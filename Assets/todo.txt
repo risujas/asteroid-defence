@@ -26,5 +26,4 @@ destroying objects also grants you funding
 asteroid impacts damage planetary infrastructure and destroy buildings
 major asteroid impacts can cause a nuclear winter, resulting in a game-over
 
-if asteroids phasing through objects becomes a problem:
-	add a raycast to the Attractable Update() with a length equal to the magnitude of the velocity
+fix issue with timescale being 0 upon game start
