@@ -21,9 +21,9 @@ public class PlacementManager : MonoBehaviour
 
 	public bool IsPlacing => isPlacing;
 
-	public void StartPlacement(Placeable building)
+	public void StartPlacement(Placeable placeable)
 	{
-		selectedPlaceablePrefab = building;
+		selectedPlaceablePrefab = placeable;
 		isPlacing = true;
 
 		if (placementAidMarker != null)
@@ -37,12 +37,12 @@ public class PlacementManager : MonoBehaviour
 		placementAidMarkerRenderer = placementAidMarker.GetComponent<Renderer>();
 	}
 
-	private void FinalizePlacement(PlaceableAnchor anchor)
+	private void FinalizePlacement(PlacementAnchor anchor)
 	{
-		placementPoints -= selectedPlaceablePrefab.BuildCost;
+		placementPoints -= selectedPlaceablePrefab.PlacementCost;
 
 		var newBuilding = Instantiate(selectedPlaceablePrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
-		if (newBuilding.AddToParentHierarchy)
+		if (newBuilding.AddToAnchorHierarchy)
 		{
 			newBuilding.transform.parent = anchor.transform;
 		}
@@ -85,7 +85,7 @@ public class PlacementManager : MonoBehaviour
 			}
 			else
 			{
-				var anchor = colliders[0].GetComponent<PlaceableAnchor>();
+				var anchor = colliders[0].GetComponent<PlacementAnchor>();
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
@@ -96,7 +96,7 @@ public class PlacementManager : MonoBehaviour
 					timescaleChangerReference.SetTimescale(0.1f);
 				}
 
-				if (placementPoints < selectedPlaceablePrefab.BuildCost)
+				if (placementPoints < selectedPlaceablePrefab.PlacementCost)
 				{
 					placementAidMarkerRenderer.material = placementAidMaterialInvalid;
 				}
@@ -107,7 +107,7 @@ public class PlacementManager : MonoBehaviour
 					if (Input.GetMouseButtonUp(0) || (placeOnMouseDown && Input.GetMouseButtonDown(0)))
 					{
 						timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
-						FinalizePlacement(colliders[0].GetComponent<PlaceableAnchor>());
+						FinalizePlacement(colliders[0].GetComponent<PlacementAnchor>());
 						return;
 					}
 				}

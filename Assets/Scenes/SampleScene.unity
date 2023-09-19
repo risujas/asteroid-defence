@@ -1529,7 +1529,7 @@ MonoBehaviour:
     type: 2}
   snapLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   timescaleChangerReference: {fileID: 948708500}
   slowDownWhilePlacing: 0
   placeOnMouseDown: 1
@@ -3430,6 +3430,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 517776894}
+    - target: {fileID: 7651112740501394198, guid: cdeba96b8a55b6249bbb9f4a342d5601,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651112740501394198, guid: cdeba96b8a55b6249bbb9f4a342d5601,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlacementManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7651112740501394198, guid: cdeba96b8a55b6249bbb9f4a342d5601,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

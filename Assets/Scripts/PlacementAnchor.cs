@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlaceableAnchor : MonoBehaviour
+public class PlacementAnchor : MonoBehaviour
 {
 	[SerializeField] private float spawnHeight = 0.5f;
 
