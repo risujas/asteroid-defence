@@ -12,7 +12,7 @@ public class Attractable : MonoBehaviour
 
 	[SerializeField] protected float mass;
 	[SerializeField] protected Vector3 velocity;
-	[SerializeField] protected LayerMask collisionLayerMask;
+	[SerializeField] protected LayerMask raycastCollisionMask;
 	[SerializeField] protected bool useRaycastCollision = false;
 
 	protected bool allowVelocityChange = true;
@@ -68,8 +68,9 @@ public class Attractable : MonoBehaviour
 		if (useRaycastCollision)
 		{
 			Ray ray = new Ray(transform.position, deltaPosition.normalized);
-			if (Physics.Raycast(ray, out RaycastHit hit, deltaPosition.magnitude, collisionLayerMask))
+			if (Physics.Raycast(ray, out RaycastHit hit, deltaPosition.magnitude, raycastCollisionMask))
 			{
+				// Debug.Log(name + ": raycast collision with " + hit.transform.name);
 				nextPosition = hit.point;
 			}
 		}

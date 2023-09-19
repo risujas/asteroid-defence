@@ -3,15 +3,15 @@ using UnityEngine;
 public class DelayedColliderEnablement : MonoBehaviour
 {
 	[SerializeField] private float delayTime;
-	[SerializeField] private Collider col;
+	[SerializeField] private Collider colliderToEnable;
 
-	private void EnableComponent()
+	private void EnableCollider()
 	{
-		col.enabled = true;
+		colliderToEnable.enabled = true;
 	}
 
 	private void OnEnable()
 	{
-		Invoke("EnableComponent", delayTime);
+		Invoke("EnableCollider", delayTime);
 	}
 }
