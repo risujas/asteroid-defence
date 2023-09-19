@@ -38,29 +38,8 @@ public class CameraControl : MonoBehaviour
 		focusedObject = objects[focusedObjectIndex];
 	}
 
-	private void CenterOnObject()
+	private void HandleZoom()
 	{
-		Vector3 targetPosition = focusedObject.transform.position + new Vector3(0.0f, 0.0f, -5.0f);
-		transform.position = Vector3.Lerp(transform.position, targetPosition, focusSwitchSpeed * Time.unscaledDeltaTime);
-	}
-
-	private void Start()
-	{
-		targetSize = Camera.main.orthographicSize;
-	}
-
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			CycleFocusedObject(-1);
-		}
-
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			CycleFocusedObject(1);
-		}
-
 		var scroll = Input.GetAxis("Mouse ScrollWheel");
 		if (scroll != 0.0f)
 		{
@@ -71,13 +50,46 @@ public class CameraControl : MonoBehaviour
 		Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetSize, zoomSmoothingSpeed * Time.unscaledDeltaTime);
 	}
 
-	private void LateUpdate()
+	private void HandleKeyboardMovement()
 	{
-		if (focusedObject == null)
+		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			CycleFocusedObject(0);
+
+		}
+	}
+
+	private void CenterOnObject()
+	{
+		Vector3 targetPosition = focusedObject.transform.position + new Vector3(0.0f, 0.0f, -5.0f);
+		transform.position = Vector3.Lerp(transform.position, targetPosition, focusSwitchSpeed * Time.unscaledDeltaTime);
+	}
+
+	private void Start()
+	{
+		targetSize = Camera.main.orthographicSize;
+
+		CycleFocusedObject(0);
+	}
+
+	private void Update()
+	{
+		HandleKeyboardMovement();
+
+		if (Input.GetKeyDown(KeyCode.Comma))
+		{
+			CycleFocusedObject(-1);
 		}
 
-		CenterOnObject();
+		if (Input.GetKeyDown(KeyCode.Period))
+		{
+			CycleFocusedObject(1);
+		}
+
+		HandleZoom();
+
+		if (focusedObject != null)
+		{
+			CenterOnObject();
+		}
 	}
 }
