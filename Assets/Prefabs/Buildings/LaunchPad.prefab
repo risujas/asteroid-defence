@@ -44,6 +44,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaunchPad
       objectReference: {fileID: 0}
+    - target: {fileID: 5553559444610526564, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.73
+      objectReference: {fileID: 0}
     - target: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: m_LocalScale.x
