@@ -24,5 +24,10 @@ public class MissileControl : MonoBehaviour
 			Vector3 deltaV = transform.up * acceleration * Time.deltaTime;
 			attractable.AddVelocity(deltaV);
 		}
+
+		if (Input.GetMouseButtonUp(1))
+		{
+			enabled = false;
+		}
 	}
 }
