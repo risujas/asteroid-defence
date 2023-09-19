@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: allowMultiPlacement
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1512636647565370668, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: deathVfx

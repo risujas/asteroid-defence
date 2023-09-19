@@ -4,9 +4,13 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
 	[SerializeField] private float buildCost = 20.0f;
+	[SerializeField] private bool allowMultiPlacement = true;
+
 	private bool finishedSinking = false;
 
 	public float BuildCost => buildCost;
+
+	public bool AllowMultiPlacement => allowMultiPlacement;
 
 	public void StartSinking()
 	{

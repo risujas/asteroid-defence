@@ -38,6 +38,11 @@ public class BuildingPlacer : MonoBehaviour
 		buildPoints -= selectedBuildingPrefab.BuildCost;
 		var newBuilding = Instantiate(selectedBuildingPrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		newBuilding.transform.parent = anchor.transform;
+
+		if (!selectedBuildingPrefab.AllowMultiPlacement)
+		{
+			CancelBuildingPlacement();
+		}
 	}
 
 	private void CancelBuildingPlacement()
