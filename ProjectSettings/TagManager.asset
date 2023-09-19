@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - MainCanvas
-  - BuildingPlacer
   - SpawnedObjectsContainer
   layers:
   - Default
