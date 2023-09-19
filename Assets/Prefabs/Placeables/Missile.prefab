@@ -68,7 +68,7 @@ PrefabInstance:
         type: 3}
       propertyPath: placementEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8620515100795533810}
+      objectReference: {fileID: -7890470669207235611}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: placementEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -112,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: placementEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.Collider, UnityEngine
+      value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -240,6 +240,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: -7890470669207235611}
+    - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5610374520682192935}
     - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -301,6 +305,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 62
   m_CollisionDetection: 1
+--- !u!114 &-7890470669207235611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892492363751606769}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1bd8288134b0c4a9dd2d2de4604b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 1
+  col: {fileID: 8620515100795533810}
 --- !u!114 &5610374520682192935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3997a385f1470bd4db31a8a7c8dba754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 10
+  acceleration: 5
 --- !u!114 &632946194701197585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,5 +348,5 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  useRaycastCollision: 0
+    m_Bits: 1
+  useRaycastCollision: 1
