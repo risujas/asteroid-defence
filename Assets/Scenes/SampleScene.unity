@@ -1522,14 +1522,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4174426b219b7b43a4edd3016e8069a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildPoints: 1000
+  placementPoints: 100
   placementAidMaterialValid: {fileID: 2100000, guid: b3374bece88e7ec498168d14dda574de,
     type: 2}
   placementAidMaterialInvalid: {fileID: 2100000, guid: 82d52f7d578b4944294de76914eb7fe6,
     type: 2}
-  buildingSnappingLayerMask:
+  snapLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   timescaleChangerReference: {fileID: 948708500}
   slowDownWhilePlacing: 0
   placeOnMouseDown: 1
@@ -3556,7 +3556,7 @@ PrefabInstance:
     - target: {fileID: 374142901454377228, guid: e88d749ab2edddb47b320ed1642fdf1b,
         type: 3}
       propertyPath: m_Name
-      value: BuildingAnchor
+      value: PlacementAnchor
       objectReference: {fileID: 0}
     - target: {fileID: 5381738654643639483, guid: e88d749ab2edddb47b320ed1642fdf1b,
         type: 3}
