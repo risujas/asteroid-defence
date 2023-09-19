@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4881910981280876311
+--- !u!1001 &347900700787768297
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,36 +8,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1512636647565370668, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: deathVfx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512636647565370668, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: damageVfx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512636647565370668, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: m_Name
-      value: Observatory
+      value: MissileBuilding
       objectReference: {fileID: 0}
-    - target: {fileID: 5553559444610526564, guid: b2ed3008998b13b4c98234b17a02c88e,
+    - target: {fileID: 4964182503018891925, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
-      propertyPath: m_Radius
-      value: 3.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 5553559444610526564, guid: b2ed3008998b13b4c98234b17a02c88e,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.016
-      objectReference: {fileID: 0}
-    - target: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.016
-      objectReference: {fileID: 0}
-    - target: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.016
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfed46c93895e504c8f794746a7df33a, type: 2}
     - target: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -92,7 +87,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -3784285157303236476, guid: 52a74d9d09570e84eb58afdf270a68f2,
+      objectReference: {fileID: -8669726374477837019, guid: 72aa384744316fc4d8679d3fd028d925,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
