@@ -4,7 +4,7 @@ using UnityEngine;
 public class TimescaleChanger : MonoBehaviour
 {
 	private bool isPaused = false;
-	private float[] levels = { 0.1f, 1.0f, 2.0f, 3.0f, 10.0f, 25.0f, 50.0f };
+	private float[] levels = { 0.1f, 0.25f, 0.5f, 1.0f, 2.5f, 5.0f, 10.0f, 25.0f };
 	private int index = 1;
 
 	public float Level => levels[index];
