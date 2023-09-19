@@ -6,6 +6,8 @@ public class CameraControl : MonoBehaviour
 {
 	[SerializeField] private float minTargetSize = 1.0f;
 	[SerializeField] private float maxTargetSize = 10.0f;
+	[SerializeField] private float keyboardSpeed = 3.0f;
+
 	private float targetSize;
 
 	private float zoomSpeed = 3.0f;
@@ -52,9 +54,35 @@ public class CameraControl : MonoBehaviour
 
 	private void HandleKeyboardMovement()
 	{
+		float effectiveSpeed = keyboardSpeed;
+		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+		{
+			effectiveSpeed *= 2.0f;
+		}
+
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
+			transform.position += Vector3.left * effectiveSpeed * Time.unscaledDeltaTime;
+		}
 
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			transform.position += Vector3.right * effectiveSpeed * Time.unscaledDeltaTime;
+		}
+
+		if (Input.GetKey(KeyCode.UpArrow))
+		{
+			transform.position += Vector3.up * effectiveSpeed * Time.unscaledDeltaTime;
+		}
+
+		if (Input.GetKey(KeyCode.DownArrow))
+		{
+			transform.position += Vector3.down * effectiveSpeed * Time.unscaledDeltaTime;
+		}
+
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+		{
+			focusedObject = null;
 		}
 	}
 
