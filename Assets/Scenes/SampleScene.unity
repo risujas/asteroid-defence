@@ -985,6 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTargetSize: 0.8
   maxTargetSize: 10
+  keyboardSpeed: 3
 --- !u!1 &342937509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1531,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   timescaleChangerReference: {fileID: 948708500}
+  slowDownWhilePlacing: 0
+  placeOnMouseDown: 1
 --- !u!4 &517776895
 Transform:
   m_ObjectHideFlags: 0
@@ -3543,7 +3546,7 @@ PrefabInstance:
     - target: {fileID: 66391112436112189, guid: e88d749ab2edddb47b320ed1642fdf1b,
         type: 3}
       propertyPath: m_Radius
-      value: 0.6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 374142901454377228, guid: e88d749ab2edddb47b320ed1642fdf1b,
         type: 3}

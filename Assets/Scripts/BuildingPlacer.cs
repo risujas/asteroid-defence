@@ -10,6 +10,10 @@ public class BuildingPlacer : MonoBehaviour
 	[SerializeField] private LayerMask buildingSnappingLayerMask;
 	[SerializeField] private TimescaleChanger timescaleChangerReference;
 
+	[Header("Placement Inputs")]
+	[SerializeField] private bool slowDownWhilePlacing = false;
+	[SerializeField] private bool placeOnMouseDown = false;
+
 	private bool isPlacingBuilding = false;
 	private Building selectedBuildingPrefab = null;
 	private GameObject placementAidMarker = null;
@@ -74,7 +78,11 @@ public class BuildingPlacer : MonoBehaviour
 
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
 				placementAidMarker.transform.up = dir;
-				timescaleChangerReference.SetTimescale(0.1f);
+
+				if (slowDownWhilePlacing)
+				{
+					timescaleChangerReference.SetTimescale(0.1f);
+				}
 
 				if (buildPoints < selectedBuildingPrefab.BuildCost)
 				{
@@ -84,7 +92,7 @@ public class BuildingPlacer : MonoBehaviour
 				{
 					placementAidMarkerRenderer.material = placementAidMaterialValid;
 
-					if (Input.GetMouseButtonUp(0))
+					if (Input.GetMouseButtonUp(0) || (placeOnMouseDown && Input.GetMouseButtonDown(0)))
 					{
 						timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 						FinalizeBuildingPlacement(colliders[0].GetComponent<BuildingAnchor>());
