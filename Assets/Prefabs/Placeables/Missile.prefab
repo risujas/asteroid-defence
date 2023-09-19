@@ -16,12 +16,22 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
+      propertyPath: placeOnMouseDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
       propertyPath: allowMultiPlacement
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: addToParentHierarchy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: slowDownWhilePlacing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
@@ -152,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: m_Name
-      value: MissileBuilding
+      value: Missile
       objectReference: {fileID: 0}
     - target: {fileID: 4964182503018891925, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -318,3 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 1
   velocity: {x: 0, y: 0, z: 0}
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  useRaycastCollision: 0

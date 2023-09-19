@@ -10,10 +10,6 @@ public class PlacementManager : MonoBehaviour
 	[SerializeField] private LayerMask snapLayerMask;
 	[SerializeField] private TimescaleChanger timescaleChangerReference;
 
-	[Header("Placement Inputs")]
-	[SerializeField] private bool slowDownWhilePlacing = false;
-	[SerializeField] private bool placeOnMouseDown = false;
-
 	private bool isPlacing = false;
 	private Placeable selectedPlaceablePrefab = null;
 	private GameObject placementAidMarker = null;
@@ -75,8 +71,6 @@ public class PlacementManager : MonoBehaviour
 	{
 		if (isPlacing && !placementEnablementDelay)
 		{
-			Debug.Log("a");
-
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			var colliders = Physics.OverlapSphere(mousePos, 0.1f, snapLayerMask);
@@ -95,7 +89,7 @@ public class PlacementManager : MonoBehaviour
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
 				placementAidMarker.transform.up = dir;
 
-				if (slowDownWhilePlacing)
+				if (selectedPlaceablePrefab.SlowDownWhilePlacing)
 				{
 					timescaleChangerReference.SetTimescale(0.1f);
 				}
@@ -108,7 +102,7 @@ public class PlacementManager : MonoBehaviour
 				{
 					placementAidMarkerRenderer.material = placementAidMaterialValid;
 
-					if (Input.GetMouseButtonUp(0) || (placeOnMouseDown && Input.GetMouseButtonDown(0)))
+					if (Input.GetMouseButtonUp(0) || (selectedPlaceablePrefab.PlaceOnMouseDown && Input.GetMouseButtonDown(0)))
 					{
 						timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 						FinalizePlacement(colliders[0].GetComponent<PlacementAnchor>());

@@ -99,6 +99,8 @@ MonoBehaviour:
   placementCost: 0
   allowMultiPlacement: 1
   addToAnchorHierarchy: 1
+  slowDownWhilePlacing: 1
+  placeOnMouseDown: 0
   placementEffect: {fileID: 0}
   placementEvent:
     m_PersistentCalls:
