@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+	[SerializeField] private float targetSize;
 	[SerializeField] private float minTargetSize = 1.0f;
 	[SerializeField] private float maxTargetSize = 10.0f;
 	[SerializeField] private float keyboardSpeed = 3.0f;
 
-	private float targetSize;
-
 	private float zoomSpeed = 3.0f;
 	private float zoomSmoothingSpeed = 6.0f;
 	private float focusSwitchSpeed = 6.0f;
-
 	private int focusedObjectIndex = 0;
 	private GameObject focusedObject;
 
@@ -119,5 +117,11 @@ public class CameraControl : MonoBehaviour
 		{
 			CenterOnObject();
 		}
+	}
+
+	private void OnValidate()
+	{
+		targetSize = Mathf.Clamp(targetSize, minTargetSize, maxTargetSize);
+		Camera.main.orthographicSize = targetSize;
 	}
 }
