@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSize: 4.5
-  minTargetSize: 1
+  minTargetSize: 2
   maxTargetSize: 4.5
   keyboardSpeed: 0
 --- !u!1 &332397622
