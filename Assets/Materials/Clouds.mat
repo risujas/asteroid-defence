@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CityLights: 1
-    - _DetailScale: 10
+    - _DetailScale: 5
     - _DetailSpeed: 0.01
     - _EmissionIntensity: 0
     - _Height: 0
