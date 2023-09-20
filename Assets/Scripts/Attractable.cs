@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Attractable : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class Attractable : MonoBehaviour
 	protected bool allowVelocityChange = true;
 	protected bool hasImpacted = false;
 	protected Vector3 impactPosition;
+
+	[Serializable] public class AttractableEvent : UnityEvent { }
+	public AttractableEvent OnImpact;
 
 	public float Mass
 	{
@@ -93,5 +98,6 @@ public class Attractable : MonoBehaviour
 	protected void OnCollisionEnter(Collision collision)
 	{
 		HandleCollision();
+		OnImpact.Invoke();
 	}
 }
