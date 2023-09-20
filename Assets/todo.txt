@@ -27,3 +27,15 @@ asteroid impacts damage planetary infrastructure and destroy buildings
 major asteroid impacts can cause a nuclear winter, resulting in a game-over
 
 fix issue with timescale being 0 upon game start
+
+
+
+TODO LIST
+- Fix 0x bug
+- Make missiles collider with asteroids
+- Try to find a reasonable G where missile control feels balanced
+- Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
+- Add a funds system, building missiles costs funds
+- You gain funds over time
+- You gain 1000 funds for destroying an asteroid, 500 if an asteroid collides with the planet
+- The planet has a health that slowly regenerates, 0 health -> defeat
