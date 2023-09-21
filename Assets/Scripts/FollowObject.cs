@@ -7,6 +7,7 @@ public class FollowObject : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.Log(name);
 		transform.position = objectToFollow.transform.position + offset;
 	}
 }
