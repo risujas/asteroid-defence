@@ -5,6 +5,7 @@ public class OrbitalRotation : MonoBehaviour
 	[SerializeField] private Attractor parentBody;
 	[SerializeField] private bool clockwiseRotation;
 	[SerializeField] private Vector3 rotation = Vector3.zero;
+
 	[SerializeField, ReadOnly] private float degreesPerSecond;
 
 	public static float GetOrbitalPeriod(float orbitalRadius, float G, float parentMass)
@@ -12,7 +13,14 @@ public class OrbitalRotation : MonoBehaviour
 		return 2 * Mathf.PI * Mathf.Sqrt(Mathf.Pow(orbitalRadius, 3) / (G * parentMass));
 	}
 
-	private void Start()
+	public static float GetOrbitalVelocity(float orbitalRadius, float G, float parentMass)
+	{
+		var orbitalPeriod = GetOrbitalPeriod(orbitalRadius, G, parentMass);
+		var orbitalVelocity = 2 * Mathf.PI * orbitalRadius / orbitalPeriod;
+		return orbitalVelocity;
+	}
+
+	private void CalculateRotation()
 	{
 		float r = Vector3.Distance(parentBody.transform.position, transform.position);
 		float M = parentBody.GetComponent<Attractor>().Mass;
@@ -28,6 +36,8 @@ public class OrbitalRotation : MonoBehaviour
 
 	private void Update()
 	{
+		CalculateRotation();
+
 		float r = Vector3.Distance(parentBody.transform.position, transform.position);
 
 		float deg = degreesPerSecond;
