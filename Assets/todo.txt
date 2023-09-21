@@ -31,7 +31,6 @@ fix issue with timescale being 0 upon game start
 
 
 TODO LIST
-- Fix 0x bug
 - Make missiles collider with asteroids
 - Try to find a reasonable G where missile control feels balanced
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
