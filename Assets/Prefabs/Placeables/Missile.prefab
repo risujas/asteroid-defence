@@ -362,7 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDeltaV: 10
   remainingDeltaV: 10
-  acceleration: 5
+  acceleration: 2
 --- !u!114 &632946194701197585
 MonoBehaviour:
   m_ObjectHideFlags: 0

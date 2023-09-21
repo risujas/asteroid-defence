@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Attractor : MonoBehaviour
 {
-	public const float G = 0.000001f;
+	public const float G = 0.0000004f;
 
 	private static List<Attractor> attractors = new();
 
