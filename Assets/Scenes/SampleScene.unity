@@ -2329,7 +2329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20dc737c9dd5d49a52ad6345317e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 1
   levels:
   - 0.1
   - 0.25
@@ -2339,7 +2338,7 @@ MonoBehaviour:
   - 5
   - 10
   - 25
-  levelIndex: 1
+  levelIndex: 3
 --- !u!4 &948708501
 Transform:
   m_ObjectHideFlags: 0
@@ -2789,7 +2788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20dc737c9dd5d49a52ad6345317e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 1
   levels:
   - 0.1
   - 0.25

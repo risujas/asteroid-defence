@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class TimescaleChanger : MonoBehaviour
 {
-	[SerializeField] private bool isPaused = false;
 	[SerializeField] private float[] levels = { 0.1f, 0.25f, 0.5f, 1.0f, 2.5f, 5.0f, 10.0f, 25.0f };
 	[SerializeField] private int levelIndex = 1;
+
+	private bool isPaused = false;
 
 	public float Level => levels[levelIndex];
 	public bool IsPaused => isPaused;
@@ -50,18 +51,6 @@ public class TimescaleChanger : MonoBehaviour
 		{
 			Time.timeScale = levels[levelIndex];
 			isPaused = false;
-		}
-	}
-
-	private void OnValidate()
-	{
-		if (isPaused)
-		{
-			Time.timeScale = 0.0f;
-		}
-		else
-		{
-			Time.timeScale = levels[levelIndex];
 		}
 	}
 }
