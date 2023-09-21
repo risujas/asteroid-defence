@@ -4,10 +4,8 @@ public class Fragment : Attractable
 {
 	[SerializeField] private FragmentTrail fragmentTrail;
 
-	protected override void Start()
+	private void Start()
 	{
-		base.Start();
-
 		if (fragmentTrail == null)
 		{
 			fragmentTrail = GetComponentInChildren<FragmentTrail>();
