@@ -6,11 +6,11 @@ public class MissileControl : MonoBehaviour
 	[SerializeField] private float remainingDeltaV = 10.0f;
 	[SerializeField] private float acceleration = 1.0f;
 
-	private Attractable attractable;
+	private Rigidbody rb;
 
 	private void Start()
 	{
-		attractable = GetComponent<Attractable>();
+		rb = GetComponent<Rigidbody>();
 	}
 
 	private void Update()
@@ -37,7 +37,7 @@ public class MissileControl : MonoBehaviour
 				}
 
 				remainingDeltaV -= deltaV;
-				attractable.AddVelocity(transform.up * deltaV);
+				rb.AddForce(transform.up * deltaV, ForceMode.VelocityChange);
 			}
 		}
 

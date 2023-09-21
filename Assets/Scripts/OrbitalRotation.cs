@@ -7,18 +7,10 @@ public class OrbitalRotation : MonoBehaviour
 	[SerializeField] private Vector3 rotation = Vector3.zero;
 
 	[SerializeField, ReadOnly] private float degreesPerSecond;
-	[SerializeField, ReadOnly] private Vector3 simulatedVelocity;
 
 	public static float GetOrbitalPeriod(float orbitalRadius, float G, float parentMass)
 	{
 		return 2 * Mathf.PI * Mathf.Sqrt(Mathf.Pow(orbitalRadius, 3) / (G * parentMass));
-	}
-
-	public static float GetOrbitalVelocity(float orbitalRadius, float G, float parentMass)
-	{
-		var orbitalPeriod = GetOrbitalPeriod(orbitalRadius, G, parentMass);
-		var orbitalVelocity = 2 * Mathf.PI * orbitalRadius / orbitalPeriod;
-		return orbitalVelocity;
 	}
 
 	private void CalculateRotation()
@@ -56,21 +48,9 @@ public class OrbitalRotation : MonoBehaviour
 		transform.position = parentBody.transform.position + (r * dir);
 	}
 
-	private void CalculateSimulatedVelocity()
-	{
-		float r = Vector3.Distance(parentBody.transform.position, transform.position);
-
-		Quaternion rot = Quaternion.AngleAxis(90, Vector3.forward);
-		Vector3 parentChildDir = (parentBody.transform.position - transform.position).normalized;
-		Vector3 velocityDir = (rot * parentChildDir).normalized;
-
-		simulatedVelocity = velocityDir * GetOrbitalVelocity(r, Attractor.G, parentBody.Mass);
-	}
-
 	private void Update()
 	{
 		CalculateRotation();
 		ApplyRotationalMovement();
-		CalculateSimulatedVelocity();
 	}
 }

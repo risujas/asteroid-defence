@@ -52,8 +52,8 @@ public class ImpactEffect : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		Attractable attractable = GetComponent<Attractable>();
-		Vector3 reflectionVector = Vector3.Reflect(attractable.Velocity, collision.GetContact(0).normal);
+		Rigidbody rb = GetComponent<Rigidbody>();
+		Vector3 reflectionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal);
 		SpawnCollisionEffects(collision, reflectionVector);
 	}
 }

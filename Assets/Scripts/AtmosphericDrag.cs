@@ -4,7 +4,7 @@ public class AtmosphericDrag : MonoBehaviour
 {
 	[SerializeField] private float velocityDampenFactor;
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		for (int i = 0; i < Attractable.SpawnedAttractables.Count; i++)
 		{
@@ -13,8 +13,10 @@ public class AtmosphericDrag : MonoBehaviour
 
 			if (distance <= transform.localScale.x / 2.0f)
 			{
-				var velocityReduction = a.Velocity * velocityDampenFactor * Time.deltaTime;
-				a.AddVelocity(-velocityReduction);
+				Rigidbody rb = a.GetComponent<Rigidbody>();
+
+				var velocityReduction = rb.velocity * velocityDampenFactor * Time.deltaTime;
+				rb.velocity -= velocityReduction;
 			}
 		}
 	}

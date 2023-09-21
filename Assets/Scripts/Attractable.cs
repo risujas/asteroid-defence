@@ -12,35 +12,12 @@ public class Attractable : MonoBehaviour
 	public static int NumAttractables => SpawnedAttractables.Count;
 	public static bool IsAboveRecommendedAttractablesLimit => NumAttractables >= RecommendedAttractablesLimit;
 
-	[SerializeField] protected float mass;
-	[SerializeField] protected Vector3 velocity;
-	[SerializeField] protected LayerMask raycastCollisionMask;
-	[SerializeField] protected bool useRaycastCollision = false;
-
 	protected bool allowVelocityChange = true;
 	protected bool hasImpacted = false;
 	protected Vector3 impactPosition;
 
 	[Serializable] public class AttractableEvent : UnityEvent { }
 	public AttractableEvent OnImpact;
-
-	public float Mass
-	{
-		get { return mass; }
-		set { mass = value; }
-	}
-
-	public Vector3 Velocity => velocity;
-
-	public void AddVelocity(Vector3 v)
-	{
-		if (!allowVelocityChange)
-		{
-			return;
-		}
-
-		velocity += v;
-	}
 
 	protected virtual void HandleCollision()
 	{
@@ -65,26 +42,8 @@ public class Attractable : MonoBehaviour
 		spawnedAttractables.Remove(this);
 	}
 
-	protected void Update()
+	protected void FixedUpdate()
 	{
-		Vector3 deltaPosition = velocity * Time.deltaTime;
-		Vector3 nextPosition = transform.position + deltaPosition;
-
-		if (useRaycastCollision)
-		{
-			Ray ray = new Ray(transform.position, deltaPosition.normalized);
-			if (Physics.Raycast(ray, out RaycastHit hit, deltaPosition.magnitude, raycastCollisionMask))
-			{
-				if (hit.transform.gameObject != gameObject)
-				{
-					// Debug.Log(name + ": raycast collision with " + hit.transform.name);
-					nextPosition = hit.point;
-				}
-			}
-		}
-
-		transform.position = nextPosition;
-
 		if (hasImpacted)
 		{
 			float distance = Vector3.Distance(transform.position, impactPosition);

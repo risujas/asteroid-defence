@@ -29,14 +29,15 @@ public class Attractor : MonoBehaviour
 		float distance = direction.magnitude;
 		direction.Normalize();
 
-		float force = G * (mass * a.Mass) / (distance * distance);
-		float resultingForce = force / a.Mass;
-		Vector3 forceVector = direction * resultingForce;
+		Rigidbody rb = a.GetComponent<Rigidbody>();
 
-		a.AddVelocity(forceVector * Time.smoothDeltaTime);
+		float force = G * (mass * rb.mass) / (distance * distance);
+		Vector3 forceVector = direction * force;
+
+		rb.AddForce(forceVector, ForceMode.Force);
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		foreach (var a in Attractable.SpawnedAttractables)
 		{
