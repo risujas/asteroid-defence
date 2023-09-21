@@ -13,7 +13,7 @@ tooltips for planets, asteroids, objects (static on the screen, with a line poin
 O _____/
 
 missile launching
-orbital laser cannon; push asteroids or vaporize fragments
+orbital laser cannon; push asteroids or vaporize fragments...... maybe automatically tries to vaporize fragments?
 orbital space telescope
 
 require funding to build stuff?
@@ -26,9 +26,9 @@ destroying objects also grants you funding
 asteroid impacts damage planetary infrastructure and destroy buildings
 major asteroid impacts can cause a nuclear winter, resulting in a game-over
 
-fix issue with timescale being 0 upon game start
+add public rigidbody references to attractor and attractable, use it instead of constantly calling GetComponent everywhere
 
-
+add vfx for when rb is slowing down in the atmosphere
 
 TODO LIST
 - Add a better collision system for the missile, for example, scrap the "collision enabler" and give it permanent collision but require a minimum impact relative velocity. Requires calculating the moon velocity
