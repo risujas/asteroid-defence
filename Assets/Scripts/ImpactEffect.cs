@@ -31,8 +31,16 @@ public class ImpactEffect : MonoBehaviour
 			var follower = effect.GetComponent<FollowObject>();
 			if (follower != null)
 			{
-				follower.objectToFollow = collision.gameObject;
-				follower.offset = transform.position - collision.gameObject.transform.position;
+				// We can only follow an Attractor game object
+				if (collision.gameObject.GetComponent<Attractor>())
+				{
+					follower.objectToFollow = collision.gameObject;
+					follower.offset = transform.position - collision.gameObject.transform.position;
+				}
+				else
+				{
+					follower.enabled = false;
+				}
 			}
 		}
 	}
