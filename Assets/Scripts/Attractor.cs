@@ -9,9 +9,19 @@ public class Attractor : MonoBehaviour
 
 	public static IReadOnlyList<Attractor> Attractors => attractors.AsReadOnly();
 
-	[SerializeField] private float mass;
+	public Rigidbody rb { get; set; }
 
-	public float Mass => mass;
+	private void Attract(Attractable a)
+	{
+		Vector3 direction = transform.position - a.transform.position;
+		float distance = direction.magnitude;
+		direction.Normalize();
+
+		float force = G * (rb.mass * a.rb.mass) / (distance * distance);
+		Vector3 forceVector = direction * force;
+
+		a.rb.AddForce(forceVector, ForceMode.Force);
+	}
 
 	private void OnEnable()
 	{
@@ -23,23 +33,20 @@ public class Attractor : MonoBehaviour
 		attractors.Remove(this);
 	}
 
-	private void Attract(Attractable a)
+	private void Awake()
 	{
-		Vector3 direction = transform.position - a.transform.position;
-		float distance = direction.magnitude;
-		direction.Normalize();
-
-		float force = G * (mass * a.Mass) / (distance * distance);
-		float resultingForce = force / a.Mass;
-		Vector3 forceVector = direction * resultingForce;
-
-		a.AddVelocity(forceVector * Time.smoothDeltaTime);
+		rb = GetComponent<Rigidbody>();
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		foreach (var a in Attractable.SpawnedAttractables)
 		{
+			if (a.gameObject == gameObject)
+			{
+				continue;
+			}
+
 			Attract(a);
 		}
 	}

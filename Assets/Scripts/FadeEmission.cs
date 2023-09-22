@@ -3,22 +3,20 @@ using UnityEngine;
 
 public class FadeEmission : MonoBehaviour
 {
+	[SerializeField] private Material material = null;
 	[SerializeField] private float fadeDuration = 1.0f;
 	[SerializeField] private float targetIntensity = 0.0f;
 	[SerializeField] private string shaderFloatParameter = "_EmissionIntensity";
 
-	private Material material;
-
 	private IEnumerator Fade()
 	{
-		float elapsed = 0.0f;
-
 		float startIntensity = material.GetFloat(shaderFloatParameter);
 
-		while (elapsed <= fadeDuration)
+		float elapsed = 0.0f;
+		while (elapsed < fadeDuration)
 		{
 			elapsed += Time.deltaTime;
-			float t = elapsed / fadeDuration;
+			float t = Mathf.Clamp01(elapsed / fadeDuration);
 			material.SetFloat(shaderFloatParameter, Mathf.Lerp(startIntensity, targetIntensity, t));
 			yield return null;
 		}
@@ -28,7 +26,10 @@ public class FadeEmission : MonoBehaviour
 
 	private void Start()
 	{
-		material = GetComponent<Renderer>().material;
+		if (material == null)
+		{
+			material = GetComponent<Renderer>().material;
+		}
 
 		StartCoroutine(Fade());
 	}

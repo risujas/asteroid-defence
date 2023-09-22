@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: mass
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -7835772874586326412, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: randomMax.z
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -7835772874586326412, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: randomMin.z
+      value: -60
+      objectReference: {fileID: 0}
     - target: {fileID: 1152672333653229308, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
       propertyPath: m_Name

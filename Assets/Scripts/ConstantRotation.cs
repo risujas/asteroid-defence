@@ -4,20 +4,8 @@ public class ConstantRotation : MonoBehaviour
 {
 	[SerializeField] protected Vector3 rotationSpeed;
 
-	public Vector3 RotationSpeed
+	private void FixedUpdate()
 	{
-		set
-		{
-			rotationSpeed = value;
-		}
-		get
-		{
-			return rotationSpeed;
-		}
-	}
-
-	private void Update()
-	{
-		transform.Rotate(rotationSpeed * Time.smoothDeltaTime);
+		transform.Rotate(rotationSpeed * Time.fixedDeltaTime);
 	}
 }

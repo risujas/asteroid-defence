@@ -1,21 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AtmosphericDrag : MonoBehaviour
 {
-	[SerializeField] private float velocityDampenFactor;
+	[SerializeField] private float velocityReductionFactor = 0.5f;
+	[SerializeField] private List<Rigidbody> ignoredRigidbodies = new();
 
-	private void Update()
+	private void OnTriggerStay(Collider other)
 	{
-		for (int i = 0; i < Attractable.SpawnedAttractables.Count; i++)
+		if (ignoredRigidbodies.Contains(other.attachedRigidbody))
 		{
-			var a = Attractable.SpawnedAttractables[i];
-			float distance = Vector3.Distance(transform.position, a.transform.position);
+			return;
+		}
 
-			if (distance <= transform.localScale.x / 2.0f)
-			{
-				var velocityReduction = a.Velocity * velocityDampenFactor * Time.deltaTime;
-				a.AddVelocity(-velocityReduction);
-			}
+		var velocityReduction = other.attachedRigidbody.velocity * velocityReductionFactor * Time.deltaTime;
+		other.attachedRigidbody.velocity -= velocityReduction;
+
+		var temperature = other.GetComponent<Temperature>();
+		if (temperature != null)
+		{
+			temperature.ChangeTemperature(temperature.MaxTemperature * velocityReductionFactor * Time.deltaTime);
 		}
 	}
 }

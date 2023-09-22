@@ -63,10 +63,10 @@ public class AsteroidSpawner : MonoBehaviour
 		float scaleMultiplier = UnityEngine.Random.Range(minScaleMultiplier, maxScaleMultiplier);
 		newAsteroid.transform.localScale *= scaleMultiplier;
 
-		var attractable = newAsteroid.GetComponent<Attractable>();
-		attractable.Mass *= Mathf.Pow(scaleMultiplier, 3);
+		var rb = newAsteroid.GetComponent<Rigidbody>();
+		rb.mass *= Mathf.Pow(scaleMultiplier, 3);
 
-		return attractable;
+		return newAsteroid.GetComponent<Attractable>();
 	}
 
 	private Attractable SpawnFragment()
@@ -86,10 +86,10 @@ public class AsteroidSpawner : MonoBehaviour
 		float distance = vectorAB.magnitude;
 		vectorAB.Normalize();
 
-		float orbitalVelocity = Mathf.Sqrt(Attractor.G * centralBody.Mass / distance) * velocityModifier;
+		float orbitalVelocity = Mathf.Sqrt(Attractor.G * centralBody.rb.mass / distance) * velocityModifier;
 		var velocityVector = headingVector * orbitalVelocity;
 
-		attractable.AddVelocity(velocityVector);
+		attractable.rb.velocity = velocityVector;
 	}
 
 	private Vector3 GetHeadingVector(Vector3 fromVector, Vector3 toVector, float headingOffset)
