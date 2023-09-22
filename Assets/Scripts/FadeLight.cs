@@ -9,7 +9,7 @@ public class FadeLight : MonoBehaviour
 	private Light fadeLight;
 	private float startIntensity;
 
-	private IEnumerator StartFade()
+	private IEnumerator Fade()
 	{
 		fadeLight = GetComponent<Light>();
 		startIntensity = fadeLight.intensity;
@@ -35,6 +35,6 @@ public class FadeLight : MonoBehaviour
 
 	private void Start()
 	{
-		StartCoroutine(StartFade());
+		StartCoroutine(Fade());
 	}
 }
