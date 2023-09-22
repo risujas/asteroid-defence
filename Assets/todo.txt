@@ -30,6 +30,10 @@ add public rigidbody references to attractor and attractable, use it instead of 
 
 add vfx for when rb is slowing down in the atmosphere
 
+make asteroids sink into the ground upon collision
+
+prevent fragments from colliding with each other
+
 TODO LIST
 - Add a better collision system for the missile, for example, scrap the "collision enabler" and give it permanent collision but require a minimum impact relative velocity. Requires calculating the moon velocity
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
