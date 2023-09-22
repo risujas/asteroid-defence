@@ -56,8 +56,7 @@ public class Attractable : MonoBehaviour
 			{
 				if (vfx.HasFloat("ejectionSpeed"))
 				{
-					Vector3 velocity = postCollisionVector * 0.35f;
-					vfx.SetFloat("ejectionSpeed", velocity.magnitude);
+					vfx.SetFloat("ejectionSpeed", postCollisionVector.magnitude);
 				}
 			}
 
