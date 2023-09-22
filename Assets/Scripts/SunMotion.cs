@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SolarSeason : MonoBehaviour
+public class SunMotion : MonoBehaviour
 {
 	[SerializeField] private float yearLengthInSeconds = 720.0f;
 	[SerializeField] private float axialTilt = 23.5f;

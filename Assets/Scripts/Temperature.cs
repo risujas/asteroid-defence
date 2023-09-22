@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Temperature : MonoBehaviour
 {
-	[SerializeField] private SolarSeason solarSeason;
+	[SerializeField] private SunMotion solarSeason;
 
 	private Material material;
 
