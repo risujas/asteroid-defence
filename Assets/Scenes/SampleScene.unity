@@ -291,6 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyUponCollision: 0
+  fragmentPrefab: {fileID: 0}
+  fragmentTrail: {fileID: 0}
+  impactEffectPrefab: {fileID: 0}
 --- !u!114 &93002980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2041,6 +2044,7 @@ GameObject:
   - component: {fileID: 823168647}
   - component: {fileID: 859960796}
   - component: {fileID: 859960795}
+  - component: {fileID: 859960797}
   - component: {fileID: 859960794}
   m_Layer: 0
   m_Name: Atmosphere
@@ -2061,7 +2065,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebf3fc922f709048b5d32077830654d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityDampenFactor: 0.5
+  velocityReductionFactor: 1
+  ignoredRigidbodies:
+  - {fileID: 210935017}
 --- !u!23 &859960795
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2112,6 +2118,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859960791}
   m_Mesh: {fileID: 8996112186996524538, guid: f9d57164be5c94e42b865e154b218221, type: 3}
+--- !u!135 &859960797
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859960791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.49999994
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &946642651
 GameObject:
   m_ObjectHideFlags: 0
