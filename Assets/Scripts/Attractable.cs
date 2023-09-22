@@ -8,8 +8,6 @@ public class Attractable : MonoBehaviour
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
-	private const float ejectionVfxSpeedMultiplier = 0.35f;
-
 	[SerializeField] private bool destroyUponCollision = true;
 	[SerializeField] private float collisionSpeedThreshold = 0.2f;
 	[SerializeField] private Attractable fragmentPrefab;
@@ -58,7 +56,7 @@ public class Attractable : MonoBehaviour
 			{
 				if (vfx.HasFloat("ejectionSpeed"))
 				{
-					Vector3 velocity = (postCollisionVector + collision.rigidbody.velocity) * ejectionVfxSpeedMultiplier;
+					Vector3 velocity = postCollisionVector * 0.35f;
 					vfx.SetFloat("ejectionSpeed", velocity.magnitude);
 				}
 			}
