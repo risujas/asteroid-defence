@@ -86,12 +86,10 @@ public class AsteroidSpawner : MonoBehaviour
 		float distance = vectorAB.magnitude;
 		vectorAB.Normalize();
 
-		Rigidbody centralRb = centralBody.GetComponent<Rigidbody>();
-		float orbitalVelocity = Mathf.Sqrt(Attractor.G * centralRb.mass / distance) * velocityModifier;
+		float orbitalVelocity = Mathf.Sqrt(Attractor.G * centralBody.rb.mass / distance) * velocityModifier;
 		var velocityVector = headingVector * orbitalVelocity;
 
-		Rigidbody rb = attractable.GetComponent<Rigidbody>();
-		rb.velocity = velocityVector;
+		attractable.rb.velocity = velocityVector;
 	}
 
 	private Vector3 GetHeadingVector(Vector3 fromVector, Vector3 toVector, float headingOffset)

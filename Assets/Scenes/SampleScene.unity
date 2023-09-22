@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
 --- !u!54 &93002976
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   destroyUponCollision: 0
   collisionSpeedThreshold: 0.2
   fragmentPrefab: {fileID: 0}
@@ -536,6 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
 --- !u!54 &210935017
 Rigidbody:
   m_ObjectHideFlags: 0

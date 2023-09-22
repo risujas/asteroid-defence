@@ -19,7 +19,8 @@ public class Attractable : MonoBehaviour
 	[SerializeField] private GameObject impactEffectPrefab;
 
 	private GameObject spawnedObjectsContainer;
-	private Rigidbody rb;
+
+	public Rigidbody rb { get; set; }
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector)
 	{
@@ -29,7 +30,7 @@ public class Attractable : MonoBehaviour
 		}
 
 		Rigidbody fragmentPfRb = fragmentPrefab.GetComponent<Rigidbody>();
-		int numFragments = Mathf.RoundToInt(rb.mass / fragmentPfRb.mass) / 2;
+		int numFragments = Mathf.RoundToInt(rb.mass / fragmentPfRb.mass);
 
 		for (int i = 0; i < numFragments; i++)
 		{
@@ -117,10 +118,13 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
+	}
 
+	private void Start()
+	{
 		if (fragmentTrail == null)
 		{
 			fragmentTrail = GetComponentInChildren<FragmentTrail>();

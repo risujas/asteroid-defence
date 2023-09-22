@@ -9,7 +9,7 @@ public class Attractor : MonoBehaviour
 
 	public static IReadOnlyList<Attractor> Attractors => attractors.AsReadOnly();
 
-	private Rigidbody rb;
+	public Rigidbody rb { get; set; }
 
 	private void Attract(Attractable a)
 	{
@@ -17,12 +17,10 @@ public class Attractor : MonoBehaviour
 		float distance = direction.magnitude;
 		direction.Normalize();
 
-		Rigidbody attractableRb = a.GetComponent<Rigidbody>();
-
-		float force = G * (rb.mass * attractableRb.mass) / (distance * distance);
+		float force = G * (rb.mass * a.rb.mass) / (distance * distance);
 		Vector3 forceVector = direction * force;
 
-		attractableRb.AddForce(forceVector, ForceMode.Force);
+		a.rb.AddForce(forceVector, ForceMode.Force);
 	}
 
 	private void OnEnable()
@@ -35,7 +33,7 @@ public class Attractor : MonoBehaviour
 		attractors.Remove(this);
 	}
 
-	private void Start()
+	private void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
