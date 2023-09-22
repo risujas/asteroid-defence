@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 93002977}
   - component: {fileID: 93002969}
   - component: {fileID: 93002976}
+  - component: {fileID: 93002981}
   - component: {fileID: 93002973}
   - component: {fileID: 93002979}
   - component: {fileID: 93002980}
@@ -308,6 +309,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRb: {fileID: 210935017}
   clockwiseRotation: 1
+--- !u!114 &93002981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93002967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294dac4d376ff314299b14599ca07bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 0, z: 6}
 --- !u!1 &163657659
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294dac4d376ff314299b14599ca07bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: {x: 0, y: 0, z: -12.5}
+  rotationSpeed: {x: 0, y: 0, z: -12}
 --- !u!4 &210935007
 Transform:
   m_ObjectHideFlags: 0
