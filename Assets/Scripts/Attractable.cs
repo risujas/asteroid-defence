@@ -13,11 +13,11 @@ public class Attractable : MonoBehaviour
 	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
 	[SerializeField] private bool destroyUponCollision = true;
+	[SerializeField] private float collisionSpeedThreshold = 0.2f;
 	[SerializeField] private Attractable fragmentPrefab;
 	[SerializeField] private FragmentTrail fragmentTrail;
 	[SerializeField] private GameObject impactEffectPrefab;
 
-	private float collisionSpeedThreshold = 0.2f;
 	private GameObject spawnedObjectsContainer;
 	private Rigidbody rb;
 

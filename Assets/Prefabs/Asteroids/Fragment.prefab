@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyUponCollision: 1
+  collisionSpeedThreshold: 0
   fragmentPrefab: {fileID: 0}
   fragmentTrail: {fileID: 7508151485858876671}
   impactEffectPrefab: {fileID: 7852046446207545672, guid: 57be395ed1412ed49bf58137b26cd376,
