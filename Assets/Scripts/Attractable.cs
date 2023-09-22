@@ -27,7 +27,7 @@ public class Attractable : MonoBehaviour
 
 		Rigidbody fragmentRb = fragmentPrefab.GetComponent<Rigidbody>();
 
-		int numFragments = Mathf.RoundToInt(rb.mass / fragmentRb.mass);
+		int numFragments = Mathf.RoundToInt(rb.mass / fragmentRb.mass) / 2;
 		for (int i = 0; i < numFragments; i++)
 		{
 			Vector3 ejectionVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
