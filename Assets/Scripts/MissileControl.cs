@@ -8,19 +8,17 @@ public class MissileControl : MonoBehaviour
 
 	private Rigidbody rb;
 
-	private void Start()
-	{
-		rb = GetComponent<Rigidbody>();
-	}
-
-	private void Update()
+	private void HandleRotation()
 	{
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.z = transform.position.z;
 		Vector3 direction = mousePos - transform.position;
 
 		transform.up = direction.normalized;
+	}
 
+	private void HandleAcceleration()
+	{
 		if (remainingDeltaV > maxDeltaV)
 		{
 			remainingDeltaV = maxDeltaV;
@@ -40,6 +38,17 @@ public class MissileControl : MonoBehaviour
 				rb.AddForce(transform.up * deltaV, ForceMode.VelocityChange);
 			}
 		}
+	}
+
+	private void Start()
+	{
+		rb = GetComponent<Rigidbody>();
+	}
+
+	private void Update()
+	{
+		HandleRotation();
+		HandleAcceleration();
 
 		if (Input.GetMouseButtonUp(1))
 		{
