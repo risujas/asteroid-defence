@@ -40,6 +40,7 @@ public class Attractable : MonoBehaviour
 
 			Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
 			individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
+			individualVector += collision.rigidbody.velocity;
 
 			float width = transform.localScale.x * 0.5f;
 			Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
@@ -65,7 +66,8 @@ public class Attractable : MonoBehaviour
 			{
 				if (vfx.HasFloat("ejectionSpeed"))
 				{
-					vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
+					Vector3 velocity = (reflectionVector + collision.rigidbody.velocity).normalized * ejectionVfxSpeedMultiplier;
+					vfx.SetFloat("ejectionSpeed", velocity.magnitude);
 				}
 			}
 

@@ -2065,7 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebf3fc922f709048b5d32077830654d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityReductionFactor: 0.5
+  velocityReductionFactor: 0.1
   ignoredRigidbodies:
   - {fileID: 210935017}
 --- !u!23 &859960795
@@ -3489,8 +3489,8 @@ MonoBehaviour:
     type: 3}
   asteroidSwarms:
   - numAsteroids: 50
-    numFragments: 50
-    velocity: 3
+    numFragments: 0
+    velocity: 10
     minAsteroidScaleMultiplier: 0.8
     maxAsteroidScaleMultiplier: 1.2
 --- !u!4 &2063208161
