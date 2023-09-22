@@ -34,6 +34,9 @@ make asteroids sink into the ground upon collision
 
 prevent fragments from colliding with each other
 
+rethink how fragment velocity should behave when they're spawned
+right now a missile impact will send all of the fragments to the missile's direction of travel although realistically their inertia should keep them moving in the asteroid's direction of travel
+
 TODO LIST
 - Add a better collision system for the missile, for example, scrap the "collision enabler" and give it permanent collision but require a minimum impact relative velocity. Requires calculating the moon velocity
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
