@@ -66,7 +66,6 @@ public class Attractable : MonoBehaviour
 			var follower = effect.GetComponent<FollowObject>();
 			if (follower != null)
 			{
-				// We can only follow an Attractor game object
 				if (collision.gameObject.GetComponent<Attractor>())
 				{
 					follower.objectToFollow = collision.gameObject;

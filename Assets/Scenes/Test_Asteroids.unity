@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 300000
 --- !u!54 &93002976
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,10 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b0161e6f972d742bea10fc22bdc58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentBody: {fileID: 210935014}
+  parentRb: {fileID: 0}
   clockwiseRotation: 1
-  rotation: {x: 0, y: 0, z: 0}
-  degreesPerSecond: 0
 --- !u!1 &140164358
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 1000000
 --- !u!54 &210935017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -723,6 +719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026867606673312558, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d,
         type: 3}
@@ -1443,7 +1444,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 0.8
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1530,6 +1531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7ac72b7f6401249b3df38cedea8495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetSize: 0.8
   minTargetSize: 0.8
   maxTargetSize: 10
 --- !u!1 &342937509
@@ -2263,6 +2265,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_B
       objectReference: {fileID: 0}
+    - target: {fileID: 2026867606673312558, guid: 4dd24ec598842da47bc47b95c61758b1,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 4dd24ec598842da47bc47b95c61758b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2347,14 +2354,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4174426b219b7b43a4edd3016e8069a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildPoints: 100
+  placementPoints: 100
   placementAidMaterialValid: {fileID: 2100000, guid: b3374bece88e7ec498168d14dda574de,
     type: 2}
   placementAidMaterialInvalid: {fileID: 2100000, guid: 82d52f7d578b4944294de76914eb7fe6,
     type: 2}
-  buildingSnappingLayerMask:
+  snapLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   timescaleChangerReference: {fileID: 948708500}
 --- !u!4 &517776895
 Transform:
@@ -2623,7 +2630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d55da2e810be4946961571f0a865f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 610681487}
+  timescaleLevelText: {fileID: 0}
+  actualTimescaleText: {fileID: 0}
   timescaleChanger: {fileID: 948708500}
 --- !u!1001 &691944361
 PrefabInstance:
@@ -2637,6 +2645,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid_F
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026867606673312558, guid: 993989b3e468ba840b799c744af6e738,
+        type: 3}
+      propertyPath: m_Mass
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 993989b3e468ba840b799c744af6e738,
         type: 3}
@@ -2922,7 +2935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebf3fc922f709048b5d32077830654d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityDampenFactor: 0.5
+  velocityReductionFactor: 0.5
+  ignoredRigidbodies: []
 --- !u!23 &859960795
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3168,6 +3182,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20dc737c9dd5d49a52ad6345317e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels:
+  - 0.1
+  - 0.25
+  - 0.5
+  - 1
+  - 2.5
+  - 5
+  - 10
+  - 25
+  levelIndex: 1
 --- !u!4 &948708501
 Transform:
   m_ObjectHideFlags: 0
@@ -3195,6 +3219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid_D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026867606673312558, guid: f7b8418ab4055a34eb1a98d44b241899,
+        type: 3}
+      propertyPath: m_Mass
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: f7b8418ab4055a34eb1a98d44b241899,
         type: 3}
@@ -3471,6 +3500,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_E
       objectReference: {fileID: 0}
+    - target: {fileID: 2026867606673312558, guid: 6c271892108802541a3145023c0b7e36,
+        type: 3}
+      propertyPath: m_Mass
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 6c271892108802541a3145023c0b7e36,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3712,6 +3746,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20dc737c9dd5d49a52ad6345317e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels:
+  - 0.1
+  - 0.25
+  - 0.5
+  - 1
+  - 2.5
+  - 5
+  - 10
+  - 25
+  levelIndex: 1
 --- !u!114 &1336369672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4739,6 +4783,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_C
       objectReference: {fileID: 0}
+    - target: {fileID: 2026867606673312558, guid: 7b4c82b92632c0940be552b49f27bc12,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 7b4c82b92632c0940be552b49f27bc12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4802,6 +4851,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1848407551213936317, guid: c4288778d0d8a3847bfe12abc4442b75,
+        type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1974736199574285586, guid: c4288778d0d8a3847bfe12abc4442b75,
         type: 3}
       propertyPath: m_LocalPosition.x
