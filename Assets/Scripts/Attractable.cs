@@ -104,8 +104,6 @@ public class Attractable : MonoBehaviour
 			SpawnCollisionFragments(collision, reflectionVector);
 			SpawnCollisionEffects(collision, reflectionVector);
 
-			ImpactDamage.DamageNearbyHealthObjects(rb);
-
 			if (fragmentTrail != null)
 			{
 				fragmentTrail.DetachTrailFromParent();
