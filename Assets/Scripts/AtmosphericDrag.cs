@@ -16,6 +16,10 @@ public class AtmosphericDrag : MonoBehaviour
 		var velocityReduction = other.attachedRigidbody.velocity * velocityReductionFactor * Time.deltaTime;
 		other.attachedRigidbody.velocity -= velocityReduction;
 
-		// TODO spawn atmospheric entry effect
+		var temperature = other.GetComponent<Temperature>();
+		if (temperature != null)
+		{
+			temperature.ChangeTemperature(temperature.MaxTemperature * velocityReductionFactor * Time.deltaTime);
+		}
 	}
 }

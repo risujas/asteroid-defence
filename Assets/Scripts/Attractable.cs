@@ -16,7 +16,7 @@ public class Attractable : MonoBehaviour
 
 	private GameObject spawnedObjectsContainer;
 
-	public Rigidbody rb { get; set; }
+	public Rigidbody rb { get; private set; }
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 postCollisionVector)
 	{

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 304836874625472257}
   - component: {fileID: -8764900263379808826}
   - component: {fileID: -7835772874586326412}
+  - component: {fileID: -812345924299847753}
   m_Layer: 12
   m_Name: BaseAsteroid
   m_TagString: Untagged
@@ -169,3 +170,19 @@ MonoBehaviour:
   rb: {fileID: 304836874625472257}
   randomMin: {x: 0, y: 0, z: -45}
   randomMax: {x: 0, y: 0, z: 45}
+--- !u!114 &-812345924299847753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152672333653229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42604e4fe846ac42bfa6dc930294c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  materialEmissionString: _EmissionIntensity
+  maxEmissionIntensity: 10
+  temperature: 0
