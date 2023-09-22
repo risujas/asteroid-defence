@@ -8,8 +8,6 @@ public class Attractable : MonoBehaviour
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
-	private const float minFragmentSpeedMultiplier = 0.5f;
-	private const float maxFragmentSpeedMultiplier = 1.0f;
 	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
 	[SerializeField] private bool destroyUponCollision = true;
@@ -22,33 +20,26 @@ public class Attractable : MonoBehaviour
 
 	public Rigidbody rb { get; set; }
 
-	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector)
+	private void SpawnCollisionFragments(Collision collision, Vector3 postCollisionVector)
 	{
 		if (fragmentPrefab == null)
 		{
 			return;
 		}
 
-		Rigidbody fragmentPfRb = fragmentPrefab.GetComponent<Rigidbody>();
-		int numFragments = Mathf.RoundToInt(rb.mass / fragmentPfRb.mass);
+		Rigidbody fragmentRb = fragmentPrefab.GetComponent<Rigidbody>();
 
+		int numFragments = Mathf.RoundToInt(rb.mass / fragmentRb.mass);
 		for (int i = 0; i < numFragments; i++)
 		{
-			if (rb.mass <= fragmentPfRb.mass)
-			{
-				break;
-			}
-
-			Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
-			individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
-			individualVector += collision.rigidbody.velocity;
+			Vector3 ejectionVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
 
 			float width = transform.localScale.x * 0.5f;
 			Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
 			spawnPoint.z = 0.0f;
 
 			var newFragmentRb = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, transform.parent).GetComponent<Rigidbody>();
-			newFragmentRb.velocity = individualVector;
+			newFragmentRb.velocity = ejectionVector;
 		}
 	}
 
@@ -67,7 +58,7 @@ public class Attractable : MonoBehaviour
 			{
 				if (vfx.HasFloat("ejectionSpeed"))
 				{
-					Vector3 velocity = (reflectionVector + collision.rigidbody.velocity).normalized * ejectionVfxSpeedMultiplier;
+					Vector3 velocity = (reflectionVector + collision.rigidbody.velocity) * ejectionVfxSpeedMultiplier;
 					vfx.SetFloat("ejectionSpeed", velocity.magnitude);
 				}
 			}
@@ -99,10 +90,24 @@ public class Attractable : MonoBehaviour
 
 		if (relV > collisionSpeedThreshold)
 		{
-			Vector3 reflectionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal);
+			Vector3 postCollisionVector;
+			if (collision.gameObject.GetComponent<Attractor>() != null)
+			{
+				postCollisionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal) * Random.Range(0.25f, 0.75f);
+			}
+			else
+			{
+				float totalMass = rb.mass + collision.rigidbody.mass;
 
-			SpawnCollisionFragments(collision, reflectionVector);
-			SpawnCollisionEffects(collision, reflectionVector);
+				Vector3 compoundVelocity = Vector3.zero;
+				compoundVelocity += rb.velocity * (rb.mass / totalMass);
+				compoundVelocity += collision.rigidbody.velocity * (collision.rigidbody.mass / totalMass);
+
+				postCollisionVector = compoundVelocity * Random.Range(0.8f, 1.0f);
+			}
+
+			SpawnCollisionFragments(collision, postCollisionVector);
+			SpawnCollisionEffects(collision, postCollisionVector);
 
 			if (fragmentTrail != null)
 			{
