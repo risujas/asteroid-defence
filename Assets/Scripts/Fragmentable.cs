@@ -20,11 +20,6 @@ public class Fragmentable : MonoBehaviour
 
 		for (int i = 0; i < numFragments; i++)
 		{
-			if (Attractable.IsAboveRecommendedAttractablesLimit)
-			{
-				break;
-			}
-
 			if (rb.mass <= fragmentPfRb.mass)
 			{
 				break;
