@@ -14,17 +14,12 @@ public class FadeLight : MonoBehaviour
 		fadeLight = GetComponent<Light>();
 		startIntensity = fadeLight.intensity;
 
-		float remaining = fadeDuration;
-		while (remaining > 0.0f)
+		float elapsed = 0.0f;
+		while (elapsed < fadeDuration)
 		{
-			float timeStep = Time.deltaTime;
-			if (timeStep > remaining)
-			{
-				timeStep = remaining;
-			}
-			remaining -= timeStep;
+			elapsed += Time.deltaTime;
 
-			float t = (fadeDuration - remaining) / fadeDuration;
+			float t = Mathf.Clamp01(elapsed / fadeDuration);
 			fadeLight.intensity = Mathf.Lerp(startIntensity, targetIntensity, t);
 
 			yield return null;
