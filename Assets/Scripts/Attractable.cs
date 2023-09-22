@@ -43,14 +43,14 @@ public class Attractable : MonoBehaviour
 		}
 	}
 
-	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
+	private void SpawnCollisionEffects(Collision collision, Vector3 postCollisionVector)
 	{
 		if (impactEffectPrefab != null)
 		{
 			Vector3 spawnPoint = collision.GetContact(0).point;
 
 			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
-			effect.transform.up = reflectionVector;
+			effect.transform.up = postCollisionVector;
 			effect.transform.parent = spawnedObjectsContainer.transform;
 
 			var vfx = effect.GetComponent<VisualEffect>();
@@ -58,7 +58,7 @@ public class Attractable : MonoBehaviour
 			{
 				if (vfx.HasFloat("ejectionSpeed"))
 				{
-					Vector3 velocity = (reflectionVector + collision.rigidbody.velocity) * ejectionVfxSpeedMultiplier;
+					Vector3 velocity = (postCollisionVector + collision.rigidbody.velocity) * ejectionVfxSpeedMultiplier;
 					vfx.SetFloat("ejectionSpeed", velocity.magnitude);
 				}
 			}
