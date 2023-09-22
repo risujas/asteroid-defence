@@ -8,8 +8,8 @@ public class Attractable : MonoBehaviour
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
-	private const float minFragmentSpeedMultiplier = 0.25f;
-	private const float maxFragmentSpeedMultiplier = 0.75f;
+	private const float minFragmentSpeedMultiplier = 0.5f;
+	private const float maxFragmentSpeedMultiplier = 1.0f;
 	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
 	[SerializeField] private bool destroyUponCollision = true;

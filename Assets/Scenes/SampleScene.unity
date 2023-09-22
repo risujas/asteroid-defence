@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyUponCollision: 0
+  collisionSpeedThreshold: 0.2
   fragmentPrefab: {fileID: 0}
   fragmentTrail: {fileID: 0}
   impactEffectPrefab: {fileID: 0}
@@ -916,7 +917,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1591
+    m_Bits: 5687
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2064,7 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebf3fc922f709048b5d32077830654d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityReductionFactor: 1
+  velocityReductionFactor: 0.5
   ignoredRigidbodies:
   - {fileID: 210935017}
 --- !u!23 &859960795
@@ -3487,9 +3488,9 @@ MonoBehaviour:
   fragmentPrefab: {fileID: 7352768449657130183, guid: c4288778d0d8a3847bfe12abc4442b75,
     type: 3}
   asteroidSwarms:
-  - numAsteroids: 20
-    numFragments: 40
-    velocity: 4
+  - numAsteroids: 50
+    numFragments: 50
+    velocity: 3
     minAsteroidScaleMultiplier: 0.8
     maxAsteroidScaleMultiplier: 1.2
 --- !u!4 &2063208161
