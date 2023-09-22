@@ -17,7 +17,7 @@ public class OrbitalVelocity : MonoBehaviour
 		return orbitalVelocity;
 	}
 
-	private void Start()
+	private void SetVelocityRelativeToParent()
 	{
 		var r = Vector3.Distance(parentRb.transform.position, transform.position);
 		var v = GetOrbitalVelocity(r, parentRb.mass);
@@ -34,5 +34,10 @@ public class OrbitalVelocity : MonoBehaviour
 
 		var rb = GetComponent<Rigidbody>();
 		rb.velocity = result * v;
+	}
+
+	private void Start()
+	{
+		SetVelocityRelativeToParent();
 	}
 }
