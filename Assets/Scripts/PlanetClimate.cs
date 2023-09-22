@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Temperature : MonoBehaviour
+public class PlanetClimate : MonoBehaviour
 {
 	[SerializeField] private SunMotion solarSeason;
 
