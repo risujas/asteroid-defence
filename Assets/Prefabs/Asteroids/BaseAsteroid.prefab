@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8463498906597668349}
   - component: {fileID: 304836874625472257}
   - component: {fileID: -8764900263379808826}
+  - component: {fileID: -7835772874586326412}
   m_Layer: 12
   m_Name: BaseAsteroid
   m_TagString: Untagged
@@ -153,3 +154,18 @@ MonoBehaviour:
   fragmentTrail: {fileID: 0}
   impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
     type: 3}
+--- !u!114 &-7835772874586326412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152672333653229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ce7aee773125b4db45d3e8c4cc355b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 304836874625472257}
+  randomMin: {x: 0, y: 0, z: -45}
+  randomMax: {x: 0, y: 0, z: 45}
