@@ -43,7 +43,6 @@ add fragment glow from atmosphere
 add vfx for atmospheric entry; plasma glow leading the object; sparks trailing the object
 
 TODO LIST
-- Add a better collision system for the missile, for example, scrap the "collision enabler" and give it permanent collision but require a minimum impact relative velocity. Requires calculating the moon velocity
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
 - Add a funds system, building missiles costs funds
 - You gain funds over time
