@@ -1,34 +1,144 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Attractable : MonoBehaviour
 {
-	protected static List<Attractable> spawnedAttractables = new();
+	private static List<Attractable> spawnedAttractables = new();
 
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
-	[SerializeField] private bool destroyUponCollision = true;
+	private const float minFragmentSpeedMultiplier = 0.25f;
+	private const float maxFragmentSpeedMultiplier = 0.75f;
+	private const float ejectionVfxSpeedMultiplier = 0.35f;
 
-	protected virtual void HandleCollision()
+	[SerializeField] private bool destroyUponCollision = true;
+	[SerializeField] private Attractable fragmentPrefab;
+	[SerializeField] private FragmentTrail fragmentTrail;
+	[SerializeField] private GameObject impactEffectPrefab;
+
+	private float collisionSpeedThreshold = 0.2f;
+	private GameObject spawnedObjectsContainer;
+	private Rigidbody rb;
+
+	private void SpawnCollisionFragments(Collision collision, Vector3 reflectionVector)
 	{
-		if (destroyUponCollision)
+		if (fragmentPrefab == null)
 		{
-			Destroy(gameObject);
+			return;
+		}
+
+		Rigidbody fragmentPfRb = fragmentPrefab.GetComponent<Rigidbody>();
+		int numFragments = Mathf.RoundToInt(rb.mass / fragmentPfRb.mass) / 2;
+
+		for (int i = 0; i < numFragments; i++)
+		{
+			if (rb.mass <= fragmentPfRb.mass)
+			{
+				break;
+			}
+
+			Vector3 individualVector = reflectionVector * Random.Range(minFragmentSpeedMultiplier, maxFragmentSpeedMultiplier);
+			individualVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * individualVector;
+
+			float width = transform.localScale.x * 0.5f;
+			Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
+			spawnPoint.z = 0.0f;
+
+			var newFragmentRb = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, transform.parent).GetComponent<Rigidbody>();
+			newFragmentRb.velocity = individualVector;
 		}
 	}
 
-	protected void OnEnable()
+	private void SpawnCollisionEffects(Collision collision, Vector3 reflectionVector)
+	{
+		if (impactEffectPrefab != null)
+		{
+			Vector3 spawnPoint = collision.GetContact(0).point;
+
+			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
+			effect.transform.up = reflectionVector;
+			effect.transform.parent = spawnedObjectsContainer.transform;
+
+			var vfx = effect.GetComponent<VisualEffect>();
+			if (vfx != null)
+			{
+				if (vfx.HasFloat("ejectionSpeed"))
+				{
+					vfx.SetFloat("ejectionSpeed", reflectionVector.magnitude * ejectionVfxSpeedMultiplier);
+				}
+			}
+
+			var follower = effect.GetComponent<FollowObject>();
+			if (follower != null)
+			{
+				// We can only follow an Attractor game object
+				if (collision.gameObject.GetComponent<Attractor>())
+				{
+					follower.objectToFollow = collision.gameObject;
+					follower.offset = transform.position - collision.gameObject.transform.position;
+				}
+				else
+				{
+					follower.enabled = false;
+				}
+			}
+		}
+	}
+
+	private void HandleCollision(Collision collision)
+	{
+		float relV = rb.velocity.magnitude;
+		if (collision.rigidbody != null)
+		{
+			relV = (collision.rigidbody.velocity - rb.velocity).magnitude;
+		}
+
+		if (relV > collisionSpeedThreshold)
+		{
+			Vector3 reflectionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal);
+
+			SpawnCollisionFragments(collision, reflectionVector);
+			SpawnCollisionEffects(collision, reflectionVector);
+
+			ImpactDamage.DamageNearbyHealthObjects(rb);
+
+			if (fragmentTrail != null)
+			{
+				fragmentTrail.DetachTrailFromParent();
+			}
+
+			if (destroyUponCollision)
+			{
+				Destroy(gameObject);
+			}
+		}
+	}
+
+	private void Start()
+	{
+		rb = GetComponent<Rigidbody>();
+
+		if (fragmentTrail == null)
+		{
+			fragmentTrail = GetComponentInChildren<FragmentTrail>();
+		}
+
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+	}
+
+	private void OnEnable()
 	{
 		spawnedAttractables.Add(this);
 	}
 
-	protected void OnDisable()
+	private void OnDisable()
 	{
 		spawnedAttractables.Remove(this);
 	}
 
-	protected void OnCollisionEnter(Collision collision)
+	private void OnCollisionEnter(Collision collision)
 	{
-		HandleCollision();
+		HandleCollision(collision);
 	}
 }

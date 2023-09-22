@@ -1,32 +1,20 @@
 using UnityEngine;
 
-public class ImpactDamage : MonoBehaviour
+public class ImpactDamage
 {
-	private float radius = 0.2f;
-	private float damageMultiplier = 2.0f;
-	private Rigidbody rb;
-
-	private void DamageNearbyHealthObjects()
+	private static float radius = 0.2f;
+	private static float damageMultiplier = 2.0f;
+	public static void DamageNearbyHealthObjects(Rigidbody rb)
 	{
 		float damage = rb.mass * rb.velocity.magnitude * damageMultiplier;
 		foreach (var h in Health.HealthObjects)
 		{
-			float distance = Vector3.Distance(transform.position, h.transform.position);
+			float distance = Vector3.Distance(rb.transform.position, h.transform.position);
 			if (distance <= radius)
 			{
 				float effectiveDamage = damage * (1 - distance / radius);
 				h.ChangeHealth(-effectiveDamage);
 			}
 		}
-	}
-
-	private void Start()
-	{
-		rb = GetComponent<Rigidbody>();
-	}
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		DamageNearbyHealthObjects();
 	}
 }

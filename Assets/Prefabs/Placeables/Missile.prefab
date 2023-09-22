@@ -12,8 +12,7 @@ PrefabInstance:
         type: 3}
       propertyPath: placementEffect
       value: 
-      objectReference: {fileID: 1963787545500725481, guid: af26108d492b4b1419d6b39fcff00a8c,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: placeOnMouseDown
@@ -73,7 +72,7 @@ PrefabInstance:
         type: 3}
       propertyPath: placementEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: -7890470669207235611}
+      objectReference: {fileID: 2094809949447546213}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: placementEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -117,7 +116,7 @@ PrefabInstance:
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: placementEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
+      value: UnityEngine.Collider, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -264,19 +263,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -7890470669207235611}
-    - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5610374520682192935}
     - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 632946194701197585}
-    - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 491010412393749842}
   m_SourcePrefab: {fileID: 100100000, guid: b2ed3008998b13b4c98234b17a02c88e, type: 3}
 --- !u!1 &2892492363751606769 stripped
 GameObject:
@@ -334,20 +325,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 56
   m_CollisionDetection: 1
---- !u!114 &-7890470669207235611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892492363751606769}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb1bd8288134b0c4a9dd2d2de4604b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayTime: 1
-  colliderToEnable: {fileID: 2094809949447546213}
 --- !u!114 &5610374520682192935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,23 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnImpact:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &491010412393749842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892492363751606769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b7b789d4187b945a306f73cb3902fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactEffectPrefab: {fileID: 6382050778472140190, guid: 6b1a8b1c959b8f64f86939c42927094e,
-    type: 3}
+  destroyUponCollision: 1
+  fragmentPrefab: {fileID: 0}
+  fragmentTrail: {fileID: 0}
+  impactEffectPrefab: {fileID: 0}
 --- !u!4 &6761395272975807230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
