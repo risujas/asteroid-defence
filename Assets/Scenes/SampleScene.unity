@@ -293,7 +293,8 @@ MonoBehaviour:
   destroyUponCollision: 0
   collisionSpeedThreshold: 0.2
   impactEffectPrefab: {fileID: 0}
-  canSpawnAsFragment: 0
+  canBeUsedAsFragment: 0
+  canSpawnFragments: 0
 --- !u!114 &93002980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +927,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 2
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1013,7 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7ac72b7f6401249b3df38cedea8495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSize: 4.5
+  targetSize: 2
   minTargetSize: 2
   maxTargetSize: 4.5
 --- !u!1 &332397622
