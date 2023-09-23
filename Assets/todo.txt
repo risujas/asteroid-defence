@@ -26,22 +26,9 @@ destroying objects also grants you funding
 asteroid impacts damage planetary infrastructure and destroy buildings
 major asteroid impacts can cause a nuclear winter, resulting in a game-over
 
-add public rigidbody references to attractor and attractable, use it instead of constantly calling GetComponent everywhere
-
 add vfx for when rb is slowing down in the atmosphere
 
 make asteroids sink into the ground upon collision
-
-prevent fragments from colliding with each other
-
-rethink how fragment velocity should behave when they're spawned
-right now a missile impact will send all of the fragments to the missile's direction of travel although realistically their inertia should keep them moving in the asteroid's direction of travel
-?? maybe done ^
-
-maybe remove fragments and replace with minor asteroids
-maybe fuck off with reflection completely and only spawn vfx when impacting with a planet
-
-add fragment glow from atmosphere
 
 add vfx for atmospheric entry; plasma glow leading the object; sparks trailing the object
 
@@ -49,6 +36,8 @@ prevent spawning fragments when colliding with a major body (planets, moons), on
 
 combine attractable and attractor into a single class? , control with a canAttractBodies flag? might cause physics instability because of order of execution getting mixed up 
 
+maybe create a single impact effect that can be heavily configured on the fly to account for impacts of all kinds; small flashes, big ejecta, massive planet killers...
+alternatively, create a bunch of effects and add them as a list to AsteroidSpawner which will give you the correct one depending on your body
 
 TODO LIST
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
