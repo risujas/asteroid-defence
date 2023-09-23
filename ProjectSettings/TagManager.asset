@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainCanvas
   - SpawnedObjectsContainer
+  - AsteroidSpawner
   layers:
   - Default
   - TransparentFX

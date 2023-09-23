@@ -8,7 +8,6 @@ public class AsteroidSpawner : MonoBehaviour
 	public class AsteroidSwarm
 	{
 		public int numAsteroids;
-		public int numFragments;
 		public float velocity;
 		public float minAsteroidScaleMultiplier;
 		public float maxAsteroidScaleMultiplier;
@@ -18,12 +17,26 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float swarmSpawnDistance = 100.0f;
 	[SerializeField] private float swarmSpawnRadius = 20.0f;
 	[SerializeField] private float cullDistance = 200.0f;
-	[SerializeField] private List<GameObject> asteroidPrefabs = new List<GameObject>();
-	[SerializeField] private GameObject fragmentPrefab;
+	[SerializeField] private List<Attractable> asteroidPrefabs = new List<Attractable>();
 	[SerializeField] private List<AsteroidSwarm> asteroidSwarms = new();
 
 	private Vector3 swarmSpawnPoint;
 	private GameObject spawnedObjectsContainer;
+
+	public List<Attractable> GetPossibleFragmentPrefabs()
+	{
+		List<Attractable> validPrefabs = new();
+
+		foreach (var a in asteroidPrefabs)
+		{
+			if (a.CanSpawnAsFragment)
+			{
+				validPrefabs.Add(a);
+			}
+		}
+
+		return validPrefabs;
+	}
 
 	private void SpawnNextSwarm()
 	{
@@ -43,12 +56,6 @@ public class AsteroidSpawner : MonoBehaviour
 			var asteroid = SpawnAsteroid(swarm.minAsteroidScaleMultiplier, swarm.maxAsteroidScaleMultiplier);
 			DefineTrajectory(asteroid, swarm.velocity, headingVector);
 		}
-
-		for (int i = 0; i < swarm.numFragments; i++)
-		{
-			var fragment = SpawnFragment();
-			DefineTrajectory(fragment, swarm.velocity, headingVector);
-		}
 	}
 
 	private Attractable SpawnAsteroid(float minScaleMultiplier, float maxScaleMultiplier)
@@ -65,17 +72,6 @@ public class AsteroidSpawner : MonoBehaviour
 
 		var rb = newAsteroid.GetComponent<Rigidbody>();
 		rb.mass *= Mathf.Pow(scaleMultiplier, 3);
-
-		return newAsteroid.GetComponent<Attractable>();
-	}
-
-	private Attractable SpawnFragment()
-	{
-		Vector3 spawnPos = swarmSpawnPoint;
-		spawnPos += UnityEngine.Random.insideUnitSphere * swarmSpawnRadius;
-		spawnPos.z = 0.0f;
-
-		var newAsteroid = Instantiate(fragmentPrefab, spawnPos, Quaternion.identity, spawnedObjectsContainer.transform);
 
 		return newAsteroid.GetComponent<Attractable>();
 	}

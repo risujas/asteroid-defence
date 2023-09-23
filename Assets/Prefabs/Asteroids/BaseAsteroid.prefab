@@ -150,11 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyUponCollision: 1
   collisionSpeedThreshold: 0
-  fragmentPrefab: {fileID: 4919711440837583866, guid: c4288778d0d8a3847bfe12abc4442b75,
-    type: 3}
-  fragmentTrail: {fileID: 0}
   impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
     type: 3}
+  canBeUsedAsFragment: 0
+  canSpawnFragments: 1
 --- !u!114 &-7835772874586326412
 MonoBehaviour:
   m_ObjectHideFlags: 0

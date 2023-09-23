@@ -10,34 +10,56 @@ public class Attractable : MonoBehaviour
 
 	[SerializeField] private bool destroyUponCollision = true;
 	[SerializeField] private float collisionSpeedThreshold = 0.2f;
-	[SerializeField] private Attractable fragmentPrefab;
-	[SerializeField] private FragmentTrail fragmentTrail;
 	[SerializeField] private GameObject impactEffectPrefab;
+	[SerializeField] private bool canBeUsedAsFragment = false;
+	[SerializeField] private bool canSpawnFragments = false;
 
 	private GameObject spawnedObjectsContainer;
+	private AsteroidSpawner asteroidSpawner;
 
 	public Rigidbody rb { get; private set; }
+	public bool CanSpawnAsFragment => canBeUsedAsFragment;
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 postCollisionVector)
 	{
-		if (fragmentPrefab == null)
+		var validPrefabs = asteroidSpawner.GetPossibleFragmentPrefabs();
+		if (validPrefabs == null || validPrefabs.Count == 0)
 		{
 			return;
 		}
 
-		Rigidbody fragmentRb = fragmentPrefab.GetComponent<Rigidbody>();
-
-		int numFragments = Mathf.RoundToInt(rb.mass / fragmentRb.mass) / 2;
-		for (int i = 0; i < numFragments; i++)
+		float totalFragmentableMass = rb.mass / 2.0f;
+		while (totalFragmentableMass > 0.0f)
 		{
-			Vector3 ejectionVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
+			Attractable fragmentPrefab = validPrefabs[Random.Range(0, validPrefabs.Count - 1)];
+			Rigidbody fragmentPrefabRigidbody = fragmentPrefab.GetComponent<Rigidbody>();
 
-			float width = transform.localScale.x * 0.5f;
-			Vector3 spawnPoint = (collision.GetContact(0).point + collision.GetContact(0).normal * 0.05f) + (Random.insideUnitSphere.normalized * Random.Range(-width, width));
+			float fragmentScale = Random.Range(0.3f, 0.7f);
+			float downscaledMass = fragmentPrefabRigidbody.mass * Mathf.Pow(fragmentScale, 3);
+
+			if (downscaledMass > totalFragmentableMass)
+			{
+				break;
+			}
+			else
+			{
+				totalFragmentableMass -= downscaledMass;
+			}
+
+			// TODO investigate the validity of using renderer bounds to get the size
+			float fragmentSpawnRadius = GetComponent<Renderer>().bounds.size.x / 2.0f;
+			Vector3 spawnPoint = collision.GetContact(0).point + Random.insideUnitSphere.normalized * Random.Range(-fragmentSpawnRadius, fragmentSpawnRadius);
 			spawnPoint.z = 0.0f;
 
-			var newFragmentRb = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, transform.parent).GetComponent<Rigidbody>();
-			newFragmentRb.velocity = ejectionVector;
+			var newFragment = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, asteroidSpawner.transform);
+
+			newFragment.canSpawnFragments = false;
+
+			newFragment.transform.localScale *= fragmentScale;
+
+			Vector3 fragmentVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
+			newFragment.rb.velocity = fragmentVector;
+			newFragment.rb.mass = downscaledMass;
 		}
 	}
 
@@ -102,13 +124,12 @@ public class Attractable : MonoBehaviour
 				postCollisionVector = compoundVelocity * Random.Range(0.8f, 1.0f);
 			}
 
-			SpawnCollisionFragments(collision, postCollisionVector);
-			SpawnCollisionEffects(collision, postCollisionVector);
-
-			if (fragmentTrail != null)
+			if (canSpawnFragments)
 			{
-				fragmentTrail.DetachTrailFromParent();
+				SpawnCollisionFragments(collision, postCollisionVector);
 			}
+
+			SpawnCollisionEffects(collision, postCollisionVector);
 
 			if (destroyUponCollision)
 			{
@@ -124,12 +145,8 @@ public class Attractable : MonoBehaviour
 
 	private void Start()
 	{
-		if (fragmentTrail == null)
-		{
-			fragmentTrail = GetComponentInChildren<FragmentTrail>();
-		}
-
 		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+		asteroidSpawner = GameObject.FindWithTag("AsteroidSpawner").GetComponent<AsteroidSpawner>();
 	}
 
 	private void OnEnable()
