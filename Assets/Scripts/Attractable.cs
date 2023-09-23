@@ -34,7 +34,7 @@ public class Attractable : MonoBehaviour
 			Attractable fragmentPrefab = validPrefabs[Random.Range(0, validPrefabs.Count - 1)];
 			Rigidbody fragmentPrefabRigidbody = fragmentPrefab.GetComponent<Rigidbody>();
 
-			float fragmentScale = Random.Range(0.3f, 0.7f);
+			float fragmentScale = Random.Range(0.25f, 0.5f);
 			float downscaledMass = fragmentPrefabRigidbody.mass * Mathf.Pow(fragmentScale, 3);
 
 			if (downscaledMass > totalFragmentableMass)
