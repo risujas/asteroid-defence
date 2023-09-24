@@ -39,6 +39,8 @@ combine attractable and attractor into a single class? , control with a canAttra
 maybe create a single impact effect that can be heavily configured on the fly to account for impacts of all kinds; small flashes, big ejecta, massive planet killers...
 alternatively, create a bunch of effects and add them as a list to AsteroidSpawner which will give you the correct one depending on your body
 
+disable asteroid colliders by default, enable after travelling a distance equal to the collider's size?
+
 TODO LIST
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
 - Add a funds system, building missiles costs funds
