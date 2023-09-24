@@ -76,9 +76,10 @@ public class Attractable : MonoBehaviour
 		if (relV > collisionSpeedThreshold)
 		{
 			Vector3 postCollisionVector;
+
 			if (collision.gameObject.GetComponent<Attractor>() != null)
 			{
-				postCollisionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal) * Random.Range(0.25f, 0.75f);
+				postCollisionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal);
 			}
 			else
 			{
@@ -91,7 +92,7 @@ public class Attractable : MonoBehaviour
 				compoundVelocity += rb.velocity * (rb.mass / totalMass);
 				compoundVelocity += collision.rigidbody.velocity * (collision.rigidbody.mass / totalMass);
 
-				postCollisionVector = compoundVelocity * Random.Range(0.8f, 1.0f);
+				postCollisionVector = compoundVelocity;
 			}
 
 			if (canSpawnFragments)
