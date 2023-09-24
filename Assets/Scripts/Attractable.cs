@@ -29,7 +29,7 @@ public class Attractable : MonoBehaviour
 			spawnPoint.z = 0.0f;
 
 			var newFragment = asteroidSpawner.SpawnFragment(spawnPoint);
-			newFragment.rb.velocity = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
+			newFragment.rb.velocity = Quaternion.AngleAxis(Random.Range(-20.0f, 20.0f), Vector3.forward) * postCollisionVector;
 
 			totalFragmentableMass -= newFragment.rb.mass;
 		}
