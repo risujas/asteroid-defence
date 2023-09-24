@@ -17,11 +17,16 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float swarmSpawnDistance = 100.0f;
 	[SerializeField] private float swarmSpawnRadius = 20.0f;
 	[SerializeField] private float cullDistance = 200.0f;
+	[SerializeField] private float fragmentScaleMin = 0.75f;
+	[SerializeField] private float fragmentScaleMax = 1.0f;
 	[SerializeField] private List<Attractable> asteroidPrefabs = new List<Attractable>();
 	[SerializeField] private List<AsteroidSwarm> asteroidSwarms = new();
 
 	private Vector3 swarmSpawnPoint;
 	private GameObject spawnedObjectsContainer;
+
+	public float FragmentScaleMin => fragmentScaleMin;
+	public float FragmentScaleMax => fragmentScaleMax;
 
 	public List<Attractable> GetPossibleFragmentPrefabs()
 	{

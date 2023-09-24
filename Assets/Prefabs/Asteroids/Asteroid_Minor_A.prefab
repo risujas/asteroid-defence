@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8764900263379808826, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: canSpawnFragments
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8764900263379808826, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: canBeUsedAsFragment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 304836874625472257, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
       propertyPath: m_Mass

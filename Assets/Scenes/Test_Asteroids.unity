@@ -720,11 +720,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_A
       objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d,
-        type: 3}
-      propertyPath: m_Mass
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1682,11 +1677,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_G
       objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: 382c796b4e324b84d88e319489b992e4,
-        type: 3}
-      propertyPath: m_Mass
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8090229388824158233, guid: 382c796b4e324b84d88e319489b992e4,
         type: 3}
       propertyPath: m_Mesh
@@ -2344,11 +2334,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_B
       objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: 4dd24ec598842da47bc47b95c61758b1,
-        type: 3}
-      propertyPath: m_Mass
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 4dd24ec598842da47bc47b95c61758b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2724,11 +2709,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid_F
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: 993989b3e468ba840b799c744af6e738,
-        type: 3}
-      propertyPath: m_Mass
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 993989b3e468ba840b799c744af6e738,
         type: 3}
@@ -3299,11 +3279,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_D
       objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: f7b8418ab4055a34eb1a98d44b241899,
-        type: 3}
-      propertyPath: m_Mass
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: f7b8418ab4055a34eb1a98d44b241899,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3578,11 +3553,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid_E
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: 6c271892108802541a3145023c0b7e36,
-        type: 3}
-      propertyPath: m_Mass
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 6c271892108802541a3145023c0b7e36,
         type: 3}
@@ -4819,6 +4789,8 @@ MonoBehaviour:
   swarmSpawnDistance: 100
   swarmSpawnRadius: 20
   cullDistance: 200
+  fragmentScaleMin: 0.75
+  fragmentScaleMax: 1
   asteroidPrefabs:
   - {fileID: 1721786545258472147, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 1721786545258472147, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
@@ -4858,11 +4830,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid_C
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026867606673312558, guid: 7b4c82b92632c0940be552b49f27bc12,
-        type: 3}
-      propertyPath: m_Mass
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8615425063237239987, guid: 7b4c82b92632c0940be552b49f27bc12,
         type: 3}

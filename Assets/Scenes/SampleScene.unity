@@ -3447,6 +3447,8 @@ MonoBehaviour:
   swarmSpawnDistance: 100
   swarmSpawnRadius: 20
   cullDistance: 200
+  fragmentScaleMin: 0.75
+  fragmentScaleMax: 1
   asteroidPrefabs:
   - {fileID: 2181659195915063785, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 2181659195915063785, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
@@ -3454,9 +3456,12 @@ MonoBehaviour:
   - {fileID: 2181659195915063785, guid: f7b8418ab4055a34eb1a98d44b241899, type: 3}
   - {fileID: 2181659195915063785, guid: 6c271892108802541a3145023c0b7e36, type: 3}
   - {fileID: 2181659195915063785, guid: 993989b3e468ba840b799c744af6e738, type: 3}
+  - {fileID: 57248763602065151, guid: 44dd1526f7886924995f6db9ca16ad85, type: 3}
+  - {fileID: 6360352038334892682, guid: 9160f04f3ba4a864c8bd6cfd986c3fb5, type: 3}
+  - {fileID: 3059210923862347121, guid: 8e1dd90c091e7d944922feecde6a0d8a, type: 3}
   asteroidSwarms:
-  - numAsteroids: 50
-    velocity: 10
+  - numAsteroids: 100
+    velocity: 5
     minAsteroidScaleMultiplier: 0.8
     maxAsteroidScaleMultiplier: 1.2
 --- !u!4 &2063208161
