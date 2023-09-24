@@ -46,8 +46,7 @@ public class Attractable : MonoBehaviour
 				totalFragmentableMass -= downscaledMass;
 			}
 
-			// TODO investigate the validity of using renderer bounds to get the size
-			float fragmentSpawnRadius = GetComponent<Renderer>().bounds.size.x / 2.0f;
+			float fragmentSpawnRadius = GetComponent<Collider>().bounds.size.x / 2.0f;
 			Vector3 spawnPoint = collision.GetContact(0).point + Random.insideUnitSphere.normalized * Random.Range(-fragmentSpawnRadius, fragmentSpawnRadius);
 			spawnPoint.z = 0.0f;
 
