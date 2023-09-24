@@ -82,6 +82,9 @@ public class Attractable : MonoBehaviour
 			}
 			else
 			{
+				// TODO this is physically inaccurate and cancels out velocity for no reason if the other body's velocity is different
+				// need to properly calculate the velocity while taking into account the masses and forces involved
+
 				float totalMass = rb.mass + collision.rigidbody.mass;
 
 				Vector3 compoundVelocity = Vector3.zero;
