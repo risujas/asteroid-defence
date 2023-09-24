@@ -11,54 +11,27 @@ public class Attractable : MonoBehaviour
 	[SerializeField] private bool destroyUponCollision = true;
 	[SerializeField] private float collisionSpeedThreshold = 0.2f;
 	[SerializeField] private GameObject impactEffectPrefab;
-	[SerializeField] private bool canBeUsedAsFragment = false;
 	[SerializeField] private bool canSpawnFragments = false;
 
 	private GameObject spawnedObjectsContainer;
 	private AsteroidSpawner asteroidSpawner;
 
 	public Rigidbody rb { get; private set; }
-	public bool CanSpawnAsFragment => canBeUsedAsFragment;
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 postCollisionVector)
 	{
-		var validPrefabs = asteroidSpawner.GetPossibleFragmentPrefabs();
-		if (validPrefabs == null || validPrefabs.Count == 0)
-		{
-			return;
-		}
+		float fragmentSpawnRadius = GetComponent<Collider>().bounds.size.x / 2.0f;
+		float totalFragmentableMass = rb.mass * 0.5f;
 
-		float totalFragmentableMass = rb.mass / 2.0f;
 		while (totalFragmentableMass > 0.0f)
 		{
-			Attractable fragmentPrefab = validPrefabs[Random.Range(0, validPrefabs.Count - 1)];
-			Rigidbody fragmentPrefabRigidbody = fragmentPrefab.GetComponent<Rigidbody>();
-
-			float fragmentScale = Random.Range(asteroidSpawner.FragmentScaleMin, asteroidSpawner.FragmentScaleMax);
-			float downscaledMass = fragmentPrefabRigidbody.mass * Mathf.Pow(fragmentScale, 3);
-
-			if (downscaledMass > totalFragmentableMass)
-			{
-				break;
-			}
-			else
-			{
-				totalFragmentableMass -= downscaledMass;
-			}
-
-			float fragmentSpawnRadius = GetComponent<Collider>().bounds.size.x / 2.0f;
 			Vector3 spawnPoint = collision.GetContact(0).point + Random.insideUnitSphere.normalized * Random.Range(-fragmentSpawnRadius, fragmentSpawnRadius);
 			spawnPoint.z = 0.0f;
 
-			var newFragment = Instantiate(fragmentPrefab, spawnPoint, Quaternion.identity, asteroidSpawner.transform);
+			var newFragment = asteroidSpawner.SpawnFragment(spawnPoint);
+			newFragment.rb.velocity = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
 
-			newFragment.canSpawnFragments = false;
-
-			newFragment.transform.localScale *= fragmentScale;
-
-			Vector3 fragmentVector = Quaternion.AngleAxis(Random.Range(-30.0f, 30.0f), Vector3.forward) * postCollisionVector;
-			newFragment.rb.velocity = fragmentVector;
-			newFragment.rb.mass = downscaledMass;
+			totalFragmentableMass -= newFragment.rb.mass;
 		}
 	}
 
