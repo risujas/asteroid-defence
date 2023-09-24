@@ -39,6 +39,7 @@ public class Attractable : MonoBehaviour
 	{
 		if (impactEffectPrefab != null)
 		{
+			bool collidedWithMajorBody = collision.gameObject.GetComponent<Attractor>();
 			Vector3 spawnPoint = collision.GetContact(0).point;
 
 			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
@@ -46,18 +47,12 @@ public class Attractable : MonoBehaviour
 			effect.transform.parent = spawnedObjectsContainer.transform;
 
 			var vfx = effect.GetComponent<VisualEffect>();
-			if (vfx != null)
-			{
-				if (vfx.HasFloat("ejectionSpeed"))
-				{
-					vfx.SetFloat("ejectionSpeed", postCollisionVector.magnitude);
-				}
-			}
+			vfx.SetFloat("fragmentMaxVelocity", postCollisionVector.magnitude);
+			vfx.SetBool("useAltColor", collidedWithMajorBody);
 
-			var follower = effect.GetComponent<FollowObject>();
-			if (follower != null)
+			if (effect.TryGetComponent<FollowObject>(out var follower))
 			{
-				if (collision.gameObject.GetComponent<Attractor>())
+				if (collidedWithMajorBody)
 				{
 					follower.objectToFollow = collision.gameObject;
 					follower.offset = transform.position - collision.gameObject.transform.position;

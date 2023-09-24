@@ -20,10 +20,7 @@ MonoBehaviour:
       y: 0
       width: 100
       height: 100
-    contents:
-    - model: {fileID: 8926484042661615330}
-      id: 0
-      isStickyNote: 0
+    contents: []
   - title: New Group Node
     position:
       serializedVersion: 2
@@ -36,7 +33,7 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -0
+    x: 0
     y: -190
     width: 2747
     height: 2033
@@ -6414,7 +6411,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615348}
       inputSlot: {fileID: 8926484042661614719}
-    position: {x: 2125, y: 1772}
+    position: {x: 2129, y: 1771}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661615348
