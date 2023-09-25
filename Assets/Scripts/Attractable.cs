@@ -90,22 +90,16 @@ public class Attractable : MonoBehaviour
 
 	private void HandleCollision(Collision collision)
 	{
-		float relV = rb.velocity.magnitude;
-		if (collision.rigidbody != null)
+		if (rb.velocity.magnitude > collisionSpeedThreshold)
 		{
-			relV = (collision.rigidbody.velocity - rb.velocity).magnitude;
-		}
+			hasCollided = true;
 
-		if (relV > collisionSpeedThreshold)
-		{
 			if (canSpawnFragments)
 			{
 				SpawnCollisionFragments(collision);
 			}
 
 			SpawnCollisionEffects(collision);
-
-			hasCollided = true;
 		}
 	}
 
