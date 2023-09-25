@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7519984567608261686}
   - component: {fileID: 1904057561077924394}
   - component: {fileID: 304836874625472257}
-  - component: {fileID: -8764900263379808826}
+  - component: {fileID: 2452674397496366469}
   - component: {fileID: -7835772874586326412}
   - component: {fileID: -812345924299847753}
   - component: {fileID: 5098365778527326793}
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 1
---- !u!114 &-8764900263379808826
+--- !u!114 &2452674397496366469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,16 +124,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1152672333653229308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
+  m_Script: {fileID: 11500000, guid: 38e1490738ff5ec4990aa8f7a46d4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   destroyUponCollision: 1
   collisionSpeedThreshold: 0
-  impactEffectPrefab: {fileID: 0}
-  canSpawnFragments: 1
   OnCollision:
     m_PersistentCalls:
       m_Calls: []
+  canSpawnFragments: 0
+  impactEffectPrefab: {fileID: 0}
 --- !u!114 &-7835772874586326412
 MonoBehaviour:
   m_ObjectHideFlags: 0

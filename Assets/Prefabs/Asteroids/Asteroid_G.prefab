@@ -23,6 +23,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid_G
       objectReference: {fileID: 0}
+    - target: {fileID: 2452674397496366469, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: canSpawnFragments
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7519984567608261686, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
       propertyPath: m_Mesh
