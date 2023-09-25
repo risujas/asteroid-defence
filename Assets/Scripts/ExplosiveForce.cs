@@ -16,7 +16,14 @@ public class ExplosiveForce : MonoBehaviour
 		var affectedBodies = Physics.OverlapSphere(origin.transform.position, radius);
 		foreach (var b in affectedBodies)
 		{
-			b.attachedRigidbody.AddExplosionForce(force, origin.transform.position, radius);
+			Vector3 direction = origin.transform.position - b.transform.position;
+			float distance = direction.magnitude;
+			direction.Normalize();
+
+			float actualForce = force * (radius - distance) / radius;
+			Vector3 forceVector = -direction * actualForce;
+
+			b.attachedRigidbody.AddForce(forceVector, ForceMode.Impulse);
 		}
 	}
 }

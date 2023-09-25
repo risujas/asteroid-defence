@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 9021511076118991507}
-  force: 30
+  force: 0.5
   radius: 0.2
 --- !u!4 &6761395272975807230 stripped
 Transform:
