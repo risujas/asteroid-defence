@@ -5,6 +5,7 @@ public class DamageWithinRadius : MonoBehaviour
 	[SerializeField] private GameObject origin = null;
 	[SerializeField] private float damage = 1.0f;
 	[SerializeField] private float radius = 0.5f;
+	[SerializeField] private bool applyOnStart = false;
 
 	public void ApplyWithinRadius()
 	{
@@ -20,6 +21,14 @@ public class DamageWithinRadius : MonoBehaviour
 			{
 				health.ChangeHealth(-damage);
 			}
+		}
+	}
+
+	private void Start()
+	{
+		if (applyOnStart)
+		{
+			ApplyWithinRadius();
 		}
 	}
 }
