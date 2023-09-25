@@ -3,10 +3,10 @@ public class CreateGameObject : MonoBehaviour
 {
 	[SerializeField] private Transform origin;
 	[SerializeField] private GameObject selectedObject;
-	[SerializeField] private bool enableTimer = false;
-	[SerializeField] private float timerDuration = 1.0f;
+	[SerializeField] private bool autoApply = false;
+	[SerializeField] private float autoApplyDelay = 0.0f;
 
-	private float startTime = 0.0f;
+	private float initialTime = 0.0f;
 
 	public void InstantiateSelected()
 	{
@@ -15,17 +15,14 @@ public class CreateGameObject : MonoBehaviour
 
 	private void Start()
 	{
-		startTime = Time.time;
+		initialTime = Time.time;
 	}
 
 	private void Update()
 	{
-		if (enableTimer)
+		if (autoApply && Time.time >= initialTime + autoApplyDelay)
 		{
-			if (Time.time >= startTime + timerDuration)
-			{
-				InstantiateSelected();
-			}
+			InstantiateSelected();
 		}
 	}
 }

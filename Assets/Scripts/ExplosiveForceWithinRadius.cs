@@ -6,9 +6,9 @@ public class ExplosiveForceWithinRadius : MonoBehaviour
 	[SerializeField] private float force = 1.0f;
 	[SerializeField] private float radius = 0.5f;
 	[SerializeField] private bool autoApply = false;
-	[SerializeField] private int autoApplyFrameDelay = 1;
+	[SerializeField] private float autoApplyDelay = 0.0f;
 
-	private int initialFrame = 0;
+	private float initialTime = 0.0f;
 
 	public void Apply()
 	{
@@ -33,12 +33,12 @@ public class ExplosiveForceWithinRadius : MonoBehaviour
 
 	private void Start()
 	{
-		initialFrame = Time.frameCount;
+		initialTime = Time.time;
 	}
 
 	private void Update()
 	{
-		if (autoApply && Time.frameCount >= initialFrame + autoApplyFrameDelay)
+		if (autoApply && Time.frameCount >= initialTime + autoApplyDelay)
 		{
 			autoApply = false;
 			Apply();

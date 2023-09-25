@@ -49,7 +49,7 @@ MonoBehaviour:
   force: 1
   radius: 0.2
   autoApply: 1
-  autoApplyFrameDelay: 1
+  autoApplyDelay: 0.05
 --- !u!114 &2777561230185970401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,5 +63,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObject: {fileID: 1154630219431725343}
-  enableTimer: 1
-  timerDuration: 5
+  autoApply: 1
+  autoApplyDelay: 1

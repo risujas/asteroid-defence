@@ -2,10 +2,10 @@ using UnityEngine;
 public class DestroyGameObject : MonoBehaviour
 {
 	[SerializeField] private GameObject selectedObject;
-	[SerializeField] private bool enableTimer = false;
-	[SerializeField] private float timerDuration = 1.0f;
+	[SerializeField] private bool autoApply = false;
+	[SerializeField] private float autoApplyDelay = 0.0f;
 
-	private float startTime = 0.0f;
+	private float initialTime = 0.0f;
 
 	public void DestroySelected()
 	{
@@ -14,17 +14,14 @@ public class DestroyGameObject : MonoBehaviour
 
 	private void Start()
 	{
-		startTime = Time.time;
+		initialTime = Time.time;
 	}
 
 	private void Update()
 	{
-		if (enableTimer)
+		if (autoApply && Time.time >= initialTime + autoApplyDelay)
 		{
-			if (Time.time >= startTime + timerDuration)
-			{
-				DestroySelected();
-			}
+			DestroySelected();
 		}
 	}
 }
