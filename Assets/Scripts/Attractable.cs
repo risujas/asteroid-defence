@@ -33,7 +33,7 @@ public class Attractable : MonoBehaviour
 	}
 
 
-	private void SpawnCollisionFragments(Collision collision, Vector3 postCollisionVector)
+	private void SpawnCollisionFragments(Collision collision)
 	{
 		float fragmentSpawnRadius = GetComponent<Collider>().bounds.size.x / 2.0f;
 		float totalFragmentableMass = rb.mass * 0.5f;
@@ -44,13 +44,13 @@ public class Attractable : MonoBehaviour
 			spawnPoint.z = 0.0f;
 
 			var newFragment = asteroidSpawner.SpawnFragment(spawnPoint);
-			newFragment.rb.velocity = Quaternion.AngleAxis(Random.Range(-20.0f, 20.0f), Vector3.forward) * postCollisionVector;
+			newFragment.rb.velocity = Quaternion.AngleAxis(Random.Range(-20.0f, 20.0f), Vector3.forward) * rb.velocity;
 
 			totalFragmentableMass -= newFragment.rb.mass;
 		}
 	}
 
-	private void SpawnCollisionEffects(Collision collision, Vector3 postCollisionVector)
+	private void SpawnCollisionEffects(Collision collision)
 	{
 		if (impactEffectPrefab != null)
 		{
@@ -58,11 +58,11 @@ public class Attractable : MonoBehaviour
 			Vector3 spawnPoint = collision.GetContact(0).point;
 
 			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
-			effect.transform.up = postCollisionVector;
+			effect.transform.up = rb.velocity.normalized;
 			effect.transform.parent = spawnedObjectsContainer.transform;
 
 			var vfx = effect.GetComponent<VisualEffect>();
-			vfx.SetFloat("fragmentMaxVelocity", postCollisionVector.magnitude);
+			vfx.SetFloat("fragmentMaxVelocity", rb.velocity.magnitude * 1.5f);
 			vfx.SetBool("useAltColor", collidedWithMajorBody);
 
 			if (effect.TryGetComponent<FollowObject>(out var follower))
@@ -90,32 +90,12 @@ public class Attractable : MonoBehaviour
 
 		if (relV > collisionSpeedThreshold)
 		{
-			Vector3 postCollisionVector;
-
-			if (collision.gameObject.GetComponent<Attractor>() != null)
-			{
-				postCollisionVector = Vector3.Reflect(rb.velocity, collision.GetContact(0).normal);
-			}
-			else
-			{
-				// TODO this is physically inaccurate and cancels out velocity for no reason if the other body's velocity is different
-				// need to properly calculate the velocity while taking into account the masses and forces involved
-
-				float totalMass = rb.mass + collision.rigidbody.mass;
-
-				Vector3 compoundVelocity = Vector3.zero;
-				compoundVelocity += rb.velocity * (rb.mass / totalMass);
-				compoundVelocity += collision.rigidbody.velocity * (collision.rigidbody.mass / totalMass);
-
-				postCollisionVector = compoundVelocity;
-			}
-
 			if (canSpawnFragments)
 			{
-				SpawnCollisionFragments(collision, postCollisionVector);
+				SpawnCollisionFragments(collision);
 			}
 
-			SpawnCollisionEffects(collision, postCollisionVector * 1.5f);
+			SpawnCollisionEffects(collision);
 
 			if (destroyUponCollision)
 			{
