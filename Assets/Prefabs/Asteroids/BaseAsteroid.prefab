@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 0}
   materialEmissionString: _EmissionIntensity
-  maxEmissionIntensity: 10
+  maxEmissionIntensity: 5
   temperature: 0
 --- !u!114 &5098365778527326793
 MonoBehaviour:
