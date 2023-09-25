@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 
 public class Attractable : MonoBehaviour
@@ -14,8 +16,13 @@ public class Attractable : MonoBehaviour
 
 	private GameObject spawnedObjectsContainer;
 	private AsteroidSpawner asteroidSpawner;
+	private bool hasCollided = false;
 
-	public Rigidbody rb { get; private set; }
+	[Serializable] public class CollisionEvent : UnityEvent { }
+	[SerializeField] private CollisionEvent OnCollision;
+
+	public Rigidbody rb
+	{ get; private set; }
 
 	public void DefineOrbit(Rigidbody centralBody, float periapsis)
 	{
@@ -40,11 +47,11 @@ public class Attractable : MonoBehaviour
 
 		while (totalFragmentableMass > 0.0f)
 		{
-			Vector3 spawnPoint = collision.GetContact(0).point + Random.insideUnitSphere.normalized * Random.Range(-fragmentSpawnRadius, fragmentSpawnRadius);
+			Vector3 spawnPoint = collision.GetContact(0).point + UnityEngine.Random.insideUnitSphere.normalized * UnityEngine.Random.Range(-fragmentSpawnRadius, fragmentSpawnRadius);
 			spawnPoint.z = 0.0f;
 
 			var newFragment = asteroidSpawner.SpawnFragment(spawnPoint);
-			newFragment.rb.velocity = Quaternion.AngleAxis(Random.Range(-20.0f, 20.0f), Vector3.forward) * rb.velocity;
+			newFragment.rb.velocity = rb.velocity;
 
 			totalFragmentableMass -= newFragment.rb.mass;
 		}
@@ -97,10 +104,7 @@ public class Attractable : MonoBehaviour
 
 			SpawnCollisionEffects(collision);
 
-			if (destroyUponCollision)
-			{
-				Destroy(gameObject);
-			}
+			hasCollided = true;
 		}
 	}
 
@@ -128,5 +132,18 @@ public class Attractable : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 		HandleCollision(collision);
+	}
+
+	private void Update()
+	{
+		if (hasCollided)
+		{
+			OnCollision.Invoke();
+
+			if (destroyUponCollision)
+			{
+				Destroy(gameObject);
+			}
+		}
 	}
 }
