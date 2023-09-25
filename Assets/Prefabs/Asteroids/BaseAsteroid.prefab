@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5844094979547599755}
   - component: {fileID: -812345924299847753}
   - component: {fileID: 5098365778527326793}
+  - component: {fileID: 1852645836161646785}
   m_Layer: 12
   m_Name: BaseAsteroid
   m_TagString: Untagged
@@ -127,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1490738ff5ec4990aa8f7a46d4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyUponCollision: 0
   collisionSpeedThreshold: 0
   OnCollision:
     m_PersistentCalls:
@@ -157,6 +157,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2452674397496366469}
         m_TargetAssemblyTypeName: Asteroid, Assembly-CSharp
         m_MethodName: SpawnCollisionFragments
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1852645836161646785}
+        m_TargetAssemblyTypeName: DestroySelf, Assembly-CSharp
+        m_MethodName: Destroy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -203,3 +215,17 @@ MonoBehaviour:
   minValue: 0.75
   maxValue: 1
   selectedColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1852645836161646785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152672333653229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b89d6a7f793d0547ae59fa721e9ce61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableTimer: 0
+  timerDuration: 1
