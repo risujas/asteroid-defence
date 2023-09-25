@@ -4364,13 +4364,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centralBody: {fileID: 210935014}
   cullingDistance: 200
-  minSpawnDistance: 2
-  maxSpawnDistance: 3
+  minSpawnDistance: 10
+  maxSpawnDistance: 20
   asteroidScaleMin: 0.8
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
   fragmentScaleMax: 0.9
-  attractablesLimit: 2
+  attractablesLimit: 1000
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
