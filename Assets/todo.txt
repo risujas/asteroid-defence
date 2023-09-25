@@ -42,6 +42,15 @@ alternatively, create a bunch of effects and add them as a list to AsteroidSpawn
 disable asteroid colliders by default, enable after travelling a distance equal to the collider's size?
 
 TODO LIST
-- Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
-- You gain 1000 funds for destroying an asteroid, 500 if an asteroid collides with the planet
+- Add "flyby asteroids"; high velocity, not in an orbital trajectory
+- Flyby asteroids should maybe spawn in groups; massive clouds of asteroids sweeping through the system and causing havoc
+- Eventually, maybe add a dynamic difficulty that makes the game more challenging depending on how well you are doing
+
+- Improved camera:
+	Allow panning around the planet somehow
+	When controlling a missile, lerp to its position, and adjust camera zoom depending on the speed
+
+- Gain funds based on mass when an asteroid impacts the planet; gain double? funds when asteroids are destroyed
+
 - The planet has a health that slowly regenerates, 0 health -> defeat
+- Maybe some items (missiles etc) require a baseline health to use? maybe not fun though
