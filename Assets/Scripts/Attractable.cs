@@ -8,7 +8,6 @@ public class Attractable : MonoBehaviour
 	protected static List<Attractable> spawnedAttractables = new();
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
-	[SerializeField] protected bool destroyUponCollision = true;
 	[SerializeField] protected float collisionSpeedThreshold = 0.2f;
 
 	protected GameObject spawnedObjectsContainer;
@@ -72,11 +71,6 @@ public class Attractable : MonoBehaviour
 		if (hasCollided)
 		{
 			OnCollision.Invoke();
-
-			if (destroyUponCollision)
-			{
-				Destroy(gameObject);
-			}
 		}
 	}
 }
