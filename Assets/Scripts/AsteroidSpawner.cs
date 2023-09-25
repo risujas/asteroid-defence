@@ -11,6 +11,7 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float asteroidScaleMax = 1.1f;
 	[SerializeField] private float fragmentScaleMin = 0.75f;
 	[SerializeField] private float fragmentScaleMax = 1.0f;
+	[SerializeField] private int asteroidLimit = 100;
 	[SerializeField] private List<Attractable> asteroidPrefabs = new List<Attractable>();
 	[SerializeField] private List<Attractable> fragmentPrefabs = new List<Attractable>();
 
@@ -63,7 +64,7 @@ public class AsteroidSpawner : MonoBehaviour
 	{
 		CullDistantAsteroids();
 
-		if (Attractable.SpawnedAttractables.Count < 100 && spawnerTimer.Tick())
+		if (Attractable.SpawnedAttractables.Count < asteroidLimit && spawnerTimer.Tick())
 		{
 			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
 			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
