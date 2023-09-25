@@ -1,5 +1,5 @@
 using UnityEngine;
-public class DestroySelf : MonoBehaviour
+public class DestroyGameObject : MonoBehaviour
 {
 	[SerializeField] private bool enableTimer = false;
 	[SerializeField] private float timerDuration = 1.0f;
