@@ -1,5 +1,5 @@
 using UnityEngine;
-public class DestroyGameObject : MonoBehaviour
+public class CreateGameObject : MonoBehaviour
 {
 	[SerializeField] private GameObject selectedObject;
 	[SerializeField] private bool enableTimer = false;
@@ -7,9 +7,9 @@ public class DestroyGameObject : MonoBehaviour
 
 	private float startTime = 0.0f;
 
-	public void DestroySelected()
+	public void InstantiateSelected()
 	{
-		Destroy(selectedObject);
+		Instantiate(selectedObject, transform.position, transform.rotation);
 	}
 
 	private void Start()
@@ -23,7 +23,7 @@ public class DestroyGameObject : MonoBehaviour
 		{
 			if (Time.time >= startTime + timerDuration)
 			{
-				DestroySelected();
+				InstantiateSelected();
 			}
 		}
 	}

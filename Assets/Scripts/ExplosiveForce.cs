@@ -5,6 +5,7 @@ public class ExplosiveForce : MonoBehaviour
 	[SerializeField] private GameObject origin = null;
 	[SerializeField] private float force = 1.0f;
 	[SerializeField] private float radius = 0.5f;
+	[SerializeField] private bool applyOnStart = false;
 
 	public void ApplyWithinRadius()
 	{
@@ -24,6 +25,14 @@ public class ExplosiveForce : MonoBehaviour
 			Vector3 forceVector = -direction * actualForce;
 
 			b.attachedRigidbody.AddForce(forceVector, ForceMode.Impulse);
+		}
+	}
+
+	private void Start()
+	{
+		if (applyOnStart)
+		{
+			ApplyWithinRadius();
 		}
 	}
 }

@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 	[SerializeField] private float maxHitpoints = 100.0f;
 	[SerializeField] private bool enableRegeneration = false;
 	[SerializeField] private float regenerationRate = 0.0f;
+	[SerializeField] private bool destroyUponDeath = false;
 
 	private bool isDead = false;
 
@@ -46,6 +47,11 @@ public class Health : MonoBehaviour
 			{
 				isDead = true;
 				OnDeath.Invoke();
+
+				if (destroyUponDeath)
+				{
+					Destroy(gameObject);
+				}
 			}
 		}
 		else
