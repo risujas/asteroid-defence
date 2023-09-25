@@ -129,8 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyUponCollision: 1
   collisionSpeedThreshold: 0
-  impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
-    type: 3}
+  impactEffectPrefab: {fileID: 0}
   canSpawnFragments: 1
   OnCollision:
     m_PersistentCalls:
