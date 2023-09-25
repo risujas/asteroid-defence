@@ -26,26 +26,33 @@ destroying objects also grants you funding
 asteroid impacts damage planetary infrastructure and destroy buildings
 major asteroid impacts can cause a nuclear winter, resulting in a game-over
 
-add public rigidbody references to attractor and attractable, use it instead of constantly calling GetComponent everywhere
-
 add vfx for when rb is slowing down in the atmosphere
 
 make asteroids sink into the ground upon collision
 
-prevent fragments from colliding with each other
-
-rethink how fragment velocity should behave when they're spawned
-right now a missile impact will send all of the fragments to the missile's direction of travel although realistically their inertia should keep them moving in the asteroid's direction of travel
-?? maybe done ^
-
-add fragment glow from atmosphere
-
 add vfx for atmospheric entry; plasma glow leading the object; sparks trailing the object
 
+prevent spawning fragments when colliding with a major body (planets, moons), only do so when colliding with a missile
+
+combine attractable and attractor into a single class? , control with a canAttractBodies flag? might cause physics instability because of order of execution getting mixed up 
+
+maybe create a single impact effect that can be heavily configured on the fly to account for impacts of all kinds; small flashes, big ejecta, massive planet killers...
+alternatively, create a bunch of effects and add them as a list to AsteroidSpawner which will give you the correct one depending on your body
+
+disable asteroid colliders by default, enable after travelling a distance equal to the collider's size?
+
 TODO LIST
-- Add a better collision system for the missile, for example, scrap the "collision enabler" and give it permanent collision but require a minimum impact relative velocity. Requires calculating the moon velocity
-- Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
-- Add a funds system, building missiles costs funds
-- You gain funds over time
-- You gain 1000 funds for destroying an asteroid, 500 if an asteroid collides with the planet
+- Add "flyby asteroids"; high velocity, not in an orbital trajectory
+- Flyby asteroids should maybe spawn in groups; massive clouds of asteroids sweeping through the system and causing havoc
+- Eventually, maybe add a dynamic difficulty that makes the game more challenging depending on how well you are doing
+
+add temperature gauge next to the planet health UI
+
+- Improved camera:
+	Allow panning around the planet somehow
+	When controlling a missile, lerp to its position, and adjust camera zoom depending on the speed
+
+- Gain funds based on mass when an asteroid impacts the planet; gain double? funds when asteroids are destroyed
+
 - The planet has a health that slowly regenerates, 0 health -> defeat
+- Maybe some items (missiles etc) require a baseline health to use? maybe not fun though

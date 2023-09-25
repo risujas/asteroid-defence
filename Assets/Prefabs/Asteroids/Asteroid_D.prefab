@@ -23,10 +23,20 @@ PrefabInstance:
       propertyPath: randomMin.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 304836874625472257, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: m_Mass
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 1152672333653229308, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
       propertyPath: m_Name
       value: Asteroid_D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452674397496366469, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: canSpawnFragments
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4115998115669813881, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
@@ -46,13 +56,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8037304303062309020, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037304303062309020, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8037304303062309020, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00046084
       objectReference: {fileID: 0}
     - target: {fileID: 8037304303062309020, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
@@ -94,6 +109,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8037304303062309020, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8463498906597668349, guid: c67e856b27c972045b1ec5e24c20ce6e, type: 3}
     m_RemovedGameObjects: []
@@ -101,7 +121,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1152672333653229308, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
-      insertIndex: 3
+      insertIndex: 4
       addedObject: {fileID: 3531568739482803359}
   m_SourcePrefab: {fileID: 100100000, guid: c67e856b27c972045b1ec5e24c20ce6e, type: 3}
 --- !u!1 &1721786545258472147 stripped
@@ -129,7 +149,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.40005258
+  m_Radius: 0.36
   m_Height: 1.984571
   m_Direction: 1
   m_Center: {x: -0.008792788, y: -0.026333451, z: -0.0068842024}

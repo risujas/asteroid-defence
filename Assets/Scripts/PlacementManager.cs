@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlacementManager : MonoBehaviour
 {
-	[SerializeField] private float placementPoints = 100.0f;
+	[SerializeField] private FundsManager fundsManager;
 
 	[Header("Placement Aid")]
 	[SerializeField] private Material placementAidMaterialValid;
@@ -37,7 +37,7 @@ public class PlacementManager : MonoBehaviour
 
 	private void FinalizePlacement(PlacementAnchor anchor)
 	{
-		placementPoints -= selectedPlaceablePrefab.PlacementCost;
+		fundsManager.Funds -= selectedPlaceablePrefab.PlacementCost;
 
 		var newBuilding = Instantiate(selectedPlaceablePrefab, placementAidMarker.transform.position, placementAidMarker.transform.rotation);
 		if (newBuilding.AddToAnchorHierarchy)
@@ -94,7 +94,7 @@ public class PlacementManager : MonoBehaviour
 					timescaleChangerReference.SetTimescale(0.1f);
 				}
 
-				if (placementPoints < selectedPlaceablePrefab.PlacementCost)
+				if (fundsManager.Funds < selectedPlaceablePrefab.PlacementCost)
 				{
 					placementAidMarkerRenderer.material = placementAidMaterialInvalid;
 				}
@@ -116,6 +116,14 @@ public class PlacementManager : MonoBehaviour
 				timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 				CancelPlacement();
 			}
+		}
+	}
+
+	private void Start()
+	{
+		if (fundsManager == null)
+		{
+			fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
 		}
 	}
 

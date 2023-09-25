@@ -1,121 +1,77 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-	[Serializable]
-	public class AsteroidSwarm
-	{
-		public int numAsteroids;
-		public int numFragments;
-		public float velocity;
-		public float minAsteroidScaleMultiplier;
-		public float maxAsteroidScaleMultiplier;
-	}
-
 	[SerializeField] private Attractor centralBody;
-	[SerializeField] private float swarmSpawnDistance = 100.0f;
-	[SerializeField] private float swarmSpawnRadius = 20.0f;
-	[SerializeField] private float cullDistance = 200.0f;
-	[SerializeField] private List<GameObject> asteroidPrefabs = new List<GameObject>();
-	[SerializeField] private GameObject fragmentPrefab;
-	[SerializeField] private List<AsteroidSwarm> asteroidSwarms = new();
+	[SerializeField] private float cullingDistance = 200.0f;
+	[SerializeField] private float minSpawnDistance = 30.0f;
+	[SerializeField] private float maxSpawnDistance = 100.0f;
+	[SerializeField] private float asteroidScaleMin = 0.8f;
+	[SerializeField] private float asteroidScaleMax = 1.1f;
+	[SerializeField] private float fragmentScaleMin = 0.75f;
+	[SerializeField] private float fragmentScaleMax = 1.0f;
+	[SerializeField] private int attractablesLimit = 100;
+	[SerializeField] private List<Attractable> asteroidPrefabs = new List<Attractable>();
+	[SerializeField] private List<Attractable> fragmentPrefabs = new List<Attractable>();
 
-	private Vector3 swarmSpawnPoint;
+	private IntervalChanceTimer spawnerTimer = new(1.0f, 1.0f);
 	private GameObject spawnedObjectsContainer;
 
-	private void SpawnNextSwarm()
+	public Attractable SpawnFragment(Vector3 spawnPoint)
 	{
-		if (asteroidSwarms.Count < 1)
-		{
-			return;
-		}
-
-		var swarm = asteroidSwarms[0];
-		asteroidSwarms.RemoveAt(0);
-
-		swarmSpawnPoint = centralBody.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle * swarmSpawnDistance;
-		Vector3 headingVector = GetHeadingVector(swarmSpawnPoint, centralBody.transform.position, 0.0f);
-
-		for (int i = 0; i < swarm.numAsteroids; i++)
-		{
-			var asteroid = SpawnAsteroid(swarm.minAsteroidScaleMultiplier, swarm.maxAsteroidScaleMultiplier);
-			DefineTrajectory(asteroid, swarm.velocity, headingVector);
-		}
-
-		for (int i = 0; i < swarm.numFragments; i++)
-		{
-			var fragment = SpawnFragment();
-			DefineTrajectory(fragment, swarm.velocity, headingVector);
-		}
+		var randomPrefab = fragmentPrefabs[Random.Range(0, fragmentPrefabs.Count)];
+		return SpawnAsteroid(spawnPoint, fragmentScaleMin, fragmentScaleMax, randomPrefab);
 	}
 
-	private Attractable SpawnAsteroid(float minScaleMultiplier, float maxScaleMultiplier)
+	public Attractable SpawnAsteroid(Vector3 spawnPoint)
 	{
-		Vector3 spawnPos = swarmSpawnPoint;
-		spawnPos += UnityEngine.Random.insideUnitSphere * swarmSpawnRadius;
-		spawnPos.z = 0.0f;
+		var randomPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Count)];
+		return SpawnAsteroid(spawnPoint, asteroidScaleMin, asteroidScaleMax, randomPrefab);
+	}
 
-		var randomPrefab = asteroidPrefabs[UnityEngine.Random.Range(0, asteroidPrefabs.Count)];
-		var newAsteroid = Instantiate(randomPrefab, spawnPos, Quaternion.identity, spawnedObjectsContainer.transform);
+	private Attractable SpawnAsteroid(Vector3 spawnPoint, float minScaleMultiplier, float maxScaleMultiplier, Attractable prefab)
+	{
+		float scaleMultiplier = Random.Range(minScaleMultiplier, maxScaleMultiplier);
 
-		float scaleMultiplier = UnityEngine.Random.Range(minScaleMultiplier, maxScaleMultiplier);
+		var newAsteroid = Instantiate(prefab, spawnPoint, Quaternion.identity, spawnedObjectsContainer.transform);
 		newAsteroid.transform.localScale *= scaleMultiplier;
+		newAsteroid.rb.mass *= Mathf.Pow(scaleMultiplier, 3);
 
-		var rb = newAsteroid.GetComponent<Rigidbody>();
-		rb.mass *= Mathf.Pow(scaleMultiplier, 3);
-
-		return newAsteroid.GetComponent<Attractable>();
+		return newAsteroid;
 	}
 
-	private Attractable SpawnFragment()
-	{
-		Vector3 spawnPos = swarmSpawnPoint;
-		spawnPos += UnityEngine.Random.insideUnitSphere * swarmSpawnRadius;
-		spawnPos.z = 0.0f;
-
-		var newAsteroid = Instantiate(fragmentPrefab, spawnPos, Quaternion.identity, spawnedObjectsContainer.transform);
-
-		return newAsteroid.GetComponent<Attractable>();
-	}
-
-	private void DefineTrajectory(Attractable attractable, float velocityModifier, Vector3 headingVector)
-	{
-		Vector3 vectorAB = centralBody.transform.position - attractable.transform.position;
-		float distance = vectorAB.magnitude;
-		vectorAB.Normalize();
-
-		float orbitalVelocity = Mathf.Sqrt(Attractor.G * centralBody.rb.mass / distance) * velocityModifier;
-		var velocityVector = headingVector * orbitalVelocity;
-
-		attractable.rb.velocity = velocityVector;
-	}
-
-	private Vector3 GetHeadingVector(Vector3 fromVector, Vector3 toVector, float headingOffset)
-	{
-		Vector3 vectorAB = (toVector - fromVector).normalized;
-		return Quaternion.Euler(0, 0, headingOffset) * vectorAB;
-	}
-
-	private void Start()
-	{
-		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
-
-		SpawnNextSwarm();
-	}
-
-	private void Update()
+	private void CullDistantAsteroids()
 	{
 		for (int i = Attractable.SpawnedAttractables.Count - 1; i >= 0; i--)
 		{
 			var a = Attractable.SpawnedAttractables[i];
 			float distance = Vector3.Distance(transform.position, a.transform.position);
 
-			if (distance >= cullDistance)
+			if (distance >= cullingDistance)
 			{
 				Destroy(a.gameObject);
 			}
+		}
+	}
+
+	private void Start()
+	{
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+	}
+
+	private void Update()
+	{
+		CullDistantAsteroids();
+
+		if (Attractable.SpawnedAttractables.Count < attractablesLimit && spawnerTimer.Tick())
+		{
+			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
+
+			var asteroid = SpawnAsteroid(spawnPoint);
+			asteroid.DefineOrbit(centralBody.rb, 2.0f);
+			asteroid.rb.angularVelocity = new Vector3(0.0f, 0.0f, Mathf.Deg2Rad * Random.Range(-45.0f, 45.0f));
 		}
 	}
 }

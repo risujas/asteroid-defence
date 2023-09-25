@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8037304303062309020}
   - component: {fileID: 7519984567608261686}
   - component: {fileID: 1904057561077924394}
-  - component: {fileID: 8463498906597668349}
   - component: {fileID: 304836874625472257}
-  - component: {fileID: -8764900263379808826}
-  - component: {fileID: -7835772874586326412}
+  - component: {fileID: 2452674397496366469}
+  - component: {fileID: 5844094979547599755}
   - component: {fileID: -812345924299847753}
+  - component: {fileID: 5098365778527326793}
   m_Layer: 12
   m_Name: BaseAsteroid
   m_TagString: Untagged
@@ -88,27 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8463498906597668349
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152672333653229308}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &304836874625472257
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -136,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 1
---- !u!114 &-8764900263379808826
+--- !u!114 &2452674397496366469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,17 +124,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1152672333653229308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
+  m_Script: {fileID: 11500000, guid: 38e1490738ff5ec4990aa8f7a46d4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyUponCollision: 1
   collisionSpeedThreshold: 0
-  fragmentPrefab: {fileID: 4919711440837583866, guid: c4288778d0d8a3847bfe12abc4442b75,
-    type: 3}
-  fragmentTrail: {fileID: 0}
-  impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
-    type: 3}
---- !u!114 &-7835772874586326412
+  OnCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  canSpawnFragments: 0
+  impactEffectPrefab: {fileID: 0}
+--- !u!114 &5844094979547599755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,12 +142,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1152672333653229308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ce7aee773125b4db45d3e8c4cc355b, type: 3}
+  m_Script: {fileID: 11500000, guid: c5e9fa35117500e4cb817f4b0de365b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 304836874625472257}
-  randomMin: {x: 0, y: 0, z: -45}
-  randomMax: {x: 0, y: 0, z: 45}
+  hitpoints: 100
+  minHitpoints: 0
+  maxHitpoints: 100
+  enableRegeneration: 0
+  regenerationRate: 0
+  destroyUponDeath: 1
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2452674397496366469}
+        m_TargetAssemblyTypeName: Asteroid, Assembly-CSharp
+        m_MethodName: SpawnCollisionFragments
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-812345924299847753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,5 +180,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 0}
   materialEmissionString: _EmissionIntensity
-  maxEmissionIntensity: 10
+  maxEmissionIntensity: 5
   temperature: 0
+--- !u!114 &5098365778527326793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152672333653229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037d7f6072be5c04696b8bccc85f928a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomizeOnStart: 1
+  materialColorTintString: _ColorTint
+  minHue: 0
+  maxHue: 0.1
+  minSaturation: 0
+  maxSaturation: 0.25
+  minValue: 0.75
+  maxValue: 1
+  selectedColor: {r: 1, g: 1, b: 1, a: 1}

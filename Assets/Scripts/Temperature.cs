@@ -7,9 +7,10 @@ public class Temperature : MonoBehaviour
 	[SerializeField] private float maxEmissionIntensity = 10.0f;
 	[SerializeField] private float temperature = 0.0f;
 
-	private float temperatureDecay = 10.0f;
+	private float coolingSpeed = 50.0f;
 	private float minTemperature = 0.0f;
 	private float maxTemperature = 1000.0f;
+	private IntervalTimer adjustmentTimer = new IntervalTimer(1.0f / 30);
 
 	public float MaxTemperature => maxTemperature;
 
@@ -40,14 +41,17 @@ public class Temperature : MonoBehaviour
 		}
 	}
 
-	private void FixedUpdate()
+	private void Update()
 	{
 		if (temperature > 0.0f)
 		{
-			temperature -= temperatureDecay * Time.deltaTime;
+			temperature -= coolingSpeed * Time.deltaTime;
 			temperature = Mathf.Clamp(temperature, minTemperature, maxTemperature);
 
-			AdjustGlow();
+			if (adjustmentTimer.Tick())
+			{
+				AdjustGlow();
+			}
 		}
 	}
 }
