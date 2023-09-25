@@ -2319,12 +2319,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
+  - 0.1
   - 1
   - 2
   - 3
   - 5
   - 10
-  levelIndex: 0
+  levelIndex: 1
 --- !u!4 &948708501
 Transform:
   m_ObjectHideFlags: 0
