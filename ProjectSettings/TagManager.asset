@@ -7,6 +7,7 @@ TagManager:
   - MainCanvas
   - SpawnedObjectsContainer
   - AsteroidSpawner
+  - FundsManager
   layers:
   - Default
   - TransparentFX
