@@ -7,7 +7,7 @@ public class DamageWithinRadius : MonoBehaviour
 	[SerializeField] private float radius = 0.5f;
 	[SerializeField] private bool applyOnStart = false;
 
-	public void ApplyWithinRadius()
+	public void Apply()
 	{
 		if (origin == null)
 		{
@@ -28,7 +28,7 @@ public class DamageWithinRadius : MonoBehaviour
 	{
 		if (applyOnStart)
 		{
-			ApplyWithinRadius();
+			Apply();
 		}
 	}
 }

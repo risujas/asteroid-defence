@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class ExplosiveForce : MonoBehaviour
+public class ExplosiveForceWithinRadius : MonoBehaviour
 {
 	[SerializeField] private GameObject origin = null;
 	[SerializeField] private float force = 1.0f;
 	[SerializeField] private float radius = 0.5f;
-	[SerializeField] private bool applyOnStart = false;
+	[SerializeField] private bool autoApply = false;
+	[SerializeField] private int autoApplyFrameDelay = 1;
 
-	public void ApplyWithinRadius()
+	private int initialFrame = 0;
+
+	public void Apply()
 	{
 		if (origin == null)
 		{
@@ -30,9 +33,15 @@ public class ExplosiveForce : MonoBehaviour
 
 	private void Start()
 	{
-		if (applyOnStart)
+		initialFrame = Time.frameCount;
+	}
+
+	private void Update()
+	{
+		if (autoApply && Time.frameCount >= initialFrame + autoApplyFrameDelay)
 		{
-			ApplyWithinRadius();
+			autoApply = false;
+			Apply();
 		}
 	}
 }
