@@ -308,6 +308,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -5295853799064973344}
+    - targetCorrespondingSourceObject: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1254794989137810365}
   m_SourcePrefab: {fileID: 100100000, guid: b2ed3008998b13b4c98234b17a02c88e, type: 3}
 --- !u!1 &2892492363751606769 stripped
 GameObject:
@@ -394,13 +398,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyUponCollision: 1
   collisionSpeedThreshold: 0.05
-  impactEffectPrefab: {fileID: 0}
-  canSpawnFragments: 0
   OnCollision:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -5295853799064973344}
         m_TargetAssemblyTypeName: ExplosiveForce, Assembly-CSharp
+        m_MethodName: ApplyWithinRadius
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1254794989137810365}
+        m_TargetAssemblyTypeName: DamageWithinRadius, Assembly-CSharp
         m_MethodName: ApplyWithinRadius
         m_Mode: 1
         m_Arguments:
@@ -425,6 +439,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 9021511076118991507}
   force: 0.5
+  radius: 0.2
+--- !u!114 &1254794989137810365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892492363751606769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c3fb8f26669ba4d935bdea3ba9c0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 9021511076118991507}
+  damage: 50
   radius: 0.2
 --- !u!4 &6761395272975807230 stripped
 Transform:

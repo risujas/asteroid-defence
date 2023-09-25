@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
 	public void ChangeHealth(float change)
 	{
 		hitpoints += change;
+		Debug.Log(name + " health changed by " + change + "(" + hitpoints + ")");
 	}
 
 	private void Regenerate(float timeStep)
