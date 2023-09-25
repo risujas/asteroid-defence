@@ -43,7 +43,5 @@ disable asteroid colliders by default, enable after travelling a distance equal 
 
 TODO LIST
 - Scrap the asteroid swarm system, spawn individual asteroids/fragments that are either "orbital" or "flyby"
-- Add a funds system, building missiles costs funds
-- You gain funds over time
 - You gain 1000 funds for destroying an asteroid, 500 if an asteroid collides with the planet
 - The planet has a health that slowly regenerates, 0 health -> defeat
