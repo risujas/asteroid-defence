@@ -42,13 +42,14 @@ public class Attractable : MonoBehaviour
 
 	private void SpawnCollisionFragments(Collision collision)
 	{
-		float fragmentSpawnRadius = GetComponent<Collider>().bounds.size.x / 2.0f;
+		Bounds bounds = GetComponent<Collider>().bounds;
 		float totalFragmentableMass = rb.mass * 0.5f;
 
 		while (totalFragmentableMass > 0.0f)
 		{
-			Vector3 spawnPoint = collision.GetContact(0).point + UnityEngine.Random.insideUnitSphere.normalized * UnityEngine.Random.Range(-fragmentSpawnRadius, fragmentSpawnRadius);
-			spawnPoint.z = 0.0f;
+			Vector3 spawnPoint = Vector3.zero;
+			spawnPoint.x = UnityEngine.Random.Range(bounds.min.x, bounds.max.x);
+			spawnPoint.y = UnityEngine.Random.Range(bounds.min.y, bounds.max.y);
 
 			var newFragment = asteroidSpawner.SpawnFragment(spawnPoint);
 			newFragment.rb.velocity = rb.velocity;

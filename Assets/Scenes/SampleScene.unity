@@ -294,6 +294,9 @@ MonoBehaviour:
   collisionSpeedThreshold: 0.2
   impactEffectPrefab: {fileID: 0}
   canSpawnFragments: 0
+  OnCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &93002980
 MonoBehaviour:
   m_ObjectHideFlags: 0
