@@ -43,7 +43,7 @@ public class Attractable : MonoBehaviour
 	private void SpawnCollisionFragments(Collision collision)
 	{
 		Bounds bounds = GetComponent<Collider>().bounds;
-		float totalFragmentableMass = rb.mass * 0.5f;
+		float totalFragmentableMass = rb.mass;
 
 		while (totalFragmentableMass > 0.0f)
 		{
