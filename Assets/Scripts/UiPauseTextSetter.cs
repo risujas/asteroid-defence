@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PauseTextSetter : MonoBehaviour
+public class UiPauseTextSetter : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI text;
 	[SerializeField] private TimescaleChanger timescaleChanger;

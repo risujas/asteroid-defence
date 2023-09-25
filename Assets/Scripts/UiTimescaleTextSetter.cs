@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TimescaleTextSetter : MonoBehaviour
+public class UiTimescaleTextSetter : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI timescaleLevelText;
 	[SerializeField] private TextMeshProUGUI actualTimescaleText;
