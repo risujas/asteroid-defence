@@ -2082,6 +2082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityReductionFactor: 0.1
+  sizeReductionFactor: 0.15
   ignoredRigidbodies:
   - {fileID: 210935017}
 --- !u!23 &859960795
