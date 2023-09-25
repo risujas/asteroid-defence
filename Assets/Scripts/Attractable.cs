@@ -100,7 +100,7 @@ public class Attractable : MonoBehaviour
 				SpawnCollisionFragments(collision, postCollisionVector);
 			}
 
-			SpawnCollisionEffects(collision, postCollisionVector);
+			SpawnCollisionEffects(collision, postCollisionVector * 1.5f);
 
 			if (destroyUponCollision)
 			{
