@@ -1,111 +1,75 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-	[Serializable]
-	public class AsteroidSwarm
-	{
-		public int numAsteroids;
-		public float velocity;
-		public float minAsteroidScaleMultiplier;
-		public float maxAsteroidScaleMultiplier;
-	}
-
 	[SerializeField] private Attractor centralBody;
-	[SerializeField] private float swarmSpawnDistance = 100.0f;
-	[SerializeField] private float swarmSpawnRadius = 20.0f;
-	[SerializeField] private float cullDistance = 200.0f;
+	[SerializeField] private float cullingDistance = 200.0f;
+	[SerializeField] private float minSpawnDistance = 30.0f;
+	[SerializeField] private float maxSpawnDistance = 100.0f;
+	[SerializeField] private float asteroidScaleMin = 0.8f;
+	[SerializeField] private float asteroidScaleMax = 1.1f;
 	[SerializeField] private float fragmentScaleMin = 0.75f;
 	[SerializeField] private float fragmentScaleMax = 1.0f;
 	[SerializeField] private List<Attractable> asteroidPrefabs = new List<Attractable>();
 	[SerializeField] private List<Attractable> fragmentPrefabs = new List<Attractable>();
-	[SerializeField] private List<AsteroidSwarm> asteroidSwarms = new();
 
-	private Vector3 swarmSpawnPoint;
+	private IntervalChanceTimer spawnerTimer = new(1.0f, 1.0f);
 	private GameObject spawnedObjectsContainer;
 
 	public Attractable SpawnFragment(Vector3 spawnPoint)
 	{
-		var randomPrefab = fragmentPrefabs[UnityEngine.Random.Range(0, fragmentPrefabs.Count)];
+		var randomPrefab = fragmentPrefabs[Random.Range(0, fragmentPrefabs.Count)];
 		return SpawnAsteroid(spawnPoint, fragmentScaleMin, fragmentScaleMax, randomPrefab);
 	}
 
-	public Attractable SpawnAsteroid(Vector3 spawnPoint, float minScaleMultiplier, float maxScaleMultiplier, Attractable prefab)
+	public Attractable SpawnAsteroid(Vector3 spawnPoint)
 	{
+		var randomPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Count)];
+		return SpawnAsteroid(spawnPoint, asteroidScaleMin, asteroidScaleMax, randomPrefab);
+	}
+
+	private Attractable SpawnAsteroid(Vector3 spawnPoint, float minScaleMultiplier, float maxScaleMultiplier, Attractable prefab)
+	{
+		float scaleMultiplier = Random.Range(minScaleMultiplier, maxScaleMultiplier);
+
 		var newAsteroid = Instantiate(prefab, spawnPoint, Quaternion.identity, spawnedObjectsContainer.transform);
-
-		float scaleMultiplier = UnityEngine.Random.Range(minScaleMultiplier, maxScaleMultiplier);
 		newAsteroid.transform.localScale *= scaleMultiplier;
+		newAsteroid.rb.mass *= Mathf.Pow(scaleMultiplier, 3);
 
-		var rb = newAsteroid.GetComponent<Rigidbody>();
-		rb.mass *= Mathf.Pow(scaleMultiplier, 3);
-
-		return newAsteroid.GetComponent<Attractable>();
+		return newAsteroid;
 	}
 
-	private void SpawnNextSwarm()
-	{
-		if (asteroidSwarms.Count < 1)
-		{
-			return;
-		}
-
-		var swarm = asteroidSwarms[0];
-		asteroidSwarms.RemoveAt(0);
-
-		swarmSpawnPoint = centralBody.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle * swarmSpawnDistance;
-		Vector3 headingVector = GetHeadingVector(swarmSpawnPoint, centralBody.transform.position, 0.0f);
-
-		for (int i = 0; i < swarm.numAsteroids; i++)
-		{
-			Vector3 spawnPoint = swarmSpawnPoint;
-			spawnPoint += UnityEngine.Random.insideUnitSphere * swarmSpawnRadius;
-			spawnPoint.z = 0.0f;
-
-			var randomPrefab = asteroidPrefabs[UnityEngine.Random.Range(0, fragmentPrefabs.Count)];
-			var asteroid = SpawnAsteroid(spawnPoint, swarm.minAsteroidScaleMultiplier, swarm.maxAsteroidScaleMultiplier, randomPrefab);
-			DefineTrajectory(asteroid, swarm.velocity, headingVector);
-		}
-	}
-
-	private void DefineTrajectory(Attractable attractable, float velocityModifier, Vector3 headingVector)
-	{
-		Vector3 vectorAB = centralBody.transform.position - attractable.transform.position;
-		float distance = vectorAB.magnitude;
-		vectorAB.Normalize();
-
-		float orbitalVelocity = Mathf.Sqrt(Attractor.G * centralBody.rb.mass / distance) * velocityModifier;
-		var velocityVector = headingVector * orbitalVelocity;
-
-		attractable.rb.velocity = velocityVector;
-	}
-
-	private Vector3 GetHeadingVector(Vector3 fromVector, Vector3 toVector, float headingOffset)
-	{
-		Vector3 vectorAB = (toVector - fromVector).normalized;
-		return Quaternion.Euler(0, 0, headingOffset) * vectorAB;
-	}
-
-	private void Start()
-	{
-		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
-
-		SpawnNextSwarm();
-	}
-
-	private void Update()
+	private void CullDistantAsteroids()
 	{
 		for (int i = Attractable.SpawnedAttractables.Count - 1; i >= 0; i--)
 		{
 			var a = Attractable.SpawnedAttractables[i];
 			float distance = Vector3.Distance(transform.position, a.transform.position);
 
-			if (distance >= cullDistance)
+			if (distance >= cullingDistance)
 			{
 				Destroy(a.gameObject);
 			}
+		}
+	}
+
+	private void Start()
+	{
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+	}
+
+	private void Update()
+	{
+		CullDistantAsteroids();
+
+		if (Attractable.SpawnedAttractables.Count < 100 && spawnerTimer.Tick())
+		{
+			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
+
+			var asteroid = SpawnAsteroid(spawnPoint);
+			asteroid.DefineOrbit(centralBody.rb, 2.0f);
 		}
 	}
 }

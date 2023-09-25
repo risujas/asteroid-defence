@@ -5,7 +5,6 @@ using UnityEngine.VFX;
 public class Attractable : MonoBehaviour
 {
 	private static List<Attractable> spawnedAttractables = new();
-
 	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
 
 	[SerializeField] private bool destroyUponCollision = true;
@@ -17,6 +16,22 @@ public class Attractable : MonoBehaviour
 	private AsteroidSpawner asteroidSpawner;
 
 	public Rigidbody rb { get; private set; }
+
+	public void DefineOrbit(Rigidbody centralBody, float periapsis)
+	{
+		Vector3 parentChildDirection = centralBody.transform.position - transform.position;
+		float distance = parentChildDirection.magnitude;
+		parentChildDirection.Normalize();
+
+		float mu = Attractor.G * centralBody.mass; // gravitational parameter of the central body
+		float a = (distance + periapsis) / 2; // length of the semi-major axis of the elliptical orbit
+		float orbitalVelocity = Mathf.Sqrt(mu * (2 / distance - 1 / a)); // vis-viva equation
+		Vector3 orbitalDirection = Quaternion.Euler(0, 0, 90.0f) * parentChildDirection;
+
+		var velocityVector = orbitalDirection * orbitalVelocity;
+		rb.velocity = velocityVector;
+	}
+
 
 	private void SpawnCollisionFragments(Collision collision, Vector3 postCollisionVector)
 	{
