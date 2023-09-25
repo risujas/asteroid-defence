@@ -4368,8 +4368,8 @@ MonoBehaviour:
   maxSpawnDistance: 3
   asteroidScaleMin: 0.8
   asteroidScaleMax: 1
-  fragmentScaleMin: 0.5
-  fragmentScaleMax: 1
+  fragmentScaleMin: 0.6
+  fragmentScaleMax: 0.9
   attractablesLimit: 2
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}

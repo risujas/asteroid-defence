@@ -1,6 +1,7 @@
 using UnityEngine;
 public class CreateGameObject : MonoBehaviour
 {
+	[SerializeField] private Transform origin;
 	[SerializeField] private GameObject selectedObject;
 	[SerializeField] private bool enableTimer = false;
 	[SerializeField] private float timerDuration = 1.0f;
@@ -9,7 +10,7 @@ public class CreateGameObject : MonoBehaviour
 
 	public void InstantiateSelected()
 	{
-		Instantiate(selectedObject, transform.position, transform.rotation);
+		Instantiate(selectedObject, origin.position, origin.rotation);
 	}
 
 	private void Start()

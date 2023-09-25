@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c87d53596435e648bd9b08b3986a37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origin: {fileID: 658312605157757304}
   selectedObject: {fileID: 1154630219431725343, guid: 82c6979d16dcd5a4e9cfc2dafbd98dd2,
     type: 3}
   enableTimer: 0
