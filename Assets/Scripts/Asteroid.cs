@@ -8,8 +8,13 @@ public class Asteroid : Attractable
 
 	private AsteroidSpawner asteroidSpawner;
 
-	private void SpawnCollisionFragments(Collision collision)
+	public void SpawnCollisionFragments()
 	{
+		if (!canSpawnFragments)
+		{
+			return;
+		}
+
 		Bounds bounds = GetComponent<Collider>().bounds;
 		float totalFragmentableMass = rb.mass;
 
@@ -62,11 +67,6 @@ public class Asteroid : Attractable
 
 		if (hasCollided)
 		{
-			if (canSpawnFragments)
-			{
-				SpawnCollisionFragments(collision);
-			}
-
 			SpawnCollisionEffects(collision);
 		}
 	}

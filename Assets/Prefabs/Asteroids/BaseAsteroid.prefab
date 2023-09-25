@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1904057561077924394}
   - component: {fileID: 304836874625472257}
   - component: {fileID: 2452674397496366469}
+  - component: {fileID: 5844094979547599755}
   - component: {fileID: -812345924299847753}
   - component: {fileID: 5098365778527326793}
   m_Layer: 12
@@ -126,13 +127,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1490738ff5ec4990aa8f7a46d4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyUponCollision: 1
+  destroyUponCollision: 0
   collisionSpeedThreshold: 0
   OnCollision:
     m_PersistentCalls:
       m_Calls: []
   canSpawnFragments: 0
   impactEffectPrefab: {fileID: 0}
+--- !u!114 &5844094979547599755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152672333653229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e9fa35117500e4cb817f4b0de365b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 100
+  minHitpoints: 0
+  maxHitpoints: 100
+  enableRegeneration: 0
+  regenerationRate: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2452674397496366469}
+        m_TargetAssemblyTypeName: Asteroid, Assembly-CSharp
+        m_MethodName: SpawnCollisionFragments
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-812345924299847753
 MonoBehaviour:
   m_ObjectHideFlags: 0
