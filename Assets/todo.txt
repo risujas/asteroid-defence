@@ -46,6 +46,8 @@ TODO LIST
 - Flyby asteroids should maybe spawn in groups; massive clouds of asteroids sweeping through the system and causing havoc
 - Eventually, maybe add a dynamic difficulty that makes the game more challenging depending on how well you are doing
 
+add temperature gauge next to the planet health UI
+
 - Improved camera:
 	Allow panning around the planet somehow
 	When controlling a missile, lerp to its position, and adjust camera zoom depending on the speed
