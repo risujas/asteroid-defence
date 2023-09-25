@@ -5,7 +5,10 @@ public class DamageWithinRadius : MonoBehaviour
 	[SerializeField] private GameObject origin = null;
 	[SerializeField] private float damage = 1.0f;
 	[SerializeField] private float radius = 0.5f;
-	[SerializeField] private bool applyOnStart = false;
+	[SerializeField] private bool autoApply = false;
+	[SerializeField] private int autoApplyFrameDelay = 1;
+
+	private int initialFrame = 0;
 
 	public void Apply()
 	{
@@ -26,8 +29,14 @@ public class DamageWithinRadius : MonoBehaviour
 
 	private void Start()
 	{
-		if (applyOnStart)
+		initialFrame = Time.frameCount;
+	}
+
+	private void Update()
+	{
+		if (autoApply && Time.frameCount >= initialFrame + autoApplyFrameDelay)
 		{
+			autoApply = false;
 			Apply();
 		}
 	}
