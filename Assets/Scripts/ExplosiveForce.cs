@@ -6,7 +6,7 @@ public class ExplosiveForce : MonoBehaviour
 	[SerializeField] private float force = 1.0f;
 	[SerializeField] private float radius = 0.5f;
 
-	public void Apply()
+	public void ApplyWithinRadius()
 	{
 		if (origin == null)
 		{
