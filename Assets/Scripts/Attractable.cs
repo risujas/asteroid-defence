@@ -14,7 +14,9 @@ public class Attractable : MonoBehaviour
 	protected bool hasCollided = false;
 
 	[Serializable] public class CollisionEvent : UnityEvent { }
-	[SerializeField] protected CollisionEvent OnCollision;
+	[SerializeField] protected CollisionEvent OnAttractorCollision;
+	[SerializeField] protected CollisionEvent OnMinorCollision;
+	[SerializeField] protected CollisionEvent OnAnyCollision;
 
 	public Rigidbody rb { get; private set; }
 
@@ -37,7 +39,15 @@ public class Attractable : MonoBehaviour
 	{
 		if (rb.velocity.magnitude > collisionSpeedThreshold)
 		{
-			hasCollided = true;
+			if (collision.gameObject.GetComponent<Attractor>())
+			{
+				OnAttractorCollision.Invoke();
+			}
+			else
+			{
+				OnMinorCollision.Invoke();
+			}
+			OnAnyCollision.Invoke();
 		}
 	}
 
@@ -64,13 +74,5 @@ public class Attractable : MonoBehaviour
 	protected virtual void Start()
 	{
 		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
-	}
-
-	protected virtual void Update()
-	{
-		if (hasCollided)
-		{
-			OnCollision.Invoke();
-		}
 	}
 }

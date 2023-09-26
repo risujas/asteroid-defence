@@ -401,18 +401,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSpeedThreshold: 0.05
-  OnCollision:
+  OnAttractorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMinorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCollision:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6446057190080601624}
-        m_TargetAssemblyTypeName: CreateGameObject, Assembly-CSharp
-        m_MethodName: InstantiateSelected
-        m_Mode: 1
+      - m_Target: {fileID: 583539899263132847}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: ChangeHealth
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: -1000
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -424,7 +430,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: -100
+          m_FloatArgument: -1000
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
