@@ -26,9 +26,7 @@ public class Attractable : MonoBehaviour
 		float distance = parentChildDirection.magnitude;
 		parentChildDirection.Normalize();
 
-		float mu = Attractor.G * centralBody.mass; // gravitational parameter of the central body
-		float a = (distance + periapsis) / 2; // length of the semi-major axis of the elliptical orbit
-		float orbitalVelocity = Mathf.Sqrt(mu * (2 / distance - 1 / a)); // vis-viva equation
+		float orbitalVelocity = OrbitalVelocity.GetOrbitalVelocity(distance, periapsis, centralBody.mass);
 		Vector3 orbitalDirection = Quaternion.Euler(0, 0, 90.0f) * parentChildDirection;
 
 		var velocityVector = orbitalDirection * orbitalVelocity;

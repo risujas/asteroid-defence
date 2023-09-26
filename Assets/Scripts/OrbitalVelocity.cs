@@ -17,6 +17,14 @@ public class OrbitalVelocity : MonoBehaviour
 		return orbitalVelocity;
 	}
 
+	public static float GetOrbitalVelocity(float apoapsis, float periapsis, float parentMass)
+	{
+		float mu = Attractor.G * parentMass; // gravitational parameter of the central body
+		float a = (apoapsis + periapsis) / 2; // length of the semi-major axis of the elliptical orbit
+		float orbitalVelocity = Mathf.Sqrt(mu * (2 / apoapsis - 1 / a)); // vis-viva equation
+		return orbitalVelocity;
+	}
+
 	private void SetVelocityRelativeToParent()
 	{
 		var r = Vector3.Distance(parentRb.transform.position, transform.position);

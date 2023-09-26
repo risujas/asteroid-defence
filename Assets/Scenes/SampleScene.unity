@@ -4483,7 +4483,7 @@ MonoBehaviour:
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
   fragmentScaleMax: 0.9
-  attractablesLimit: 2
+  attractablesLimit: 20
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
