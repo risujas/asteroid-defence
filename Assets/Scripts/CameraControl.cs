@@ -15,8 +15,7 @@ public class CameraControl : MonoBehaviour
 	private float zoomSmoothingSpeed = 6.0f;
 
 	private bool enableFollowObject = true;
-	private Vector3 followVelocity = Vector3.zero;
-	private float followSmoothTime = 0.25f;
+	private float followSpeed = 2.0f;
 
 	private bool enableFollowReset = true;
 	private bool followReset = false;
@@ -43,7 +42,7 @@ public class CameraControl : MonoBehaviour
 		{
 			if (followedObject != null)
 			{
-				var nextPosition = Vector3.SmoothDamp(transform.position, followedObject.transform.position, ref followVelocity, followSmoothTime);
+				var nextPosition = Vector3.Lerp(transform.position, followedObject.transform.position, followSpeed * Time.unscaledDeltaTime);
 				nextPosition.z = cameraZ;
 				transform.position = nextPosition;
 			}
