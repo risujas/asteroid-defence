@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 93002967}
   serializedVersion: 2
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.00000008940697}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: -0.0000005364418}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -389,7 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b0161e6f972d742bea10fc22bdc58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentRb: {fileID: 210935017}
+  parentBody: {fileID: 210935017}
+  oppositeOrbitalDistance: 3
   clockwiseRotation: 1
 --- !u!114 &93002981
 MonoBehaviour:
@@ -4483,7 +4484,7 @@ MonoBehaviour:
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
   fragmentScaleMax: 0.9
-  attractablesLimit: 20
+  attractablesLimit: 10
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}

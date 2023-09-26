@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class OrbitalVelocity : MonoBehaviour
 {
-	[SerializeField] private Rigidbody parentRb;
+	[SerializeField] private Rigidbody parentBody;
+	[SerializeField] private float oppositeOrbitalDistance = 1.0f;
 	[SerializeField] private bool clockwiseRotation;
 
 	public static float GetOrbitalPeriod(float orbitalRadius, float parentMass)
@@ -17,18 +18,18 @@ public class OrbitalVelocity : MonoBehaviour
 		return orbitalVelocity;
 	}
 
-	public static float GetOrbitalVelocity(float apoapsis, float periapsis, float parentMass)
+	public static float GetOrbitalVelocity(float apo, float per, float parentMass)
 	{
 		float mu = Attractor.G * parentMass; // gravitational parameter of the central body
-		float a = (apoapsis + periapsis) / 2; // length of the semi-major axis of the elliptical orbit
-		float orbitalVelocity = Mathf.Sqrt(mu * (2 / apoapsis - 1 / a)); // vis-viva equation
+		float a = (apo + per) / 2; // length of the semi-major axis of the elliptical orbit
+		float orbitalVelocity = Mathf.Sqrt(mu * (2 / apo - 1 / a)); // vis-viva equation
 		return orbitalVelocity;
 	}
 
-	private void SetVelocityRelativeToParent()
+	public void SetVelocityRelativeToParent()
 	{
-		var r = Vector3.Distance(parentRb.transform.position, transform.position);
-		var v = GetOrbitalVelocity(r, parentRb.mass);
+		var r = Vector3.Distance(parentBody.transform.position, transform.position);
+		var v = GetOrbitalVelocity(r, oppositeOrbitalDistance, parentBody.mass);
 
 		float angle = -90.0f;
 		if (clockwiseRotation)
@@ -37,7 +38,7 @@ public class OrbitalVelocity : MonoBehaviour
 		}
 
 		Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
-		Vector3 parentChildDir = (parentRb.transform.position - transform.position).normalized;
+		Vector3 parentChildDir = (parentBody.transform.position - transform.position).normalized;
 		Vector3 result = (rot * parentChildDir).normalized;
 
 		var rb = GetComponent<Rigidbody>();
