@@ -7,6 +7,7 @@ public class MissileControl : MonoBehaviour
 	[SerializeField] private float acceleration = 1.0f;
 
 	private Rigidbody rb;
+	private CameraControl cameraControl;
 
 	private void HandleRotation()
 	{
@@ -43,6 +44,9 @@ public class MissileControl : MonoBehaviour
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+
+		cameraControl = Camera.main.GetComponent<CameraControl>();
+		cameraControl.FollowedObject = gameObject;
 	}
 
 	private void Update()
@@ -52,6 +56,11 @@ public class MissileControl : MonoBehaviour
 
 		if (Input.GetMouseButtonUp(1))
 		{
+			if (cameraControl.FollowedObject == gameObject)
+			{
+				cameraControl.FollowedObject = null;
+			}
+
 			enabled = false;
 		}
 	}

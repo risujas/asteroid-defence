@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 210935020}
   m_Layer: 0
   m_Name: Planet
-  m_TagString: Untagged
+  m_TagString: CentralBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1228,6 +1228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7ac72b7f6401249b3df38cedea8495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultFollowedObject: {fileID: 0}
+  followedObject: {fileID: 0}
+  followSpeed: 2
   targetSize: 2
   minTargetSize: 2
   maxTargetSize: 4.5

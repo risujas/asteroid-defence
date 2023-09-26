@@ -476,7 +476,8 @@ MonoBehaviour:
   origin: {fileID: 9021511076118991507}
   damage: 100
   radius: 0.2
-  applyOnStart: 0
+  autoApply: 0
+  autoApplyDelay: 0
 --- !u!114 &6446057190080601624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,8 +493,8 @@ MonoBehaviour:
   origin: {fileID: 658312605157757304}
   selectedObject: {fileID: 1154630219431725343, guid: 82c6979d16dcd5a4e9cfc2dafbd98dd2,
     type: 3}
-  enableTimer: 0
-  timerDuration: 0
+  autoApply: 0
+  autoApplyDelay: 0
 --- !u!4 &6761395272975807230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,

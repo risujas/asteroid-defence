@@ -8,6 +8,7 @@ TagManager:
   - SpawnedObjectsContainer
   - AsteroidSpawner
   - FundsManager
+  - CentralBody
   layers:
   - Default
   - TransparentFX
