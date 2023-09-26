@@ -38,16 +38,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CityLightCoverage: 102.96
+    - _CityLightCoverage: 143.98
     - _CityLights: 10
     - _CityLightsIntensity: 2
-    - _CityLightsScale: 400
+    - _CityLightsScale: 511.3
     - _CityLightsStrength: 10
-    - _IceCapCoverage: 0.2
+    - _IceCapCoverage: 0.1
+    - _IceCapScale: 135.65
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TerrainDetailScale: 100
-    - _TerrainMainScale: 5
+    - _TerrainDetailScale: 165.52
+    - _TerrainMainScale: 8.47
     - _TerrainScale: 100
     - _TimeMultiplier: 0
     - _TimeMultiplier1: 0.06
