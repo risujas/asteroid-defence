@@ -286,7 +286,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93002967}
   serializedVersion: 4
-  m_Mass: 200000
+  m_Mass: 200000000
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -881,7 +881,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210935003}
   serializedVersion: 4
-  m_Mass: 1000000
+  m_Mass: 1e+9
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4483,7 +4483,7 @@ MonoBehaviour:
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
   fragmentScaleMax: 0.9
-  attractablesLimit: 1000
+  attractablesLimit: 2
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
