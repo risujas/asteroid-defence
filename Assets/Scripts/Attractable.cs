@@ -33,6 +33,11 @@ public class Attractable : MonoBehaviour
 		rb.velocity = velocityVector;
 	}
 
+	public void SetRandomAngularVelocity(float min, float max)
+	{
+		rb.angularVelocity = new Vector3(0.0f, 0.0f, Mathf.Deg2Rad * UnityEngine.Random.Range(min, max));
+	}
+
 	protected virtual void HandleCollision(Collision collision)
 	{
 		if (rb.velocity.magnitude > collisionSpeedThreshold)

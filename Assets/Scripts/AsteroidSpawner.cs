@@ -71,7 +71,6 @@ public class AsteroidSpawner : MonoBehaviour
 
 			var asteroid = SpawnAsteroid(spawnPoint);
 			asteroid.DefineOrbit(centralBody.rb, 2.0f);
-			asteroid.rb.angularVelocity = new Vector3(0.0f, 0.0f, Mathf.Deg2Rad * Random.Range(-45.0f, 45.0f));
 		}
 	}
 }

@@ -77,4 +77,11 @@ public class Asteroid : Attractable
 
 		asteroidSpawner = GameObject.FindWithTag("AsteroidSpawner").GetComponent<AsteroidSpawner>();
 	}
+
+	protected override void OnEnable()
+	{
+		base.OnEnable();
+
+		SetRandomAngularVelocity(-45.0f, 45.0f);
+	}
 }
