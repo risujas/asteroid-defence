@@ -53,7 +53,8 @@ Material:
     - _TimeMultiplier: 0
     - _TimeMultiplier1: 0.06
     - _TimeMultiplier2: 0.03
-    - _WaterReflectivity: 0.5
+    - _WaterReflectionCellDensity: 350
+    - _WaterReflectivity: 0.75
     m_Colors:
     - _CityLights: {r: 23.96863, g: 14.424662, b: 3.9570847, a: 1}
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
