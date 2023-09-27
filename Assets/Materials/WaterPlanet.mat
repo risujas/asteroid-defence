@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Planet
+  m_Name: WaterPlanet
   m_Shader: {fileID: -6465566751694194690, guid: de8118447502e9647a7f107d88ae72de,
     type: 3}
   m_Parent: {fileID: 0}
@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _CityLightCoverage: 143.98
     - _CityLights: 10
-    - _CityLightsIntensity: 5
+    - _CityLightsIntensity: 2
     - _CityLightsScale: 300
     - _CityLightsStrength: 10
     - _IceCapCoverage: 0.05
