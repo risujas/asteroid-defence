@@ -38,6 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BiomeScale: 150
     - _CityLightCoverage: 143.98
     - _CityLights: 10
     - _CityLightsIntensity: 2
@@ -60,7 +61,11 @@ Material:
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _Emission: {r: 1, g: 1, b: 1, a: 0}
+    - _GroundBiome1Color: {r: 0.4772698, g: 0.8784314, b: 0.4509804, a: 0}
+    - _GroundBiome2Color: {r: 0.92004704, g: 1, b: 0.654902, a: 0}
     - _GroundColor: {r: 0.57019293, g: 0.8, b: 0.3529412, a: 0}
+    - _GroundColor1: {r: 0.4510947, g: 0.8773585, b: 0.5889108, a: 0}
+    - _GroundColor2: {r: 1, g: 0.8752393, b: 0.6556604, a: 0}
     - _LandColor: {r: 0.25773346, g: 0.43396226, b: 0.21084017, a: 0}
     - _MainTint: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
