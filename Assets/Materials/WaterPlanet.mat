@@ -53,8 +53,8 @@ Material:
     - _TimeMultiplier: 0
     - _TimeMultiplier1: 0.06
     - _TimeMultiplier2: 0.03
-    - _WaterReflectionCellDensity: 350
-    - _WaterReflectivity: 0.75
+    - _WaterReflectionCellDensity: 0
+    - _WaterReflectivity: 0.5
     m_Colors:
     - _CityLights: {r: 23.96863, g: 14.424662, b: 3.9570847, a: 1}
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
@@ -64,7 +64,7 @@ Material:
     - _LandColor: {r: 0.25773346, g: 0.43396226, b: 0.21084017, a: 0}
     - _MainTint: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
-    - _WaterColor: {r: 0.33980063, g: 0.4734851, b: 0.8679245, a: 0}
+    - _WaterColor: {r: 0.3411765, g: 0.650495, b: 0.8666667, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8994851585540623876
 MonoBehaviour:
