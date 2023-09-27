@@ -59,6 +59,8 @@ Material:
     m_Colors:
     - _CityLights: {r: 23.96863, g: 14.424662, b: 3.9570847, a: 1}
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
+    - _CityLightsColor1: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
+    - _CityLightsColor2: {r: 1, g: 0.5157563, b: 0.39215684, a: 1}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _Emission: {r: 1, g: 1, b: 1, a: 0}
     - _GroundBiome1Color: {r: 0.4772698, g: 0.8784314, b: 0.4509804, a: 0}
