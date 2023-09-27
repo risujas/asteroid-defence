@@ -41,19 +41,19 @@ Material:
     - _CityLightCoverage: 143.98
     - _CityLights: 10
     - _CityLightsIntensity: 2
-    - _CityLightsScale: 511.3
+    - _CityLightsScale: 250
     - _CityLightsStrength: 10
-    - _IceCapCoverage: 0.1
-    - _IceCapScale: 135.65
+    - _IceCapCoverage: 0.05
+    - _IceCapScale: 135
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TerrainDetailScale: 165.52
-    - _TerrainMainScale: 8.47
+    - _TerrainDetailScale: 165
+    - _TerrainMainScale: 8.5
     - _TerrainScale: 100
     - _TimeMultiplier: 0
     - _TimeMultiplier1: 0.06
     - _TimeMultiplier2: 0.03
-    - _WaterReflectivity: 0
+    - _WaterReflectivity: 0.5
     m_Colors:
     - _CityLights: {r: 23.96863, g: 14.424662, b: 3.9570847, a: 1}
     - _CityLightsColor: {r: 1, g: 0.8784314, b: 0.39215687, a: 1}
