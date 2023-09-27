@@ -913,7 +913,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc641141d66bae74290db2ee0623cbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solarSeason: {fileID: 410087044}
+  sunMotion: {fileID: 410087044}
+  iceCapCoverage: 0.05
+  minCoverage: 0.05
+  maxCoverage: 0.5
 --- !u!23 &210935021
 MeshRenderer:
   m_ObjectHideFlags: 0
