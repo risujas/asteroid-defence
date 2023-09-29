@@ -354,7 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionSpeedThreshold: 0.2
+  useCollisionSpeedThreshold: 0
+  collisionSpeedThreshold: 0
   isMajorBody: 1
   OnMajorCollision:
     m_PersistentCalls:
@@ -955,7 +956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionSpeedThreshold: 0.2
+  useCollisionSpeedThreshold: 0
+  collisionSpeedThreshold: 0
   isMajorBody: 1
   OnMajorCollision:
     m_PersistentCalls:
@@ -965,7 +967,19 @@ MonoBehaviour:
       m_Calls: []
   OnAnyCollision:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1142764571}
+        m_TargetAssemblyTypeName: FundsManager, Assembly-CSharp
+        m_MethodName: AddFundsFromAsteroidImpact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &250556674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,7 +3089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minFunds: 0
   maxFunds: 1000
-  funds: 1000
+  funds: 500
   fundsGainPerSecond: 5
 --- !u!1 &1242256105
 GameObject:

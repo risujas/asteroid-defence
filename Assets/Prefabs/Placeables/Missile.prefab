@@ -400,8 +400,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCollisionSpeedThreshold: 1
   collisionSpeedThreshold: 0.05
-  OnAttractorCollision:
+  isMajorBody: 0
+  OnMajorCollision:
     m_PersistentCalls:
       m_Calls: []
   OnMinorCollision:

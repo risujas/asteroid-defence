@@ -10,6 +10,7 @@ public class GravityBody : MonoBehaviour
 	protected static List<GravityBody> gravityBodies = new();
 	public static IReadOnlyList<GravityBody> GravityBodies => gravityBodies.AsReadOnly();
 
+	[SerializeField] protected bool useCollisionSpeedThreshold = false;
 	[SerializeField] protected float collisionSpeedThreshold = 0.2f;
 	[SerializeField] protected bool isMajorBody = false;
 
@@ -56,7 +57,7 @@ public class GravityBody : MonoBehaviour
 
 	protected virtual void HandleCollision(Collision collision)
 	{
-		if (rb.velocity.magnitude > collisionSpeedThreshold)
+		if (rb.velocity.magnitude >= collisionSpeedThreshold || !useCollisionSpeedThreshold)
 		{
 			if (collision.gameObject.GetComponent<GravityBody>().IsMajorBody)
 			{
