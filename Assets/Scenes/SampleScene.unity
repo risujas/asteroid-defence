@@ -914,9 +914,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunMotion: {fileID: 410087044}
-  iceCapCoverage: 0.05
-  minCoverage: 0.05
-  maxCoverage: 0.5
+  iceCapCoverage: 0.1
+  minCoverage: 0.1
+  maxCoverage: 0.35
 --- !u!23 &210935021
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   defaultFollowedObject: {fileID: 0}
   followedObject: {fileID: 0}
   targetSize: 2
-  minTargetSize: 2
+  minTargetSize: 1
   maxTargetSize: 4.5
 --- !u!1 &332397622
 GameObject:

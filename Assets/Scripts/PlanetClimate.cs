@@ -4,7 +4,7 @@ public class PlanetClimate : MonoBehaviour
 {
 	[SerializeField] private SunMotion sunMotion;
 
-	[SerializeField] private float iceCapCoverage = 0.0f;
+	[SerializeField] private float snowCoverage = 0.0f;
 	[SerializeField] private float minCoverage = 0.1f;
 	[SerializeField] private float maxCoverage = 0.4f;
 
@@ -12,8 +12,8 @@ public class PlanetClimate : MonoBehaviour
 
 	private void SetIceCapCoverage(Material m)
 	{
-		iceCapCoverage = Mathf.Clamp(iceCapCoverage, minCoverage, maxCoverage);
-		m.SetFloat("_IceCapCoverage", iceCapCoverage);
+		snowCoverage = Mathf.Clamp(snowCoverage, minCoverage, maxCoverage);
+		m.SetFloat("_SnowCoverage", snowCoverage);
 	}
 
 	private void Start()
@@ -25,7 +25,7 @@ public class PlanetClimate : MonoBehaviour
 	{
 		float summerness = Mathf.Abs(0.5f - sunMotion.YearProgress) * 2.0f;
 
-		iceCapCoverage = Mathf.Lerp(maxCoverage, minCoverage, summerness);
+		snowCoverage = Mathf.Lerp(maxCoverage, minCoverage, summerness);
 		SetIceCapCoverage(material);
 	}
 

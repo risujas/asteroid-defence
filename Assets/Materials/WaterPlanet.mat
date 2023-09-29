@@ -44,7 +44,7 @@ Material:
     - _CityLightsIntensity: 2
     - _CityLightsScale: 300
     - _CityLightsStrength: 10
-    - _IceCapCoverage: 0.05
+    - _IceCapCoverage: 0.1
     - _IceCapScale: 135
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -70,7 +70,7 @@ Material:
     - _GroundColor2: {r: 1, g: 0.8752393, b: 0.6556604, a: 0}
     - _LandColor: {r: 0.25773346, g: 0.43396226, b: 0.21084017, a: 0}
     - _MainTint: {r: 1, g: 1, b: 1, a: 0}
-    - _TerrainOffset: {r: 0.22, g: -0.03, b: 0, a: 0}
+    - _TerrainOffset: {r: 0.26, g: -0.06, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
     - _WaterColor: {r: 0.3411765, g: 0.650495, b: 0.8666667, a: 0}
   m_BuildTextureStacks: []
