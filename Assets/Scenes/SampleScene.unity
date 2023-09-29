@@ -3090,7 +3090,7 @@ MonoBehaviour:
   minFunds: 0
   maxFunds: 1000
   funds: 500
-  fundsGainPerSecond: 5
+  fundsGainPerSecond: 1
 --- !u!1 &1242256105
 GameObject:
   m_ObjectHideFlags: 0
