@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 93002969}
   - component: {fileID: 93002976}
   - component: {fileID: 93002981}
-  - component: {fileID: 93002973}
   - component: {fileID: 93002979}
   - component: {fileID: 93002980}
   - component: {fileID: 93002982}
@@ -266,18 +265,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &93002973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93002967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &93002976
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -368,7 +355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSpeedThreshold: 0.2
-  OnAttractorCollision:
+  isMajorBody: 1
+  OnMajorCollision:
     m_PersistentCalls:
       m_Calls: []
   OnMinorCollision:
@@ -801,7 +789,7 @@ GameObject:
   - component: {fileID: 210935011}
   - component: {fileID: 210935017}
   - component: {fileID: 210935004}
-  - component: {fileID: 210935014}
+  - component: {fileID: 210935023}
   - component: {fileID: 210935020}
   m_Layer: 0
   m_Name: Planet
@@ -862,18 +850,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &210935014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210935003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &210935017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -914,7 +890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunMotion: {fileID: 410087044}
-  iceCapCoverage: 0.1
+  snowCoverage: 0.1
   minCoverage: 0.1
   maxCoverage: 0.35
 --- !u!23 &210935021
@@ -967,6 +943,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210935003}
   m_Mesh: {fileID: 8996112186996524538, guid: f9d57164be5c94e42b865e154b218221, type: 3}
+--- !u!114 &210935023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210935003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionSpeedThreshold: 0.2
+  isMajorBody: 1
+  OnMajorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMinorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &250556674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1255,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 4.5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1345,7 +1344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFollowedObject: {fileID: 0}
   followedObject: {fileID: 0}
-  targetSize: 2
+  targetSize: 4.5
   minTargetSize: 1
   maxTargetSize: 4.5
 --- !u!1 &332397622
@@ -4479,7 +4478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378608c3d5b7d1043a18736b7a25db41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centralBody: {fileID: 210935014}
+  centralBody: {fileID: 210935023}
   cullingDistance: 200
   minSpawnDistance: 10
   maxSpawnDistance: 20

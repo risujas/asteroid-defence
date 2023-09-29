@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Attractable : MonoBehaviour
+public class GravityBody : MonoBehaviour
 {
-	protected static List<Attractable> spawnedAttractables = new();
-	public static IReadOnlyList<Attractable> SpawnedAttractables => spawnedAttractables.AsReadOnly();
+	public const float G = 0.000000000066743f;
+
+	protected static List<GravityBody> gravityBodies = new();
+	public static IReadOnlyList<GravityBody> GravityBodies => gravityBodies.AsReadOnly();
 
 	[SerializeField] protected float collisionSpeedThreshold = 0.2f;
+	[SerializeField] protected bool isMajorBody = false;
 
 	protected GameObject spawnedObjectsContainer;
 	protected bool hasCollided = false;
 
-	[Serializable] public class CollisionEvent : UnityEvent { }
-	[SerializeField] protected CollisionEvent OnAttractorCollision;
+	[Serializable] public class CollisionEvent : UnityEvent<Collision> { }
+	[SerializeField] protected CollisionEvent OnMajorCollision;
 	[SerializeField] protected CollisionEvent OnMinorCollision;
 	[SerializeField] protected CollisionEvent OnAnyCollision;
 
 	public Rigidbody rb { get; private set; }
+	public bool IsMajorBody => isMajorBody;
 
 	public void DefineOrbit(Rigidbody centralBody, float periapsis)
 	{
@@ -38,19 +42,31 @@ public class Attractable : MonoBehaviour
 		rb.angularVelocity = new Vector3(0.0f, 0.0f, Mathf.Deg2Rad * UnityEngine.Random.Range(min, max));
 	}
 
+	public void Attract(GravityBody a)
+	{
+		Vector3 direction = transform.position - a.transform.position;
+		float distance = direction.magnitude;
+		direction.Normalize();
+
+		float force = G * (rb.mass * a.rb.mass) / (distance * distance);
+		Vector3 forceVector = direction * force;
+
+		a.rb.AddForce(forceVector, ForceMode.Force);
+	}
+
 	protected virtual void HandleCollision(Collision collision)
 	{
 		if (rb.velocity.magnitude > collisionSpeedThreshold)
 		{
-			if (collision.gameObject.GetComponent<Attractor>())
+			if (collision.gameObject.GetComponent<GravityBody>().IsMajorBody)
 			{
-				OnAttractorCollision.Invoke();
+				OnMajorCollision.Invoke(collision);
 			}
 			else
 			{
-				OnMinorCollision.Invoke();
+				OnMinorCollision.Invoke(collision);
 			}
-			OnAnyCollision.Invoke();
+			OnAnyCollision.Invoke(collision);
 		}
 	}
 
@@ -61,12 +77,12 @@ public class Attractable : MonoBehaviour
 
 	protected virtual void OnEnable()
 	{
-		spawnedAttractables.Add(this);
+		gravityBodies.Add(this);
 	}
 
 	protected virtual void OnDisable()
 	{
-		spawnedAttractables.Remove(this);
+		gravityBodies.Remove(this);
 	}
 
 	protected virtual void OnCollisionEnter(Collision collision)
@@ -77,5 +93,21 @@ public class Attractable : MonoBehaviour
 	protected virtual void Start()
 	{
 		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+	}
+
+	private void FixedUpdate()
+	{
+		if (IsMajorBody)
+		{
+			foreach (var b in GravityBodies)
+			{
+				if (b.gameObject == gameObject)
+				{
+					continue;
+				}
+
+				Attract(b);
+			}
+		}
 	}
 }

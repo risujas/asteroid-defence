@@ -48,6 +48,7 @@ Material:
     - _IceCapScale: 135
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _SnowCoverage: 0.1
     - _TerrainDetailScale: 165
     - _TerrainMainScale: 8.5
     - _TerrainScale: 100

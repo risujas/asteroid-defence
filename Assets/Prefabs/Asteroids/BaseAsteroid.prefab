@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSpeedThreshold: 0
-  OnAttractorCollision:
+  isMajorBody: 0
+  OnMajorCollision:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5844094979547599755}
@@ -144,6 +145,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   OnMinorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCollision:
     m_PersistentCalls:
       m_Calls: []
   canSpawnFragments: 0

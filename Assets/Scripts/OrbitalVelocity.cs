@@ -8,7 +8,7 @@ public class OrbitalVelocity : MonoBehaviour
 
 	public static float GetOrbitalPeriod(float orbitalRadius, float parentMass)
 	{
-		return 2 * Mathf.PI * Mathf.Sqrt(Mathf.Pow(orbitalRadius, 3) / (Attractor.G * parentMass));
+		return 2 * Mathf.PI * Mathf.Sqrt(Mathf.Pow(orbitalRadius, 3) / (GravityBody.G * parentMass));
 	}
 
 	public static float GetOrbitalVelocity(float orbitalRadius, float parentMass)
@@ -20,7 +20,7 @@ public class OrbitalVelocity : MonoBehaviour
 
 	public static float GetOrbitalVelocity(float apo, float per, float parentMass)
 	{
-		float mu = Attractor.G * parentMass; // gravitational parameter of the central body
+		float mu = GravityBody.G * parentMass; // gravitational parameter of the central body
 		float a = (apo + per) / 2; // length of the semi-major axis of the elliptical orbit
 		float orbitalVelocity = Mathf.Sqrt(mu * (2 / apo - 1 / a)); // vis-viva equation
 		return orbitalVelocity;
