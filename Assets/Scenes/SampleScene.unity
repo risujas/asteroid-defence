@@ -792,6 +792,7 @@ GameObject:
   - component: {fileID: 210935004}
   - component: {fileID: 210935023}
   - component: {fileID: 210935020}
+  - component: {fileID: 210935024}
   m_Layer: 0
   m_Name: Planet
   m_TagString: CentralBody
@@ -980,6 +981,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &210935024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210935003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e9fa35117500e4cb817f4b0de365b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 100
+  minHitpoints: 0
+  maxHitpoints: 100
+  enableRegeneration: 1
+  regenerationRate: 0.01
+  destroyUponDeath: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &250556674
 GameObject:
   m_ObjectHideFlags: 0
