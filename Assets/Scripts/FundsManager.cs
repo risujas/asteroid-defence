@@ -6,8 +6,8 @@ public class FundsManager : MonoBehaviour
 	[SerializeField] private float maxFunds = 1000.0f;
 	[SerializeField] private float funds = 1000.0f;
 	[SerializeField] private float fundsGainPerSecond = 5.0f;
-	[SerializeField] private float fundsImpactModifier = 10.0f;
-	[SerializeField] private float fundsDestructionModifier = 20.0f;
+	[SerializeField] private float fundsImpactModifier = 7.5f;
+	[SerializeField] private float fundsDestructionModifier = 15.0f;
 
 	public float Funds { get { return funds; } set { funds = value; } }
 
