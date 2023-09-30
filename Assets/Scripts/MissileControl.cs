@@ -8,6 +8,7 @@ public class MissileControl : MonoBehaviour
 
 	private Rigidbody rb;
 	private CameraControl cameraControl;
+	private FundsManager fundsManager;
 
 	private void HandleRotation()
 	{
@@ -47,6 +48,8 @@ public class MissileControl : MonoBehaviour
 
 		cameraControl = Camera.main.GetComponent<CameraControl>();
 		cameraControl.FollowedObject = gameObject;
+
+		fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
 	}
 
 	private void Update()
@@ -63,5 +66,10 @@ public class MissileControl : MonoBehaviour
 
 			enabled = false;
 		}
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		fundsManager.AddFundsFromAsteroidDestruction(collision);
 	}
 }
