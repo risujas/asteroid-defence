@@ -426,8 +426,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 583539899263132847}
         m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: ChangeHealth
-        m_Mode: 4
+        m_MethodName: Kill
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

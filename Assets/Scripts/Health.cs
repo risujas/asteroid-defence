@@ -26,9 +26,14 @@ public class Health : MonoBehaviour
 		Debug.Log(name + " health changed by " + change + "(" + hitpoints + ")");
 	}
 
+	public void Kill()
+	{
+		hitpoints = minHitpoints;
+	}
+
 	private void Regenerate(float timeStep)
 	{
-		if (enableRegeneration)
+		if (enableRegeneration && !isDead)
 		{
 			hitpoints += regenerationRate * timeStep;
 		}
@@ -65,8 +70,8 @@ public class Health : MonoBehaviour
 
 	private void Update()
 	{
+		HandleDeath();
 		Regenerate(Time.deltaTime);
 		ClampHealth();
-		HandleDeath();
 	}
 }

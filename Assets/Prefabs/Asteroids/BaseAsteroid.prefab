@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e1490738ff5ec4990aa8f7a46d4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCollisionSpeedThreshold: 0
   collisionSpeedThreshold: 0
   isMajorBody: 0
   OnMajorCollision:
@@ -134,8 +135,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5844094979547599755}
         m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: ChangeHealth
-        m_Mode: 4
+        m_MethodName: Kill
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
