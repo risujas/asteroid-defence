@@ -5,7 +5,7 @@ public class FundsManager : MonoBehaviour
 	[SerializeField] private float minFunds = 0.0f;
 	[SerializeField] private float maxFunds = 1000.0f;
 	[SerializeField] private float funds = 1000.0f;
-	[SerializeField] private float fundsGainPerSecond = 5.0f;
+	[SerializeField] private float baseFundsGain = 5.0f;
 	[SerializeField] private float fundsImpactModifier = 7.5f;
 	[SerializeField] private float fundsDestructionModifier = 15.0f;
 
@@ -42,7 +42,9 @@ public class FundsManager : MonoBehaviour
 			funds = minFunds;
 		}
 
-		funds += fundsGainPerSecond * Time.deltaTime;
+		float fundsGainRatio = (maxFunds - funds) / maxFunds;
+
+		funds += baseFundsGain * fundsGainRatio * Time.deltaTime;
 
 		if (funds > maxFunds)
 		{
