@@ -171,6 +171,7 @@ MonoBehaviour:
   enableRegeneration: 0
   regenerationRate: 0
   destroyUponDeath: 1
+  damageReduction: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
