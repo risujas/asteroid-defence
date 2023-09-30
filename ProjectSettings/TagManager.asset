@@ -9,6 +9,7 @@ TagManager:
   - AsteroidSpawner
   - FundsManager
   - CentralBody
+  - TimescaleChanger
   layers:
   - Default
   - TransparentFX

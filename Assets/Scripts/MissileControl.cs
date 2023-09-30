@@ -9,6 +9,7 @@ public class MissileControl : MonoBehaviour
 	private Rigidbody rb;
 	private CameraControl cameraControl;
 	private FundsManager fundsManager;
+	private TimescaleChanger timescaleChanger;
 
 	private void HandleRotation()
 	{
@@ -40,6 +41,16 @@ public class MissileControl : MonoBehaviour
 				rb.AddForce(transform.up * deltaV, ForceMode.VelocityChange);
 			}
 		}
+	}
+
+	private void OnEnable()
+	{
+		timescaleChanger = GameObject.FindWithTag("TimescaleChanger").GetComponent<TimescaleChanger>();
+		timescaleChanger.SetTimescale(1.0f);
+	}
+	private void OnDisable()
+	{
+		timescaleChanger.ResetTimescale();
 	}
 
 	private void Start()
