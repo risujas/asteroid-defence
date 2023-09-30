@@ -999,6 +999,7 @@ MonoBehaviour:
   enableRegeneration: 1
   regenerationRate: 0.01
   destroyUponDeath: 0
+  damageReduction: 0.99
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

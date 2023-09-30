@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
 	[SerializeField] private bool enableRegeneration = false;
 	[SerializeField] private float regenerationRate = 0.0f;
 	[SerializeField] private bool destroyUponDeath = false;
+	[SerializeField] private float damageReduction = 0.0f;
 
 	private bool isDead = false;
 
@@ -22,6 +23,7 @@ public class Health : MonoBehaviour
 
 	public void ChangeHealth(float change)
 	{
+		change -= (change * damageReduction);
 		hitpoints += change;
 	}
 
