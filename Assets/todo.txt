@@ -43,6 +43,8 @@ disable asteroid colliders by default, enable after travelling a distance equal 
 
 fix missile jitter
 
+add impact damage component to baseasteroid, apply from collision event, apply damage within a radius based on relative? velocity and mass
+
 WORLD TYPE:
 inhabitable planet around a gas giant?
 
