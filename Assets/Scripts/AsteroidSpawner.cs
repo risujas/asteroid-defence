@@ -68,9 +68,16 @@ public class AsteroidSpawner : MonoBehaviour
 		{
 			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
 			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
-
 			var asteroid = SpawnAsteroid(spawnPoint);
-			asteroid.DefineOrbit(centralBody.rb, 2.0f);
+
+			if (Random.value >= 0.5f)
+			{
+				asteroid.DefineOrbit(centralBody.rb, Random.Range(0.0f, 6.0f));
+			}
+			else
+			{
+				asteroid.DefineFlyby(centralBody.rb, 7.0f, Random.Range(0.5f, 1.0f));
+			}
 		}
 	}
 }

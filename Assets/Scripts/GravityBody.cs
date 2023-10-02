@@ -38,6 +38,13 @@ public class GravityBody : MonoBehaviour
 		rb.velocity = velocityVector;
 	}
 
+	public void DefineFlyby(Rigidbody centralBody, float radiusAroundBody, float velocity)
+	{
+		Vector3 targetPoint = centralBody.transform.position + (Vector3)(UnityEngine.Random.insideUnitCircle * UnityEngine.Random.Range(0.0f, radiusAroundBody));
+		Vector3 targetDirection = (targetPoint - transform.position).normalized;
+		rb.velocity = targetDirection * velocity;
+	}
+
 	public void SetRandomAngularVelocity(float min, float max)
 	{
 		rb.angularVelocity = new Vector3(0.0f, 0.0f, Mathf.Deg2Rad * UnityEngine.Random.Range(min, max));
@@ -96,7 +103,7 @@ public class GravityBody : MonoBehaviour
 		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
 	}
 
-	private void FixedUpdate()
+	protected void FixedUpdate()
 	{
 		if (IsMajorBody)
 		{
