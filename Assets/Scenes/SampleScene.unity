@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 93002967}
   serializedVersion: 2
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.00000008940697}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: -0.0000005364418}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -234,9 +234,9 @@ GameObject:
   - component: {fileID: 93002969}
   - component: {fileID: 93002976}
   - component: {fileID: 93002981}
-  - component: {fileID: 93002973}
   - component: {fileID: 93002979}
   - component: {fileID: 93002980}
+  - component: {fileID: 93002982}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -265,18 +265,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &93002973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93002967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &93002976
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -285,7 +273,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93002967}
   serializedVersion: 4
-  m_Mass: 200000
+  m_Mass: 200000000
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -366,8 +354,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionSpeedThreshold: 0.2
-  OnCollision:
+  useCollisionSpeedThreshold: 0
+  collisionSpeedThreshold: 0
+  isMajorBody: 1
+  OnMajorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMinorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCollision:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &93002980
@@ -382,7 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b0161e6f972d742bea10fc22bdc58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentRb: {fileID: 210935017}
+  parentBody: {fileID: 210935017}
+  oppositeOrbitalDistance: 3
   clockwiseRotation: 1
 --- !u!114 &93002981
 MonoBehaviour:
@@ -397,6 +394,110 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 0, z: 6}
+--- !u!96 &93002982
+TrailRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93002967}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 300
+  m_PreviewTimeScale: 1
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.019012451
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_MaskInteraction: 0
+  m_Autodestruct: 0
+  m_Emitting: 1
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &163657659
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,11 +790,12 @@ GameObject:
   - component: {fileID: 210935011}
   - component: {fileID: 210935017}
   - component: {fileID: 210935004}
-  - component: {fileID: 210935014}
+  - component: {fileID: 210935023}
   - component: {fileID: 210935020}
+  - component: {fileID: 210935024}
   m_Layer: 0
   m_Name: Planet
-  m_TagString: Untagged
+  m_TagString: CentralBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -750,18 +852,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.50000006
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &210935014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210935003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9d197d6406fd24c9cc8a057a84298f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &210935017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -770,7 +860,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210935003}
   serializedVersion: 4
-  m_Mass: 1000000
+  m_Mass: 1e+9
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -801,7 +891,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc641141d66bae74290db2ee0623cbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solarSeason: {fileID: 410087044}
+  sunMotion: {fileID: 410087044}
+  snowCoverage: 0.1
+  minCoverage: 0.1
+  maxCoverage: 0.35
 --- !u!23 &210935021
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -852,6 +945,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210935003}
   m_Mesh: {fileID: 8996112186996524538, guid: f9d57164be5c94e42b865e154b218221, type: 3}
+--- !u!114 &210935023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210935003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c508126ea0e3e4a853149d36449ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useCollisionSpeedThreshold: 0
+  collisionSpeedThreshold: 0
+  isMajorBody: 1
+  OnMajorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMinorCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1142764571}
+        m_TargetAssemblyTypeName: FundsManager, Assembly-CSharp
+        m_MethodName: AddFundsFromAsteroidImpact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &210935024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210935003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e9fa35117500e4cb817f4b0de365b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 100
+  minHitpoints: 0
+  maxHitpoints: 100
+  enableRegeneration: 1
+  regenerationRate: 0.01
+  destroyUponDeath: 0
+  damageReduction: 0.99
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &250556674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1292,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 4.5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1196,7 +1347,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 3
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 1
@@ -1210,7 +1361,7 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
+    quality: 4
     frameInfluence: 0.1
     jitterScale: 1
     mipBias: 0
@@ -1228,8 +1379,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7ac72b7f6401249b3df38cedea8495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSize: 2
-  minTargetSize: 2
+  defaultFollowedObject: {fileID: 0}
+  followedObject: {fileID: 0}
+  targetSize: 4.5
+  minTargetSize: 1
   maxTargetSize: 4.5
 --- !u!1 &332397622
 GameObject:
@@ -1784,6 +1937,7 @@ GameObject:
   - component: {fileID: 425293657}
   - component: {fileID: 425293660}
   - component: {fileID: 425293659}
+  - component: {fileID: 425293661}
   m_Layer: 5
   m_Name: HealthPanel
   m_TagString: Untagged
@@ -1850,6 +2004,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425293656}
   m_CullTransparentMesh: 1
+--- !u!114 &425293661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425293656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f339774cbc6d4f84681a23c04e931992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
+  textObject: {fileID: 1701703051}
 --- !u!1 &432051401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,7 +2615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityReductionFactor: 0.1
-  sizeReductionFactor: 0.15
+  sizeReductionFactor: 0.025
   ignoredRigidbodies:
   - {fileID: 210935017}
 --- !u!23 &859960795
@@ -2666,7 +2834,7 @@ GameObject:
   - component: {fileID: 948708500}
   m_Layer: 0
   m_Name: TimescaleChanger
-  m_TagString: Untagged
+  m_TagString: TimescaleChanger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2959,8 +3127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minFunds: 0
   maxFunds: 1000
-  funds: 1000
-  fundsGainPerSecond: 5
+  funds: 500
+  baseFundsGain: 10
+  fundsImpactModifier: 5
+  fundsDestructionModifier: 10
 --- !u!1 &1242256105
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,7 +4177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WIP
+  m_text: 100%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c07cfa95dfd900b499dd9f48c585a618, type: 2}
   m_sharedMaterial: {fileID: 5021794189516106923, guid: c07cfa95dfd900b499dd9f48c585a618,
@@ -4362,15 +4532,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378608c3d5b7d1043a18736b7a25db41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centralBody: {fileID: 210935014}
-  cullingDistance: 200
-  minSpawnDistance: 10
-  maxSpawnDistance: 20
+  centralBody: {fileID: 210935023}
+  cullingDistance: 40
+  minSpawnDistance: 30
+  maxSpawnDistance: 30
   asteroidScaleMin: 0.8
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
   fragmentScaleMax: 0.9
-  attractablesLimit: 1000
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
@@ -4383,6 +4552,12 @@ MonoBehaviour:
   - {fileID: 2638569017906253500, guid: 44dd1526f7886924995f6db9ca16ad85, type: 3}
   - {fileID: 8940196675252753097, guid: 9160f04f3ba4a864c8bd6cfd986c3fb5, type: 3}
   - {fileID: 1018367501072651570, guid: 8e1dd90c091e7d944922feecde6a0d8a, type: 3}
+  groupSpawnRadius: 10
+  minGroupSize: 20
+  maxGroupSize: 50
+  flybyMinVelocity: 0.1
+  flybyMaxVelocity: 0.5
+  lonerSpawnChance: 0.01
 --- !u!4 &2063208161
 Transform:
   m_ObjectHideFlags: 0

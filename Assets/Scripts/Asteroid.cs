@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Asteroid : Attractable
+public class Asteroid : GravityBody
 {
 	[SerializeField] private bool canSpawnFragments = false;
 	[SerializeField] private GameObject impactEffectPrefab;
@@ -35,7 +35,7 @@ public class Asteroid : Attractable
 	{
 		if (impactEffectPrefab != null)
 		{
-			bool collidedWithMajorBody = collision.gameObject.GetComponent<Attractor>();
+			bool collidedWithMajorBody = collision.gameObject.GetComponent<GravityBody>().IsMajorBody;
 			Vector3 spawnPoint = collision.GetContact(0).point;
 
 			var effect = Instantiate(impactEffectPrefab, spawnPoint, Quaternion.identity);
@@ -76,5 +76,12 @@ public class Asteroid : Attractable
 		base.Start();
 
 		asteroidSpawner = GameObject.FindWithTag("AsteroidSpawner").GetComponent<AsteroidSpawner>();
+	}
+
+	protected override void OnEnable()
+	{
+		base.OnEnable();
+
+		SetRandomAngularVelocity(-45.0f, 45.0f);
 	}
 }

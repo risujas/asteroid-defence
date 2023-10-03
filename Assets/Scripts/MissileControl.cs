@@ -7,6 +7,9 @@ public class MissileControl : MonoBehaviour
 	[SerializeField] private float acceleration = 1.0f;
 
 	private Rigidbody rb;
+	private CameraControl cameraControl;
+	private FundsManager fundsManager;
+	private TimescaleChanger timescaleChanger;
 
 	private void HandleRotation()
 	{
@@ -40,9 +43,24 @@ public class MissileControl : MonoBehaviour
 		}
 	}
 
+	private void OnEnable()
+	{
+		timescaleChanger = GameObject.FindWithTag("TimescaleChanger").GetComponent<TimescaleChanger>();
+		timescaleChanger.SetTimescale(1.0f);
+	}
+	private void OnDisable()
+	{
+		timescaleChanger.ResetTimescale();
+	}
+
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+
+		cameraControl = Camera.main.GetComponent<CameraControl>();
+		cameraControl.FollowedObject = gameObject;
+
+		fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
 	}
 
 	private void Update()
@@ -52,7 +70,17 @@ public class MissileControl : MonoBehaviour
 
 		if (Input.GetMouseButtonUp(1))
 		{
+			if (cameraControl.FollowedObject == gameObject)
+			{
+				cameraControl.FollowedObject = null;
+			}
+
 			enabled = false;
 		}
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		fundsManager.AddFundsFromAsteroidDestruction(collision);
 	}
 }

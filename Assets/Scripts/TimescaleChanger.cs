@@ -19,6 +19,11 @@ public class TimescaleChanger : MonoBehaviour
 		}
 	}
 
+	public void ResetTimescale()
+	{
+		Time.timeScale = levels[levelIndex];
+	}
+
 	public void Increase()
 	{
 		ChangeLevel(1);

@@ -15,6 +15,8 @@ O _____/
 missile launching
 orbital laser cannon; push asteroids or vaporize fragments...... maybe automatically tries to vaporize fragments?
 orbital space telescope
+orbital railgun, launches metal slugs to hit fragments
+scifi gravity reflector
 
 require funding to build stuff?
 receive funding from spotting things in the sky with telescopes
@@ -40,6 +42,22 @@ maybe create a single impact effect that can be heavily configured on the fly to
 alternatively, create a bunch of effects and add them as a list to AsteroidSpawner which will give you the correct one depending on your body
 
 disable asteroid colliders by default, enable after travelling a distance equal to the collider's size?
+
+fix missile jitter
+
+add impact damage component to baseasteroid, apply from collision event, apply damage within a radius based on relative? velocity and mass
+
+WORLD TYPE:
+inhabitable planet around a gas giant?
+
+SPECIAL EVENTS
+	- "Rogue star": a bright star will pass across the background, depicting another star that passed through the Oort cloud and foretelling a massive asteroid swarm in the future
+	- "Unnatural asteroid": a strange glowing asteroid that can erratically change its direction or accelerate. Can dodge missiles
+	- "Comet": an asteroid with a long growing tail passes through the system
+	- "Solar flare" temporarily disables systems
+	- "Unidentified space object" - seemingly a mechanical construct, it observes your planet for a while and then darts away
+
+maybe allow spawning new asteroids groups as soon as the previous one has reached a distance near the earth, instead of when the culling has started. makes group spawning more frequent and reduces waiting?
 
 TODO LIST
 - Add "flyby asteroids"; high velocity, not in an orbital trajectory
