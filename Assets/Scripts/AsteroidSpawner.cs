@@ -22,6 +22,8 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float groupSpawnRadius = 10.0f;
 	[SerializeField] private float flybyMinVelocity = 0.1f;
 	[SerializeField] private float flybyMaxVelocity = 0.5f;
+	[SerializeField] private float orbitPeriapsisMin = 0.0f;
+	[SerializeField] private float orbitPeriapsisMax = 5.0f;
 
 	private IntervalTimer spawnTimer = new IntervalTimer(30.0f);
 	private GameObject spawnedObjectsContainer;
@@ -49,8 +51,9 @@ public class AsteroidSpawner : MonoBehaviour
 		return newAsteroid;
 	}
 
-	private void SpawnFlybyGroup(Vector3 groupPos)
+	private void SpawnAsteroidGroup(Vector3 groupPos)
 	{
+		bool flyby = Random.value <= 0.5f;
 		Vector3 groupDir = (centralBody.transform.position - groupPos).normalized;
 		float v = Random.Range(flybyMinVelocity, flybyMaxVelocity);
 
@@ -70,15 +73,14 @@ public class AsteroidSpawner : MonoBehaviour
 				asteroid = SpawnAsteroid(asteroidPos).GetComponent<Asteroid>();
 			}
 
-			asteroid.rb.velocity = groupDir * v;
-		}
-	}
-
-	private void SpawnAsteroidGroup(Vector3 groupPos)
-	{
-		if (Random.value <= 1.0f)
-		{
-			SpawnFlybyGroup(groupPos);
+			if (flyby)
+			{
+				asteroid.rb.velocity = groupDir * v;
+			}
+			else
+			{
+				asteroid.DefineOrbit(centralBody.rb, Random.Range(orbitPeriapsisMin, orbitPeriapsisMax));
+			}
 		}
 	}
 
