@@ -4540,7 +4540,6 @@ MonoBehaviour:
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
   fragmentScaleMax: 0.9
-  attractablesLimit: 100
   asteroidPrefabs:
   - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
   - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
@@ -4554,10 +4553,11 @@ MonoBehaviour:
   - {fileID: 8940196675252753097, guid: 9160f04f3ba4a864c8bd6cfd986c3fb5, type: 3}
   - {fileID: 1018367501072651570, guid: 8e1dd90c091e7d944922feecde6a0d8a, type: 3}
   groupSpawnRadius: 10
-  flybyMinVelocity: 0.2
-  flybyMaxVelocity: 0.6
-  orbitPeriapsisMin: 0
-  orbitPeriapsisMax: 5
+  minGroupSize: 20
+  maxGroupSize: 50
+  flybyMinVelocity: 0.1
+  flybyMaxVelocity: 0.5
+  lonerSpawnChance: 0.01
 --- !u!4 &2063208161
 Transform:
   m_ObjectHideFlags: 0

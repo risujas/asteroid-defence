@@ -14,16 +14,17 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float fragmentScaleMin = 0.75f;
 	[SerializeField] private float fragmentScaleMax = 1.0f;
 
-	[SerializeField] private int attractablesLimit = 100;
-
 	[SerializeField] private List<GravityBody> asteroidPrefabs = new List<GravityBody>();
 	[SerializeField] private List<GravityBody> fragmentPrefabs = new List<GravityBody>();
 
 	[SerializeField] private float groupSpawnRadius = 10.0f;
+	[SerializeField] private int minGroupSize = 20;
+	[SerializeField] private int maxGroupSize = 60;
+
 	[SerializeField] private float flybyMinVelocity = 0.1f;
 	[SerializeField] private float flybyMaxVelocity = 0.5f;
-	[SerializeField] private float orbitPeriapsisMin = 0.0f;
-	[SerializeField] private float orbitPeriapsisMax = 5.0f;
+
+	[SerializeField] private float lonerSpawnChance = 0.01f;
 
 	private IntervalTimer spawnTimer = new IntervalTimer(1.0f);
 	private GameObject spawnedObjectsContainer;
@@ -56,7 +57,7 @@ public class AsteroidSpawner : MonoBehaviour
 		Vector3 groupDir = (centralBody.transform.position - groupPos).normalized;
 		float v = Random.Range(flybyMinVelocity, flybyMaxVelocity);
 
-		int numToSpawn = Random.Range(20, 60);
+		int numToSpawn = Random.Range(minGroupSize, maxGroupSize);
 		for (int i = 0; i < numToSpawn; i++)
 		{
 			Vector3 asteroidPos = groupPos + Random.insideUnitSphere * groupSpawnRadius;
@@ -101,24 +102,19 @@ public class AsteroidSpawner : MonoBehaviour
 
 		if (spawnTimer.Tick())
 		{
-			float chance = 1.0f - Mathf.Clamp01((GravityBody.GravityBodies.Count / attractablesLimit));
+			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
 
-			bool spawnGroup = Random.value < chance;
-			if (spawnGroup)
+			float groupSpawnChance = 1.0f - Mathf.Clamp01(GravityBody.GravityBodies.Count / maxGroupSize);
+			if (Random.value < groupSpawnChance)
 			{
-				float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
-				Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
 				SpawnAsteroidGroup(spawnPoint);
 			}
 
-			bool spawnLoner = Random.value < chance + 0.1f;
-			if (spawnLoner)
+			if (Random.value < lonerSpawnChance)
 			{
-				float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
-				Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
-
 				var asteroid = SpawnAsteroid(spawnPoint);
-				asteroid.DefineOrbit(centralBody.rb, Random.Range(orbitPeriapsisMin, orbitPeriapsisMax));
+				asteroid.DefineFlyby(centralBody.rb, 10.0f, Random.Range(flybyMinVelocity, flybyMaxVelocity));
 			}
 		}
 	}
