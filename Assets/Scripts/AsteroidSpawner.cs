@@ -4,17 +4,26 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
 	[SerializeField] private GravityBody centralBody;
+
 	[SerializeField] private float cullingDistance = 200.0f;
 	[SerializeField] private float minSpawnDistance = 30.0f;
 	[SerializeField] private float maxSpawnDistance = 100.0f;
+
 	[SerializeField] private float asteroidScaleMin = 0.8f;
 	[SerializeField] private float asteroidScaleMax = 1.1f;
 	[SerializeField] private float fragmentScaleMin = 0.75f;
 	[SerializeField] private float fragmentScaleMax = 1.0f;
+
 	[SerializeField] private int attractablesLimit = 100;
+
 	[SerializeField] private List<GravityBody> asteroidPrefabs = new List<GravityBody>();
 	[SerializeField] private List<GravityBody> fragmentPrefabs = new List<GravityBody>();
 
+	[SerializeField] private float groupSpawnRadius = 10.0f;
+	[SerializeField] private float flybyMinVelocity = 0.1f;
+	[SerializeField] private float flybyMaxVelocity = 0.5f;
+
+	private IntervalTimer spawnTimer = new IntervalTimer(30.0f);
 	private GameObject spawnedObjectsContainer;
 
 	public GravityBody SpawnFragment(Vector3 spawnPoint)
@@ -40,21 +49,37 @@ public class AsteroidSpawner : MonoBehaviour
 		return newAsteroid;
 	}
 
+	private void SpawnFlybyGroup(Vector3 groupPos)
+	{
+		Vector3 groupDir = (centralBody.transform.position - groupPos).normalized;
+		float v = Random.Range(flybyMinVelocity, flybyMaxVelocity);
+
+		int numToSpawn = Random.Range(20, 60);
+		for (int i = 0; i < numToSpawn; i++)
+		{
+			Vector3 asteroidPos = groupPos + Random.insideUnitSphere * groupSpawnRadius;
+			asteroidPos.z = 0.0f;
+
+			Asteroid asteroid;
+			if (Random.value < 0.667f)
+			{
+				asteroid = SpawnFragment(asteroidPos).GetComponent<Asteroid>();
+			}
+			else
+			{
+				asteroid = SpawnAsteroid(asteroidPos).GetComponent<Asteroid>();
+			}
+
+			asteroid.rb.velocity = groupDir * v;
+		}
+	}
+
 	private void SpawnAsteroidGroup(Vector3 groupPos)
 	{
-		// WIP
-		// obsolete old reference code
-
-		//var asteroid = SpawnAsteroid(spawnPoint);
-
-		//if (Random.value >= 0.5f)
-		//{
-		//	asteroid.DefineOrbit(centralBody.rb, Random.Range(0.0f, 6.0f));
-		//}
-		//else
-		//{
-		//	asteroid.DefineFlyby(centralBody.rb, 7.0f, Random.Range(0.5f, 1.0f));
-		//}
+		if (Random.value <= 1.0f)
+		{
+			SpawnFlybyGroup(groupPos);
+		}
 	}
 
 	private void CullDistantAsteroids()
@@ -80,7 +105,7 @@ public class AsteroidSpawner : MonoBehaviour
 	{
 		CullDistantAsteroids();
 
-		if (GravityBody.GravityBodies.Count < attractablesLimit)
+		if (GravityBody.GravityBodies.Count < attractablesLimit && spawnTimer.Tick())
 		{
 			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
 			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
