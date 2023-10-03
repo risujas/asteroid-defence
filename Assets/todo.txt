@@ -55,7 +55,7 @@ SPECIAL EVENTS
 	- "Solar flare" temporarily disables systems
 	- "Unidentified space object" - seemingly a mechanical construct, it observes your planet for a while and then darts away
 
-add a check for asteroid spawning: 50% (or N%) of a previously spawned asteroid group must be culled/destroyed before spawning a new one
+maybe allow spawning new asteroids groups as soon as the previous one has reached a distance near the earth, instead of when the culling has started. makes group spawning more frequent and reduces waiting?
 
 TODO LIST
 - Add "flyby asteroids"; high velocity, not in an orbital trajectory
