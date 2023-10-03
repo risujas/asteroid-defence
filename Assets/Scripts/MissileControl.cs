@@ -10,6 +10,7 @@ public class MissileControl : MonoBehaviour
 	private CameraControl cameraControl;
 	private FundsManager fundsManager;
 	private TimescaleChanger timescaleChanger;
+	private AudioSource rocketEngineSound;
 
 	private void HandleRotation()
 	{
@@ -39,6 +40,19 @@ public class MissileControl : MonoBehaviour
 
 				remainingDeltaV -= deltaV;
 				rb.AddForce(transform.up * deltaV, ForceMode.VelocityChange);
+
+				if (!rocketEngineSound.isPlaying)
+				{
+					rocketEngineSound.Play();
+				}
+			}
+		}
+
+		if (rocketEngineSound.isPlaying)
+		{
+			if (Input.GetMouseButtonUp(0) || remainingDeltaV <= 0.0f)
+			{
+				rocketEngineSound.Stop();
 			}
 		}
 	}
@@ -61,6 +75,8 @@ public class MissileControl : MonoBehaviour
 		cameraControl.FollowedObject = gameObject;
 
 		fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
+
+		rocketEngineSound = GetComponent<AudioSource>();
 	}
 
 	private void Update()
