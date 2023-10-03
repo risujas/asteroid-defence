@@ -72,7 +72,7 @@ public class CameraControl : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		HandleZoom();
 		HandleFollowing();
