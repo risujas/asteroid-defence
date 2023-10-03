@@ -4533,9 +4533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centralBody: {fileID: 210935023}
-  cullingDistance: 50
-  minSpawnDistance: 40
-  maxSpawnDistance: 40
+  cullingDistance: 40
+  minSpawnDistance: 30
+  maxSpawnDistance: 30
   asteroidScaleMin: 0.8
   asteroidScaleMax: 1
   fragmentScaleMin: 0.6
@@ -4556,6 +4556,8 @@ MonoBehaviour:
   groupSpawnRadius: 10
   flybyMinVelocity: 0.2
   flybyMaxVelocity: 0.6
+  orbitPeriapsisMin: 0
+  orbitPeriapsisMax: 5
 --- !u!4 &2063208161
 Transform:
   m_ObjectHideFlags: 0

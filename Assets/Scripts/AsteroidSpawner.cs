@@ -25,7 +25,7 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private float orbitPeriapsisMin = 0.0f;
 	[SerializeField] private float orbitPeriapsisMax = 5.0f;
 
-	private IntervalTimer spawnTimer = new IntervalTimer(30.0f);
+	private IntervalTimer spawnTimer = new IntervalTimer(1.0f);
 	private GameObject spawnedObjectsContainer;
 
 	public GravityBody SpawnFragment(Vector3 spawnPoint)
@@ -107,11 +107,17 @@ public class AsteroidSpawner : MonoBehaviour
 	{
 		CullDistantAsteroids();
 
-		if (GravityBody.GravityBodies.Count < attractablesLimit && spawnTimer.Tick())
+		if (spawnTimer.Tick())
 		{
-			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
-			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
-			SpawnAsteroidGroup(spawnPoint);
+			float chance = 1.0f - Mathf.Clamp01((GravityBody.GravityBodies.Count / attractablesLimit));
+			bool spawnAsteroids = Random.value < chance;
+
+			if (spawnAsteroids)
+			{
+				float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+				Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
+				SpawnAsteroidGroup(spawnPoint);
+			}
 		}
 	}
 }
