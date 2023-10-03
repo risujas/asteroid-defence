@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class MissileControl : MonoBehaviour
 {
@@ -6,11 +7,13 @@ public class MissileControl : MonoBehaviour
 	[SerializeField] private float remainingDeltaV = 10.0f;
 	[SerializeField] private float acceleration = 1.0f;
 
+	[SerializeField] private AudioSource rocketEngineSound;
+	[SerializeField] private VisualEffect rocketEngineVfx;
+
 	private Rigidbody rb;
 	private CameraControl cameraControl;
 	private FundsManager fundsManager;
 	private TimescaleChanger timescaleChanger;
-	private AudioSource rocketEngineSound;
 
 	private void HandleRotation()
 	{
@@ -44,6 +47,7 @@ public class MissileControl : MonoBehaviour
 				if (!rocketEngineSound.isPlaying)
 				{
 					rocketEngineSound.Play();
+					rocketEngineVfx.Play();
 				}
 			}
 		}
@@ -53,6 +57,7 @@ public class MissileControl : MonoBehaviour
 			if (Input.GetMouseButtonUp(0) || remainingDeltaV <= 0.0f)
 			{
 				rocketEngineSound.Stop();
+				rocketEngineVfx.Stop();
 			}
 		}
 	}
@@ -75,8 +80,6 @@ public class MissileControl : MonoBehaviour
 		cameraControl.FollowedObject = gameObject;
 
 		fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
-
-		rocketEngineSound = GetComponent<AudioSource>();
 	}
 
 	private void Update()
