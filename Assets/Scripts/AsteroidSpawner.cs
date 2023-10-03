@@ -26,6 +26,9 @@ public class AsteroidSpawner : MonoBehaviour
 
 	[SerializeField] private float lonerSpawnChance = 0.01f;
 
+	private List<Asteroid> previouslySpawnedGroup = null;
+	private int previousGroupSize = 0;
+
 	private IntervalTimer spawnTimer = new IntervalTimer(1.0f);
 	private GameObject spawnedObjectsContainer;
 
@@ -58,6 +61,10 @@ public class AsteroidSpawner : MonoBehaviour
 		float v = Random.Range(flybyMinVelocity, flybyMaxVelocity);
 
 		int numToSpawn = Random.Range(minGroupSize, maxGroupSize);
+
+		previouslySpawnedGroup = new();
+		previousGroupSize = numToSpawn;
+
 		for (int i = 0; i < numToSpawn; i++)
 		{
 			Vector3 asteroidPos = groupPos + Random.insideUnitSphere * groupSpawnRadius;
@@ -74,6 +81,7 @@ public class AsteroidSpawner : MonoBehaviour
 			}
 
 			asteroid.rb.velocity = groupDir * v;
+			previouslySpawnedGroup.Add(asteroid);
 		}
 	}
 
@@ -91,6 +99,20 @@ public class AsteroidSpawner : MonoBehaviour
 		}
 	}
 
+	private void UpdateAsteroidGroupStatus()
+	{
+		if (previouslySpawnedGroup != null)
+		{
+			for (int i = previouslySpawnedGroup.Count - 1; i >= 0; i--)
+			{
+				if (previouslySpawnedGroup[i] == null)
+				{
+					previouslySpawnedGroup.RemoveAt(i);
+				}
+			}
+		}
+	}
+
 	private void Start()
 	{
 		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
@@ -99,16 +121,20 @@ public class AsteroidSpawner : MonoBehaviour
 	private void Update()
 	{
 		CullDistantAsteroids();
+		UpdateAsteroidGroupStatus();
 
 		if (spawnTimer.Tick())
 		{
 			float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
 			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
 
-			float groupSpawnChance = 1.0f - Mathf.Clamp01(GravityBody.GravityBodies.Count / maxGroupSize);
-			if (Random.value < groupSpawnChance)
+			if (previouslySpawnedGroup == null || ((float)previouslySpawnedGroup.Count / previousGroupSize) < 0.8f)
 			{
-				SpawnAsteroidGroup(spawnPoint);
+				float groupSpawnChance = 1.0f - Mathf.Clamp01(GravityBody.GravityBodies.Count / maxGroupSize);
+				if (Random.value < groupSpawnChance)
+				{
+					SpawnAsteroidGroup(spawnPoint);
+				}
 			}
 
 			if (Random.value < lonerSpawnChance)
