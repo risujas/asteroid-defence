@@ -53,7 +53,6 @@ public class AsteroidSpawner : MonoBehaviour
 
 	private void SpawnAsteroidGroup(Vector3 groupPos)
 	{
-		bool flyby = Random.value <= 0.5f;
 		Vector3 groupDir = (centralBody.transform.position - groupPos).normalized;
 		float v = Random.Range(flybyMinVelocity, flybyMaxVelocity);
 
@@ -73,14 +72,7 @@ public class AsteroidSpawner : MonoBehaviour
 				asteroid = SpawnAsteroid(asteroidPos).GetComponent<Asteroid>();
 			}
 
-			if (flyby)
-			{
-				asteroid.rb.velocity = groupDir * v;
-			}
-			else
-			{
-				asteroid.DefineOrbit(centralBody.rb, Random.Range(orbitPeriapsisMin, orbitPeriapsisMax));
-			}
+			asteroid.rb.velocity = groupDir * v;
 		}
 	}
 
@@ -110,13 +102,23 @@ public class AsteroidSpawner : MonoBehaviour
 		if (spawnTimer.Tick())
 		{
 			float chance = 1.0f - Mathf.Clamp01((GravityBody.GravityBodies.Count / attractablesLimit));
-			bool spawnAsteroids = Random.value < chance;
 
-			if (spawnAsteroids)
+			bool spawnGroup = Random.value < chance;
+			if (spawnGroup)
 			{
 				float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
 				Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
 				SpawnAsteroidGroup(spawnPoint);
+			}
+
+			bool spawnLoner = Random.value < chance + 0.1f;
+			if (spawnLoner)
+			{
+				float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+				Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * spawnDistance));
+
+				var asteroid = SpawnAsteroid(spawnPoint);
+				asteroid.DefineOrbit(centralBody.rb, Random.Range(orbitPeriapsisMin, orbitPeriapsisMax));
 			}
 		}
 	}
