@@ -1,6 +1,3 @@
-swarms spawning too close
-buildings not sinking
-
 tooltips for planets, asteroids, objects (static on the screen, with a line pointing towards the object)
 
 		   BERTHA
@@ -12,40 +9,23 @@ tooltips for planets, asteroids, objects (static on the screen, with a line poin
 	    /
 O _____/
 
-missile launching
 orbital laser cannon; push asteroids or vaporize fragments...... maybe automatically tries to vaporize fragments?
 orbital space telescope
 orbital railgun, launches metal slugs to hit fragments
 scifi gravity reflector
 
-require funding to build stuff?
 receive funding from spotting things in the sky with telescopes
 telescopes search for objects in a specific sector of the sky: more telescopes give better coverage and increase the chance of spotting objects in a given sector
 finding objects early gives you more time to prepare
-
-destroying objects also grants you funding
 
 asteroid impacts damage planetary infrastructure and destroy buildings
 major asteroid impacts can cause a nuclear winter, resulting in a game-over
 
 add vfx for when rb is slowing down in the atmosphere
-
 make asteroids sink into the ground upon collision
-
 add vfx for atmospheric entry; plasma glow leading the object; sparks trailing the object
 
-prevent spawning fragments when colliding with a major body (planets, moons), only do so when colliding with a missile
-
-combine attractable and attractor into a single class? , control with a canAttractBodies flag? might cause physics instability because of order of execution getting mixed up 
-
-maybe create a single impact effect that can be heavily configured on the fly to account for impacts of all kinds; small flashes, big ejecta, massive planet killers...
-alternatively, create a bunch of effects and add them as a list to AsteroidSpawner which will give you the correct one depending on your body
-
-disable asteroid colliders by default, enable after travelling a distance equal to the collider's size?
-
 fix missile jitter
-
-add impact damage component to baseasteroid, apply from collision event, apply damage within a radius based on relative? velocity and mass
 
 WORLD TYPE:
 inhabitable planet around a gas giant?
@@ -60,17 +40,11 @@ SPECIAL EVENTS
 maybe allow spawning new asteroids groups as soon as the previous one has reached a distance near the earth, instead of when the culling has started. makes group spawning more frequent and reduces waiting?
 
 TODO LIST
-- Add "flyby asteroids"; high velocity, not in an orbital trajectory
-- Flyby asteroids should maybe spawn in groups; massive clouds of asteroids sweeping through the system and causing havoc
 - Eventually, maybe add a dynamic difficulty that makes the game more challenging depending on how well you are doing
 
 add temperature gauge next to the planet health UI
 
 - Improved camera:
 	Allow panning around the planet somehow
-	When controlling a missile, lerp to its position, and adjust camera zoom depending on the speed
 
-- Gain funds based on mass when an asteroid impacts the planet; gain double? funds when asteroids are destroyed
-
-- The planet has a health that slowly regenerates, 0 health -> defeat
 - Maybe some items (missiles etc) require a baseline health to use? maybe not fun though
