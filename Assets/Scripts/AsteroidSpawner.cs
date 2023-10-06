@@ -5,6 +5,8 @@ public class AsteroidSpawner : MonoBehaviour
 {
 	[SerializeField] private GravityBody centralBody;
 
+	[SerializeField] private bool enableAutoSpawner = false;
+
 	[SerializeField] private float cullingDistance = 200.0f;
 	[SerializeField] private float minSpawnDistance = 30.0f;
 	[SerializeField] private float maxSpawnDistance = 100.0f;
@@ -26,6 +28,9 @@ public class AsteroidSpawner : MonoBehaviour
 
 	[SerializeField] private float lonerSpawnChance = 0.01f;
 
+	[SerializeField] private int ringAsteroidCount = 30;
+	[SerializeField] private float ringRadius = 1.5f;
+
 	private List<Asteroid> previouslySpawnedGroup = null;
 	private int previousGroupSize = 0;
 
@@ -44,9 +49,21 @@ public class AsteroidSpawner : MonoBehaviour
 		return SpawnAsteroid(spawnPoint, asteroidScaleMin, asteroidScaleMax, randomPrefab);
 	}
 
+	public void SpawnAsteroidRing()
+	{
+		for (int i = 0; i < ringAsteroidCount; i++)
+		{
+			Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * ringRadius));
+			var asteroid = SpawnAsteroid(spawnPoint);
+			asteroid.DefineOrbit(centralBody.rb, ringRadius);
+		}
+	}
+
 	private GravityBody SpawnAsteroid(Vector3 spawnPoint, float minScaleMultiplier, float maxScaleMultiplier, GravityBody prefab)
 	{
 		float scaleMultiplier = Random.Range(minScaleMultiplier, maxScaleMultiplier);
+
+		Debug.Log(prefab + " " + spawnPoint + " " + spawnedObjectsContainer);
 
 		var newAsteroid = Instantiate(prefab, spawnPoint, Quaternion.identity, spawnedObjectsContainer.transform);
 		newAsteroid.transform.localScale *= scaleMultiplier;
@@ -113,15 +130,12 @@ public class AsteroidSpawner : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	private void HandleAutoSpawning()
 	{
-		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
-	}
-
-	private void Update()
-	{
-		CullDistantAsteroids();
-		UpdateAsteroidGroupStatus();
+		if (!enableAutoSpawner)
+		{
+			return;
+		}
 
 		if (spawnTimer.Tick())
 		{
@@ -143,5 +157,17 @@ public class AsteroidSpawner : MonoBehaviour
 				asteroid.DefineFlyby(centralBody.rb, 10.0f, Random.Range(flybyMinVelocity, flybyMaxVelocity));
 			}
 		}
+	}
+
+	private void Awake()
+	{
+		spawnedObjectsContainer = GameObject.FindWithTag("SpawnedObjectsContainer");
+	}
+
+	private void Update()
+	{
+		CullDistantAsteroids();
+		UpdateAsteroidGroupStatus();
+		HandleAutoSpawning();
 	}
 }

@@ -58,4 +58,9 @@ public class TimescaleChanger : MonoBehaviour
 			isPaused = false;
 		}
 	}
+
+	private void Start()
+	{
+		ResetTimescale();
+	}
 }
