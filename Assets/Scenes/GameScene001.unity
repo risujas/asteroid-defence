@@ -192,6 +192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiGroupFader: {fileID: 2108858848528304500}
+  fundsManager: {fileID: 1142764571}
+  placementManager: {fileID: 517776894}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,11 +367,6 @@ PrefabInstance:
       propertyPath: timescaleChanger
       value: 
       objectReference: {fileID: 948708500}
-    - target: {fileID: 3542820245029709252, guid: 8129fe6e77b93924f95a685c5e93998e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4655938991587168565, guid: 8129fe6e77b93924f95a685c5e93998e,
         type: 3}
       propertyPath: timescaleChanger
@@ -453,44 +450,20 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5792539168096505087, guid: 8129fe6e77b93924f95a685c5e93998e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2108858848528304500}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8129fe6e77b93924f95a685c5e93998e, type: 3}
---- !u!1 &2108858848528304499 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5792539168096505087, guid: 8129fe6e77b93924f95a685c5e93998e,
+--- !u!114 &2108858848528304500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8903033632352947483, guid: 8129fe6e77b93924f95a685c5e93998e,
     type: 3}
   m_PrefabInstance: {fileID: 2108858848528304498}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2108858848528304500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108858848528304499}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae08be87ab0e7bb4282fe9d1571c7f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defeatCanvasGroup: {fileID: 2108858848528304501}
-  gameRuntimeUiCanvasGroup: {fileID: 2108858848528304502}
---- !u!225 &2108858848528304501 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 5625617299866061357, guid: 8129fe6e77b93924f95a685c5e93998e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2108858848528304498}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &2108858848528304502 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 868614160515885788, guid: 8129fe6e77b93924f95a685c5e93998e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2108858848528304498}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2581460102809794879
 PrefabInstance:
   m_ObjectHideFlags: 0

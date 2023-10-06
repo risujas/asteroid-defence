@@ -5,17 +5,18 @@ public class UiGroupFader : MonoBehaviour
 {
 	[SerializeField] private CanvasGroup defeatCanvasGroup;
 	[SerializeField] private CanvasGroup gameRuntimeUiCanvasGroup;
+	[SerializeField] private float fadeDuration = 0.25f;
 
 	public void SwitchToDefeatScreen()
 	{
-		StartCoroutine(FadeIn(defeatCanvasGroup, 0.5f));
-		StartCoroutine(FadeOut(gameRuntimeUiCanvasGroup, 0.5f));
+		StartCoroutine(FadeIn(defeatCanvasGroup, fadeDuration));
+		StartCoroutine(FadeOut(gameRuntimeUiCanvasGroup, fadeDuration));
 	}
 
 	public void SwitchToRuntimeUi()
 	{
-		StartCoroutine(FadeIn(gameRuntimeUiCanvasGroup, 0.5f));
-		StartCoroutine(FadeOut(defeatCanvasGroup, 0.5f));
+		StartCoroutine(FadeIn(gameRuntimeUiCanvasGroup, fadeDuration));
+		StartCoroutine(FadeOut(defeatCanvasGroup, fadeDuration));
 	}
 
 	private IEnumerator FadeIn(CanvasGroup canvasGroup, float duration)
