@@ -4,8 +4,8 @@ public class ConstantRotation : MonoBehaviour
 {
 	[SerializeField] protected Vector3 rotationSpeed;
 
-	private void FixedUpdate()
+	private void Update()
 	{
-		transform.Rotate(rotationSpeed * Time.fixedDeltaTime);
+		transform.Rotate(rotationSpeed * Time.deltaTime);
 	}
 }
