@@ -367,6 +367,11 @@ PrefabInstance:
       propertyPath: timescaleChanger
       value: 
       objectReference: {fileID: 948708500}
+    - target: {fileID: 3542820245029709252, guid: 8129fe6e77b93924f95a685c5e93998e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4655938991587168565, guid: 8129fe6e77b93924f95a685c5e93998e,
         type: 3}
       propertyPath: timescaleChanger

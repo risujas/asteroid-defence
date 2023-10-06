@@ -14,6 +14,7 @@ public class MissileControl : MonoBehaviour
 	private CameraControl cameraControl;
 	private FundsManager fundsManager;
 	private TimescaleChanger timescaleChanger;
+	private GravityBody gravityBody;
 
 	private void HandleRotation()
 	{
@@ -80,6 +81,8 @@ public class MissileControl : MonoBehaviour
 		cameraControl.FollowedObject = gameObject;
 
 		fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
+
+		gravityBody = GetComponent<GravityBody>();
 	}
 
 	private void Update()
@@ -94,6 +97,7 @@ public class MissileControl : MonoBehaviour
 				cameraControl.FollowedObject = null;
 			}
 
+			gravityBody.UseCollisionSpeedThreshold = false;
 			enabled = false;
 		}
 	}

@@ -22,6 +22,8 @@ public class GravityBody : MonoBehaviour
 	[SerializeField] protected CollisionEvent OnMinorCollision;
 	[SerializeField] protected CollisionEvent OnAnyCollision;
 
+	public bool UseCollisionSpeedThreshold { get { return useCollisionSpeedThreshold; } set { useCollisionSpeedThreshold = value; } }
+	public float CollisionSpeedThreshold { get { return collisionSpeedThreshold; } set { collisionSpeedThreshold = value; } }
 	public Rigidbody rb { get; private set; }
 	public bool IsMajorBody => isMajorBody;
 
