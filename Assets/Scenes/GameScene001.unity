@@ -972,6 +972,11 @@ PrefabInstance:
       propertyPath: centralBody
       value: 
       objectReference: {fileID: 5881613290130172351}
+    - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
+      propertyPath: enableAutoSpawner
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8180825633879089184, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
       propertyPath: m_Name
