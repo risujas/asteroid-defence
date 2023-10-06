@@ -560,6 +560,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AtmospherePlanet
       objectReference: {fileID: 0}
+    - target: {fileID: 1346511187925566318, guid: 2700a7ab14c63574fb41ab759a5b8a39,
+        type: 3}
+      propertyPath: runInFixedUpdate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2944223512360901231, guid: 2700a7ab14c63574fb41ab759a5b8a39,
         type: 3}
       propertyPath: sunMotion
@@ -887,6 +892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Moon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804756698311494073, guid: 6700c6c0b45dd534e9caaea1e855abd3,
+        type: 3}
+      propertyPath: runInFixedUpdate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
