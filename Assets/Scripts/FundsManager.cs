@@ -9,7 +9,7 @@ public class FundsManager : MonoBehaviour
 	[SerializeField] private float fundsImpactModifier = 7.5f;
 	[SerializeField] private float fundsDestructionModifier = 15.0f;
 
-	public float Funds { get { return funds; } set { funds = value; } }
+	public float Funds { get { return funds; } set { if (gameObject.activeInHierarchy) funds = value; } }
 
 	public void AddFundsFromAsteroidDestruction(Collision collision)
 	{

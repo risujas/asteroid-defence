@@ -389,9 +389,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3997a385f1470bd4db31a8a7c8dba754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDeltaV: 3
-  remainingDeltaV: 3
-  acceleration: 0.5
+  maxDeltaV: 1
+  remainingDeltaV: 1
+  acceleration: 1
   rocketEngineSound: {fileID: 7689156202260970892}
   rocketEngineVfx: {fileID: 3810615588357629448}
 --- !u!114 &632946194701197585
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCollisionSpeedThreshold: 1
-  collisionSpeedThreshold: 0.05
+  collisionSpeedThreshold: 0.02
   isMajorBody: 0
   isImmuneToMassReduction: 1
   OnMajorCollision:
