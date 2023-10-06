@@ -37,14 +37,14 @@ public class UiGroupFader : MonoBehaviour
 
 	private IEnumerator FadeOut(CanvasGroup canvasGroup, float duration)
 	{
-		canvasGroup.alpha = 1.0f;
+		float initialAlpha = canvasGroup.alpha;
 
 		float elapsed = 0.0f;
 		while (elapsed < duration)
 		{
 			elapsed += Time.unscaledDeltaTime;
 			float t = Mathf.Clamp01(elapsed / duration);
-			canvasGroup.alpha = Mathf.Lerp(1.0f, 0.0f, t);
+			canvasGroup.alpha = Mathf.Lerp(initialAlpha, 0.0f, t);
 			yield return null;
 		}
 
