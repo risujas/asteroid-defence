@@ -77,10 +77,4 @@ public class CameraControl : MonoBehaviour
 		HandleZoom();
 		HandleFollowing();
 	}
-
-	private void OnValidate()
-	{
-		targetSize = Mathf.Clamp(targetSize, minTargetSize, maxTargetSize);
-		Camera.main.orthographicSize = targetSize;
-	}
 }
