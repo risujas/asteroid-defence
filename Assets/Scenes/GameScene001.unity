@@ -362,6 +362,16 @@ PrefabInstance:
       propertyPath: fundsManager
       value: 
       objectReference: {fileID: 1142764571}
+    - target: {fileID: 1503281570231890925, guid: 8129fe6e77b93924f95a685c5e93998e,
+        type: 3}
+      propertyPath: m_text
+      value: 'The merciless asteroid bombardment has completely wiped out civilization
+        and made your home world uninhabitable for most forms of life.
+
+
+        Would
+        you like to try again?'
+      objectReference: {fileID: 0}
     - target: {fileID: 1573188111111582174, guid: 8129fe6e77b93924f95a685c5e93998e,
         type: 3}
       propertyPath: timescaleChanger
