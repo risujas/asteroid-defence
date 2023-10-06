@@ -48,3 +48,16 @@ add temperature gauge next to the planet health UI
 	Allow panning around the planet somehow
 
 - Maybe some items (missiles etc) require a baseline health to use? maybe not fun though
+
+
+
+
+
+fade UI in and out as needed
+for example, when defeated, slow fade the game UI away, then fade in the defeat screen
+
+show stats screen on defeat screen
+
+add a strong vignette effect during defeat screen
+
+fade to black when reloading scene
