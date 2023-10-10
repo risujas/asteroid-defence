@@ -785,6 +785,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4546036893483449699, guid: dd271055f799bb64db51e30586a822a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099982432787025894, guid: dd271055f799bb64db51e30586a822a7,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868518689802320179, guid: dd271055f799bb64db51e30586a822a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -957,6 +972,16 @@ PrefabInstance:
       propertyPath: centralBody
       value: 
       objectReference: {fileID: 5881613290130172351}
+    - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
+      propertyPath: maxSpawnDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
+      propertyPath: minSpawnDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8180825633879089184, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
       propertyPath: m_Name
