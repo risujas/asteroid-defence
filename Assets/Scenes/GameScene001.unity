@@ -821,22 +821,22 @@ PrefabInstance:
     - target: {fileID: 3949918321433857842, guid: 6700c6c0b45dd534e9caaea1e855abd3,
         type: 3}
       propertyPath: m_Mass
-      value: 350000000
+      value: 400000000
       objectReference: {fileID: 0}
     - target: {fileID: 5024440386278131546, guid: 6700c6c0b45dd534e9caaea1e855abd3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5024440386278131546, guid: 6700c6c0b45dd534e9caaea1e855abd3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5024440386278131546, guid: 6700c6c0b45dd534e9caaea1e855abd3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5024440386278131546, guid: 6700c6c0b45dd534e9caaea1e855abd3,
         type: 3}
