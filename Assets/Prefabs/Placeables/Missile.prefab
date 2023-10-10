@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 658312605157757304}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ExplosionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,12 +52,12 @@ PrefabInstance:
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: placeOnMouseDown
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
       propertyPath: allowMultiPlacement
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1474802728112929244, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -203,6 +203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Missile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240286754953081368, guid: b2ed3008998b13b4c98234b17a02c88e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4964182503018891925, guid: b2ed3008998b13b4c98234b17a02c88e,
         type: 3}
@@ -579,6 +584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RocketEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057083958920468385, guid: 629ba0af93ad17e409506dc4d2d5b9d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
