@@ -61,3 +61,14 @@ show stats screen on defeat screen
 add a strong vignette effect during defeat screen
 
 fade to black when reloading scene
+
+
+maybe have missiles start below ground and emerge from it
+
+add multiple levels of missile tech
+level 1: dumb missiles: fire and forget, straight path
+level 2: controllable missiles: all missiles fly towards mouse cursor when a button is held
+level 3: locking missiles: missiles automatically target nearby major asteroids and set themselves on a collision course
+
+add a tech menu where you unlock new tech
+for example, pay 1000 funds to unlock higher level missile tech
