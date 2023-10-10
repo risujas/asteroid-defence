@@ -65,6 +65,8 @@ fade to black when reloading scene
 
 maybe have missiles start below ground and emerge from it
 
+add a line while placing missiles that indicates direction and the position after traveling for 1 second
+
 missile tech
 level 1: dumb missiles: fire and forget, straight path
 level 2: controllable missiles: all missiles fly towards mouse cursor when a button is held
