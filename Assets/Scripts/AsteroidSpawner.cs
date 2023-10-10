@@ -63,8 +63,6 @@ public class AsteroidSpawner : MonoBehaviour
 	{
 		float scaleMultiplier = Random.Range(minScaleMultiplier, maxScaleMultiplier);
 
-		Debug.Log(prefab + " " + spawnPoint + " " + spawnedObjectsContainer);
-
 		var newAsteroid = Instantiate(prefab, spawnPoint, Quaternion.identity, spawnedObjectsContainer.transform);
 		newAsteroid.transform.localScale *= scaleMultiplier;
 		newAsteroid.rb.mass *= Mathf.Pow(scaleMultiplier, 3);
