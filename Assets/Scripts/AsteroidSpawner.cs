@@ -136,7 +136,7 @@ public class AsteroidSpawner : MonoBehaviour
 		if (lonerSpawnerTimer.Tick())
 		{
 			var asteroid = SpawnAsteroid(spawnPoint);
-			asteroid.DefineFlyby(centralBody.rb, 10.0f, Random.Range(flybyMinVelocity, flybyMaxVelocity));
+			asteroid.DefineFlyby(centralBody.rb, 12.0f, Random.Range(flybyMinVelocity, flybyMaxVelocity));
 		}
 	}
 
