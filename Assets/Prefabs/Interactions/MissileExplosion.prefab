@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 1154630219431725343}
-  force: 1
+  force: 5
   radius: 0.2
   autoApply: 1
   autoApplyDelay: 0.05
