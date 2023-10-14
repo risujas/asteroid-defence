@@ -979,6 +979,21 @@ PrefabInstance:
       objectReference: {fileID: 5881613290130172351}
     - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
+      propertyPath: asteroidScaleMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
+      propertyPath: fragmentScaleMax
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
+      propertyPath: fragmentScaleMin
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
       propertyPath: maxSpawnDistance
       value: 15
       objectReference: {fileID: 0}
