@@ -1569,6 +1569,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AtmospherePlanet
       objectReference: {fileID: 0}
+    - target: {fileID: 1346511187925566318, guid: 2700a7ab14c63574fb41ab759a5b8a39,
+        type: 3}
+      propertyPath: runInFixedUpdate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2944223512360901231, guid: 2700a7ab14c63574fb41ab759a5b8a39,
         type: 3}
       propertyPath: sunMotion
