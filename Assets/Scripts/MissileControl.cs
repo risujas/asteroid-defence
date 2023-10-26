@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class MissileControl : MonoBehaviour
 {
@@ -6,19 +7,11 @@ public class MissileControl : MonoBehaviour
 	[SerializeField] private float remainingDeltaV = 10.0f;
 	[SerializeField] private float acceleration = 1.0f;
 
+	[SerializeField] private AudioSource rocketEngineSound;
+	[SerializeField] private VisualEffect rocketEngineVfx;
+
 	private Rigidbody rb;
-	private CameraControl cameraControl;
 	private FundsManager fundsManager;
-	private TimescaleChanger timescaleChanger;
-
-	private void HandleRotation()
-	{
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos.z = transform.position.z;
-		Vector3 direction = mousePos - transform.position;
-
-		transform.up = direction.normalized;
-	}
 
 	private void HandleAcceleration()
 	{
@@ -27,56 +20,43 @@ public class MissileControl : MonoBehaviour
 			remainingDeltaV = maxDeltaV;
 		}
 
-		if (Input.GetMouseButton(0))
+		if (remainingDeltaV > 0.0f)
 		{
-			if (remainingDeltaV > 0.0f)
+			float deltaV = acceleration * Time.deltaTime;
+			if (remainingDeltaV < deltaV)
 			{
-				float deltaV = acceleration * Time.deltaTime;
-				if (remainingDeltaV < deltaV)
-				{
-					deltaV = remainingDeltaV;
-				}
+				deltaV = remainingDeltaV;
+			}
 
-				remainingDeltaV -= deltaV;
-				rb.AddForce(transform.up * deltaV, ForceMode.VelocityChange);
+			remainingDeltaV -= deltaV;
+			rb.AddForce(transform.up * deltaV, ForceMode.VelocityChange);
+
+			if (!rocketEngineSound.isPlaying)
+			{
+				rocketEngineSound.Play();
+				rocketEngineVfx.Play();
 			}
 		}
-	}
 
-	private void OnEnable()
-	{
-		timescaleChanger = GameObject.FindWithTag("TimescaleChanger").GetComponent<TimescaleChanger>();
-		timescaleChanger.SetTimescale(1.0f);
-	}
-	private void OnDisable()
-	{
-		timescaleChanger.ResetTimescale();
+		if (rocketEngineSound.isPlaying)
+		{
+			if (remainingDeltaV <= 0.0f)
+			{
+				rocketEngineSound.Stop();
+				rocketEngineVfx.Stop();
+			}
+		}
 	}
 
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-
-		cameraControl = Camera.main.GetComponent<CameraControl>();
-		cameraControl.FollowedObject = gameObject;
-
 		fundsManager = GameObject.FindWithTag("FundsManager").GetComponent<FundsManager>();
 	}
 
 	private void Update()
 	{
-		HandleRotation();
 		HandleAcceleration();
-
-		if (Input.GetMouseButtonUp(1))
-		{
-			if (cameraControl.FollowedObject == gameObject)
-			{
-				cameraControl.FollowedObject = null;
-			}
-
-			enabled = false;
-		}
 	}
 
 	private void OnCollisionEnter(Collision collision)

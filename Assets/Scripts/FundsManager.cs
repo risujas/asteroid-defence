@@ -3,13 +3,14 @@ using UnityEngine;
 public class FundsManager : MonoBehaviour
 {
 	[SerializeField] private float minFunds = 0.0f;
-	[SerializeField] private float maxFunds = 1000.0f;
+	[SerializeField] private float maxFunds = 10000.0f;
 	[SerializeField] private float funds = 1000.0f;
 	[SerializeField] private float baseFundsGain = 5.0f;
+	[SerializeField] private float fundsGainLimit = 1000.0f;
 	[SerializeField] private float fundsImpactModifier = 7.5f;
 	[SerializeField] private float fundsDestructionModifier = 15.0f;
 
-	public float Funds { get { return funds; } set { funds = value; } }
+	public float Funds { get { return funds; } set { if (gameObject.activeInHierarchy) funds = value; } }
 
 	public void AddFundsFromAsteroidDestruction(Collision collision)
 	{
@@ -42,9 +43,11 @@ public class FundsManager : MonoBehaviour
 			funds = minFunds;
 		}
 
-		float fundsGainRatio = (maxFunds - funds) / maxFunds;
-
-		funds += baseFundsGain * fundsGainRatio * Time.deltaTime;
+		if (funds < fundsGainLimit)
+		{
+			float fundsGainRatio = (fundsGainLimit - funds) / fundsGainLimit;
+			funds += baseFundsGain * fundsGainRatio * Time.deltaTime;
+		}
 
 		if (funds > maxFunds)
 		{

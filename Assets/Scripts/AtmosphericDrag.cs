@@ -16,12 +16,17 @@ public class AtmosphericDrag : MonoBehaviour
 
 		other.attachedRigidbody.velocity -= other.attachedRigidbody.velocity * velocityReductionFactor * Time.deltaTime;
 
-		float scaleModifier = Mathf.Lerp(1.0f, 0.0f, sizeReductionFactor * Time.deltaTime);
-		other.transform.localScale *= scaleModifier;
-		other.attachedRigidbody.mass *= Mathf.Pow(scaleModifier, 3);
+		if (other.TryGetComponent(out GravityBody gb))
+		{
+			if (!gb.IsImmuneToMassReduction)
+			{
+				float scaleModifier = Mathf.Lerp(1.0f, 0.0f, sizeReductionFactor * Time.deltaTime);
+				other.transform.localScale *= scaleModifier;
+				other.attachedRigidbody.mass *= Mathf.Pow(scaleModifier, 3);
+			}
+		}
 
-		var temperature = other.GetComponent<Temperature>();
-		if (temperature != null)
+		if (other.TryGetComponent(out Temperature temperature))
 		{
 			temperature.ChangeTemperature(temperature.MaxTemperature * velocityReductionFactor * Time.deltaTime);
 		}

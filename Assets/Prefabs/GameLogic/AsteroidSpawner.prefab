@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &410372606222139520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5692406167244271823}
+  - component: {fileID: 5877470588721928942}
+  m_Layer: 0
+  m_Name: AsteroidSpawner
+  m_TagString: AsteroidSpawner
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5692406167244271823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410372606222139520}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5877470588721928942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410372606222139520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378608c3d5b7d1043a18736b7a25db41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centralBody: {fileID: 0}
+  cullingDistance: 40
+  minSpawnDistance: 30
+  maxSpawnDistance: 30
+  asteroidScaleMin: 0.8
+  asteroidScaleMax: 1
+  fragmentScaleMin: 0.6
+  fragmentScaleMax: 0.9
+  asteroidPrefabs:
+  - {fileID: 4184891348996377002, guid: 9e0fa9e1a84818e45bcd9c00b02bc00d, type: 3}
+  - {fileID: 4184891348996377002, guid: 4dd24ec598842da47bc47b95c61758b1, type: 3}
+  - {fileID: 4184891348996377002, guid: 7b4c82b92632c0940be552b49f27bc12, type: 3}
+  - {fileID: 4184891348996377002, guid: f7b8418ab4055a34eb1a98d44b241899, type: 3}
+  - {fileID: 4184891348996377002, guid: 6c271892108802541a3145023c0b7e36, type: 3}
+  - {fileID: 4184891348996377002, guid: 993989b3e468ba840b799c744af6e738, type: 3}
+  - {fileID: 4184891348996377002, guid: 382c796b4e324b84d88e319489b992e4, type: 3}
+  fragmentPrefabs:
+  - {fileID: 2638569017906253500, guid: 44dd1526f7886924995f6db9ca16ad85, type: 3}
+  - {fileID: 8940196675252753097, guid: 9160f04f3ba4a864c8bd6cfd986c3fb5, type: 3}
+  - {fileID: 1018367501072651570, guid: 8e1dd90c091e7d944922feecde6a0d8a, type: 3}
+  groupSpawnRadius: 10
+  minGroupSize: 20
+  maxGroupSize: 50
+  flybyMinVelocity: 0.1
+  flybyMaxVelocity: 0.5
+  lonerSpawnChance: 0.01

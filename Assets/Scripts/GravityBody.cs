@@ -13,15 +13,19 @@ public class GravityBody : MonoBehaviour
 	[SerializeField] protected bool useCollisionSpeedThreshold = false;
 	[SerializeField] protected float collisionSpeedThreshold = 0.2f;
 	[SerializeField] protected bool isMajorBody = false;
-
-	protected GameObject spawnedObjectsContainer;
-	protected bool hasCollided = false;
+	[SerializeField] protected bool isImmuneToMassReduction = false;
 
 	[Serializable] public class CollisionEvent : UnityEvent<Collision> { }
 	[SerializeField] protected CollisionEvent OnMajorCollision;
 	[SerializeField] protected CollisionEvent OnMinorCollision;
 	[SerializeField] protected CollisionEvent OnAnyCollision;
 
+	protected GameObject spawnedObjectsContainer;
+	protected bool hasCollided = false;
+
+	public bool IsImmuneToMassReduction => isImmuneToMassReduction;
+	public bool UseCollisionSpeedThreshold { get { return useCollisionSpeedThreshold; } set { useCollisionSpeedThreshold = value; } }
+	public float CollisionSpeedThreshold { get { return collisionSpeedThreshold; } set { collisionSpeedThreshold = value; } }
 	public Rigidbody rb { get; private set; }
 	public bool IsMajorBody => isMajorBody;
 
