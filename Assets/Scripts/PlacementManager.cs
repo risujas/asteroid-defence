@@ -9,6 +9,7 @@ public class PlacementManager : MonoBehaviour
 	[SerializeField] private Material placementAidMaterialInvalid;
 	[SerializeField] private LayerMask snapLayerMask;
 	[SerializeField] private TimescaleChanger timescaleChangerReference;
+	[SerializeField] private LineRenderer placementLine;
 
 	private bool isPlacing = false;
 	private Placeable selectedPlaceablePrefab = null;
@@ -86,6 +87,9 @@ public class PlacementManager : MonoBehaviour
 				var anchor = colliders[0].GetComponent<PlacementAnchor>();
 				Vector2 dir = (mousePos - (Vector2)anchor.transform.position).normalized;
 
+				placementLine.SetPosition(0, anchor.transform.position);
+				placementLine.SetPosition(1, mousePos);
+
 				placementAidMarker.transform.position = dir * anchor.SpawnHeight;
 				placementAidMarker.transform.up = dir;
 
@@ -130,6 +134,8 @@ public class PlacementManager : MonoBehaviour
 	private void Update()
 	{
 		HandlePlacement();
+
+		placementLine.enabled = isPlacing;
 	}
 
 	private void LateUpdate()
