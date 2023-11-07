@@ -352,6 +352,11 @@ PrefabInstance:
       propertyPath: timescaleChanger
       value: 
       objectReference: {fileID: 948708500}
+    - target: {fileID: 4787539667987202510, guid: 8129fe6e77b93924f95a685c5e93998e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5103211552915864033, guid: 8129fe6e77b93924f95a685c5e93998e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1000,12 +1005,17 @@ PrefabInstance:
     - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
       propertyPath: maxSpawnDistance
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4041702837839606808, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
       propertyPath: minSpawnDistance
-      value: 15
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156444363264820229, guid: 88424d0d4800ebe468741e736e76e573,
+        type: 3}
+      propertyPath: levelIndex
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4477975707411797884, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
