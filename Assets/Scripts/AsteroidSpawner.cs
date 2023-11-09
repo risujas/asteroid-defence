@@ -15,11 +15,19 @@ public class AsteroidSpawner : MonoBehaviour
 	private int minGroupSize = 20;
 	private int maxGroupSize = 60;
 
+	private Vector3 currentGroupPos = Vector3.zero;
+	private Vector3 currentGroupDir = Vector3.zero;
+	private int currentGroupMemberCount = 0;
+	private int currentGroupMemberMax = 0;
+	private float currentGroupVelocity = 0.0f;
+
 	private float minStartVelocity = 0.1f;
 	private float maxStartVelocity = 0.5f;
 
 	private float minScaleMultiplier = 0.75f;
 	private float maxScaleMultiplier = 1.1f;
+
+	private IntervalTimer spawnTimer = new IntervalTimer(1.0f);
 
 	private GameObject spawnedObjectsContainer;
 
@@ -46,31 +54,6 @@ public class AsteroidSpawner : MonoBehaviour
 		return newAsteroid;
 	}
 
-	private void SpawnAsteroidGroup(Vector3 groupPos)
-	{
-		Vector3 groupDir = (centralBody.transform.position - groupPos).normalized;
-		float v = Random.Range(minStartVelocity, maxStartVelocity);
-
-		int numToSpawn = Random.Range(minGroupSize, maxGroupSize);
-		for (int i = 0; i < numToSpawn; i++)
-		{
-			Vector3 asteroidPos = groupPos + Random.insideUnitSphere * groupSpawnRadius;
-			asteroidPos.z = 0.0f;
-
-			Asteroid asteroid;
-			if (Random.value < 0.667f)
-			{
-				asteroid = SpawnFragment(asteroidPos).GetComponent<Asteroid>();
-			}
-			else
-			{
-				asteroid = SpawnAsteroid(asteroidPos).GetComponent<Asteroid>();
-			}
-
-			asteroid.rb.velocity = groupDir * v;
-		}
-	}
-
 	private void CullDistantAsteroids()
 	{
 		for (int i = GravityBody.GravityBodies.Count - 1; i >= 0; i--)
@@ -92,7 +75,20 @@ public class AsteroidSpawner : MonoBehaviour
 			return;
 		}
 
-		Vector3 spawnPoint = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * groupSpawnDistance));
+		if (spawnTimer.Tick())
+		{
+			if (currentGroupMemberCount >= currentGroupMemberMax || currentGroupMemberMax == 0)
+			{
+				currentGroupMemberCount = 0;
+				currentGroupMemberMax = Random.Range(minGroupSize, maxGroupSize);
+
+				currentGroupPos = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * groupSpawnDistance));
+				currentGroupDir = (centralBody.transform.position - currentGroupPos).normalized;
+				currentGroupVelocity = Random.Range(minStartVelocity, maxStartVelocity);
+			}
+
+			// spawn asteroids until group is filled
+		}
 	}
 
 	private void Awake()
