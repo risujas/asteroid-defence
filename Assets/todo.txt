@@ -84,3 +84,5 @@ level 3: receive early warnings for incoming supermassive asteroids
 
 add a tech menu where you unlock new tech
 for example, pay 1000 funds to unlock higher level missile tech
+
+add be-be-be-beep noise and an indicator when a group is spawned
