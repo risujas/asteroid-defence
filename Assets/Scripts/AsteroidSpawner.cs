@@ -10,16 +10,19 @@ public class AsteroidSpawner : MonoBehaviour
 	[SerializeField] private List<GravityBody> asteroidPrefabs = new List<GravityBody>();
 	[SerializeField] private List<GravityBody> fragmentPrefabs = new List<GravityBody>();
 
-	private float groupSpawnDistance = 30.0f;
+	private float groupSpawnDistance = 15.0f;
 	private float groupSpawnRadius = 10.0f;
-	private int minGroupSize = 20;
-	private int maxGroupSize = 60;
+	private int minGroupSize = 3;
+	private int maxGroupSize = 10;
 
+	private bool groupNotReady = false;
 	private Vector3 currentGroupPos = Vector3.zero;
 	private Vector3 currentGroupDir = Vector3.zero;
 	private int currentGroupMemberCount = 0;
 	private int currentGroupMemberMax = 0;
+	private int groupIndex = 0;
 	private float currentGroupVelocity = 0.0f;
+	private const float groupRadius = 5.0f;
 
 	private float minStartVelocity = 0.1f;
 	private float maxStartVelocity = 0.5f;
@@ -28,6 +31,7 @@ public class AsteroidSpawner : MonoBehaviour
 	private float maxScaleMultiplier = 1.1f;
 
 	private IntervalTimer spawnTimer = new IntervalTimer(1.0f);
+	private IntervalTimer groupIntervalTimer = new IntervalTimer(30.0f);
 
 	private GameObject spawnedObjectsContainer;
 
@@ -79,15 +83,31 @@ public class AsteroidSpawner : MonoBehaviour
 		{
 			if (currentGroupMemberCount >= currentGroupMemberMax || currentGroupMemberMax == 0)
 			{
-				currentGroupMemberCount = 0;
-				currentGroupMemberMax = Random.Range(minGroupSize, maxGroupSize);
+				groupNotReady = true;
 
-				currentGroupPos = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * groupSpawnDistance));
-				currentGroupDir = (centralBody.transform.position - currentGroupPos).normalized;
-				currentGroupVelocity = Random.Range(minStartVelocity, maxStartVelocity);
+				if (groupIntervalTimer.Tick() || groupIndex == 0)
+				{
+					currentGroupMemberCount = 0;
+					currentGroupMemberMax = Random.Range(minGroupSize, maxGroupSize);
+
+					currentGroupPos = centralBody.transform.position + (Quaternion.Euler(0.0f, 0.0f, Random.Range(-180.0f, 180.0f)) * (Vector3.up * groupSpawnDistance));
+					currentGroupDir = (centralBody.transform.position - currentGroupPos).normalized;
+					currentGroupVelocity = Random.Range(minStartVelocity, maxStartVelocity);
+					groupIndex++;
+
+					groupNotReady = false;
+				}
 			}
 
-			// spawn asteroids until group is filled
+			if (!groupNotReady)
+			{
+				var asteroidSpawnPoint = (Vector3)Random.insideUnitCircle * groupRadius;
+				asteroidSpawnPoint += currentGroupPos;
+				var newAsteroid = SpawnAsteroid(asteroidSpawnPoint);
+				newAsteroid.DefineFlyby(centralBody.rb, 5.0f, currentGroupVelocity);
+
+				currentGroupMemberCount++;
+			}
 		}
 	}
 
