@@ -31,7 +31,7 @@ public class Asteroid : GravityBody
 		}
 	}
 
-	private void SpawnCollisionEffects(Collision collision)
+	public void SpawnCollisionEffects(Collision collision)
 	{
 		if (impactEffectPrefab != null)
 		{

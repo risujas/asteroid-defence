@@ -48,6 +48,41 @@ PrefabInstance:
       propertyPath: randomMin.z
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4184891348996377002}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SpawnCollisionFragments
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Asteroid, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844094979547599755, guid: c67e856b27c972045b1ec5e24c20ce6e,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7519984567608261686, guid: c67e856b27c972045b1ec5e24c20ce6e,
         type: 3}
       propertyPath: m_Mesh
@@ -142,3 +177,15 @@ CapsuleCollider:
   m_Height: 1.2748262
   m_Direction: 1
   m_Center: {x: 0.038067922, y: -0.021612227, z: 0.03865169}
+--- !u!114 &4184891348996377002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2452674397496366469, guid: c67e856b27c972045b1ec5e24c20ce6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1736734539985689647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721786545258472147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e1490738ff5ec4990aa8f7a46d4a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
