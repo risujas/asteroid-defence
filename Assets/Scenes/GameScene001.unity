@@ -1020,7 +1020,7 @@ PrefabInstance:
     - target: {fileID: 4477975707411797884, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
       propertyPath: maxFunds
-      value: 100000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8180825633879089184, guid: 88424d0d4800ebe468741e736e76e573,
         type: 3}
