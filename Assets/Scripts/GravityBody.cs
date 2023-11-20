@@ -68,8 +68,11 @@ public class GravityBody : MonoBehaviour
 
 	protected virtual void HandleCollision(Collision collision)
 	{
+		hasCollided = false;
 		if (rb.velocity.magnitude >= collisionSpeedThreshold || !useCollisionSpeedThreshold)
 		{
+			hasCollided = true;
+
 			if (collision.gameObject.GetComponent<GravityBody>().IsMajorBody)
 			{
 				OnMajorCollision.Invoke(collision);
