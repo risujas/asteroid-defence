@@ -64,7 +64,7 @@ public class CameraControl : MonoBehaviour
 
 	private void Start()
 	{
-		targetSize = Camera.main.orthographicSize;
+		Camera.main.orthographicSize = targetSize;
 
 		if (defaultFollowedObject == null)
 		{
