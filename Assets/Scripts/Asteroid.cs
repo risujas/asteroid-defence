@@ -3,6 +3,8 @@ using UnityEngine.VFX;
 
 public class Asteroid : GravityBody
 {
+	private const float fragmentableMassModifier = 0.667f;
+
 	[SerializeField] private bool canSpawnFragments = false;
 	[SerializeField] private GameObject impactEffectPrefab;
 
@@ -16,7 +18,7 @@ public class Asteroid : GravityBody
 		}
 
 		Bounds bounds = GetComponent<Collider>().bounds;
-		float totalFragmentableMass = rb.mass;
+		float totalFragmentableMass = rb.mass * fragmentableMassModifier;
 
 		while (totalFragmentableMass > 0.0f)
 		{
