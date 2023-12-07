@@ -20,6 +20,9 @@ public class GravityBody : MonoBehaviour
 	[SerializeField] protected CollisionEvent OnMinorCollision;
 	[SerializeField] protected CollisionEvent OnAnyCollision;
 
+	[SerializeField] protected bool onlyAllowSpecificAttractors = false;
+	[SerializeField] protected List<GravityBody> allowedAttractors = new List<GravityBody>();
+
 	protected GameObject spawnedObjectsContainer;
 	protected bool hasCollided = false;
 
@@ -56,6 +59,18 @@ public class GravityBody : MonoBehaviour
 
 	public void Attract(GravityBody a)
 	{
+		if (a.onlyAllowSpecificAttractors)
+		{
+			if (a.allowedAttractors.Count == 0)
+			{
+				return;
+			}
+			if (!a.allowedAttractors.Contains(this))
+			{
+				return;
+			}
+		}
+
 		Vector3 direction = transform.position - a.transform.position;
 		float distance = direction.magnitude;
 		direction.Normalize();
