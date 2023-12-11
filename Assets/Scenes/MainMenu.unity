@@ -473,9 +473,10 @@ GameObject:
   m_Component:
   - component: {fileID: 194831454}
   - component: {fileID: 194831453}
+  - component: {fileID: 194831455}
   m_Layer: 0
   m_Name: MusicPlayer
-  m_TagString: Untagged
+  m_TagString: MusicPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -591,6 +592,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194831455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194831452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7114751ca129844b133b7bbc33db98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &410087044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4327388856074164962, guid: dd271055f799bb64db51e30586a822a7,

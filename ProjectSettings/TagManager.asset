@@ -10,6 +10,7 @@ TagManager:
   - FundsManager
   - CentralBody
   - TimescaleChanger
+  - MusicPlayer
   layers:
   - Default
   - TransparentFX
