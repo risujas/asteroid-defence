@@ -13,7 +13,7 @@ public class GravityBody : MonoBehaviour
 	[SerializeField] protected bool useCollisionSpeedThreshold = false;
 	[SerializeField] protected float collisionSpeedThreshold = 0.2f;
 	[SerializeField] protected bool isMajorBody = false;
-	[SerializeField] protected bool isImmuneToMassReduction = false;
+	[SerializeField] protected bool isAffectedByDrag = false;
 
 	[Serializable] public class CollisionEvent : UnityEvent<Collision> { }
 	[SerializeField] protected CollisionEvent OnMajorCollision;
@@ -26,7 +26,7 @@ public class GravityBody : MonoBehaviour
 	protected GameObject spawnedObjectsContainer;
 	protected bool hasCollided = false;
 
-	public bool IsImmuneToMassReduction => isImmuneToMassReduction;
+	public bool IsAffectedByDrag => isAffectedByDrag;
 	public bool UseCollisionSpeedThreshold { get { return useCollisionSpeedThreshold; } set { useCollisionSpeedThreshold = value; } }
 	public float CollisionSpeedThreshold { get { return collisionSpeedThreshold; } set { collisionSpeedThreshold = value; } }
 	public Rigidbody rb { get; private set; }

@@ -131,7 +131,7 @@ MonoBehaviour:
   useCollisionSpeedThreshold: 0
   collisionSpeedThreshold: 0
   isMajorBody: 0
-  isImmuneToMassReduction: 0
+  isAffectedByDrag: 1
   OnMajorCollision:
     m_PersistentCalls:
       m_Calls:
@@ -165,6 +165,8 @@ MonoBehaviour:
   OnAnyCollision:
     m_PersistentCalls:
       m_Calls: []
+  onlyAllowSpecificAttractors: 0
+  allowedAttractors: []
   canSpawnFragments: 0
   impactEffectPrefab: {fileID: 7168825254847043274, guid: 76545ff606b2937458030055038d1982,
     type: 3}

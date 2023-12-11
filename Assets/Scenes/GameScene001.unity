@@ -207,7 +207,7 @@ MonoBehaviour:
   useCollisionSpeedThreshold: 0
   collisionSpeedThreshold: 0.2
   isMajorBody: 0
-  isImmuneToMassReduction: 0
+  isAffectedByDrag: 0
   OnMajorCollision:
     m_PersistentCalls:
       m_Calls: []
