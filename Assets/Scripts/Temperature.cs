@@ -3,6 +3,7 @@ using UnityEngine;
 public class Temperature : MonoBehaviour
 {
 	[SerializeField] private Material material = null;
+	[SerializeField] private Light temperatureLight;
 	[SerializeField] private string materialEmissionString = "_EmissionIntensity";
 	[SerializeField] private float maxEmissionIntensity = 10.0f;
 	[SerializeField] private float temperature = 0.0f;
@@ -21,15 +22,24 @@ public class Temperature : MonoBehaviour
 
 	private void AdjustGlow()
 	{
-		if (material.HasFloat(materialEmissionString))
+		float t = temperature / maxTemperature * maxEmissionIntensity;
+
+		if (material != null)
 		{
-			float t = temperature / maxTemperature * maxEmissionIntensity;
-			material.SetFloat(materialEmissionString, t);
+			if (material.HasFloat(materialEmissionString))
+			{
+				material.SetFloat(materialEmissionString, t);
+			}
+			else
+			{
+				Debug.Log("Shader material: " + material + " on object:" + gameObject.name + " doesn't contain the emission control float: " + materialEmissionString);
+				enabled = false;
+			}
 		}
-		else
+
+		if (temperatureLight != null)
 		{
-			Debug.Log("Shader material: " + material + " on object:" + gameObject.name + " doesn't contain the emission control float: " + materialEmissionString);
-			enabled = false;
+			temperatureLight.intensity = t;
 		}
 	}
 
@@ -38,6 +48,11 @@ public class Temperature : MonoBehaviour
 		if (material == null)
 		{
 			material = GetComponent<Renderer>().material;
+		}
+
+		if (temperatureLight == null)
+		{
+			temperatureLight = GetComponent<Light>();
 		}
 	}
 

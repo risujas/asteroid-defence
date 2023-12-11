@@ -13,17 +13,20 @@ public class GravityBody : MonoBehaviour
 	[SerializeField] protected bool useCollisionSpeedThreshold = false;
 	[SerializeField] protected float collisionSpeedThreshold = 0.2f;
 	[SerializeField] protected bool isMajorBody = false;
-	[SerializeField] protected bool isImmuneToMassReduction = false;
+	[SerializeField] protected bool isAffectedByDrag = false;
 
 	[Serializable] public class CollisionEvent : UnityEvent<Collision> { }
 	[SerializeField] protected CollisionEvent OnMajorCollision;
 	[SerializeField] protected CollisionEvent OnMinorCollision;
 	[SerializeField] protected CollisionEvent OnAnyCollision;
 
+	[SerializeField] protected bool onlyAllowSpecificAttractors = false;
+	[SerializeField] protected List<GravityBody> allowedAttractors = new List<GravityBody>();
+
 	protected GameObject spawnedObjectsContainer;
 	protected bool hasCollided = false;
 
-	public bool IsImmuneToMassReduction => isImmuneToMassReduction;
+	public bool IsAffectedByDrag => isAffectedByDrag;
 	public bool UseCollisionSpeedThreshold { get { return useCollisionSpeedThreshold; } set { useCollisionSpeedThreshold = value; } }
 	public float CollisionSpeedThreshold { get { return collisionSpeedThreshold; } set { collisionSpeedThreshold = value; } }
 	public Rigidbody rb { get; private set; }
@@ -56,6 +59,18 @@ public class GravityBody : MonoBehaviour
 
 	public void Attract(GravityBody a)
 	{
+		if (a.onlyAllowSpecificAttractors)
+		{
+			if (a.allowedAttractors.Count == 0)
+			{
+				return;
+			}
+			if (!a.allowedAttractors.Contains(this))
+			{
+				return;
+			}
+		}
+
 		Vector3 direction = transform.position - a.transform.position;
 		float distance = direction.magnitude;
 		direction.Normalize();

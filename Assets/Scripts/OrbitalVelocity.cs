@@ -6,6 +6,8 @@ public class OrbitalVelocity : MonoBehaviour
 	[SerializeField] private float oppositeOrbitalDistance = 1.0f;
 	[SerializeField] private bool clockwiseRotation;
 
+	public Rigidbody ParentBody => parentBody;
+
 	public static float GetOrbitalPeriod(float orbitalRadius, float parentMass)
 	{
 		return 2 * Mathf.PI * Mathf.Sqrt(Mathf.Pow(orbitalRadius, 3) / (GravityBody.G * parentMass));
