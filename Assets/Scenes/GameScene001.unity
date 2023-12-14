@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9920ac581139cc24499b8b39866989c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deactivateAllUponRightClick: 1
   controlledButtons:
   - {fileID: 1104733093}
   - {fileID: 1597197748}
