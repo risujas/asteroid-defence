@@ -60,7 +60,7 @@ public class PlacementManager : MonoBehaviour
 		}
 	}
 
-	private void CancelPlacement()
+	public void CancelPlacement()
 	{
 		isPlacing = false;
 		selectedPlaceablePrefab = null;
