@@ -17,8 +17,10 @@ public class LaserCannonControl : MonoBehaviour
 
 	private LineRenderer lineRenderer;
 
-	private bool laserHitObject;
+	private bool laserIsFiring = false;
+	private bool laserHitAnObject;
 	private RaycastHit laserHit;
+	private Vector3 laserDir;
 
 	private void RotateTurret()
 	{
@@ -27,50 +29,108 @@ public class LaserCannonControl : MonoBehaviour
 		transform.up = (mousePos - transform.position).normalized;
 	}
 
-	private void HandleLaserVisual()
+	private void HandleLaserInput()
 	{
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos.z = transform.position.z;
-
-		Ray ray = new Ray();
-		ray.origin = laserOrigin.position;
-		ray.direction = (mousePos - laserOrigin.position).normalized;
-
-		Vector3 laserEndPoint = laserOrigin.position;
-		laserEndPoint += ray.direction * 1000.0f;
-
-		if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, laserCollisionLayers))
+		if (Input.GetMouseButtonDown(0))
 		{
-			laserEndPoint = hit.point;
+			laserIsFiring = true;
 
-			if (!laserImpact.activeSelf)
+			lineRenderer.enabled = true;
+			if (!laserFiringEffect.activeSelf)
 			{
-				laserImpact.SetActive(true);
+				laserFiringEffect.SetActive(true);
 			}
-			laserImpact.transform.position = hit.point + hit.normal * 0.05f;
-
-			laserHitObject = true;
-			laserHit = hit;
 		}
-		else
+		else if (!Input.GetMouseButton(0) && laserIsFiring)
 		{
+			laserIsFiring = false;
+
+			lineRenderer.enabled = false;
+			laserFiringEffect.SetActive(false);
 			laserImpact.SetActive(false);
 		}
+	}
 
-		lineRenderer.SetPosition(0, laserOrigin.position);
-		lineRenderer.SetPosition(1, laserEndPoint);
+	private void HandleLaserBattery()
+	{
+		if (laserIsFiring)
+		{
+			laserBatteryPower -= laserBatteryDepletionRate * Time.deltaTime;
+		}
+
+		laserBatteryPower += laserBatteryRechargeRate * Time.deltaTime;
+		laserBatteryPower = Mathf.Clamp(laserBatteryPower, 0.0f, laserBatteryPowerCap);
+	}
+
+	private void HandleLaserRaycast()
+	{
+		laserHitAnObject = false;
+
+		if (laserIsFiring)
+		{
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos.z = transform.position.z;
+			laserDir = (mousePos - laserOrigin.position).normalized;
+
+			Ray ray = new Ray();
+			ray.origin = laserOrigin.position;
+			ray.direction = laserDir;
+
+			if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, laserCollisionLayers))
+			{
+				laserHitAnObject = true;
+				laserHit = hit;
+			}
+			else
+			{
+				laserImpact.SetActive(false);
+			}
+		}
+	}
+
+	private void HandleLaserVisual()
+	{
+		if (laserIsFiring)
+		{
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos.z = transform.position.z;
+
+			Vector3 laserEndPoint = laserOrigin.position;
+			laserEndPoint += laserDir * 1000.0f;
+
+			if (laserHitAnObject)
+			{
+				laserEndPoint = laserHit.point;
+
+				if (!laserImpact.activeSelf)
+				{
+					laserImpact.SetActive(true);
+				}
+				laserImpact.transform.position = laserHit.point + laserHit.normal * 0.05f;
+			}
+			else
+			{
+				laserImpact.SetActive(false);
+			}
+
+			lineRenderer.SetPosition(0, laserOrigin.position);
+			lineRenderer.SetPosition(1, laserEndPoint);
+		}
 	}
 
 	private void HandleLaserImpactForce(RaycastHit hit)
 	{
-		if ((laserForceAlterableLayers & (1 << hit.transform.gameObject.layer)) != 0)
+		if (laserIsFiring && laserHitAnObject)
 		{
-			var rb = hit.transform.GetComponent<Rigidbody>();
+			if ((laserForceAlterableLayers & (1 << hit.transform.gameObject.layer)) != 0)
+			{
+				var rb = hit.transform.GetComponent<Rigidbody>();
 
-			Vector3 dir = (hit.transform.position - laserOrigin.position).normalized;
-			Vector3 force = dir * laserPower;
+				Vector3 dir = (hit.transform.position - laserOrigin.position).normalized;
+				Vector3 force = dir * laserPower;
 
-			rb.AddForceAtPosition(force, hit.point, ForceMode.Force);
+				rb.AddForceAtPosition(force, hit.point, ForceMode.Force);
+			}
 		}
 	}
 
@@ -90,35 +150,14 @@ public class LaserCannonControl : MonoBehaviour
 	{
 		RotateTurret();
 
-		laserHitObject = false;
-		if (Input.GetMouseButton(0))
-		{
-			lineRenderer.enabled = true;
-			HandleLaserVisual();
-
-			if (!laserFiringEffect.activeSelf)
-			{
-				laserFiringEffect.SetActive(true);
-			}
-
-			laserBatteryPower -= laserBatteryDepletionRate * Time.deltaTime;
-		}
-		else
-		{
-			lineRenderer.enabled = false;
-			laserFiringEffect.SetActive(false);
-			laserImpact.SetActive(false);
-		}
-
-		laserBatteryPower += laserBatteryRechargeRate * Time.fixedDeltaTime;
-		laserBatteryPower = Mathf.Clamp(laserBatteryPower, 0.0f, laserBatteryPowerCap);
+		HandleLaserInput();
+		HandleLaserRaycast();
+		HandleLaserBattery();
+		HandleLaserVisual();
 	}
 
 	private void FixedUpdate()
 	{
-		if (laserHitObject)
-		{
-			HandleLaserImpactForce(laserHit);
-		}
+		HandleLaserImpactForce(laserHit);
 	}
 }
