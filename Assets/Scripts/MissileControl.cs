@@ -9,6 +9,7 @@ public class MissileControl : MonoBehaviour
 
 	[SerializeField] private AudioSource rocketEngineSound;
 	[SerializeField] private VisualEffect rocketEngineVfx;
+	[SerializeField] private Light rocketEngineLight;
 
 	private Rigidbody rb;
 	private FundsManager fundsManager;
@@ -35,6 +36,7 @@ public class MissileControl : MonoBehaviour
 			{
 				rocketEngineSound.Play();
 				rocketEngineVfx.Play();
+				rocketEngineLight.enabled = true;
 			}
 		}
 
@@ -44,6 +46,7 @@ public class MissileControl : MonoBehaviour
 			{
 				rocketEngineSound.Stop();
 				rocketEngineVfx.Stop();
+				rocketEngineLight.enabled = false;
 			}
 		}
 	}

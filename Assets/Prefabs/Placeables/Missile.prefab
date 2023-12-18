@@ -399,6 +399,7 @@ MonoBehaviour:
   acceleration: 1
   rocketEngineSound: {fileID: 7689156202260970892}
   rocketEngineVfx: {fileID: 3810615588357629448}
+  rocketEngineLight: {fileID: 7128209501440059202}
 --- !u!114 &632946194701197585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +415,7 @@ MonoBehaviour:
   useCollisionSpeedThreshold: 1
   collisionSpeedThreshold: 0.02
   isMajorBody: 0
-  isImmuneToMassReduction: 1
+  isAffectedByDrag: 0
   OnMajorCollision:
     m_PersistentCalls:
       m_Calls: []
@@ -448,6 +449,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyAllowSpecificAttractors: 0
+  allowedAttractors: []
 --- !u!114 &583539899263132847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781f44f9d342f7b4891922f8b12f397a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 100000
 --- !u!4 &6761395272975807230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6415009287431129367, guid: b2ed3008998b13b4c98234b17a02c88e,
@@ -599,6 +603,12 @@ Transform:
 --- !u!2083052967 &3810615588357629448 stripped
 VisualEffect:
   m_CorrespondingSourceObject: {fileID: 8515234005159559053, guid: 629ba0af93ad17e409506dc4d2d5b9d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4813845002725874053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &7128209501440059202 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: -6907877238643491129, guid: 629ba0af93ad17e409506dc4d2d5b9d2,
     type: 3}
   m_PrefabInstance: {fileID: 4813845002725874053}
   m_PrefabAsset: {fileID: 0}

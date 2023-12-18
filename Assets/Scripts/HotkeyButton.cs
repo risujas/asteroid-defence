@@ -1,12 +1,17 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class HotkeyButton : MonoBehaviour
 {
 	[SerializeField] private KeyCode hotkey;
 	[SerializeField] private TextMeshProUGUI hotkeyText;
+
+	[Serializable] public class DeactivationEvent : UnityEvent { }
+	[SerializeField] public DeactivationEvent OnDeactivation;
 
 	private Button button;
 

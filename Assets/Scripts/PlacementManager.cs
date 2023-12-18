@@ -60,10 +60,12 @@ public class PlacementManager : MonoBehaviour
 		}
 	}
 
-	private void CancelPlacement()
+	public void CancelPlacement()
 	{
 		isPlacing = false;
 		selectedPlaceablePrefab = null;
+
+		timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
 
 		Destroy(placementAidMarker);
 	}
@@ -113,12 +115,6 @@ public class PlacementManager : MonoBehaviour
 						return;
 					}
 				}
-			}
-
-			if (Input.GetMouseButtonUp(1))
-			{
-				timescaleChangerReference.SetTimescale(timescaleChangerReference.Level);
-				CancelPlacement();
 			}
 		}
 	}
