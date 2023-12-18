@@ -39,20 +39,18 @@ public class LaserCannonControl : MonoBehaviour
 		lineRenderer = GetComponent<LineRenderer>();
 	}
 
-	private void OnEnable()
-	{
-		lineRenderer.enabled = true;
-		SetLinePositions();
-	}
-
-	private void OnDisable()
-	{
-		lineRenderer.enabled = false;
-	}
-
 	private void Update()
 	{
 		RotateTurret();
-		SetLinePositions();
+
+		if (Input.GetMouseButton(0))
+		{
+			lineRenderer.enabled = true;
+			SetLinePositions();
+		}
+		else
+		{
+			lineRenderer.enabled = false;
+		}
 	}
 }
