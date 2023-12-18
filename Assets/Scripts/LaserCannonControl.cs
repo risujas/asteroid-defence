@@ -13,6 +13,9 @@ public class LaserCannonControl : MonoBehaviour
 
 	private LineRenderer lineRenderer;
 
+	private bool laserHitObject;
+	private RaycastHit laserHit;
+
 	private void RotateTurret()
 	{
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -20,7 +23,7 @@ public class LaserCannonControl : MonoBehaviour
 		transform.up = (mousePos - transform.position).normalized;
 	}
 
-	private void HandleLaser()
+	private void HandleLaserVisual()
 	{
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.z = transform.position.z;
@@ -42,7 +45,8 @@ public class LaserCannonControl : MonoBehaviour
 			}
 			laserImpact.transform.position = hit.point + hit.normal * 0.05f;
 
-			HandleLaserImpactForce(hit);
+			laserHitObject = true;
+			laserHit = hit;
 		}
 		else
 		{
@@ -62,7 +66,8 @@ public class LaserCannonControl : MonoBehaviour
 			Vector3 dir = (hit.transform.position - laserOrigin.position).normalized;
 			Vector3 force = dir * laserPower;
 
-			rb.AddForce(force, ForceMode.Force);
+			//rb.AddForce(force, ForceMode.Force);
+			rb.AddForceAtPosition(force, hit.point, ForceMode.Force);
 		}
 	}
 
@@ -81,14 +86,12 @@ public class LaserCannonControl : MonoBehaviour
 	private void Update()
 	{
 		RotateTurret();
-	}
 
-	private void FixedUpdate()
-	{
+		laserHitObject = false;
 		if (Input.GetMouseButton(0))
 		{
 			lineRenderer.enabled = true;
-			HandleLaser();
+			HandleLaserVisual();
 
 			if (!laserFiringEffect.activeSelf)
 			{
@@ -100,6 +103,14 @@ public class LaserCannonControl : MonoBehaviour
 			lineRenderer.enabled = false;
 			laserFiringEffect.SetActive(false);
 			laserImpact.SetActive(false);
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		if (laserHitObject)
+		{
+			HandleLaserImpactForce(laserHit);
 		}
 	}
 }
