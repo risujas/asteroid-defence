@@ -29,9 +29,17 @@ public class LaserCannonControl : MonoBehaviour
 		transform.up = (mousePos - transform.position).normalized;
 	}
 
+	private void DisableLaser()
+	{
+		laserIsFiring = false;
+		lineRenderer.enabled = false;
+		laserFiringEffect.SetActive(false);
+		laserImpact.SetActive(false);
+	}
+
 	private void HandleLaserInput()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && laserBatteryPower > 0.0f)
 		{
 			laserIsFiring = true;
 
@@ -43,11 +51,7 @@ public class LaserCannonControl : MonoBehaviour
 		}
 		else if (!Input.GetMouseButton(0) && laserIsFiring)
 		{
-			laserIsFiring = false;
-
-			lineRenderer.enabled = false;
-			laserFiringEffect.SetActive(false);
-			laserImpact.SetActive(false);
+			DisableLaser();
 		}
 	}
 
@@ -56,6 +60,11 @@ public class LaserCannonControl : MonoBehaviour
 		if (laserIsFiring)
 		{
 			laserBatteryPower -= laserBatteryDepletionRate * Time.deltaTime;
+
+			if (laserBatteryPower < 0.0f)
+			{
+				DisableLaser();
+			}
 		}
 
 		laserBatteryPower += laserBatteryRechargeRate * Time.deltaTime;
