@@ -3,6 +3,8 @@ using UnityEngine;
 public class LaserCannonControl : MonoBehaviour
 {
 	[SerializeField] private LayerMask laserCollisionLayers;
+	[SerializeField] private LayerMask laserForceAlterableLayers;
+
 	[SerializeField] private Transform laserOrigin;
 	[SerializeField] private GameObject laserFiringEffect;
 	[SerializeField] private GameObject laserImpact;
@@ -16,7 +18,7 @@ public class LaserCannonControl : MonoBehaviour
 		transform.up = (mousePos - transform.position).normalized;
 	}
 
-	private void SetLinePositions()
+	private void HandleLaser()
 	{
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.z = transform.position.z;
@@ -37,6 +39,8 @@ public class LaserCannonControl : MonoBehaviour
 				laserImpact.SetActive(true);
 			}
 			laserImpact.transform.position = hit.point + hit.normal * 0.05f;
+
+			HandleLaserImpactForce(hit);
 		}
 		else
 		{
@@ -45,6 +49,12 @@ public class LaserCannonControl : MonoBehaviour
 
 		lineRenderer.SetPosition(0, laserOrigin.position);
 		lineRenderer.SetPosition(1, laserEndPoint);
+	}
+
+	private void HandleLaserImpactForce(RaycastHit hit)
+	{
+		// How do I check if hit belongs to laserForceAlterableLayers
+		// TODO
 	}
 
 	private void Awake()
@@ -66,7 +76,7 @@ public class LaserCannonControl : MonoBehaviour
 		if (Input.GetMouseButton(0))
 		{
 			lineRenderer.enabled = true;
-			SetLinePositions();
+			HandleLaser();
 
 			if (!laserFiringEffect.activeSelf)
 			{
