@@ -4,6 +4,8 @@ public class LaserCannonControl : MonoBehaviour
 {
 	[SerializeField] private LayerMask laserCollisionLayers;
 	[SerializeField] private Transform laserOrigin;
+	[SerializeField] private GameObject laserFiringEffect;
+
 	private LineRenderer lineRenderer;
 
 	private void RotateTurret()
@@ -39,6 +41,12 @@ public class LaserCannonControl : MonoBehaviour
 		lineRenderer = GetComponent<LineRenderer>();
 	}
 
+	private void OnDisable()
+	{
+		lineRenderer.enabled = false;
+		laserFiringEffect.SetActive(false);
+	}
+
 	private void Update()
 	{
 		RotateTurret();
@@ -47,10 +55,16 @@ public class LaserCannonControl : MonoBehaviour
 		{
 			lineRenderer.enabled = true;
 			SetLinePositions();
+
+			if (!laserFiringEffect.activeSelf)
+			{
+				laserFiringEffect.SetActive(true);
+			}
 		}
 		else
 		{
 			lineRenderer.enabled = false;
+			laserFiringEffect.SetActive(false);
 		}
 	}
 }
