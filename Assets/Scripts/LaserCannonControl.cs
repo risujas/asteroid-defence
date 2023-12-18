@@ -66,7 +66,6 @@ public class LaserCannonControl : MonoBehaviour
 			Vector3 dir = (hit.transform.position - laserOrigin.position).normalized;
 			Vector3 force = dir * laserPower;
 
-			//rb.AddForce(force, ForceMode.Force);
 			rb.AddForceAtPosition(force, hit.point, ForceMode.Force);
 		}
 	}
