@@ -988,6 +988,11 @@ PrefabInstance:
       propertyPath: laserImpact
       value: 
       objectReference: {fileID: 1416190172}
+    - target: {fileID: 9083651479572911150, guid: 5cd9f95359b1d5a499352615a80f98bf,
+        type: 3}
+      propertyPath: laserForceAlterableLayers.m_Bits
+      value: 12288
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

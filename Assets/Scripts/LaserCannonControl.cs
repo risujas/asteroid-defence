@@ -9,6 +9,8 @@ public class LaserCannonControl : MonoBehaviour
 	[SerializeField] private GameObject laserFiringEffect;
 	[SerializeField] private GameObject laserImpact;
 
+	[SerializeField] private float laserPower = 1.0f;
+
 	private LineRenderer lineRenderer;
 
 	private void RotateTurret()
@@ -53,8 +55,15 @@ public class LaserCannonControl : MonoBehaviour
 
 	private void HandleLaserImpactForce(RaycastHit hit)
 	{
-		// How do I check if hit belongs to laserForceAlterableLayers
-		// TODO
+		if ((laserForceAlterableLayers & (1 << hit.transform.gameObject.layer)) != 0)
+		{
+			var rb = hit.transform.GetComponent<Rigidbody>();
+
+			Vector3 dir = (hit.transform.position - laserOrigin.position).normalized;
+			Vector3 force = dir * laserPower;
+
+			rb.AddForce(force, ForceMode.Force);
+		}
 	}
 
 	private void Awake()
@@ -72,7 +81,10 @@ public class LaserCannonControl : MonoBehaviour
 	private void Update()
 	{
 		RotateTurret();
+	}
 
+	private void FixedUpdate()
+	{
 		if (Input.GetMouseButton(0))
 		{
 			lineRenderer.enabled = true;
