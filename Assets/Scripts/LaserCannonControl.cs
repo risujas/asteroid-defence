@@ -150,9 +150,7 @@ public class LaserCannonControl : MonoBehaviour
 
 	private void OnDisable()
 	{
-		lineRenderer.enabled = false;
-		laserFiringEffect.SetActive(false);
-		laserImpact.SetActive(false);
+		DisableLaser();
 	}
 
 	private void Update()
