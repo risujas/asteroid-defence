@@ -434,8 +434,16 @@ MonoBehaviour:
   laserCollisionLayers:
     serializedVersion: 2
     m_Bits: 12289
+  laserForceAlterableLayers:
+    serializedVersion: 2
+    m_Bits: 0
   laserOrigin: {fileID: 7816312698842138118}
   laserFiringEffect: {fileID: 4379645376188378605}
+  laserImpact: {fileID: 0}
+  laserPower: 1
+  laserBatteryPower: 1
+  laserBatteryRechargeRate: 0.05
+  laserBatteryDepletionRate: 0.1
 --- !u!120 &3084879457351907282
 LineRenderer:
   serializedVersion: 2

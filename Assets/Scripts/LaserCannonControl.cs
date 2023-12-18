@@ -9,7 +9,11 @@ public class LaserCannonControl : MonoBehaviour
 	[SerializeField] private GameObject laserFiringEffect;
 	[SerializeField] private GameObject laserImpact;
 
+	private const float laserBatteryPowerCap = 1.0f;
 	[SerializeField] private float laserPower = 1.0f;
+	[SerializeField] private float laserBatteryPower = laserBatteryPowerCap;
+	[SerializeField] private float laserBatteryRechargeRate = 0.05f;
+	[SerializeField] private float laserBatteryDepletionRate = 0.1f;
 
 	private LineRenderer lineRenderer;
 
@@ -96,6 +100,8 @@ public class LaserCannonControl : MonoBehaviour
 			{
 				laserFiringEffect.SetActive(true);
 			}
+
+			laserBatteryPower -= laserBatteryDepletionRate * Time.deltaTime;
 		}
 		else
 		{
@@ -103,6 +109,9 @@ public class LaserCannonControl : MonoBehaviour
 			laserFiringEffect.SetActive(false);
 			laserImpact.SetActive(false);
 		}
+
+		laserBatteryPower += laserBatteryRechargeRate * Time.fixedDeltaTime;
+		laserBatteryPower = Mathf.Clamp(laserBatteryPower, 0.0f, laserBatteryPowerCap);
 	}
 
 	private void FixedUpdate()
