@@ -5,6 +5,7 @@ public class LaserCannonControl : MonoBehaviour
 	[SerializeField] private LayerMask laserCollisionLayers;
 	[SerializeField] private Transform laserOrigin;
 	[SerializeField] private GameObject laserFiringEffect;
+	[SerializeField] private GameObject laserImpact;
 
 	private LineRenderer lineRenderer;
 
@@ -30,6 +31,16 @@ public class LaserCannonControl : MonoBehaviour
 		if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, laserCollisionLayers))
 		{
 			laserEndPoint = hit.point;
+
+			if (!laserImpact.activeSelf)
+			{
+				laserImpact.SetActive(true);
+			}
+			laserImpact.transform.position = hit.point + hit.normal * 0.05f;
+		}
+		else
+		{
+			laserImpact.SetActive(false);
 		}
 
 		lineRenderer.SetPosition(0, laserOrigin.position);
@@ -45,6 +56,7 @@ public class LaserCannonControl : MonoBehaviour
 	{
 		lineRenderer.enabled = false;
 		laserFiringEffect.SetActive(false);
+		laserImpact.SetActive(false);
 	}
 
 	private void Update()
@@ -65,6 +77,7 @@ public class LaserCannonControl : MonoBehaviour
 		{
 			lineRenderer.enabled = false;
 			laserFiringEffect.SetActive(false);
+			laserImpact.SetActive(false);
 		}
 	}
 }
