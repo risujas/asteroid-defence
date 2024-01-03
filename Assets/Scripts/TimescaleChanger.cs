@@ -59,7 +59,7 @@ public class TimescaleChanger : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
 		ResetTimescale();
 	}
