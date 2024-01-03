@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,7 +7,8 @@ using UnityEngine.UI;
 public class HotkeyButton : MonoBehaviour
 {
 	[SerializeField] private KeyCode hotkey;
-	[SerializeField] private TextMeshProUGUI hotkeyText;
+	[SerializeField] private TextMeshProUGUI hotkeyTMP;
+	[SerializeField] private string hotkeyText;
 
 	[Serializable] public class DeactivationEvent : UnityEvent { }
 	[SerializeField] public DeactivationEvent OnDeactivation;
@@ -18,7 +18,7 @@ public class HotkeyButton : MonoBehaviour
 	private void Start()
 	{
 		button = GetComponent<Button>();
-		hotkeyText.text = "(" + hotkey.HumanName() + ")";
+		hotkeyTMP.text = "(" + hotkeyText + ")";
 	}
 
 	private void Update()
