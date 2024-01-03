@@ -90,3 +90,15 @@ add be-be-be-beep noise and an indicator when a group is spawned
 use fewer particles for fragment impact effects
 
 alter laser colour and pitch depending on battery level
+
+add DIFFICULTY:
+	depends on the current asteroid group index, gets more difficult with every new group
+	difficulty can manifest in multiple different ways; velocity, group size, group scatter, etc
+	with a difficulty value of 100, 20 could be used to increase group size, 50 velocity, 30 scatter, etc
+	some weird weights system
+
+add another moon for visual interest
+
+increase camera zoom
+
+make spawned asteroids fade in
