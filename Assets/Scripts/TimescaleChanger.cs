@@ -59,8 +59,8 @@ public class TimescaleChanger : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
-		ResetTimescale();
+		Time.timeScale = 1.0f;
 	}
 }
