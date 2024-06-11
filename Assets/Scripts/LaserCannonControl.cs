@@ -165,6 +165,9 @@ public class LaserCannonControl : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		HandleLaserImpactForce(laserHit);
+		if (laserHitAnObject)
+		{
+			HandleLaserImpactForce(laserHit);
+		}
 	}
 }
